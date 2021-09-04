@@ -2,7 +2,8 @@
 
 namespace BusinessLogicInterface
 {
-    public class Class1
+    public interface IAdministratorLogic
+
     {
     }
 }
