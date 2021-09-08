@@ -2,44 +2,60 @@
   "version": 3,
   "targets": {
     ".NETCoreApp,Version=v3.1": {
-      "BusinessLogicInterface/1.0.0": {
+      "DataAccessInterface/1.0.0": {
         "type": "project",
         "framework": ".NETCoreApp,Version=v3.1",
         "compile": {
-          "bin/placeholder/BusinessLogicInterface.dll": {}
+          "bin/placeholder/DataAccessInterface.dll": {}
         },
         "runtime": {
-          "bin/placeholder/BusinessLogicInterface.dll": {}
+          "bin/placeholder/DataAccessInterface.dll": {}
+        }
+      },
+      "Domain/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v3.1",
+        "compile": {
+          "bin/placeholder/Domain.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/Domain.dll": {}
         }
       }
     }
   },
   "libraries": {
-    "BusinessLogicInterface/1.0.0": {
+    "DataAccessInterface/1.0.0": {
       "type": "project",
-      "path": "../BusinessLogicInterface/BusinessLogicInterface.csproj",
-      "msbuildProject": "../BusinessLogicInterface/BusinessLogicInterface.csproj"
+      "path": "../DataAccessInterface/DataAccessInterface.csproj",
+      "msbuildProject": "../DataAccessInterface/DataAccessInterface.csproj"
+    },
+    "Domain/1.0.0": {
+      "type": "project",
+      "path": "../LogicaNegocio/Domain.csproj",
+      "msbuildProject": "../LogicaNegocio/Domain.csproj"
     }
   },
   "projectFileDependencyGroups": {
     ".NETCoreApp,Version=v3.1": [
-      "BusinessLogicInterface >= 1.0.0"
+      "DataAccessInterface >= 1.0.0",
+      "Domain >= 1.0.0"
     ]
   },
   "packageFolders": {
-    "C:\\Users\\Diego\\.nuget\\packages\\": {}
+    "C:\\Users\\hreye\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Diego\\Desktop\\OBLI1\\OBL-Asadurian-Reyes\\OBLDA2\\BusinessLogic\\BusinessLogic.csproj",
+      "projectUniqueName": "C:\\Users\\hreye\\Desktop\\Personal\\Facultad\\OBL-Asadurian-Reyes\\OBLDA2\\BusinessLogic\\BusinessLogic.csproj",
       "projectName": "BusinessLogic",
-      "projectPath": "C:\\Users\\Diego\\Desktop\\OBLI1\\OBL-Asadurian-Reyes\\OBLDA2\\BusinessLogic\\BusinessLogic.csproj",
-      "packagesPath": "C:\\Users\\Diego\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Diego\\Desktop\\OBLI1\\OBL-Asadurian-Reyes\\OBLDA2\\BusinessLogic\\obj\\",
+      "projectPath": "C:\\Users\\hreye\\Desktop\\Personal\\Facultad\\OBL-Asadurian-Reyes\\OBLDA2\\BusinessLogic\\BusinessLogic.csproj",
+      "packagesPath": "C:\\Users\\hreye\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\hreye\\Desktop\\Personal\\Facultad\\OBL-Asadurian-Reyes\\OBLDA2\\BusinessLogic\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\Diego\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\hreye\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -53,8 +69,11 @@
         "netcoreapp3.1": {
           "targetAlias": "netcoreapp3.1",
           "projectReferences": {
-            "C:\\Users\\Diego\\Desktop\\OBLI1\\OBL-Asadurian-Reyes\\OBLDA2\\BusinessLogicInterface\\BusinessLogicInterface.csproj": {
-              "projectPath": "C:\\Users\\Diego\\Desktop\\OBLI1\\OBL-Asadurian-Reyes\\OBLDA2\\BusinessLogicInterface\\BusinessLogicInterface.csproj"
+            "C:\\Users\\hreye\\Desktop\\Personal\\Facultad\\OBL-Asadurian-Reyes\\OBLDA2\\DataAccessInterface\\DataAccessInterface.csproj": {
+              "projectPath": "C:\\Users\\hreye\\Desktop\\Personal\\Facultad\\OBL-Asadurian-Reyes\\OBLDA2\\DataAccessInterface\\DataAccessInterface.csproj"
+            },
+            "C:\\Users\\hreye\\Desktop\\Personal\\Facultad\\OBL-Asadurian-Reyes\\OBLDA2\\LogicaNegocio\\Domain.csproj": {
+              "projectPath": "C:\\Users\\hreye\\Desktop\\Personal\\Facultad\\OBL-Asadurian-Reyes\\OBLDA2\\LogicaNegocio\\Domain.csproj"
             }
           }
         }

@@ -6,11 +6,13 @@ namespace DataAccessInterface
 {
     public interface IRepository<T> where T : class
     {
-        void Create(T entity);
+        T Create(T entity);
 
         T Get(int id);
         IEnumerable<T> GetAll();
         void Save();
-       
+        void Delete(T entity);
+        void Update(T entity, T entityUpdate);
+
     }
 }
