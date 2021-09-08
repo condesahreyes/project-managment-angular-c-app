@@ -23,5 +23,18 @@ namespace Domain
             this.Version = version;
             this.State = state;
         }
+
+        public override bool Equals(object obj)
+        {
+            var result = false;
+
+            if (obj is Bug bug)
+            {
+                result = this.Project.Name == bug.Project.Name ||
+                    this.Id == bug.Id || this.Name == bug.Name;
+            }
+
+            return result;
+        }
     }
 }

@@ -5,17 +5,16 @@ namespace Domain
 {
     public class Project
     {
-        private string nombre;
 
         public List<User> testers;
         public List<User> desarrolladores;
         public List<Bug> incidentes;
 
-        public string Nombre { get; }
+        public string Name { get; set; }
 
-        public Project(string nommbre)
+        public Project(string name)
         {
-            this.nombre = nombre;
+            this.Name = name;
             this.testers = new List<User>();
             this.desarrolladores = new List<User>();
             this.incidentes = new List<Bug>();

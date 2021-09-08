@@ -1,14 +1,17 @@
-﻿using DataAccessInterface;
+﻿using BusinessLogicInterface;
+using DataAccessInterface;
 using Domain;
 using System;
 using System.Collections.Generic;
-using System.Text;
 
 namespace BusinessLogic
 {
-    public class BugLogic
+    public class BugLogic:IBugLogic
     {
+        private string[] possibleStates = { "activo", "resuelto" };
+
         private IRepository<Bug> bugRepository;
+
         public BugLogic(IRepository<Bug> bugRepository)
         {
             this.bugRepository = bugRepository;
@@ -16,22 +19,82 @@ namespace BusinessLogic
 
         public Bug Create(Bug bug)
         {
-            throw new NotImplementedException();
+            AreCorrectData(bug);
+
+            return bugRepository.Create(bug);
         }
 
         public void Delete(Bug bug)
         {
-            throw new NotImplementedException();
+            bugRepository.Delete(bug);
         }
 
-        public List<Bug> GetAll()
+        public IEnumerable<Bug> GetAll()
         {
-            throw new NotImplementedException();
+            return bugRepository.GetAll();
         }
 
         public void Update(Bug bug, Bug bugUpdate)
         {
-            throw new NotImplementedException();
+            AreCorrectData(bugUpdate);
+
+            bugRepository.Update(bug, bugUpdate);
+        }
+
+        private void AreCorrectData(Bug oneBug)
+        {
+            IsValidId(oneBug.Id);
+            IsValidName(oneBug.Name);
+            IsValidDomain(oneBug.Domain);
+            IsValidVersion(oneBug.Version);
+            IsValidState(oneBug.State);
+        }
+
+        private void IsValidId(int oneId)
+        {
+            if (!(oneId <= 9999 && oneId >= 0))
+                throw new Exception("");
+        }
+
+        private void IsValidName(string oneName)
+        {
+            int nameLength = oneName.Length;
+
+            if(!(nameLength <= 60 && nameLength > 0))
+                throw new Exception("");
+        }
+
+        private void IsValidDomain(string oneDomain)
+        {
+            int domainLength = oneDomain.Length;
+
+            if (!(domainLength <= 150 && domainLength > 0))
+                throw new Exception("");
+        }
+
+        private void IsValidVersion(string oneVersion)
+        {
+            int versionLength = oneVersion.Length;
+
+            if (!(versionLength <= 10 && versionLength > 0))
+                throw new Exception("");
+        }
+
+        private void IsValidState(string oneVersion)
+        {
+            bool isValidState = false;
+
+            for (int i = 0; i < possibleStates.Length && !isValidState; i++)
+                if (possibleStates[i] == oneVersion.ToLower())
+                    isValidState = true;
+
+            if(!isValidState)
+                throw new Exception("");
+        }
+
+        public Bug Get(int id)
+        {
+            return bugRepository.Get(id);
         }
     }
 }

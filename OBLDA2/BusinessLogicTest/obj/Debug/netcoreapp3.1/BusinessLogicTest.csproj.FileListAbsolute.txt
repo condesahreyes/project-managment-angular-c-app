@@ -186,3 +186,14 @@ C:\Users\Diego\Desktop\OBLI1\OBL-Asadurian-Reyes\OBLDA2\BusinessLogicTest\obj\De
 C:\Users\Diego\Desktop\OBLI1\OBL-Asadurian-Reyes\OBLDA2\BusinessLogicTest\obj\Debug\netcoreapp3.1\BusinessLogicTest.AssemblyInfo.cs
 C:\Users\Diego\Desktop\OBLI1\OBL-Asadurian-Reyes\OBLDA2\BusinessLogicTest\obj\Debug\netcoreapp3.1\BusinessLogicTest.dll
 C:\Users\Diego\Desktop\OBLI1\OBL-Asadurian-Reyes\OBLDA2\BusinessLogicTest\obj\Debug\netcoreapp3.1\BusinessLogicTest.pdb
+C:\Users\hreye\Desktop\Personal\Facultad\OBL-Asadurian-Reyes\OBLDA2\BusinessLogicTest\bin\Debug\netcoreapp3.1\CoverletSourceRootsMapping
+C:\Users\hreye\Desktop\Personal\Facultad\OBL-Asadurian-Reyes\OBLDA2\BusinessLogicTest\bin\Debug\netcoreapp3.1\Castle.Core.dll
+C:\Users\hreye\Desktop\Personal\Facultad\OBL-Asadurian-Reyes\OBLDA2\BusinessLogicTest\bin\Debug\netcoreapp3.1\Moq.dll
+C:\Users\hreye\Desktop\Personal\Facultad\OBL-Asadurian-Reyes\OBLDA2\BusinessLogicTest\bin\Debug\netcoreapp3.1\BusinessLogic.dll
+C:\Users\hreye\Desktop\Personal\Facultad\OBL-Asadurian-Reyes\OBLDA2\BusinessLogicTest\bin\Debug\netcoreapp3.1\BusinessLogicInterface.dll
+C:\Users\hreye\Desktop\Personal\Facultad\OBL-Asadurian-Reyes\OBLDA2\BusinessLogicTest\bin\Debug\netcoreapp3.1\DataAccessInterface.dll
+C:\Users\hreye\Desktop\Personal\Facultad\OBL-Asadurian-Reyes\OBLDA2\BusinessLogicTest\bin\Debug\netcoreapp3.1\Domain.dll
+C:\Users\hreye\Desktop\Personal\Facultad\OBL-Asadurian-Reyes\OBLDA2\BusinessLogicTest\bin\Debug\netcoreapp3.1\BusinessLogicInterface.pdb
+C:\Users\hreye\Desktop\Personal\Facultad\OBL-Asadurian-Reyes\OBLDA2\BusinessLogicTest\bin\Debug\netcoreapp3.1\BusinessLogic.pdb
+C:\Users\hreye\Desktop\Personal\Facultad\OBL-Asadurian-Reyes\OBLDA2\BusinessLogicTest\bin\Debug\netcoreapp3.1\DataAccessInterface.pdb
+C:\Users\hreye\Desktop\Personal\Facultad\OBL-Asadurian-Reyes\OBLDA2\BusinessLogicTest\bin\Debug\netcoreapp3.1\Domain.pdb

@@ -1801,6 +1801,7 @@
         "type": "project",
         "framework": ".NETCoreApp,Version=v3.1",
         "dependencies": {
+          "BusinessLogicInterface": "1.0.0",
           "DataAccessInterface": "1.0.0",
           "Domain": "1.0.0"
         },

@@ -175,6 +175,9 @@
           "netcoreapp3.1": {
             "targetAlias": "netcoreapp3.1",
             "projectReferences": {
+              "C:\\Users\\hreye\\Desktop\\Personal\\Facultad\\OBL-Asadurian-Reyes\\OBLDA2\\BusinessLogicInterface\\BusinessLogicInterface.csproj": {
+                "projectPath": "C:\\Users\\hreye\\Desktop\\Personal\\Facultad\\OBL-Asadurian-Reyes\\OBLDA2\\BusinessLogicInterface\\BusinessLogicInterface.csproj"
+              },
               "C:\\Users\\hreye\\Desktop\\Personal\\Facultad\\OBL-Asadurian-Reyes\\OBLDA2\\DataAccessInterface\\DataAccessInterface.csproj": {
                 "projectPath": "C:\\Users\\hreye\\Desktop\\Personal\\Facultad\\OBL-Asadurian-Reyes\\OBLDA2\\DataAccessInterface\\DataAccessInterface.csproj"
               },

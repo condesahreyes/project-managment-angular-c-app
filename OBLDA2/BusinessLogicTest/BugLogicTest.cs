@@ -64,22 +64,6 @@ namespace BusinessLogicTest
 
         [TestMethod]
         [ExpectedException(typeof(Exception))]
-        public void CreateBugInvalidProject()
-        {
-            Project badProject = new Project("NombreDeProyectoMayorA30Caracteres");
-            var bugInvalidProject = new Bug( badProject, id, 
-                name, domain, version, stateActive);
-
-            mock.Setup(x => x.Create(bugInvalidProject)).Returns(bugInvalidProject);
-
-            var bugLogic = new BugLogic(mock.Object);
-
-            Bug bugSaved = bugLogic.Create(bugInvalidProject);
-
-        }
-
-        [TestMethod]
-        [ExpectedException(typeof(Exception))]
         public void CreateBugInvalidId()
         {
             var bugInvalidProject = new Bug(project, 12345,
@@ -159,7 +143,7 @@ namespace BusinessLogicTest
             mock.Setup(r => r.GetAll()).Returns(bugs);
             var bugLogic = new BugLogic(mock.Object);
 
-            List<Bug> bugsSaved= bugLogic.GetAll();
+            IEnumerable<Bug> bugsSaved= bugLogic.GetAll();
 
             mock.VerifyAll();
             Assert.IsTrue(bugsSaved.SequenceEqual(bugs));
@@ -178,7 +162,7 @@ namespace BusinessLogicTest
 
             bugLogic.Delete(bug);
 
-            List<Bug> bugSaved = bugLogic.GetAll();
+            IEnumerable<Bug> bugSaved = bugLogic.GetAll();
             
             mock.VerifyAll();
 
@@ -191,19 +175,22 @@ namespace BusinessLogicTest
             Project newProject = new Project("Nuevo proyecto");
             var bug = new Bug(project, id, name, domain, version, stateActive);
             var bugUpdate = new Bug(newProject, id, name, domain, version, stateActive);
+           
+            List<Bug> bugs = new List<Bug>();
+            bugs.Add(bugUpdate);
 
-            mock.Setup(r => r.Get(bug.Id)).Returns(bug);
+            mock.Setup(r => r.GetAll()).Returns(bugs);
             mock.Setup(r => r.Update(bug, bugUpdate));
 
             var bugLogic = new BugLogic(mock.Object);
 
             bugLogic.Update(bug, bugUpdate);
 
-            List<Bug> bugSaved = bugLogic.GetAll();
+            IEnumerable<Bug> bugSaved = bugLogic.GetAll();
 
             mock.VerifyAll();
-
-            Assert.IsTrue(bugSaved.First().Project.Nombre=="Nuevo proyecto");
+            string nombre = bugSaved.First().Project.Name;
+            Assert.IsTrue(bugSaved.First().Project.Name=="Nuevo proyecto");
         }
 
         [TestMethod]
@@ -212,14 +199,17 @@ namespace BusinessLogicTest
             var bug = new Bug(project, id, name, domain, version, stateActive);
             var bugUpdate = new Bug(project, id, name2, domain, version, stateActive);
 
-            mock.Setup(r => r.Get(bug.Id)).Returns(bug);
+            List<Bug> bugs = new List<Bug>();
+            bugs.Add(bugUpdate);
+
+            mock.Setup(r => r.GetAll()).Returns(bugs);
             mock.Setup(r => r.Update(bug, bugUpdate));
 
             var bugLogic = new BugLogic(mock.Object);
 
             bugLogic.Update(bug, bugUpdate);
 
-            List<Bug> bugSaved = bugLogic.GetAll();
+            IEnumerable<Bug> bugSaved = bugLogic.GetAll();
 
             mock.VerifyAll();
 
@@ -232,18 +222,20 @@ namespace BusinessLogicTest
             var bug = new Bug(project, id, name, domain, version, stateActive);
             var bugUpdate = new Bug(project, id, name2, "Otro dominio", version, stateActive);
 
-            mock.Setup(r => r.Get(bug.Id)).Returns(bug);
+            List<Bug> bugs = new List<Bug>();
+            bugs.Add(bugUpdate);
+
+            mock.Setup(r => r.GetAll()).Returns(bugs);
             mock.Setup(r => r.Update(bug, bugUpdate));
 
             var bugLogic = new BugLogic(mock.Object);
 
             bugLogic.Update(bug, bugUpdate);
 
-            List<Bug> bugSaved = bugLogic.GetAll();
+            IEnumerable<Bug> bugsSaved = bugLogic.GetAll();
 
             mock.VerifyAll();
-
-            Assert.IsTrue(bugSaved.First().Domain == "Otro dominio");
+            Assert.IsTrue(bugsSaved.First().Domain == "Otro dominio");
         }
 
         [TestMethod]
@@ -252,14 +244,17 @@ namespace BusinessLogicTest
             var bug = new Bug(project, id, name, domain, version, stateActive);
             var bugUpdate = new Bug(project, id, name2, domain, "3.5", stateActive);
 
-            mock.Setup(r => r.Get(bug.Id)).Returns(bug);
+            List<Bug> bugs = new List<Bug>();
+            bugs.Add(bugUpdate);
+
+            mock.Setup(r => r.GetAll()).Returns(bugs);
             mock.Setup(r => r.Update(bug, bugUpdate));
 
             var bugLogic = new BugLogic(mock.Object);
 
             bugLogic.Update(bug, bugUpdate);
 
-            List<Bug> bugSaved = bugLogic.GetAll();
+            IEnumerable<Bug> bugSaved = bugLogic.GetAll();
 
             mock.VerifyAll();
 
@@ -272,18 +267,37 @@ namespace BusinessLogicTest
             var bug = new Bug(project, id, name, domain, version, stateActive);
             var bugUpdate = new Bug(project, id, name2, domain, "3.5", stateResolved);
 
-            mock.Setup(r => r.Get(bug.Id)).Returns(bug);
+            List<Bug> bugs = new List<Bug>();
+            bugs.Add(bugUpdate);
+
+            mock.Setup(r => r.GetAll()).Returns(bugs);
             mock.Setup(r => r.Update(bug, bugUpdate));
 
             var bugLogic = new BugLogic(mock.Object);
 
             bugLogic.Update(bug, bugUpdate);
 
-            List<Bug> bugSaved = bugLogic.GetAll();
+            IEnumerable<Bug> bugSaved = bugLogic.GetAll();
 
             mock.VerifyAll();
 
-            Assert.IsTrue(bugSaved.First().Version == stateResolved);
+            Assert.IsTrue(bugSaved.First().State == stateResolved);
         }
+
+        [TestMethod]
+        public void GetBug()
+        {
+            var bug = new Bug(project, id, name, domain, version, stateActive);
+
+            mock.Setup(r => r.Get(bug.Id)).Returns(bug);
+
+            var bugLogic = new BugLogic(mock.Object);
+
+            Bug bugGet = bugLogic.Get(bug.Id);
+
+            mock.VerifyAll();
+            Assert.AreEqual(bugGet, bug);
+        }
+
     }
 }
