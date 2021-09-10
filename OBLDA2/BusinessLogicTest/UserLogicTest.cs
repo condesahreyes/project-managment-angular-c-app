@@ -4,6 +4,7 @@ using System;
 
 namespace BusinessLogicTest
 {
+    [TestClass]
     public class UserLogicTest
     {
         [TestMethod]
@@ -60,7 +61,7 @@ namespace BusinessLogicTest
         public void IsNotValidEmail()
         {
             string invalidEmail = "hernanort.edu.uy";
-            UserLogic.ValidateUserName(invalidEmail);
+            UserLogic.ValidateEmail(invalidEmail);
         }
     }
 }
