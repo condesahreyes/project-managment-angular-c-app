@@ -7,3 +7,4 @@ C:\Users\hreye\Desktop\OBL-Asadurian-Reyes\OBLDA2\DataAccessInterface\obj\Debug\
 C:\Users\hreye\Desktop\OBL-Asadurian-Reyes\OBLDA2\DataAccessInterface\obj\Debug\netcoreapp3.1\DataAccessInterface.csproj.CoreCompileInputs.cache
 C:\Users\hreye\Desktop\OBL-Asadurian-Reyes\OBLDA2\DataAccessInterface\obj\Debug\netcoreapp3.1\DataAccessInterface.dll
 C:\Users\hreye\Desktop\OBL-Asadurian-Reyes\OBLDA2\DataAccessInterface\obj\Debug\netcoreapp3.1\DataAccessInterface.pdb
+C:\Users\hreye\Desktop\OBL-Asadurian-Reyes\OBLDA2\DataAccessInterface\obj\Debug\netcoreapp3.1\DataAccessInterface.csproj.AssemblyReference.cache

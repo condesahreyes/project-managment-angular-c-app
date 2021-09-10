@@ -4,7 +4,7 @@ namespace Domain
 {
     public class User
     {
-
+        public Guid Id { get; set; }
         public string Name{ get;}
         public string LastName{ get;}
         public string UserName{ get;}
@@ -13,8 +13,9 @@ namespace Domain
 
         public Rol Rol{ get; }
 
-        public User(string name, string lastName, string userName, string password, string email, Rol rol)
+        public User(Guid id, string name, string lastName, string userName, string password, string email, Rol rol)
         {
+            this.Id = id;
             this.Name = name;
             this.LastName = lastName;
             this.UserName = userName;
