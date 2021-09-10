@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using DataAccessInterface;
 
 namespace DataAccess
@@ -7,13 +6,16 @@ namespace DataAccess
     public class Repository<T> : IRepository<T> where T : class
     {
 
-
-
-        public void Create(T entity)
+        public T Create(T entity)
         {
-            
+            return null;
         }
-             
+
+        public void Delete(T entity)
+        {
+            throw new System.NotImplementedException();
+        }
+
         public T Get(int id)
         {
             return null;
@@ -27,6 +29,11 @@ namespace DataAccess
         public void Save()
         {
             
+        }
+
+        public void Update(T entity, T entityUpdate)
+        {
+            throw new System.NotImplementedException();
         }
     }
 }
