@@ -10,16 +10,17 @@ namespace Domain
         public string UserName{ get;}
         public string Password{ get;}
         public string Email{ get; }
-        //public string Rol{ get; }
 
-        public User(string name, string lastName, string userName, string password, string email/*, string rol*/)
+        public Rol Rol{ get; }
+
+        public User(string name, string lastName, string userName, string password, string email, Rol rol)
         {
             this.Name = name;
             this.LastName = lastName;
             this.UserName = userName;
             this.Password = password;
             this.Email = email;
-           // this.Rol = rol;
+            this.Rol = rol;
         }
 
     }

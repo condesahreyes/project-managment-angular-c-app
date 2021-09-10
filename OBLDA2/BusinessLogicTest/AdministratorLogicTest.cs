@@ -12,7 +12,7 @@ namespace BusinessLogicTest
     {
 
         private Mock<IAdministratorLogic> Mock;
-        private Mock<IRepository<Administrator>> daMock;
+        private Mock<IRepository<User>> daMock;
         AdministratorLogic administratorLogic;
 
 
