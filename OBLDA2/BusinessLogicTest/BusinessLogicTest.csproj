@@ -4,6 +4,8 @@
     <TargetFramework>netcoreapp3.1</TargetFramework>
 
     <IsPackable>false</IsPackable>
+
+    <NoWin32Manifest>true</NoWin32Manifest>
   </PropertyGroup>
 
   <ItemGroup>
@@ -16,16 +18,16 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\BusinessLogicInterface\BusinessLogicInterface.csproj" />
+
     <ProjectReference Include="..\BusinessLogic\BusinessLogic.csproj" />
-    <ProjectReference Include="..\DataAccessInterface\DataAccessInterface.csproj" />
-    <ProjectReference Include="..\LogicaNegocio\Domain.csproj" />
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\BusinessLogicInterface\BusinessLogicInterface.csproj" />
+
     <ProjectReference Include="..\BusinessLogic\BusinessLogic.csproj" />
+
     <ProjectReference Include="..\DataAccessInterface\DataAccessInterface.csproj" />
+
     <ProjectReference Include="..\LogicaNegocio\Domain.csproj" />
   </ItemGroup>
 

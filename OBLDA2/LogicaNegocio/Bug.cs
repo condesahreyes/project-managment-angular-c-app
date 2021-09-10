@@ -23,7 +23,7 @@ namespace Domain
             this.Version = version;
             this.State = state;
         }
-
+        /*
         public override bool Equals(object obj)
         {
             var result = false;
@@ -36,5 +36,6 @@ namespace Domain
 
             return result;
         }
+        */
     }
 }

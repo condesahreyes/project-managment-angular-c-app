@@ -6,11 +6,8 @@
 
   <ItemGroup>
     <ProjectReference Include="..\BusinessLogicInterface\BusinessLogicInterface.csproj" />
-<<<<<<< HEAD
-=======
     <ProjectReference Include="..\DataAccessInterface\DataAccessInterface.csproj" />
     <ProjectReference Include="..\LogicaNegocio\Domain.csproj" />
->>>>>>> BugLogicTest
   </ItemGroup>
 
 </Project>
