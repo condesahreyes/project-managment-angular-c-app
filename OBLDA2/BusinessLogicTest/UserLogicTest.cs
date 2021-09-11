@@ -11,7 +11,7 @@ namespace BusinessLogicTest
         public void IsValidName()
         {
             string validName = "Hernán";
-            Assert.IsTrue(UserLogic.ValidateUser(validName) == validName);
+            Assert.IsTrue(UserLogic.ValidateName(validName) == validName);
         }
 
         [TestMethod]
@@ -32,7 +32,7 @@ namespace BusinessLogicTest
         [ExpectedException(typeof(Exception))]
         public void IsNotValidName()
         {
-            UserLogic.ValidateUser("");
+            UserLogic.ValidateName("");
         }
 
         [TestMethod]

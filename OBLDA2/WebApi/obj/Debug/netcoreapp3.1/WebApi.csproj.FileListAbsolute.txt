@@ -18,3 +18,4 @@ C:\Users\hreye\Desktop\OBL-Asadurian-Reyes\OBLDA2\WebApi\obj\Debug\netcoreapp3.1
 C:\Users\hreye\Desktop\OBL-Asadurian-Reyes\OBLDA2\WebApi\obj\Debug\netcoreapp3.1\WebApi.dll
 C:\Users\hreye\Desktop\OBL-Asadurian-Reyes\OBLDA2\WebApi\obj\Debug\netcoreapp3.1\WebApi.pdb
 C:\Users\hreye\Desktop\OBL-Asadurian-Reyes\OBLDA2\WebApi\obj\Debug\netcoreapp3.1\WebApi.genruntimeconfig.cache
+C:\Users\hreye\Desktop\OBL-Asadurian-Reyes\OBLDA2\WebApi\obj\Debug\netcoreapp3.1\WebApi.csproj.AssemblyReference.cache

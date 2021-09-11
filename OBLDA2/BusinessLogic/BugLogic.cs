@@ -20,8 +20,8 @@ namespace BusinessLogic
         public Bug Create(Bug bug)
         {
             AreCorrectData(bug);
-
-            return bugRepository.Create(bug);
+            bugRepository.Create(bug);
+            return bug;
         }
 
         public void Delete(Bug bug)

@@ -5,7 +5,7 @@ namespace BusinessLogic
 {
     public class UserLogic
     {
-        public static string ValidateUser(string name)
+        public static string ValidateName(string name)
         {
             if (name.Length < 1)
                 throw new Exception();
