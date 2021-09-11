@@ -13,8 +13,12 @@ namespace Domain
 
         public string Nombre { get; }
 
-        public Project(string nommbre)
+        public Guid Id { get; set; }
+
+
+        public Project(Guid id, string nommbre)
         {
+            this.Id = id;
             this.nombre = nombre;
             this.testers = new List<User>();
             this.desarrolladores = new List<User>();

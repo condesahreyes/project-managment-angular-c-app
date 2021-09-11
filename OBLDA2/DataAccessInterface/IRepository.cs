@@ -6,9 +6,10 @@ namespace DataAccessInterface
 {
     public interface IRepository<T> where T : class
     {
-        void Create(T entity);
+        T Create(T entity);
+        void Delete(T entity);
 
-        T Get(int id);
+        T Get(Guid id);
         IEnumerable<T> GetAll();
         void Save();
        

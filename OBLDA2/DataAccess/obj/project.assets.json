@@ -1,30 +1,11 @@
 {
   "version": 3,
   "targets": {
-    ".NETCoreApp,Version=v3.1": {
-      "DataAccessInterface/1.0.0": {
-        "type": "project",
-        "framework": ".NETCoreApp,Version=v3.1",
-        "compile": {
-          "bin/placeholder/DataAccessInterface.dll": {}
-        },
-        "runtime": {
-          "bin/placeholder/DataAccessInterface.dll": {}
-        }
-      }
-    }
+    ".NETCoreApp,Version=v3.1": {}
   },
-  "libraries": {
-    "DataAccessInterface/1.0.0": {
-      "type": "project",
-      "path": "../DataAccessInterface/DataAccessInterface.csproj",
-      "msbuildProject": "../DataAccessInterface/DataAccessInterface.csproj"
-    }
-  },
+  "libraries": {},
   "projectFileDependencyGroups": {
-    ".NETCoreApp,Version=v3.1": [
-      "DataAccessInterface >= 1.0.0"
-    ]
+    ".NETCoreApp,Version=v3.1": []
   },
   "packageFolders": {
     "C:\\Users\\Diego\\.nuget\\packages\\": {}
@@ -52,11 +33,7 @@
       "frameworks": {
         "netcoreapp3.1": {
           "targetAlias": "netcoreapp3.1",
-          "projectReferences": {
-            "C:\\Users\\Diego\\Desktop\\OBLI1\\OBL-Asadurian-Reyes\\OBLDA2\\DataAccessInterface\\DataAccessInterface.csproj": {
-              "projectPath": "C:\\Users\\Diego\\Desktop\\OBLI1\\OBL-Asadurian-Reyes\\OBLDA2\\DataAccessInterface\\DataAccessInterface.csproj"
-            }
-          }
+          "projectReferences": {}
         }
       },
       "warningProperties": {

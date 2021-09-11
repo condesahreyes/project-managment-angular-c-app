@@ -5,21 +5,21 @@ VisualStudioVersion = 16.0.31624.102
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Domain", "LogicaNegocio\Domain.csproj", "{34FCC716-BA9B-4758-8190-423BDFEB3742}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BusinessLogic", "BusinessLogic\BusinessLogic.csproj", "{650B4612-1BA9-4F00-A79E-FA9494B74B8F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BusinessLogic", "BusinessLogic\BusinessLogic.csproj", "{650B4612-1BA9-4F00-A79E-FA9494B74B8F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataAccess", "DataAccess\DataAccess.csproj", "{BC27627C-3AEE-487D-AF87-D354049AA27B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DataAccess", "DataAccess\DataAccess.csproj", "{BC27627C-3AEE-487D-AF87-D354049AA27B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebApi", "WebApi\WebApi.csproj", "{F8D8728F-816E-48A3-854B-7C56F352F80B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WebApi", "WebApi\WebApi.csproj", "{F8D8728F-816E-48A3-854B-7C56F352F80B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BusinessLogicTest", "BusinessLogicTest\BusinessLogicTest.csproj", "{8BF0B077-10A4-43AE-A482-C37E805B849F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BusinessLogicTest", "BusinessLogicTest\BusinessLogicTest.csproj", "{8BF0B077-10A4-43AE-A482-C37E805B849F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BusinessLogicInterface", "BusinessLogicInterface\BusinessLogicInterface.csproj", "{EA502C84-EDEC-434F-B861-CD1126135FDB}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BusinessLogicInterface", "BusinessLogicInterface\BusinessLogicInterface.csproj", "{EA502C84-EDEC-434F-B861-CD1126135FDB}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataAccessInterface", "DataAccessInterface\DataAccessInterface.csproj", "{48A990ED-92E7-4264-992A-D87C15882121}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DataAccessInterface", "DataAccessInterface\DataAccessInterface.csproj", "{48A990ED-92E7-4264-992A-D87C15882121}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataAccessTest", "DataAccessTest\DataAccessTest.csproj", "{5444D7FC-4C38-4634-9B18-3AC9F5E84004}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DataAccessTest", "DataAccessTest\DataAccessTest.csproj", "{5444D7FC-4C38-4634-9B18-3AC9F5E84004}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebApiTest", "WebApiTest\WebApiTest.csproj", "{52F5453E-BE2F-4407-B23C-0AAEB632D828}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WebApiTest", "WebApiTest\WebApiTest.csproj", "{52F5453E-BE2F-4407-B23C-0AAEB632D828}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

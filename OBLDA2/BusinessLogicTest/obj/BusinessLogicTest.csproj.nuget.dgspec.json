@@ -27,7 +27,11 @@
         "frameworks": {
           "netcoreapp3.1": {
             "targetAlias": "netcoreapp3.1",
-            "projectReferences": {}
+            "projectReferences": {
+              "C:\\Users\\Diego\\Desktop\\OBLI1\\OBL-Asadurian-Reyes\\OBLDA2\\LogicaNegocio\\Domain.csproj": {
+                "projectPath": "C:\\Users\\Diego\\Desktop\\OBLI1\\OBL-Asadurian-Reyes\\OBLDA2\\LogicaNegocio\\Domain.csproj"
+              }
+            }
           }
         },
         "warningProperties": {
@@ -173,6 +177,9 @@
             "projectReferences": {
               "C:\\Users\\Diego\\Desktop\\OBLI1\\OBL-Asadurian-Reyes\\OBLDA2\\BusinessLogicInterface\\BusinessLogicInterface.csproj": {
                 "projectPath": "C:\\Users\\Diego\\Desktop\\OBLI1\\OBL-Asadurian-Reyes\\OBLDA2\\BusinessLogicInterface\\BusinessLogicInterface.csproj"
+              },
+              "C:\\Users\\Diego\\Desktop\\OBLI1\\OBL-Asadurian-Reyes\\OBLDA2\\DataAccessInterface\\DataAccessInterface.csproj": {
+                "projectPath": "C:\\Users\\Diego\\Desktop\\OBLI1\\OBL-Asadurian-Reyes\\OBLDA2\\DataAccessInterface\\DataAccessInterface.csproj"
               }
             }
           }
