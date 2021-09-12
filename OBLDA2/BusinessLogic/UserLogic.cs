@@ -29,14 +29,61 @@ namespace BusinessLogic
             return userName;
         }
 
-        public static string ValidateEmail(string email)
+        public bool mailValidation(string mailCorrecto)
         {
-            string character = @"^([a-zA-Z0-9_\-\.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([a-zA-Z0-9\-]+\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\]?)$";
+            if (mailCorrecto == "")
+            {
+                throw new Exception("You can enter empty email");
+            }
 
-            if (!Regex.IsMatch(email, character))
-                throw new Exception();
+            bool esValido = true;
 
-            return email;
+            if (!mailCorrecto.Contains("@"))
+            {
+                esValido = false;
+            }
+            else
+            {
+                string[] mailArray = mailCorrecto.Split('@');
+                if (mailArray.Length != 2)
+                {
+                    esValido = false;
+                }
+                else
+                {
+                    string[] servidor = mailArray[1].Split('.');
+                    if (servidor.Length < 2 || servidor.Length > 3)
+                    {
+                        esValido = false;
+                    }
+                }
+            }
+
+            if (!esValido)
+            {
+                throw new Exception("Invalid email format");
+            }
+            else
+            {
+                return esValido;
+            }
+
+        }
+
+        public bool passValidation(string pass)
+        {
+            if (pass == "")
+            {
+                throw new Exception("You can enter empty password");
+            }
+            if (pass.Length > 6 && pass.Length <= 8)
+            {
+                return true;
+            }
+            else
+            {
+                throw new Exception("Invalid password");
+            }
         }
     }
 }

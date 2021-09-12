@@ -8,7 +8,7 @@ namespace DataAccessInterface
     {
         T Create(T entity);
 
-        T Get(int id);
+        T Get(Guid id);
         IEnumerable<T> GetAll();
         void Save();
         void Delete(T entity);

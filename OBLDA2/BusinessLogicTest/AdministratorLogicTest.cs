@@ -169,7 +169,7 @@ namespace BusinessLogicTest
         }
 
         [TestMethod]
-        public void GetAllTest()
+        public void GetAllAdministrators()
         {
 
             List<User> list = new List<User>();
@@ -181,12 +181,7 @@ namespace BusinessLogicTest
             Assert.IsTrue(ret.SequenceEqual(list));
         }
 
-        //Este es un mensaje del pinguino dheaaa
-        //Toy re nerd diciendo dheaaa
-        //Pero bueno a lo que iba
-        //Nos sirve obtener un usuario por id?
-        //No deberia ser por nombre?
-        /*
+       
         [TestMethod]
         public void GetAdministratorByIdOk()
         {
@@ -209,47 +204,7 @@ namespace BusinessLogicTest
             Assert.IsFalse(ret.Equals(admin));
 
         }
-        */
-
-        [TestMethod]
-        public void CreatePtojectOk()
-        {
-            /*  daMock.Setup(x => x.Create(project)).Verifiable();
-              daMock.Setup(x => x.Save());
-
-              List<Project> list = new List<Project>();
-              daMock.Setup(x => x.GetAll()).Returns(list);
-              administratorLogic.CreateProject(admin1);
-              daMock.VerifyAll();
-              Assert.AreEqual(list.First().UserName, "diegoAsa");*/
-
-
-
-        }
-
-        [TestMethod]
-        public void EditPtoject()
-        {
-
-
-
-        }
-
-        [TestMethod]
-        public void DeletePtoject()
-        {
-
-
-
-        }
-
-
-        [ExpectedException(typeof(Exception), "")]
-        [TestMethod]
-        public void CreateProjectAlreadyExists()
-        {
-
-        }
+        
 
     }
 }

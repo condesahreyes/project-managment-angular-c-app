@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using DataAccessInterface;
 
 namespace DataAccess
@@ -16,7 +17,7 @@ namespace DataAccess
             throw new System.NotImplementedException();
         }
 
-        public T Get(int id)
+        public T Get(Guid id)
         {
             return null;
         }
