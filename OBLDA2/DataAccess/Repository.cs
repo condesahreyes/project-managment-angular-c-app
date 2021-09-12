@@ -26,6 +26,16 @@ namespace DataAccess
          return null;  
         }
 
+        public T GetById(int id)
+        {
+            throw new System.NotImplementedException();
+        }
+
+        public T GetByString(string byGet)
+        {
+            throw new System.NotImplementedException();
+        }
+
         public void Save()
         {
             

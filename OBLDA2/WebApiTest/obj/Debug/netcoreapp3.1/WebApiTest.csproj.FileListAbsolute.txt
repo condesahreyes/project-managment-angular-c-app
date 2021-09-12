@@ -86,7 +86,6 @@ C:\Users\hreye\Desktop\OBL-Asadurian-Reyes\OBLDA2\WebApiTest\bin\Debug\netcoreap
 C:\Users\hreye\Desktop\OBL-Asadurian-Reyes\OBLDA2\WebApiTest\bin\Debug\netcoreapp3.1\zh-Hant\Microsoft.TestPlatform.CommunicationUtilities.resources.dll
 C:\Users\hreye\Desktop\OBL-Asadurian-Reyes\OBLDA2\WebApiTest\bin\Debug\netcoreapp3.1\zh-Hant\Microsoft.TestPlatform.CrossPlatEngine.resources.dll
 C:\Users\hreye\Desktop\OBL-Asadurian-Reyes\OBLDA2\WebApiTest\bin\Debug\netcoreapp3.1\zh-Hant\Microsoft.VisualStudio.TestPlatform.Common.resources.dll
-C:\Users\hreye\Desktop\OBL-Asadurian-Reyes\OBLDA2\WebApiTest\obj\Debug\netcoreapp3.1\WebApiTest.csproj.AssemblyReference.cache
 C:\Users\hreye\Desktop\OBL-Asadurian-Reyes\OBLDA2\WebApiTest\obj\Debug\netcoreapp3.1\WebApiTest.GeneratedMSBuildEditorConfig.editorconfig
 C:\Users\hreye\Desktop\OBL-Asadurian-Reyes\OBLDA2\WebApiTest\obj\Debug\netcoreapp3.1\WebApiTest.AssemblyInfoInputs.cache
 C:\Users\hreye\Desktop\OBL-Asadurian-Reyes\OBLDA2\WebApiTest\obj\Debug\netcoreapp3.1\WebApiTest.AssemblyInfo.cs

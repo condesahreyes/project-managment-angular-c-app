@@ -94,7 +94,7 @@ namespace BusinessLogic
 
         public Bug Get(int id)
         {
-            return bugRepository.Get(id);
+            return bugRepository.GetById(id);
         }
     }
 }

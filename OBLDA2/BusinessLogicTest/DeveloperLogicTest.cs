@@ -1,5 +1,6 @@
 ﻿using BusinessLogic.UserRol;
 using BusinessLogicInterface;
+using DataAccessInterface;
 using Domain;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
@@ -12,7 +13,9 @@ namespace BusinessLogicTest
     [TestClass]
     public class DeveloperLogicTest
     {
-        private Mock<IDeveloperLogic> mock;
+        private Mock<IRepository<User>> mockUser;
+        private Mock<IRepository<Project>> mockProject;
+
         private Rol developerRol;
         private User developer;
 
@@ -20,24 +23,27 @@ namespace BusinessLogicTest
         public void Setup()
         {
             Guid id = new Guid();
-            mock = new Mock<IDeveloperLogic>(MockBehavior.Strict);
+            mockProject = new Mock<IRepository<Project>>(MockBehavior.Strict);
+            mockUser = new Mock<IRepository<User>>(MockBehavior.Strict);
+
             developerRol = new Rol(id, "Developer");
 
-            developer = new User(id, "Diego", "Asadurian", "diegoAsa", "admin1234",
+            developer = new User("Diego", "Asadurian", "diegoAsa", "admin1234",
                 "diegoasadurian@gmail.com", developerRol);
         }
 
         [TestMethod]
         public void CreateDeveloper()
         {
-
-            mock.Setup(x => x.Create(developer)).Returns(developer);
-
-            var developerLogic = new DeveloperLogic(mock.Object);
+            IEnumerable<User> users = new List<User>();
+            mockUser.Setup(x => x.GetAll()).Returns(users);
+            mockUser.Setup(x => x.Create(developer)).Returns(developer);
+            
+            var developerLogic = new DeveloperLogic(mockUser.Object, mockProject.Object);
 
             User userSaved = developerLogic.Create(developer);
 
-            mock.VerifyAll();
+            mockUser.VerifyAll();
 
             Assert.AreEqual(developer, userSaved);
         }
@@ -45,37 +51,48 @@ namespace BusinessLogicTest
         [TestMethod]
         public void GetAllBugs()
         {
+            Mock<IRepository<Project>> mockProject = new Mock<IRepository<Project>>(MockBehavior.Strict);
+
             Project project = new Project("Montes Del Plata");
 
             project.desarrolladores.Add(developer);
 
-            var bugs = new List<Bug>
+            IEnumerable<Bug> bugs = new List<Bug>
             {
                 new Bug(project, 1234, "Error de login", "Intento inicio de sesion", "2.0", "Activo"),
                 new Bug(project, 4321, "Error de UI", "Intento inicio de sesion", "2.1", "Activo"),
             };
 
+            List<Project> projects = new List<Project>();
+            projects.Add(project);
+
             project.incidentes.AddRange(bugs);
 
-            mock.Setup(r => r.GetAllBugs()).Returns(bugs);
-            var bugLogic = new DeveloperLogic(mock.Object);
+            mockProject.Setup(r => r.GetAll()).Returns(projects);
+            var bugLogic = new DeveloperLogic(mockUser.Object, mockProject.Object);
 
-            List<Bug> bugsSaved = bugLogic.GetAllBugs();
+            List<Bug> bugsSaved = bugLogic.GetAllBugs(developer);
 
-            mock.VerifyAll();
+            mockUser.VerifyAll();
             Assert.IsTrue(bugsSaved.SequenceEqual(bugs));
         }
 
         [TestMethod]
         public void GetDeveloperByName()
         {
-            mock.Setup(r => r.Get("diegoAsa")).Returns(developer);
-            var developerLogic = new DeveloperLogic(mock.Object);
+            List<User> users = new List<User>();
+            users.Add(developer);
 
-            User developerSaved = developerLogic.Get("diegoAsa");
+            mockUser.Setup(r => r.GetAll()).Returns(users);
+            mockUser.Setup(r => r.GetByString("diegoAsa")).Returns(developer);
+            
+            var developerLogic = new DeveloperLogic(mockUser.Object, mockProject.Object);
 
-            mock.VerifyAll();
-            Assert.IsTrue(developerSaved.Name == "diegoAsa");
+            User developerSaved = developerLogic.GetByString("diegoAsa");
+
+            //mockUser.VerifyAll();
+
+            Assert.IsTrue(developerSaved.UserName == "diegoAsa");
         }
 
     }

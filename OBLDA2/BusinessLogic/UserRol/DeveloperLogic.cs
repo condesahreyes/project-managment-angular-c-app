@@ -9,43 +9,35 @@ namespace BusinessLogic.UserRol
 {
     public class DeveloperLogic : IDeveloperLogic
     {
-        private IDeveloperLogic developerRepository;
         private IRepository<User> userRepository;
+        private IRepository<Project> projectRepository;
 
-        public DeveloperLogic(IDeveloperLogic developerRepository, IRepository<User> userRepository)
+        public DeveloperLogic(IRepository<User> userRepository, IRepository<Project> projectRepository)
         {
-            this.developerRepository = developerRepository;
             this.userRepository = userRepository;
+            this.projectRepository = projectRepository;
         }
 
         public User Create(User developer)
         {
-            User validUser = CreateValidDeveloper(developer);
+            IsValidDeveloper(developer);
 
             if (ExistDeveloper(developer))
             {
                 throw new Exception();//Hacer refactor, crear exception
             }
 
-            userRepository.Create(validUser);
-            userRepository.Save(); // Ver si aplica
-            return validUser;
+            userRepository.Create(developer);
+            //userRepository.Save(); // Ver si aplica
+            return developer;
         }
 
-        private User CreateValidDeveloper(User developer)
+        private void IsValidDeveloper(User developer)
         {
-            Guid validId = developer.Id;
-
             string validName = UserLogic.ValidateName(developer.Name);
             string validSurename = UserLogic.ValidateSurname(developer.LastName);
             string validUserName = UserLogic.ValidateUserName(developer.UserName);
             string validEmail = UserLogic.ValidateEmail(developer.Email);
-            string validPassword = developer.Password;
-
-            Rol validRol = developer.Rol;
-
-            return new User(validId, validName, validSurename, validUserName,
-                validPassword, validEmail, validRol);
         }
 
         private bool ExistDeveloper(User developer)
@@ -53,16 +45,20 @@ namespace BusinessLogic.UserRol
             return userRepository.GetAll().Any(user => (user.UserName == developer.UserName));
         }
 
-        public User Get(string userName)
+        public User GetByString(string userName)
         {
-            return (User)userRepository.GetAll().Where(user => (user.UserName == userName));
+            return userRepository.GetAll().Where(user => (user.UserName == userName)).First();
         }
 
-        public List<Bug> GetAllBugs()
+        public List<Bug> GetAllBugs(User developer)
         {
-            IRepository<Project> projectRepository;
-            IEnumerable<User> 
-            throw new NotImplementedException();
+            IEnumerable<Project> allProjects = projectRepository.GetAll();
+            List<Bug> bugs = new List<Bug>();
+            foreach (var project in allProjects)
+                if (project.desarrolladores.Contains(developer))
+                    bugs.AddRange(project.incidentes);
+
+            return bugs;
         }
     }
 }
