@@ -31,21 +31,21 @@ namespace BusinessLogicTest
             var admin1 = new User(id, "Hernan", "reyes", "hernanReyes", "admin1234", "reyesH@gmail.com", rolAdministrator);
         }
 
-        [ExpectedException(typeof(Exception), "The name not't be empty exists")]
+        [ExpectedException(typeof(Exception), "The name can not be empty")]
         [TestMethod]
         public void NonEmptyName()
         {
             Guid id = new Guid();
             var admin = new User(id, "", "Asadurian", "diegoAsa", "admin1234", "diegoasadurian@gmail.com", rolAdministrator);
             daMock.Setup(x => x.Create(admin)).Verifiable();
-            daMock.Setup(x => x.Save()); // ver si va o no....
+            daMock.Setup(x => x.Save()); 
             List<User> list = new List<User>();
             daMock.Setup(x => x.GetAll()).Returns(list);
             var adminSaved = administratorLogic.Create(admin);
             daMock.VerifyAll();
         }
 
-        [ExpectedException(typeof(Exception), "The lastName not't be empty exists")]
+        [ExpectedException(typeof(Exception), "The lastName can not be empty")]
         [TestMethod]
         public void NonEmptyLastName()
         {
@@ -59,7 +59,7 @@ namespace BusinessLogicTest
             daMock.VerifyAll();
         }
 
-        [ExpectedException(typeof(Exception), "The userName not't be empty exists")]
+        [ExpectedException(typeof(Exception), "The userName can not be empty")]
         [TestMethod]
         public void NonEmptyUserName()
         {
@@ -73,7 +73,7 @@ namespace BusinessLogicTest
             daMock.VerifyAll();
         }
 
-        [ExpectedException(typeof(Exception), "The password not't be empty exists")]
+        [ExpectedException(typeof(Exception), "The password can not be empty")]
         [TestMethod]
         public void NonEmptyPassword()
         {
@@ -87,7 +87,7 @@ namespace BusinessLogicTest
             daMock.VerifyAll();
         }
 
-        [ExpectedException(typeof(Exception), "The email not't be empty exists")]
+        [ExpectedException(typeof(Exception), "The email can not be empty")]
         [TestMethod]
         public void NonEmptyEmail()
         {
@@ -115,7 +115,7 @@ namespace BusinessLogicTest
             daMock.VerifyAll();
         }
 
-        [ExpectedException(typeof(Exception), "")]
+        [ExpectedException(typeof(Exception), "The email must be correct")]
         [TestMethod]
         public void CreateAdministratorInvalidEmail()
         {
@@ -129,7 +129,7 @@ namespace BusinessLogicTest
             daMock.VerifyAll();
         }
 
-        [ExpectedException(typeof(Exception), "")]
+        [ExpectedException(typeof(Exception), "The password must contains > 6 caracteres")]
         [TestMethod]
         public void CreateAdministratorWithLongPass()
         {
@@ -143,7 +143,7 @@ namespace BusinessLogicTest
             daMock.VerifyAll();
         }
 
-        [ExpectedException(typeof(Exception), "")]
+        [ExpectedException(typeof(Exception), "The administrator already exist")]
         [TestMethod]
         public void CreateAdministratorAreadyExists()
         {
