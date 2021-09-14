@@ -7,7 +7,7 @@ namespace Domain
     public class Rol
     {
         Guid Id { get; set; }
-        String Name { get; set; }
+        public String Name { get; set; }
 
         public Rol(Guid id, string name)
         {

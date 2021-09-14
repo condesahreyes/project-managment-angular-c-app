@@ -11,6 +11,10 @@ namespace BusinessLogic
 
     {
         private IRepository<User> admDA;
+        private UserLogic userLogic;
+        private ProjectLogic projectLogic;
+        private BugLogic bugLogic;
+
 
         public AdministratorLogic(IRepository<User> AdmDA)
         {
@@ -20,43 +24,74 @@ namespace BusinessLogic
 
         public IEnumerable<User> GetAll()
         {
-            return this.admDA.GetAll().Where(user => user.Rol.Equals("Administrator")); //no creo que este bien, porque ROL es una calse que tiene un nombre.
+            return this.admDA.GetAll().Where(user => user.Rol.Name.Equals("Administrator")); 
 
         }
 
         public User Get(Guid id)
         {
-            User admin = admDA.Get(id);
-            if (admin != null)
-            {
-                return admin;
-            }
-            else
+            var getUser = this.userLogic.Get(id);
+
+            if (!getUser.Rol.Name.Equals("Administrator"))
             {
                 throw new Exception("Administrator does not exist");
+
             }
+            return getUser;
 
         }
 
         public User Create(User admin1)
         {
-          
-            if (!(ExistAdmin(admin1)) && User.CorrectData(admin1))
-            {
-                admDA.Create(admin1);
-                admDA.Save();
-                return admin1;
-            }
-            else
-            {
-                throw new Exception("The administrator already exists");
-            }
+            return userLogic.Create(admin1);
 
         }
 
-        private bool ExistAdmin(User admin)
+        public void CreteProject(Project projectToCreate)
         {
-            return admDA.GetAll().Any(user => (user.Email == admin.Email));
+            projectLogic.Create(projectToCreate);
+        }
+
+        public void UpdateProject(Guid id, Project updatedProject )
+        {
+            projectLogic.Update(id, updatedProject);
+        }
+
+        public void DeleteProject(Guid id)
+        {
+            projectLogic.Delete(id);
+        }
+
+        public void DeleteTesterByProject(Project project, Guid idTester)
+        {
+            projectLogic.DeleteTester(project, idTester);
+
+        }
+        public void DeleteDeveloperByProject(Project project, Guid idDeveloper)
+        {
+            projectLogic.DeleteDeveloper(project, idDeveloper);
+
+        }
+
+        public void CreteBug(Bug bugToCreate)
+        {
+            bugLogic.Create(bugToCreate);
+        }
+
+        public void UpdateBug(Bug bug/*Guid id,*/, Bug updatedBug)
+        {
+            bugLogic.Update(bug, updatedBug);
+            // bugLogic.Update(id, updatedBug);
+        }
+
+        public void DeleteBug(Guid id)
+        {
+            bugLogic.Delete(id);
+        }
+        public IEnumerable<Project> GetTotalBugByAllProject()
+        {
+            return projectLogic.GetAll();
+           
         }
 
     }

@@ -2,53 +2,56 @@
 using System;
 using Domain;
 using DataAccessInterface;
+using System.Linq;
 
 namespace BusinessLogic
 {
     public class UserLogic
     {
-        // aca no podriamos tener un constructor en el cual instanciemos el repositorio<User>
-        // y hacemos el metodo existeUSer para que todos usen el mismo????
-        /*
-        public static string ValidateName(string name)
-        {
-            if (name.Length < 1)
-                throw new Exception();
+        private IRepository<User> userDA;
 
-            return name;
+        public UserLogic(IRepository<User> UserDA)
+        {
+            this.userDA = UserDA;
         }
 
-        public static string ValidateSurname(string surname)
-        {
-            if (surname.Length < 1)
-                throw new Exception();
 
-            return surname;
+        public User Create(User userToCreate)
+        {
+            if (!(ExistUser(userToCreate)) && User.CorrectData(userToCreate))
+            {
+                userDA.Create(userToCreate);
+                userDA.Save();
+                return userToCreate;
+            }
+
+            return null;
         }
 
-        public static string ValidateUserName(string userName)
+        public bool ExistUser(User user)
         {
-            if (userName.Length < 1)
-                throw new Exception();
+            var userToReturn = userDA.GetAll().Any(u => (u.Email == user.Email));
+            if (userToReturn == null)
+            {
+                throw new Exception("The user already exists");
 
-            return userName;
-        }*/
+            }
 
-        /*
-        public static string DataValidation(User user)
-        {
-            string validName = ValidateName(user.Name);
-            string validSurename = ValidateSurname(user.LastName);
-            string validUserName = ValidateUserName(user.UserName);
-
-            string validEmail = ValidateEmail(user.Email);
-            string validPassword = Password;
+            return true;
         }
-        */
 
-        
+        public User Get(Guid id)
+        {
 
-        
-        
+            User user = userDA.Get(id);
+
+            if (user == null)
+            {
+                throw new Exception("User does not exist");
+            }
+
+            return user;
+        }
+
     }
 }

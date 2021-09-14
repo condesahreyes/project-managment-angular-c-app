@@ -24,19 +24,7 @@ namespace Domain
             this.Rol = rol;
         }
 
-        public static bool CorrectEmailAndPassword(string email, string pass)
-        {
-            bool correctMail = ValidateEmail(email);
-            bool correctPass = ValidatePass(pass);
-            if (correctMail && correctPass)
-            {
-                return true;
-            }
-            else
-            {
-                return false;
-            }
-        }
+      
         public static bool ValidateEmail(string mailCorrecto)
         {
             if (mailCorrecto == "")
@@ -94,17 +82,12 @@ namespace Domain
             }
         }
 
-        public static bool CorrectData(User user) //esto habria que ver si esta bien asi! o trater de hacer un metodo para cada Set de cada
-                                                  //atributo
+        public static bool CorrectData(User user) 
         {
             bool isValid = false;
 
-            if (user.Name.Length < 1 || user.LastName.Length < 1 || user.UserName.Length < 1)
-            {
-                throw new Exception("You can enter empty data");
-            }
-
-            if (CorrectEmailAndPassword(user.Email, user.Password))
+            if (ValidateEmail(user.Email) && ValidatePass(user.Password) && ValidateName(user.Name) &&
+                ValidateLastName(user.LastName) && ValidateUserName(user.UserName))
             {
                 isValid = true;
 
@@ -113,6 +96,32 @@ namespace Domain
 
         }
 
+        private static bool ValidateName(string name)
+        {
+            if (name.Length < 1)
+            {
+                throw new Exception("You can't enter name empty ");
+            }
+            return true;
+        }
+
+        private static bool ValidateUserName(string userName)
+        {
+            if (userName.Length < 1)
+            {
+                throw new Exception("You can't enter user name empty ");
+            }
+            return true;
+        }
+
+        private static bool ValidateLastName(string lastName)
+        {
+            if (lastName.Length < 1)
+            {
+                throw new Exception("You can't enter lastName empty ");
+            }
+            return true;
+        }
         public override bool Equals(Object obj)
         {
             var result = false;
