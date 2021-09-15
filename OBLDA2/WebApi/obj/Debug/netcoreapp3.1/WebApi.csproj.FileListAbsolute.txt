@@ -6,6 +6,7 @@ C:\Users\hreye\Desktop\OBL-Asadurian-Reyes\OBLDA2\WebApi\bin\Debug\netcoreapp3.1
 C:\Users\hreye\Desktop\OBL-Asadurian-Reyes\OBLDA2\WebApi\bin\Debug\netcoreapp3.1\WebApi.runtimeconfig.dev.json
 C:\Users\hreye\Desktop\OBL-Asadurian-Reyes\OBLDA2\WebApi\bin\Debug\netcoreapp3.1\WebApi.dll
 C:\Users\hreye\Desktop\OBL-Asadurian-Reyes\OBLDA2\WebApi\bin\Debug\netcoreapp3.1\WebApi.pdb
+C:\Users\hreye\Desktop\OBL-Asadurian-Reyes\OBLDA2\WebApi\obj\Debug\netcoreapp3.1\WebApi.csproj.AssemblyReference.cache
 C:\Users\hreye\Desktop\OBL-Asadurian-Reyes\OBLDA2\WebApi\obj\Debug\netcoreapp3.1\WebApi.GeneratedMSBuildEditorConfig.editorconfig
 C:\Users\hreye\Desktop\OBL-Asadurian-Reyes\OBLDA2\WebApi\obj\Debug\netcoreapp3.1\WebApi.AssemblyInfoInputs.cache
 C:\Users\hreye\Desktop\OBL-Asadurian-Reyes\OBLDA2\WebApi\obj\Debug\netcoreapp3.1\WebApi.AssemblyInfo.cs
@@ -18,4 +19,3 @@ C:\Users\hreye\Desktop\OBL-Asadurian-Reyes\OBLDA2\WebApi\obj\Debug\netcoreapp3.1
 C:\Users\hreye\Desktop\OBL-Asadurian-Reyes\OBLDA2\WebApi\obj\Debug\netcoreapp3.1\WebApi.dll
 C:\Users\hreye\Desktop\OBL-Asadurian-Reyes\OBLDA2\WebApi\obj\Debug\netcoreapp3.1\WebApi.pdb
 C:\Users\hreye\Desktop\OBL-Asadurian-Reyes\OBLDA2\WebApi\obj\Debug\netcoreapp3.1\WebApi.genruntimeconfig.cache
-C:\Users\hreye\Desktop\OBL-Asadurian-Reyes\OBLDA2\WebApi\obj\Debug\netcoreapp3.1\WebApi.csproj.AssemblyReference.cache

@@ -11,5 +11,7 @@ namespace BusinessLogicInterface
         User Create(User developer);
         List<Bug> GetAllBugs(User developer);
         User GetByString(string userName);
+        Bug UpdateStateToDoneBug(Bug bug);
+        Bug UpdateStateToActiveBug(Bug bug);
     }
 }

@@ -1,5 +1,4 @@
-﻿using System;
-using BusinessLogicInterface;
+﻿using BusinessLogicInterface;
 
 namespace BusinessLogic
 {

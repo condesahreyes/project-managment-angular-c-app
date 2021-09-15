@@ -1,12 +1,11 @@
-﻿using BusinessLogic.UserRol;
-using BusinessLogicInterface;
-using DataAccessInterface;
-using Domain;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
-using Moq;
-using System;
+﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.Collections.Generic;
+using BusinessLogic.UserRol;
+using DataAccessInterface;
 using System.Linq;
+using Domain;
+using System;
+using Moq;
 
 namespace BusinessLogicTest
 {
@@ -15,21 +14,38 @@ namespace BusinessLogicTest
     {
         private Mock<IRepository<User>> mockUser;
         private Mock<IRepository<Project>> mockProject;
+        private Mock<IRepository<Rol>> mockRol;
+        private Mock<IRepository<Bug>> mockBug;
 
-        private Rol developerRol;
+        private List<Rol> roles;
+
         private User developer;
 
         [TestInitialize]
         public void Setup()
         {
-            Guid id = new Guid();
             mockProject = new Mock<IRepository<Project>>(MockBehavior.Strict);
             mockUser = new Mock<IRepository<User>>(MockBehavior.Strict);
+            mockBug = new Mock<IRepository<Bug>>(MockBehavior.Strict);
 
-            developerRol = new Rol(id, "Developer");
+            CofnigurationMockRol();
 
             developer = new User("Diego", "Asadurian", "diegoAsa", "admin1234",
-                "diegoasadurian@gmail.com", developerRol);
+                "diegoasadurian@gmail.com", roles[2]);
+        }
+
+        private void CofnigurationMockRol()
+        {
+            mockRol = new Mock<IRepository<Rol>>(MockBehavior.Strict);
+
+            roles = new List<Rol>
+            {
+                new Rol("Tester"),
+                new Rol("Administrator"),
+                new Rol("Developer"),
+            };
+
+            mockRol.Setup(x => x.GetAll()).Returns(roles);
         }
 
         [TestMethod]
@@ -39,7 +55,8 @@ namespace BusinessLogicTest
             mockUser.Setup(x => x.GetAll()).Returns(users);
             mockUser.Setup(x => x.Create(developer)).Returns(developer);
             
-            var developerLogic = new DeveloperLogic(mockUser.Object, mockProject.Object);
+            var developerLogic = new DeveloperLogic(mockUser.Object, mockProject.Object, mockRol.Object, 
+                mockBug.Object);
 
             User userSaved = developerLogic.Create(developer);
 
@@ -51,8 +68,6 @@ namespace BusinessLogicTest
         [TestMethod]
         public void GetAllBugs()
         {
-            Mock<IRepository<Project>> mockProject = new Mock<IRepository<Project>>(MockBehavior.Strict);
-
             Project project = new Project("Montes Del Plata");
 
             project.desarrolladores.Add(developer);
@@ -69,7 +84,7 @@ namespace BusinessLogicTest
             project.incidentes.AddRange(bugs);
 
             mockProject.Setup(r => r.GetAll()).Returns(projects);
-            var bugLogic = new DeveloperLogic(mockUser.Object, mockProject.Object);
+            var bugLogic = new DeveloperLogic(mockUser.Object, mockProject.Object, mockRol.Object, mockBug.Object);
 
             List<Bug> bugsSaved = bugLogic.GetAllBugs(developer);
 
@@ -86,14 +101,12 @@ namespace BusinessLogicTest
             mockUser.Setup(r => r.GetAll()).Returns(users);
             mockUser.Setup(r => r.GetByString("diegoAsa")).Returns(developer);
             
-            var developerLogic = new DeveloperLogic(mockUser.Object, mockProject.Object);
+            var developerLogic = new DeveloperLogic(mockUser.Object, mockProject.Object, mockRol.Object, 
+                mockBug.Object);
 
             User developerSaved = developerLogic.GetByString("diegoAsa");
 
-            //mockUser.VerifyAll();
-
             Assert.IsTrue(developerSaved.UserName == "diegoAsa");
         }
-
     }
 }

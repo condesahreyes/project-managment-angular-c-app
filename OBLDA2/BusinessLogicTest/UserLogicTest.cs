@@ -1,67 +1,143 @@
-﻿using BusinessLogic;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+using System.Collections.Generic;
+using DataAccessInterface;
+using BusinessLogic;
 using System;
+using Domain;
+using Moq;
 
 namespace BusinessLogicTest
 {
     [TestClass]
     public class UserLogicTest
     {
-        [TestMethod]
-        public void IsValidName()
+        private List<User> users;
+
+        private Mock<IRepository<Rol>> mockRol;
+        private Mock<IRepository<User>> mockUser;
+
+        private List<Rol> roles;
+        private User oneUser;
+        private UserLogic userLogic;
+
+
+        [TestInitialize]
+        public void Setup()
         {
-            string validName = "Hernán";
-            Assert.IsTrue(UserLogic.ValidateName(validName) == validName);
+            users = new List<User>();
+
+            mockRol = new Mock<IRepository<Rol>>(MockBehavior.Strict);
+            mockUser = new Mock<IRepository<User>>(MockBehavior.Strict);
+            
+            mockUser.Setup(x => x.GetAll()).Returns(users);
+
+            roles = new List<Rol>
+            {
+                new Rol("Tester"),
+                new Rol("Administrator"),
+                new Rol("Developer"),
+            };
+
+            mockRol.Setup(x => x.GetAll()).Returns(roles);
+
+            userLogic = new UserLogic(mockUser.Object, mockRol.Object);
+
+            oneUser = new User("Hernán", "Reyes", "hreyes", "contraseña", "hreyes.condesa@gmail.com", roles[0]);
         }
 
         [TestMethod]
-        public void IsValidSurname()
+        public void CreateValidUser()
         {
-            string validSurname = "Reyes Condesa";
-            Assert.IsTrue(UserLogic.ValidateSurname(validSurname) == validSurname);
-        }
+            mockUser.Setup(x => x.Create(oneUser)).Returns(oneUser);
 
-        [TestMethod]
-        public void IsValidUserName()
-        {
-            string validUserName = "hreyes99";
-            Assert.IsTrue(UserLogic.ValidateUserName(validUserName) == validUserName);
+            User userSaved = userLogic.Create(oneUser);
+
+            mockUser.VerifyAll();
+
+            Assert.AreEqual(oneUser, userSaved);
         }
 
         [TestMethod]
         [ExpectedException(typeof(Exception))]
         public void IsNotValidName()
         {
-            UserLogic.ValidateName("");
+            User invalidUser = new User("", "Reyes", "hreyes", "contraseña", "hreyes.condesa@gmail.com", roles[0]);
+            mockUser.Setup(x => x.Create(invalidUser)).Returns(invalidUser);
+
+            User userSaved = userLogic.Create(invalidUser);
+            mockUser.VerifyAll();
         }
 
         [TestMethod]
         [ExpectedException(typeof(Exception))]
-        public void IsNotValidSurname()
+        public void IsNotValidLastName()
         {
-            UserLogic.ValidateSurname("");
+            User invalidUser = new User("Hernán", "", "hreyes", "contraseña", "hreyes.condesa@gmail.com", roles[0]);
+            mockUser.Setup(x => x.Create(invalidUser)).Returns(invalidUser);
+
+            User userSaved = userLogic.Create(invalidUser);
+            mockUser.VerifyAll();
         }
 
         [TestMethod]
         [ExpectedException(typeof(Exception))]
         public void IsNotValidUserName()
         {
-            UserLogic.ValidateUserName("");
+            User invalidUser = new User("Hernán", "Reyes", "", "contraseña", "hreyes.condesa@gmail.com", roles[0]);
+            mockUser.Setup(x => x.Create(invalidUser)).Returns(invalidUser);
+
+            User userSaved = userLogic.Create(invalidUser);
+            mockUser.VerifyAll();
         }
 
         [TestMethod]
-        public void IsValidEmail()
+        [ExpectedException(typeof(Exception))]
+        public void IsNotValidRol()
         {
-            string validEmail = "hernan@ort.edu.uy";
-            Assert.IsTrue(UserLogic.ValidateEmail(validEmail) == validEmail);
+            Rol invalidRol = new Rol("Auxiliar");
+            User invalidUser = new User("Hernán", "Reyes", "hreyes", "contraseña", "hreyes.condesa@gmail.com", invalidRol);
+
+            mockUser.Setup(x => x.Create(invalidUser)).Returns(invalidUser);
+
+            User userSaved = userLogic.Create(invalidUser);
+            mockUser.VerifyAll();
         }
 
         [TestMethod]
         [ExpectedException(typeof(Exception))]
         public void IsNotValidEmail()
         {
-            string invalidEmail = "hernanort.edu.uy";
-            UserLogic.ValidateEmail(invalidEmail);
+            User invalidUser = new User("Hernán", "Reyes", "hreyes", "contraseña", "hreyes.condesagmail.com", roles[0]);
+
+            mockUser.Setup(x => x.Create(invalidUser)).Returns(invalidUser);
+
+            User userSaved = userLogic.Create(invalidUser);
+            mockUser.VerifyAll();
+        }
+
+        [TestMethod]
+        [ExpectedException(typeof(Exception))]
+        public void IsNotValidPassword()
+        {
+            User invalidUser = new User("Hernán", "Reyes", "hreyes", "", "hreyes.condesa@gmail.com", roles[0]);
+
+            mockUser.Setup(x => x.Create(invalidUser)).Returns(invalidUser);
+
+            User userSaved = userLogic.Create(invalidUser);
+            mockUser.VerifyAll();
+        }
+
+        [TestMethod]
+        [ExpectedException(typeof(Exception))]
+        public void CreateExistingUser()
+        {
+            users.Add(oneUser);
+            mockUser.Setup(x => x.GetAll()).Returns(users);
+
+            mockUser.Setup(x => x.Create(oneUser)).Returns(oneUser);
+
+            User userSaved = userLogic.Create(oneUser);
+            mockUser.VerifyAll();
         }
     }
 }

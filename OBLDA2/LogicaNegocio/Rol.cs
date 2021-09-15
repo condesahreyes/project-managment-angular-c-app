@@ -7,9 +7,9 @@ namespace Domain
         Guid Id { get; set; }
         String Name { get; set; }
 
-        public Rol(Guid id, string name)
+        public Rol(string name)
         {
-            this.Id = id;
+            //this.Id = id;
             this.Name = name;
         }
     }

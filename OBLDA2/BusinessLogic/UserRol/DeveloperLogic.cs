@@ -1,8 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using System.Collections.Generic;
 using BusinessLogicInterface;
 using DataAccessInterface;
+using System.Linq;
 using Domain;
 
 namespace BusinessLogic.UserRol
@@ -11,38 +10,25 @@ namespace BusinessLogic.UserRol
     {
         private IRepository<User> userRepository;
         private IRepository<Project> projectRepository;
+        private IRepository<Rol> rolRepository;
+        private IRepository<Bug> bugRepository;
 
-        public DeveloperLogic(IRepository<User> userRepository, IRepository<Project> projectRepository)
+        public DeveloperLogic(IRepository<User> userRepository, IRepository<Project> projectRepository, 
+            IRepository<Rol> rolRepository, IRepository<Bug> bugRepository)
         {
             this.userRepository = userRepository;
             this.projectRepository = projectRepository;
+            this.rolRepository = rolRepository;
+            this.bugRepository = bugRepository;
         }
 
-        public User Create(User developer)
+        public User Create(User developerToCreate)
         {
-            IsValidDeveloper(developer);
+            UserLogic userLogic = new UserLogic(userRepository, rolRepository);
 
-            if (ExistDeveloper(developer))
-            {
-                throw new Exception();//Hacer refactor, crear exception
-            }
+            User developerCreate = userLogic.Create(developerToCreate);
 
-            userRepository.Create(developer);
-            //userRepository.Save(); // Ver si aplica
-            return developer;
-        }
-
-        private void IsValidDeveloper(User developer)
-        {
-            string validName = UserLogic.ValidateName(developer.Name);
-            string validSurename = UserLogic.ValidateSurname(developer.LastName);
-            string validUserName = UserLogic.ValidateUserName(developer.UserName);
-            string validEmail = UserLogic.ValidateEmail(developer.Email);
-        }
-
-        private bool ExistDeveloper(User developer)
-        {
-            return userRepository.GetAll().Any(user => (user.UserName == developer.UserName));
+            return developerCreate;
         }
 
         public User GetByString(string userName)
@@ -53,12 +39,41 @@ namespace BusinessLogic.UserRol
         public List<Bug> GetAllBugs(User developer)
         {
             IEnumerable<Project> allProjects = projectRepository.GetAll();
+
             List<Bug> bugs = new List<Bug>();
+
             foreach (var project in allProjects)
                 if (project.desarrolladores.Contains(developer))
                     bugs.AddRange(project.incidentes);
 
             return bugs;
+        }
+
+        public Bug UpdateStateToActiveBug(Bug bug)
+        {
+            Bug activeBug = CloneBug(bug);
+
+            activeBug.State = "Activo";
+
+            bugRepository.Update(bug, activeBug);
+
+            return activeBug;
+        }
+
+        public Bug UpdateStateToDoneBug(Bug bug)
+        {
+            Bug doneBug = CloneBug(bug);
+
+            doneBug.State = "Resuelto";
+
+            bugRepository.Update(bug, doneBug);
+
+            return doneBug;
+        }
+
+        private Bug CloneBug(Bug bug)
+        {
+            return new Bug(bug.Project, bug.Id, bug.Name, bug.Domain, bug.Version, bug.State);
         }
     }
 }
