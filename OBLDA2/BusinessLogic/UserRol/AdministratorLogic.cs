@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using BusinessLogic.UserRol;
 using BusinessLogicInterface;
 using DataAccessInterface;
 using Domain;
@@ -10,13 +11,13 @@ namespace BusinessLogic
     public class AdministratorLogic : IAdministratorLogic
 
     {
-        private IRepository<User> admDA;
+        private IRepository<User,Guid> admDA;
         private UserLogic userLogic;
         private ProjectLogic projectLogic;
         private BugLogic bugLogic;
 
 
-        public AdministratorLogic(IRepository<User> AdmDA)
+        public AdministratorLogic(IRepository<User,Guid> AdmDA)
         {
             this.admDA = AdmDA;
 
@@ -47,9 +48,9 @@ namespace BusinessLogic
 
         }
 
-        public void CreteProject(Project projectToCreate)
+        public Project CreteProject(Project projectToCreate)
         {
-            projectLogic.Create(projectToCreate);
+            return projectLogic.Create(projectToCreate);
         }
 
         public void UpdateProject(Guid id, Project updatedProject )
@@ -78,20 +79,42 @@ namespace BusinessLogic
             bugLogic.Create(bugToCreate);
         }
 
-        public void UpdateBug(Bug bug/*Guid id,*/, Bug updatedBug)
+        public void UpdateBug(int id, Bug updatedBug)
         {
-            bugLogic.Update(bug, updatedBug);
-            // bugLogic.Update(id, updatedBug);
+            bugLogic.Update(id, updatedBug);
         }
 
-        public void DeleteBug(Guid id)
+        public void DeleteBug(int id)
         {
             bugLogic.Delete(id);
         }
-        public IEnumerable<Project> GetTotalBugByAllProject()
+
+        public void AssignDeveloperByProject(Project project, Guid idDeveloper)
+        {
+            projectLogic.AssignDeveloper(project, idDeveloper);
+
+        }
+        
+        public void AssignTesterByProject(Project project, Guid idTester)
+        {
+            projectLogic.AssignTester(project, idTester);
+
+        }
+
+        public void ImportBugsByProjectByProvider(Project project, List<Bug> bugsProject)
+        {
+            projectLogic.ImportBugsByProvider(project, bugsProject);
+        }
+
+        public List<Project> GetTotalBugByAllProject()
         {
             return projectLogic.GetAll();
            
+        }
+
+        public int GetFixedBugsByDeveloper()
+        {
+            return projectLogic.GetAllFixedBugsByDeveloper();
         }
 
     }

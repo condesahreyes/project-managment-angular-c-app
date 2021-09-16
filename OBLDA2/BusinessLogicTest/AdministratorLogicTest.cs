@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using BusinessLogic;
+using BusinessLogic.UserRol;
 using BusinessLogicInterface;
 using DataAccessInterface;
 using Domain;
@@ -15,20 +16,27 @@ namespace BusinessLogicTest
     {
         private Rol rolAdministrator;
         private Mock<IAdministratorLogic> Mock;
-        private Mock<IRepository<User>> daMock;
+        private Mock<IRepository<User,Guid>> daMock;
+        private Mock<IRepository<Project, Guid>> projectMock;
+        ProjectLogic projectLogic;
         AdministratorLogic administratorLogic;
         User admin1;
+        Project project;
 
         [TestInitialize]
         public void Setup()
         {
             Guid idRol = new Guid();
             rolAdministrator = new Rol(idRol, "Administrator");
-            daMock = new Mock<IRepository<User>>(MockBehavior.Strict);
+            daMock = new Mock<IRepository<User,Guid>>(MockBehavior.Strict);
+            projectMock = new Mock<IRepository<Project,Guid>>(MockBehavior.Strict);
             Mock = new Mock<IAdministratorLogic>(MockBehavior.Strict);
             this.administratorLogic = new AdministratorLogic(daMock.Object);
+            this.projectLogic = new ProjectLogic(projectMock.Object);
+
             Guid id = new Guid();
-            var admin1 = new User(id, "Hernan", "reyes", "hernanReyes", "admin1234", "reyesH@gmail.com", rolAdministrator);
+            admin1 = new User(id, "Hernan", "reyes", "hernanReyes", "admin1234", "reyesH@gmail.com", rolAdministrator);
+            project = new Project(id, "Project - GXC ");
         }
 
         [ExpectedException(typeof(Exception), "The name can not be empty")]
@@ -52,7 +60,7 @@ namespace BusinessLogicTest
             Guid id = new Guid();
             var admin = new User(id, "Diego", "", "diegoAsa", "admin1234", "diegoasadurian@gmail.com", rolAdministrator);
             daMock.Setup(x => x.Create(admin)).Verifiable();
-            daMock.Setup(x => x.Save()); // ver si va o no....
+            daMock.Setup(x => x.Save()); 
             List<User> list = new List<User>();
             daMock.Setup(x => x.GetAll()).Returns(list);
             var adminSaved = administratorLogic.Create(admin);
@@ -66,7 +74,7 @@ namespace BusinessLogicTest
             Guid id = new Guid();
             var admin = new User(id, "Diego", "Asadurian", "", "admin1234", "diegoasadurian@gmail.com", rolAdministrator);
             daMock.Setup(x => x.Create(admin)).Verifiable();
-            daMock.Setup(x => x.Save()); // ver si va o no....
+            daMock.Setup(x => x.Save()); 
             List<User> list = new List<User>();
             daMock.Setup(x => x.GetAll()).Returns(list);
             var adminSaved = administratorLogic.Create(admin);
@@ -80,7 +88,7 @@ namespace BusinessLogicTest
             Guid id = new Guid();
             var admin = new User(id, "Diego", "Asadurian", "diegoAsa", "", "diegoasadurian@gmail.com", rolAdministrator);
             daMock.Setup(x => x.Create(admin)).Verifiable();
-            daMock.Setup(x => x.Save()); // ver si va o no....
+            daMock.Setup(x => x.Save());
             List<User> list = new List<User>();
             daMock.Setup(x => x.GetAll()).Returns(list);
             var adminSaved = administratorLogic.Create(admin);
@@ -94,7 +102,7 @@ namespace BusinessLogicTest
             Guid id = new Guid();
             var admin = new User(id, "Diego", "Asadurian", "diegoAsa", "adc1234", "", rolAdministrator);
             daMock.Setup(x => x.Create(admin)).Verifiable();
-            daMock.Setup(x => x.Save()); // ver si va o no....
+            daMock.Setup(x => x.Save());
             List<User> list = new List<User>();
             daMock.Setup(x => x.GetAll()).Returns(list);
             var adminSaved = administratorLogic.Create(admin);
@@ -108,7 +116,7 @@ namespace BusinessLogicTest
             Guid id = new Guid();
             var admin = new User(id, "Diego", "Asadurian", "adcs", "adc1234", "diego@gmail.com", rolAdministrator);
             daMock.Setup(x => x.Create(admin)).Verifiable();
-            daMock.Setup(x => x.Save()); // ver si va o no....
+            daMock.Setup(x => x.Save()); 
             List<User> list = new List<User>();
             daMock.Setup(x => x.GetAll()).Returns(list);
             var adminSaved = administratorLogic.Create(admin);
@@ -122,7 +130,7 @@ namespace BusinessLogicTest
             Guid id = new Guid();
             var admin = new User(id, "Diego", "Asadurian", "adcs", "adc1234", "diegogmail.com", rolAdministrator);
             daMock.Setup(x => x.Create(admin)).Verifiable();
-            daMock.Setup(x => x.Save()); // ver si va o no....
+            daMock.Setup(x => x.Save()); 
             List<User> list = new List<User>();
             daMock.Setup(x => x.GetAll()).Returns(list);
             var adminSaved = administratorLogic.Create(admin);
@@ -136,7 +144,7 @@ namespace BusinessLogicTest
             Guid id = new Guid();
             var admin = new User(id, "Diego", "Asadurian", "adcs", "adc123dasdasdasdasd4", "diego@gmail.com", rolAdministrator);
             daMock.Setup(x => x.Create(admin)).Verifiable();
-            daMock.Setup(x => x.Save()); // ver si va o no....
+            daMock.Setup(x => x.Save()); 
             List<User> list = new List<User>();
             daMock.Setup(x => x.GetAll()).Returns(list);
             var adminSaved = administratorLogic.Create(admin);
@@ -148,7 +156,7 @@ namespace BusinessLogicTest
         public void CreateAdministratorAreadyExists()
         {
             daMock.Setup(x => x.Create(admin1)).Verifiable();
-            daMock.Setup(x => x.Save()); // ver si va o no....
+            daMock.Setup(x => x.Save()); 
             List<User> list = new List<User>();
             daMock.Setup(x => x.GetAll()).Returns(list);
             var adminSaved = administratorLogic.Create(admin1);
@@ -160,9 +168,7 @@ namespace BusinessLogicTest
         {
 
             daMock.Setup(x => x.Create(admin1)).Verifiable();
-            daMock.Setup(x => x.Save());   // ver si va o no....
-            /* List<User> list = new List<User>();
-             daMock.Setup(x => x.GetAll()).Returns(list);*/
+            daMock.Setup(x => x.Save());   
             var adminSaved = administratorLogic.Create(admin1);
             daMock.VerifyAll();
             Assert.AreEqual(admin1, adminSaved);
@@ -175,7 +181,6 @@ namespace BusinessLogicTest
             List<User> list = new List<User>();
             list.Add(admin1);
             daMock.Setup(x => x.GetAll()).Returns(list);
-
             IEnumerable<User> ret = administratorLogic.GetAll();
             daMock.VerifyAll();
             Assert.IsTrue(ret.SequenceEqual(list));
@@ -204,7 +209,46 @@ namespace BusinessLogicTest
             Assert.IsFalse(ret.Equals(admin));
 
         }
-        
+
+        [TestMethod]
+        public void CreateProjectOk()
+        {
+            projectMock.Setup(x => x.Create(project)).Verifiable();
+            projectMock.Setup(x => x.Save());
+            var projectSaved = administratorLogic.CreteProject(project);
+            daMock.VerifyAll();
+            Assert.AreEqual(project, projectSaved);
+        }
+
+        [TestMethod]
+        public void RemoveProjectOk()
+        {
+            projectMock.Setup(x => x.Get(It.IsAny<Guid>())).Returns(project);
+            projectMock.Setup(m => m.Delete(project.Id));
+            projectMock.Setup(m => m.Save());
+            administratorLogic.DeleteProject(project.Id);
+            Project projectNull = null;
+            projectMock.Setup(x => x.Get(It.IsAny<Guid>())).Returns(projectNull);
+            var ret = projectLogic.Get(project.Id);
+            daMock.VerifyAll();
+            Assert.IsFalse(ret.Equals(projectNull));
+
+        }
+
+        [TestMethod]
+        public void ProjectUpdateOk()
+        {
+            projectMock.Setup(x => x.Get(It.IsAny<Guid>())).Returns(project);
+            Guid id = Guid.NewGuid();
+            var updatedProject = new Project(id,"Project Lab");
+            projectMock.Setup(x => x.Update(updatedProject));
+            projectMock.Setup(x => x.Save());
+            administratorLogic.UpdateProject(id, updatedProject); 
+            daMock.VerifyAll();
+            Assert.AreEqual(updatedProject.Name, "Project Lab");
+
+        }
+
 
     }
 }

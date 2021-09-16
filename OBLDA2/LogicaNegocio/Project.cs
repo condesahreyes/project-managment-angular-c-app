@@ -5,7 +5,7 @@ namespace Domain
 {
     public class Project
     {
-
+        public Guid Id { get; set; }
         public List<User> testers { get; set; }
         public List<User> desarrolladores { get; set; }
         public List<Bug> incidentes { get; set; }
@@ -13,8 +13,9 @@ namespace Domain
 
         public string Name { get; set; }
 
-        public Project(string name)
+        public Project(Guid id, string name)
         {
+            this.Id = id;
             this.Name = name;
             this.testers = new List<User>();
             this.desarrolladores = new List<User>();
