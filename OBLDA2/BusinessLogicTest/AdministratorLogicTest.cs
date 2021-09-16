@@ -241,7 +241,7 @@ namespace BusinessLogicTest
             projectMock.Setup(x => x.Get(It.IsAny<Guid>())).Returns(project);
             Guid id = Guid.NewGuid();
             var updatedProject = new Project(id,"Project Lab");
-            projectMock.Setup(x => x.Update(updatedProject));
+            projectMock.Setup(x => x.Update(id, updatedProject));
             projectMock.Setup(x => x.Save());
             administratorLogic.UpdateProject(id, updatedProject); 
             daMock.VerifyAll();

@@ -16,52 +16,57 @@ namespace BusinessLogic.UserRol
             this.projectDa = ProjectDa;
         }
 
-        internal Project Create(Project projectToCreate)
+        public Project Create(Project projectToCreate)
         {
             throw new NotImplementedException();
         }
 
-        internal void Update(Guid id, Project updatedProject)
+        public void Update(Guid id, Project updatedProject)
         {
             throw new NotImplementedException();
         }
 
-        internal void Delete(Guid id)
+        public void Delete(Guid id)
         {
             throw new NotImplementedException();
         }
 
-        internal void DeleteTester(Project project, Guid idTester)
+        public void DeleteTester(Project project, Guid idTester)
         {
             throw new NotImplementedException();
         }
 
-        internal void DeleteDeveloper(Project project, Guid idDeveloper)
+        public void DeleteDeveloper(Project project, Guid idDeveloper)
         {
             throw new NotImplementedException();
         }
 
-        internal void AssignDeveloper(Project project, Guid idDeveloper)
+        public void AssignDeveloper(Project project, Guid idDeveloper)
         {
             throw new NotImplementedException();
         }
 
-        internal void AssignTester(Project project, Guid idTester)
+        public void AssignTester(Project project, Guid idTester)
         {
             throw new NotImplementedException();
         }
 
-        internal void ImportBugsByProvider(Project project, List<Bug> bugsProject)
+        public void ImportBugsByProvider(Project project, List<Bug> bugsProject)
         {
             throw new NotImplementedException();
         }
 
-        internal List<Project> GetAll()
+        public List<Project> GetAll()
         {
             throw new NotImplementedException();
         }
 
-        internal int GetAllFixedBugsByDeveloper()
+        public int GetAllFixedBugsByDeveloper()
+        {
+            throw new NotImplementedException();
+        }
+
+        public Project Get(Guid id)
         {
             throw new NotImplementedException();
         }

@@ -20,7 +20,6 @@ namespace BusinessLogic
         {
             if (!(ExistUser(userToCreate)) && User.CorrectData(userToCreate))
             {
-                Rol.IsValidRolName(userToCreate.Rol.Name);
                 userDA.Create(userToCreate);
                 userDA.Save();
                 return userToCreate;

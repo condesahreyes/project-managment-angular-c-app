@@ -112,5 +112,3 @@ C:\Users\Diego\Desktop\OBLI1\OBL-Asadurian-Reyes\OBLDA2\BusinessLogicTest\obj\De
 C:\Users\Diego\Desktop\OBLI1\OBL-Asadurian-Reyes\OBLDA2\BusinessLogicTest\obj\Debug\netcoreapp3.1\BusinessLogicTest.AssemblyInfoInputs.cache
 C:\Users\Diego\Desktop\OBLI1\OBL-Asadurian-Reyes\OBLDA2\BusinessLogicTest\obj\Debug\netcoreapp3.1\BusinessLogicTest.AssemblyInfo.cs
 C:\Users\Diego\Desktop\OBLI1\OBL-Asadurian-Reyes\OBLDA2\BusinessLogicTest\obj\Debug\netcoreapp3.1\BusinessLogicTest.csproj.CoreCompileInputs.cache
-C:\Users\Diego\Desktop\OBLI1\OBL-Asadurian-Reyes\OBLDA2\BusinessLogicTest\obj\Debug\netcoreapp3.1\BusinessLogicTest.dll
-C:\Users\Diego\Desktop\OBLI1\OBL-Asadurian-Reyes\OBLDA2\BusinessLogicTest\obj\Debug\netcoreapp3.1\BusinessLogicTest.pdb

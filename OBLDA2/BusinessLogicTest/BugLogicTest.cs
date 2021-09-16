@@ -12,7 +12,7 @@ namespace BusinessLogicTest
     [TestClass]
     public class BugLogicTest
     {
-        private Mock<IRepository<Bug>> mock;
+        private Mock<IRepository<Bug,int>> mock;
  
         private static string version = "3.0";
         private static string stateActive = "Activo";
