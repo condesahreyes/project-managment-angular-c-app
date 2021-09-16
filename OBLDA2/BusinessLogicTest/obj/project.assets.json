@@ -1815,6 +1815,10 @@
       "BusinessLogicInterface/1.0.0": {
         "type": "project",
         "framework": ".NETCoreApp,Version=v3.1",
+        "dependencies": {
+          "DataAccessInterface": "1.0.0",
+          "Domain": "1.0.0"
+        },
         "compile": {
           "bin/placeholder/BusinessLogicInterface.dll": {}
         },
@@ -1825,6 +1829,9 @@
       "DataAccessInterface/1.0.0": {
         "type": "project",
         "framework": ".NETCoreApp,Version=v3.1",
+        "dependencies": {
+          "Domain": "1.0.0"
+        },
         "compile": {
           "bin/placeholder/DataAccessInterface.dll": {}
         },

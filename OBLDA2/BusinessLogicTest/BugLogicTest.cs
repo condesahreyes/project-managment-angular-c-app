@@ -289,7 +289,7 @@ namespace BusinessLogicTest
         {
             var bug = new Bug(project, id, name, domain, version, stateActive);
 
-            mock.Setup(r => r.Get(bug.Id)).Returns(bug);
+            mock.Setup(r => r.GetById(bug.Id)).Returns(bug);
 
             var bugLogic = new BugLogic(mock.Object);
 

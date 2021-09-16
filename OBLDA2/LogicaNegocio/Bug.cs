@@ -7,12 +7,12 @@ namespace Domain
     public class Bug
     {
 
-        public Project Project { get; }
-        public int Id { get; }
-        public string Name { get; }
-        public string Domain { get; }
-        public string Version { get;}
-        public string State { get;}
+        public Project Project { get; set; }
+        public int Id { get; set; }
+        public string Name { get; set; }
+        public string Domain { get; set; }
+        public string Version { get; set; }
+        public string State { get; set; }
 
         public Bug(Project project, int id, string name, string domain, string version, string state)
         {

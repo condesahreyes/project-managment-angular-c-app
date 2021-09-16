@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace Domain
 {
@@ -11,6 +9,7 @@ namespace Domain
 
         public Rol(string name)
         {
+            //this.Id = id;
             this.Name = name;
         }
     }

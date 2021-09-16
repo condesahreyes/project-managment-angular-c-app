@@ -17,11 +17,18 @@
         }
       },
       "BusinessLogicInterface/1.0.0": {
+        "dependencies": {
+          "DataAccessInterface": "1.0.0",
+          "Domain": "1.0.0"
+        },
         "runtime": {
           "BusinessLogicInterface.dll": {}
         }
       },
       "DataAccessInterface/1.0.0": {
+        "dependencies": {
+          "Domain": "1.0.0"
+        },
         "runtime": {
           "DataAccessInterface.dll": {}
         }

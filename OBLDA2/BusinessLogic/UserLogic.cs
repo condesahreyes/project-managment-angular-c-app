@@ -1,42 +1,54 @@
-﻿using System.Text.RegularExpressions;
+﻿using System.Collections.Generic;
+using DataAccessInterface;
+using System.Linq;
 using System;
+using Domain;
 
 namespace BusinessLogic
 {
     public class UserLogic
     {
-        public static string ValidateUser(string name)
-        {
-            if (name.Length < 1)
-                throw new Exception();
+        private IRepository<Rol> rolRepository;
+        private IRepository<User> userDA;
 
-            return name;
+        public UserLogic(IRepository<User> UserDA, IRepository<Rol> rolRepository)
+        {
+            this.rolRepository = rolRepository;
+            this.userDA = UserDA;
         }
 
-        public static string ValidateSurname(string surname)
+        public User Create(User userToCreate)
         {
-            if (surname.Length < 1)
-                throw new Exception();
+            IsValidUser(userToCreate);
+            NotExistUser(userToCreate);
 
-            return surname;
+            User userCreate = userDA.Create(userToCreate);
+
+            return userCreate;
         }
 
-        public static string ValidateUserName(string userName)
+        private void IsValidUser(User userToCreate)
         {
-            if (userName.Length < 1)
-                throw new Exception();
-
-            return userName;
+            ValidateRol(userToCreate.Rol);
+            User.IsValidUser(userToCreate);
         }
 
-        public static string ValidateEmail(string email)
+        private void NotExistUser(User user)
         {
-            string character = @"^([a-zA-Z0-9_\-\.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([a-zA-Z0-9\-]+\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\]?)$";
+            bool existUser = userDA.GetAll().Any(u => (u.Email == user.Email));
 
-            if (!Regex.IsMatch(email, character))
+            if (existUser)
+            {
+                throw new Exception("The user already exists");
+            }
+        }
+
+        private void ValidateRol(Rol rol)
+        {
+            IEnumerable<Rol> roles = rolRepository.GetAll();
+
+            if (!roles.Contains(rol))
                 throw new Exception();
-
-            return email;
         }
     }
 }
