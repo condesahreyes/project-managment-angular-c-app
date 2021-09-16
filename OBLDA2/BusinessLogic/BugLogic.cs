@@ -10,9 +10,9 @@ namespace BusinessLogic
     {
         private string[] possibleStates = { "activo", "resuelto" };
 
-        private IRepository<Bug> bugRepository;
+        private IRepository<Bug,int> bugRepository;
 
-        public BugLogic(IRepository<Bug> bugRepository)
+        public BugLogic(IRepository<Bug,int> bugRepository)
         {
             this.bugRepository = bugRepository;
         }

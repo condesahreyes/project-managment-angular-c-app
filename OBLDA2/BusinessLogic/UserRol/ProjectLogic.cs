@@ -2,12 +2,20 @@
 using System.Collections.Generic;
 using System.Text;
 using BusinessLogicInterface;
+using DataAccessInterface;
 using Domain;
 
 namespace BusinessLogic.UserRol
 {
     public class ProjectLogic : IProjectLogic
     {
+        private IRepository<Project, Guid> projectDa;
+
+        public ProjectLogic(IRepository<Project, Guid> ProjectDa)
+        {
+            this.projectDa = ProjectDa;
+        }
+
         internal Project Create(Project projectToCreate)
         {
             throw new NotImplementedException();

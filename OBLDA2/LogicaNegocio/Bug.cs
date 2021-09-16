@@ -29,7 +29,7 @@ namespace Domain
 
             if (obj is Bug bug)
             {
-                result = this.Id == bug.Id);
+                result = (this.Id == bug.Id);
             }
 
             return result;

@@ -8,9 +8,9 @@ namespace BusinessLogic
 {
     public class UserLogic
     {
-        private IRepository<User> userDA;
+        private IRepository<User,Guid> userDA;
 
-        public UserLogic(IRepository<User> UserDA)
+        public UserLogic(IRepository<User,Guid> UserDA)
         {
             this.userDA = UserDA;
         }
