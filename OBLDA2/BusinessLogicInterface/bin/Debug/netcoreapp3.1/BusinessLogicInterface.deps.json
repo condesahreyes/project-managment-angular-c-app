@@ -8,17 +8,13 @@
     ".NETCoreApp,Version=v3.1": {
       "BusinessLogicInterface/1.0.0": {
         "dependencies": {
-<<<<<<< HEAD
           "DataAccessInterface": "1.0.0",
-=======
->>>>>>> administratorLogicTest
           "Domain": "1.0.0"
         },
         "runtime": {
           "BusinessLogicInterface.dll": {}
         }
       },
-<<<<<<< HEAD
       "DataAccessInterface/1.0.0": {
         "dependencies": {
           "Domain": "1.0.0"
@@ -27,8 +23,6 @@
           "DataAccessInterface.dll": {}
         }
       },
-=======
->>>>>>> administratorLogicTest
       "Domain/1.0.0": {
         "runtime": {
           "Domain.dll": {}
@@ -42,14 +36,11 @@
       "serviceable": false,
       "sha512": ""
     },
-<<<<<<< HEAD
     "DataAccessInterface/1.0.0": {
       "type": "project",
       "serviceable": false,
       "sha512": ""
     },
-=======
->>>>>>> administratorLogicTest
     "Domain/1.0.0": {
       "type": "project",
       "serviceable": false,

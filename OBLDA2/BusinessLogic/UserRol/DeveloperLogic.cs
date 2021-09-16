@@ -3,18 +3,19 @@ using BusinessLogicInterface;
 using DataAccessInterface;
 using System.Linq;
 using Domain;
+using System;
 
 namespace BusinessLogic.UserRol
 {
     public class DeveloperLogic : IDeveloperLogic
     {
-        private IRepository<User> userRepository;
-        private IRepository<Project> projectRepository;
-        private IRepository<Rol> rolRepository;
-        private IRepository<Bug> bugRepository;
+        private IRepository<User, Guid> userRepository;
+        private IRepository<Project, Guid> projectRepository;
+        private IRepository<Rol, Guid> rolRepository;
+        private IRepository<Bug, int> bugRepository;
 
-        public DeveloperLogic(IRepository<User> userRepository, IRepository<Project> projectRepository, 
-            IRepository<Rol> rolRepository, IRepository<Bug> bugRepository)
+        public DeveloperLogic(IRepository<User, Guid> userRepository, IRepository<Project, Guid> projectRepository, 
+            IRepository<Rol, Guid> rolRepository, IRepository<Bug, int> bugRepository)
         {
             this.userRepository = userRepository;
             this.projectRepository = projectRepository;
@@ -55,7 +56,7 @@ namespace BusinessLogic.UserRol
 
             activeBug.State = "Activo";
 
-            bugRepository.Update(bug, activeBug);
+            bugRepository.Update(bug.Id, activeBug);
 
             return activeBug;
         }
@@ -66,7 +67,7 @@ namespace BusinessLogic.UserRol
 
             doneBug.State = "Resuelto";
 
-            bugRepository.Update(bug, doneBug);
+            bugRepository.Update(bug.Id, doneBug);
 
             return doneBug;
         }

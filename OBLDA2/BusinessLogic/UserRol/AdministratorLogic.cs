@@ -1,14 +1,11 @@
-<<<<<<< HEAD
-﻿using BusinessLogicInterface;
-=======
-﻿using System;
+using BusinessLogicInterface;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using BusinessLogic.UserRol;
 using BusinessLogicInterface;
 using DataAccessInterface;
 using Domain;
->>>>>>> administratorLogicTest
 
 namespace BusinessLogic
 {

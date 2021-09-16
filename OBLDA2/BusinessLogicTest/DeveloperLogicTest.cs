@@ -12,10 +12,10 @@ namespace BusinessLogicTest
     [TestClass]
     public class DeveloperLogicTest
     {
-        private Mock<IRepository<User>> mockUser;
-        private Mock<IRepository<Project>> mockProject;
-        private Mock<IRepository<Rol>> mockRol;
-        private Mock<IRepository<Bug>> mockBug;
+        private Mock<IRepository<User, Guid>> mockUser;
+        private Mock<IRepository<Project, Guid>> mockProject;
+        private Mock<IRepository<Rol, Guid>> mockRol;
+        private Mock<IRepository<Bug, int>> mockBug;
 
         private List<Rol> roles;
 
@@ -24,25 +24,25 @@ namespace BusinessLogicTest
         [TestInitialize]
         public void Setup()
         {
-            mockProject = new Mock<IRepository<Project>>(MockBehavior.Strict);
-            mockUser = new Mock<IRepository<User>>(MockBehavior.Strict);
-            mockBug = new Mock<IRepository<Bug>>(MockBehavior.Strict);
+            mockProject = new Mock<IRepository<Project, Guid>>(MockBehavior.Strict);
+            mockUser = new Mock<IRepository<User, Guid>>(MockBehavior.Strict);
+            mockBug = new Mock<IRepository<Bug, int>>(MockBehavior.Strict);
 
             CofnigurationMockRol();
 
-            developer = new User("Diego", "Asadurian", "diegoAsa", "admin1234",
+            developer = new User(new Guid(), "Diego", "Asadurian", "diegoAsa", "admin1234",
                 "diegoasadurian@gmail.com", roles[2]);
         }
 
         private void CofnigurationMockRol()
         {
-            mockRol = new Mock<IRepository<Rol>>(MockBehavior.Strict);
+            mockRol = new Mock<IRepository<Rol, Guid>>(MockBehavior.Strict);
 
             roles = new List<Rol>
             {
-                new Rol("Tester"),
-                new Rol("Administrator"),
-                new Rol("Developer"),
+                new Rol(new Guid(), "Tester"),
+                new Rol(new Guid(), "Administrator"),
+                new Rol(new Guid(), "Developer"),
             };
 
             mockRol.Setup(x => x.GetAll()).Returns(roles);
@@ -68,7 +68,7 @@ namespace BusinessLogicTest
         [TestMethod]
         public void GetAllBugs()
         {
-            Project project = new Project("Montes Del Plata");
+            Project project = new Project(new Guid(), "Montes Del Plata");
 
             project.desarrolladores.Add(developer);
 
@@ -99,7 +99,7 @@ namespace BusinessLogicTest
             users.Add(developer);
 
             mockUser.Setup(r => r.GetAll()).Returns(users);
-            mockUser.Setup(r => r.GetByString("diegoAsa")).Returns(developer);
+            mockUser.Setup(r => r.Get(developer.Id)).Returns(developer);
             
             var developerLogic = new DeveloperLogic(mockUser.Object, mockProject.Object, mockRol.Object, 
                 mockBug.Object);

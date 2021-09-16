@@ -19,7 +19,7 @@ namespace BusinessLogicTest
         private static string stateResolved = "Resuelto";
         private static string name = "Error de login";
         private static string name2 = "Error de UI";
-        private static Project project = new Project("Montes Del Plata");
+        private static Project project = new Project(new Guid(), "Montes Del Plata");
         private static string domain = "Al intentar iniciar sesión, no reconoce usuario";
 
         private static int id = 1234;
@@ -27,7 +27,7 @@ namespace BusinessLogicTest
         [TestInitialize]
         public void Setup()
         {
-            mock = new Mock<IRepository<Bug>>(MockBehavior.Strict);
+            mock = new Mock<IRepository<Bug, int>>(MockBehavior.Strict);
         }
 
         [TestMethod]
@@ -156,11 +156,11 @@ namespace BusinessLogicTest
             var bug = new Bug(project, id, name, domain, version, "desactivado");
 
             mock.Setup(r => r.GetAll()).Returns(bugs);
-            mock.Setup(r => r.Delete(bug));
+            mock.Setup(r => r.Delete(bug.Id));
 
             var bugLogic = new BugLogic(mock.Object);
 
-            bugLogic.Delete(bug);
+            bugLogic.Delete(bug.Id);
 
             IEnumerable<Bug> bugSaved = bugLogic.GetAll();
             
@@ -172,7 +172,7 @@ namespace BusinessLogicTest
         [TestMethod]
         public void UpdateBugProject()
         {
-            Project newProject = new Project("Nuevo proyecto");
+            Project newProject = new Project(new Guid(), "Nuevo proyecto");
             var bug = new Bug(project, id, name, domain, version, stateActive);
             var bugUpdate = new Bug(newProject, id, name, domain, version, stateActive);
            
@@ -180,11 +180,11 @@ namespace BusinessLogicTest
             bugs.Add(bugUpdate);
 
             mock.Setup(r => r.GetAll()).Returns(bugs);
-            mock.Setup(r => r.Update(bug, bugUpdate));
+            mock.Setup(r => r.Update(bug.Id, bugUpdate));
 
             var bugLogic = new BugLogic(mock.Object);
 
-            bugLogic.Update(bug, bugUpdate);
+            bugLogic.Update(bug.Id, bugUpdate);
 
             IEnumerable<Bug> bugSaved = bugLogic.GetAll();
 
@@ -203,11 +203,11 @@ namespace BusinessLogicTest
             bugs.Add(bugUpdate);
 
             mock.Setup(r => r.GetAll()).Returns(bugs);
-            mock.Setup(r => r.Update(bug, bugUpdate));
+            mock.Setup(r => r.Update(bug.Id, bugUpdate));
 
             var bugLogic = new BugLogic(mock.Object);
 
-            bugLogic.Update(bug, bugUpdate);
+            bugLogic.Update(bug.Id, bugUpdate);
 
             IEnumerable<Bug> bugSaved = bugLogic.GetAll();
 
@@ -226,11 +226,11 @@ namespace BusinessLogicTest
             bugs.Add(bugUpdate);
 
             mock.Setup(r => r.GetAll()).Returns(bugs);
-            mock.Setup(r => r.Update(bug, bugUpdate));
+            mock.Setup(r => r.Update(bug.Id, bugUpdate));
 
             var bugLogic = new BugLogic(mock.Object);
 
-            bugLogic.Update(bug, bugUpdate);
+            bugLogic.Update(bug.Id, bugUpdate);
 
             IEnumerable<Bug> bugsSaved = bugLogic.GetAll();
 
@@ -248,11 +248,11 @@ namespace BusinessLogicTest
             bugs.Add(bugUpdate);
 
             mock.Setup(r => r.GetAll()).Returns(bugs);
-            mock.Setup(r => r.Update(bug, bugUpdate));
+            mock.Setup(r => r.Update(bug.Id, bugUpdate));
 
             var bugLogic = new BugLogic(mock.Object);
 
-            bugLogic.Update(bug, bugUpdate);
+            bugLogic.Update(bug.Id, bugUpdate);
 
             IEnumerable<Bug> bugSaved = bugLogic.GetAll();
 
@@ -271,11 +271,11 @@ namespace BusinessLogicTest
             bugs.Add(bugUpdate);
 
             mock.Setup(r => r.GetAll()).Returns(bugs);
-            mock.Setup(r => r.Update(bug, bugUpdate));
+            mock.Setup(r => r.Update(bug.Id, bugUpdate));
 
             var bugLogic = new BugLogic(mock.Object);
 
-            bugLogic.Update(bug, bugUpdate);
+            bugLogic.Update(bug.Id, bugUpdate);
 
             IEnumerable<Bug> bugSaved = bugLogic.GetAll();
 
@@ -289,7 +289,7 @@ namespace BusinessLogicTest
         {
             var bug = new Bug(project, id, name, domain, version, stateActive);
 
-            mock.Setup(r => r.GetById(bug.Id)).Returns(bug);
+            mock.Setup(r => r.Get(bug.Id)).Returns(bug);
 
             var bugLogic = new BugLogic(mock.Object);
 

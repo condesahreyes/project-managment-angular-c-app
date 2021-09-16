@@ -1,12 +1,8 @@
 {
   "version": 2,
-<<<<<<< HEAD
   "dgSpecHash": "afg816oLql+u2ZpDBXaj6yh7wkTOibwhww/nTgBo6qc69c80kkSNMw/3PPiIwVVfiYLAk3/J2XXxJ+RjWzbQsw==",
-=======
-  "dgSpecHash": "SH8EK9m9cpj+sP3ZXUlkmDmGt0Ud29CX/A88v6VzjBLkOwPyQ7KpDVlVF6m1zvvDIjZ/8xhmFlSp5Ne60TeHjg==",
->>>>>>> administratorLogicTest
   "success": true,
-  "projectFilePath": "C:\\Users\\Diego\\Desktop\\OBLI1\\OBL-Asadurian-Reyes\\OBLDA2\\DataAccessInterface\\DataAccessInterface.csproj",
+  "projectFilePath": "C:\\Users\\hreye\\Desktop\\OBL-Asadurian-Reyes\\OBLDA2\\DataAccessInterface\\DataAccessInterface.csproj",
   "expectedPackageFiles": [],
   "logs": []
 }

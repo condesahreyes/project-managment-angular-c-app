@@ -9,11 +9,7 @@ namespace Domain
 
         public Rol(Guid id, string name)
         {
-<<<<<<< HEAD
-            //this.Id = id;
-=======
             this.Id = id;
->>>>>>> administratorLogicTest
             this.Name = name;
         }
 
