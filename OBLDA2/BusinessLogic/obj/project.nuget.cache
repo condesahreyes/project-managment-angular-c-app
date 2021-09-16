@@ -1,8 +1,12 @@
 {
   "version": 2,
+<<<<<<< HEAD
   "dgSpecHash": "kgefA59F4tuQgwqDKfN0XLm35IvgxxiFN37pYZR85agkR4WiGmRr+Wbp4jtxnkS560TjaMVq87D1sG4EvIqoOA==",
+=======
+  "dgSpecHash": "j/HR62cFtR7jQdQOR3AICQ2LXdwwMg1yDl5ePOANGPQtgU00hsgowcIf3ugwUWSkY9D+byMvO5BLFPOW3Owtsg==",
+>>>>>>> administratorLogicTest
   "success": true,
-  "projectFilePath": "C:\\Users\\hreye\\Desktop\\OBL-Asadurian-Reyes\\OBLDA2\\BusinessLogic\\BusinessLogic.csproj",
+  "projectFilePath": "C:\\Users\\Diego\\Desktop\\OBLI1\\OBL-Asadurian-Reyes\\OBLDA2\\BusinessLogic\\BusinessLogic.csproj",
   "expectedPackageFiles": [],
   "logs": []
 }

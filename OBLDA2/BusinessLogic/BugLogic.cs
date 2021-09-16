@@ -10,9 +10,9 @@ namespace BusinessLogic
     {
         private string[] possibleStates = { "activo", "resuelto" };
 
-        private IRepository<Bug> bugRepository;
+        private IRepository<Bug,int> bugRepository;
 
-        public BugLogic(IRepository<Bug> bugRepository)
+        public BugLogic(IRepository<Bug,int> bugRepository)
         {
             this.bugRepository = bugRepository;
         }
@@ -24,9 +24,9 @@ namespace BusinessLogic
             return bug;
         }
 
-        public void Delete(Bug bug)
+        public void Delete(int id)
         {
-            bugRepository.Delete(bug);
+            bugRepository.Delete(id);
         }
 
         public IEnumerable<Bug> GetAll()
@@ -34,11 +34,11 @@ namespace BusinessLogic
             return bugRepository.GetAll();
         }
 
-        public void Update(Bug bug, Bug bugUpdate)
+        public void Update(int id, Bug bugUpdate)
         {
             AreCorrectData(bugUpdate);
 
-            bugRepository.Update(bug, bugUpdate);
+            bugRepository.Update(id, bugUpdate);
         }
 
         private void AreCorrectData(Bug oneBug)

@@ -11,6 +11,7 @@ namespace BusinessLogicTest
     [TestClass]
     public class UserLogicTest
     {
+<<<<<<< HEAD
         private List<User> users;
 
         private Mock<IRepository<Rol>> mockRol;
@@ -139,5 +140,8 @@ namespace BusinessLogicTest
             User userSaved = userLogic.Create(oneUser);
             mockUser.VerifyAll();
         }
+=======
+        
+>>>>>>> administratorLogicTest
     }
 }

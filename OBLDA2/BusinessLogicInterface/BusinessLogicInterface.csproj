@@ -5,7 +5,10 @@
   </PropertyGroup>
 
   <ItemGroup>
+<<<<<<< HEAD
     <ProjectReference Include="..\DataAccessInterface\DataAccessInterface.csproj" />
+=======
+>>>>>>> administratorLogicTest
     <ProjectReference Include="..\LogicaNegocio\Domain.csproj" />
   </ItemGroup>
 

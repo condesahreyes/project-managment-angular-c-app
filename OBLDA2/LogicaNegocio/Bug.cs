@@ -23,19 +23,16 @@ namespace Domain
             this.Version = version;
             this.State = state;
         }
-        /*
-        public override bool Equals(object obj)
+        public override bool Equals(Object obj)
         {
             var result = false;
 
             if (obj is Bug bug)
             {
-                result = this.Project.Name == bug.Project.Name ||
-                    this.Id == bug.Id || this.Name == bug.Name;
+                result = (this.Id == bug.Id);
             }
 
             return result;
         }
-        */
     }
 }

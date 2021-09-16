@@ -18,7 +18,10 @@
       },
       "BusinessLogicInterface/1.0.0": {
         "dependencies": {
+<<<<<<< HEAD
           "DataAccessInterface": "1.0.0",
+=======
+>>>>>>> administratorLogicTest
           "Domain": "1.0.0"
         },
         "runtime": {
