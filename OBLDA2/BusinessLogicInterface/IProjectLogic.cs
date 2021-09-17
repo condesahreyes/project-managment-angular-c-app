@@ -1,11 +1,15 @@
 ﻿using System;
+<<<<<<< HEAD
 using System.Collections.Generic;
 using System.Text;
 using Domain;
+=======
+>>>>>>> TesterLogicTest
 
 namespace BusinessLogicInterface
 {
     public interface IProjectLogic
+<<<<<<< HEAD
     {
 
          Project Create(Project projectToCreate);
@@ -29,5 +33,9 @@ namespace BusinessLogicInterface
          int GetAllFixedBugsByDeveloper();
 
          Project Get(Guid id);
+=======
+
+    {
+>>>>>>> TesterLogicTest
     }
 }

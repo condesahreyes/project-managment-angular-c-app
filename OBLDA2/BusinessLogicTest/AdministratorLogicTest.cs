@@ -14,6 +14,7 @@ namespace BusinessLogicTest
     [TestClass]
     public class AdministratorLogicTest
     {
+<<<<<<< HEAD
         private Rol rolAdministrator;
         private Mock<IAdministratorLogic> Mock;
         private Mock<IRepository<User,Guid>> daMock;
@@ -38,6 +39,9 @@ namespace BusinessLogicTest
             admin1 = new User(id, "Hernan", "reyes", "hernanReyes", "admin1234", "reyesH@gmail.com", rolAdministrator);
             project = new Project(id, "Project - GXC ");
         }
+=======
+
+>>>>>>> TesterLogicTest
 
         [ExpectedException(typeof(Exception), "The name can not be empty")]
         [TestMethod]
