@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>netcoreapp3.1</TargetFramework>
@@ -7,6 +7,7 @@
   <ItemGroup>
     <ProjectReference Include="..\BusinessLogicInterface\BusinessLogicInterface.csproj" />
     <ProjectReference Include="..\DataAccessInterface\DataAccessInterface.csproj" />
+    <ProjectReference Include="..\DataAccessTest\DataAccessTest.csproj" />
     <ProjectReference Include="..\LogicaNegocio\Domain.csproj" />
   </ItemGroup>
 

@@ -31,11 +31,4 @@
     <ProjectReference Include="..\LogicaNegocio\Domain.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <ProjectReference Include="..\BusinessLogicInterface\BusinessLogicInterface.csproj" />
-    <ProjectReference Include="..\BusinessLogic\BusinessLogic.csproj" />
-    <ProjectReference Include="..\DataAccessInterface\DataAccessInterface.csproj" />
-    <ProjectReference Include="..\LogicaNegocio\Domain.csproj" />
-  </ItemGroup>
-
 </Project>

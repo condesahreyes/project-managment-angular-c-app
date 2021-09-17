@@ -1,10 +1,9 @@
 ﻿using System.Collections.Generic;
-using DataAccessInterface;
 using System.Linq;
 using System;
+using System.Linq;
 using Domain;
 using DataAccessInterface;
-using System.Linq;
 
 namespace BusinessLogic
 {
