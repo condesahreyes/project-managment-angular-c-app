@@ -27,19 +27,19 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\Diego\\.nuget\\packages\\": {}
+    "C:\\Users\\hreye\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Diego\\Desktop\\OBLI1\\OBL-Asadurian-Reyes\\OBLDA2\\BusinessLogicInterface\\BusinessLogicInterface.csproj",
+      "projectUniqueName": "C:\\Users\\hreye\\Desktop\\tester\\OBL-Asadurian-Reyes\\OBLDA2\\BusinessLogicInterface\\BusinessLogicInterface.csproj",
       "projectName": "BusinessLogicInterface",
-      "projectPath": "C:\\Users\\Diego\\Desktop\\OBLI1\\OBL-Asadurian-Reyes\\OBLDA2\\BusinessLogicInterface\\BusinessLogicInterface.csproj",
-      "packagesPath": "C:\\Users\\Diego\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Diego\\Desktop\\OBLI1\\OBL-Asadurian-Reyes\\OBLDA2\\BusinessLogicInterface\\obj\\",
+      "projectPath": "C:\\Users\\hreye\\Desktop\\tester\\OBL-Asadurian-Reyes\\OBLDA2\\BusinessLogicInterface\\BusinessLogicInterface.csproj",
+      "packagesPath": "C:\\Users\\hreye\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\hreye\\Desktop\\tester\\OBL-Asadurian-Reyes\\OBLDA2\\BusinessLogicInterface\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\Diego\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\hreye\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -53,8 +53,8 @@
         "netcoreapp3.1": {
           "targetAlias": "netcoreapp3.1",
           "projectReferences": {
-            "C:\\Users\\Diego\\Desktop\\OBLI1\\OBL-Asadurian-Reyes\\OBLDA2\\LogicaNegocio\\Domain.csproj": {
-              "projectPath": "C:\\Users\\Diego\\Desktop\\OBLI1\\OBL-Asadurian-Reyes\\OBLDA2\\LogicaNegocio\\Domain.csproj"
+            "C:\\Users\\hreye\\Desktop\\tester\\OBL-Asadurian-Reyes\\OBLDA2\\LogicaNegocio\\Domain.csproj": {
+              "projectPath": "C:\\Users\\hreye\\Desktop\\tester\\OBL-Asadurian-Reyes\\OBLDA2\\LogicaNegocio\\Domain.csproj"
             }
           }
         }

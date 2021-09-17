@@ -1,10 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "/2mRRRVTTxD01qjzj5fRYoDnISgvvD2BTRxHY4rtH08H9EwobPegGnbmqwBQnJBg9+YWNMqdDeUZbsYsO0PaIQ==",
+  "dgSpecHash": "opT3z6bb1rj6MuBSgNfGdWAhrmau2zM+cJ08+Ku3qM8k1g9nFquccy3pU8/sVjpbi8bRlo2uNwOFSGU1IkIopA==",
   "success": true,
-  "projectFilePath": "C:\\Users\\Diego\\Desktop\\OBLI1\\OBL-Asadurian-Reyes\\OBLDA2\\WebApi\\WebApi.csproj",
-  "expectedPackageFiles": [
-    "C:\\Users\\Diego\\.nuget\\packages\\microsoft.netcore.app.host.win-x64\\3.1.18\\microsoft.netcore.app.host.win-x64.3.1.18.nupkg.sha512"
-  ],
+  "projectFilePath": "C:\\Users\\hreye\\Desktop\\tester\\OBL-Asadurian-Reyes\\OBLDA2\\WebApi\\WebApi.csproj",
+  "expectedPackageFiles": [],
   "logs": []
 }

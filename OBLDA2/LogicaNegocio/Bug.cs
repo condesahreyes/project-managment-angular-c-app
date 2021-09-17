@@ -7,14 +7,14 @@ namespace Domain
     public class Bug
     {
 
-        public string Project { get; }
-        public int Id { get; }
-        public string Name { get; }
-        public string Domain { get; }
-        public string Version { get;}
-        public string State { get;}
+        public Project Project { get; set; }
+        public int Id { get; set; }
+        public string Name { get; set; }
+        public string Domain { get; set; }
+        public string Version { get; set; }
+        public string State { get; set; }
 
-        public Bug(string project, int id, string name, string domain, string version, string state)
+        public Bug(Project project, int id, string name, string domain, string version, string state)
         {
             this.Project = project;
             this.Id = id;
@@ -22,6 +22,17 @@ namespace Domain
             this.Domain = domain;
             this.Version = version;
             this.State = state;
+        }
+        public override bool Equals(Object obj)
+        {
+            var result = false;
+
+            if (obj is Bug bug)
+            {
+                result = (this.Id == bug.Id);
+            }
+
+            return result;
         }
     }
 }

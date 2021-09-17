@@ -11,9 +11,6 @@ namespace BusinessLogicTest
     public class AdministratorLogicTest
     {
 
-        private Mock<IAdministratorLogic> Mock;
-        private Mock<IRepository<Administrator>> daMock;
-        AdministratorLogic administratorLogic;
 
 
         [TestMethod]

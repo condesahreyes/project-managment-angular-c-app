@@ -4,29 +4,46 @@ using DataAccessInterface;
 
 namespace DataAccess
 {
-    public class Repository<T> : IRepository<T> where T : class
+    public class Repository<T, K> : IRepository<T, K> where T : class
     {
-
-
-
-        public void Create(T entity)
+        public T Create(T entity)
         {
-            
-        }
-             
-        public T Get(int id)
-        {
-            return null;
+            throw new NotImplementedException();
         }
 
-        public IEnumerable<T> GetAll() 
+        public void Delete(K id)
         {
-         return null;  
+            throw new NotImplementedException();
+        }
+
+        public T Get(K id)
+        {
+            throw new NotImplementedException();
+        }
+
+        public IEnumerable<T> GetAll()
+        {
+            throw new NotImplementedException();
+        }
+
+        public T GetById(int id)
+        {
+            throw new System.NotImplementedException();
+        }
+
+        public T GetByString(string byGet)
+        {
+            throw new System.NotImplementedException();
         }
 
         public void Save()
         {
-            
+            throw new NotImplementedException();
+        }
+
+        public void Update(K id, T entity)
+        {
+            throw new NotImplementedException();
         }
     }
 }

@@ -9,28 +9,47 @@ namespace BusinessLogic.UserRol
     public class TesterLogic : ITesterLogic
     {
 
+        private IRepository<User, Guid> userRepository;
+        private IRepository<Project, Guid> projectRepository;
+        private IRepository<Rol, Guid> rolRepository;
+        private IRepository<Bug, int> bugRepository;
 
-        private IRepository<Tester> testerDA;
-
-
-        public TesterLogic(IRepository<Tester> repository)
+        public TesterLogic(IRepository<User, Guid> userRepository, IRepository<Project, Guid> projectRepository,
+            IRepository<Rol, Guid> rolRepository, IRepository<Bug, int> bugRepository)
         {
-            this.testerDA = repository;
+            this.userRepository = userRepository;
+            this.projectRepository = projectRepository;
+            this.rolRepository = rolRepository;
+            this.bugRepository = bugRepository;
         }
 
-        public IEnumerable<Tester> GetAll()
+
+        public IEnumerable<User> GetAll()
         {
-            throw new NotImplementedException();
+            List<User> users = (List<User>)userRepository.GetAll();
+
+            List<User> testers = new List<User>();
+            foreach (User user in users)
+            {
+                if (user.Rol.Name == "Tester")
+                    testers.Add(user);
+            }
+
+            return testers;
         }
 
-        public object Get(Guid id)
+        public User Get(Guid id)
         {
-            throw new NotImplementedException();
+            return userRepository.Get(id);
         }
 
-        public object Create(Tester tester)
+        public User Create(User tester)
         {
-            throw new NotImplementedException();
+            UserLogic userLogic = new UserLogic(userRepository, rolRepository);
+
+            User developerCreate = userLogic.Create(tester);
+
+            return developerCreate;
         }
 
         public IEnumerable<Project> getProjectsByTester(Guid id)
@@ -38,14 +57,27 @@ namespace BusinessLogic.UserRol
             throw new NotImplementedException();
         }
 
-        public IEnumerable<Bug> getBugsByTester(Guid id1, Guid id2, string name, string state)
+        public Bug CreateBug(Bug bug)
         {
-            throw new NotImplementedException();
+            return bugRepository.Create(bug);
         }
 
-        public object CreateBug(Guid id, string v1, string v2, string v3, string v4, string v5)
+        public List<Bug> GetAllBugs(User tester)
         {
-            throw new NotImplementedException();
+            IEnumerable<Project> allProjects = projectRepository.GetAll();
+
+            List<Bug> bugs = new List<Bug>();
+
+            foreach (var project in allProjects)
+                if (project.desarrolladores.Contains(tester))
+                    bugs.AddRange(project.incidentes);
+
+            return bugs;
+        }
+
+        public void DeleteBug(int id)
+        {
+            bugRepository.Delete(id);
         }
     }
 }

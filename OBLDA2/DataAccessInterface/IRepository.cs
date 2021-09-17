@@ -4,14 +4,13 @@ using System.Text;
 
 namespace DataAccessInterface
 {
-    public interface IRepository<T> where T : class
+    public interface IRepository<T, K> where T : class
     {
         T Create(T entity);
-        void Delete(T entity);
-
-        T Get(Guid id);
+        T Get(K id);
         IEnumerable<T> GetAll();
         void Save();
-       
+        void Delete(K id);
+        void Update(K id, T entity);
     }
 }

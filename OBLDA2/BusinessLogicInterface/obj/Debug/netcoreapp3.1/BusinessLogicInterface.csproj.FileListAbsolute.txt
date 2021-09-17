@@ -1,0 +1,13 @@
+C:\Users\hreye\Desktop\tester\OBL-Asadurian-Reyes\OBLDA2\BusinessLogicInterface\bin\Debug\netcoreapp3.1\BusinessLogicInterface.deps.json
+C:\Users\hreye\Desktop\tester\OBL-Asadurian-Reyes\OBLDA2\BusinessLogicInterface\bin\Debug\netcoreapp3.1\BusinessLogicInterface.dll
+C:\Users\hreye\Desktop\tester\OBL-Asadurian-Reyes\OBLDA2\BusinessLogicInterface\bin\Debug\netcoreapp3.1\BusinessLogicInterface.pdb
+C:\Users\hreye\Desktop\tester\OBL-Asadurian-Reyes\OBLDA2\BusinessLogicInterface\bin\Debug\netcoreapp3.1\Domain.dll
+C:\Users\hreye\Desktop\tester\OBL-Asadurian-Reyes\OBLDA2\BusinessLogicInterface\bin\Debug\netcoreapp3.1\Domain.pdb
+C:\Users\hreye\Desktop\tester\OBL-Asadurian-Reyes\OBLDA2\BusinessLogicInterface\obj\Debug\netcoreapp3.1\BusinessLogicInterface.csproj.AssemblyReference.cache
+C:\Users\hreye\Desktop\tester\OBL-Asadurian-Reyes\OBLDA2\BusinessLogicInterface\obj\Debug\netcoreapp3.1\BusinessLogicInterface.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\hreye\Desktop\tester\OBL-Asadurian-Reyes\OBLDA2\BusinessLogicInterface\obj\Debug\netcoreapp3.1\BusinessLogicInterface.AssemblyInfoInputs.cache
+C:\Users\hreye\Desktop\tester\OBL-Asadurian-Reyes\OBLDA2\BusinessLogicInterface\obj\Debug\netcoreapp3.1\BusinessLogicInterface.AssemblyInfo.cs
+C:\Users\hreye\Desktop\tester\OBL-Asadurian-Reyes\OBLDA2\BusinessLogicInterface\obj\Debug\netcoreapp3.1\BusinessLogicInterface.csproj.CoreCompileInputs.cache
+C:\Users\hreye\Desktop\tester\OBL-Asadurian-Reyes\OBLDA2\BusinessLogicInterface\obj\Debug\netcoreapp3.1\BusinessLogicInterface.csproj.CopyComplete
+C:\Users\hreye\Desktop\tester\OBL-Asadurian-Reyes\OBLDA2\BusinessLogicInterface\obj\Debug\netcoreapp3.1\BusinessLogicInterface.dll
+C:\Users\hreye\Desktop\tester\OBL-Asadurian-Reyes\OBLDA2\BusinessLogicInterface\obj\Debug\netcoreapp3.1\BusinessLogicInterface.pdb
