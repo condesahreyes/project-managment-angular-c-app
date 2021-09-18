@@ -52,7 +52,7 @@ namespace BusinessLogic.UserRol
             return developerCreate;
         }
 
-        public IEnumerable<Project> getProjectsByTester(Guid id)
+        public IEnumerable<Project> GetProjectsByTester(Guid id)
         {
             throw new NotImplementedException();
         }

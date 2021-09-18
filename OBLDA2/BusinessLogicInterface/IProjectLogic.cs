@@ -26,8 +26,10 @@ namespace BusinessLogicInterface
 
         List<Project> GetAll();
 
-        int GetAllFixedBugsByDeveloper();
+        int GetAllFixedBugsByDeveloper(Guid id);
 
         Project Get(Guid id);
+        List<User> GetAllTesters();
+        List<User> GetAllDevelopers();
     }
 }

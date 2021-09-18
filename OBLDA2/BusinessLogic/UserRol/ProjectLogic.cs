@@ -65,7 +65,17 @@ namespace BusinessLogic.UserRol
             throw new NotImplementedException();
         }
 
-        public int GetAllFixedBugsByDeveloper()
+        public List<User> GetAllTesters()
+        {
+            throw new NotImplementedException();
+        }
+
+        public List<User> GetAllDevelopers()
+        {
+            throw new NotImplementedException();
+        }
+
+        public int GetAllFixedBugsByDeveloper(Guid id)
         {
             throw new NotImplementedException();
         }

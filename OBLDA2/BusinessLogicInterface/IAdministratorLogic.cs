@@ -21,8 +21,10 @@ namespace BusinessLogicInterface
         void AssignDeveloperByProject(Project project, Guid idDeveloper);
         void AssignTesterByProject(Project project, Guid idTester);
         void ImportBugsByProjectByProvider(Project project, List<Bug> bugsProject);
-        List<Project> GetTotalBugByAllProject();
-        int GetFixedBugsByDeveloper();
+        int GetFixedBugsByDeveloper(Guid id);
+        List<User> GetAllTesters();
+        List<User> GetAllDevelopers();
+        int GetTotalBugByAllProject();
 
 
     }

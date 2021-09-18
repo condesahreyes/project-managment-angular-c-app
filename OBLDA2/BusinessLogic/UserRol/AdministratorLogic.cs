@@ -15,14 +15,16 @@ namespace BusinessLogic
         private IUserLogic userLogic;
         private IProjectLogic projectLogic;
         private IBugLogic bugLogic;
+        private ITesterLogic testerLogic;
 
 
 
-        public AdministratorLogic(IUserLogic userLogic, IProjectLogic projectLogic)
+        public AdministratorLogic(IUserLogic userLogic, IProjectLogic projectLogic, ITesterLogic testerLogic)
         {
             this.userLogic = userLogic;
             this.projectLogic = projectLogic;
             this.bugLogic = new BugLogic();
+            this.testerLogic = testerLogic;
         }
 
         public User Create(User adminToCreate)
@@ -115,15 +117,32 @@ namespace BusinessLogic
             projectLogic.ImportBugsByProvider(project, bugsProject);
         }
 
-        public List<Project> GetTotalBugByAllProject()
+        public int GetTotalBugByAllProject()
         {
-            return projectLogic.GetAll();
+            int total = 0;
+            var projects = projectLogic.GetAll();
+            foreach (var project in projects)
+            {
+                total += project.totalBugs;
+            }
+            return total;
+        }
+
+        public List<User> GetAllTesters()
+        {
+            return projectLogic.GetAllTesters();
 
         }
 
-        public int GetFixedBugsByDeveloper()
+        public List<User> GetAllDevelopers()
         {
-            return projectLogic.GetAllFixedBugsByDeveloper();
+            return projectLogic.GetAllDevelopers();
+
+        }
+
+        public int GetFixedBugsByDeveloper(Guid id)
+        {
+            return projectLogic.GetAllFixedBugsByDeveloper(id);
         }
 
     }
