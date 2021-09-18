@@ -41,7 +41,7 @@ namespace DataAccess
             throw new NotImplementedException();
         }
 
-        public void Update(K id, T entity)
+        public T Update(K id, T entity)
         {
             throw new NotImplementedException();
         }

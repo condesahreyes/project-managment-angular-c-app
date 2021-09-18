@@ -1,22 +1,26 @@
 ﻿using System.Collections.Generic;
+using DataAccessInterface;
 using System.Linq;
 using System;
-using System.Linq;
 using Domain;
-using DataAccessInterface;
+using BusinessLogicInterface;
 
 namespace BusinessLogic
 {
-    public class UserLogic
+    public class UserLogic : IUserLogic
     {
 
-        private IRepository<User,Guid> userDA;
+        private IRepository<User, Guid> userDA;
         private IRepository<Rol, Guid> rolRepository;
 
-        public UserLogic(IRepository<User,Guid> UserDA, IRepository<Rol, Guid> rolRepository)
+        public UserLogic(IRepository<User, Guid> UserDA, IRepository<Rol, Guid> rolRepository)
         {
             this.userDA = UserDA;
             this.rolRepository = rolRepository;
+        }
+
+        public UserLogic()
+        {
         }
 
         public User Create(User userToCreate)
@@ -66,5 +70,9 @@ namespace BusinessLogic
             return user;
         }
 
+        public IEnumerable<User> GetAll()
+        {
+            return userDA.GetAll();
+        }
     }
 }

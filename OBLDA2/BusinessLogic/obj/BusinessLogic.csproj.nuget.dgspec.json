@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\hreye\\Desktop\\tester\\OBL-Asadurian-Reyes\\OBLDA2\\BusinessLogic\\BusinessLogic.csproj": {}
+    "C:\\Users\\Diego\\Desktop\\Reyes- Asadurian\\OBL-Asadurian-Reyes\\OBLDA2\\BusinessLogic\\BusinessLogic.csproj": {}
   },
   "projects": {
-    "C:\\Users\\hreye\\Desktop\\tester\\OBL-Asadurian-Reyes\\OBLDA2\\BusinessLogicInterface\\BusinessLogicInterface.csproj": {
+    "C:\\Users\\Diego\\Desktop\\Reyes- Asadurian\\OBL-Asadurian-Reyes\\OBLDA2\\BusinessLogicInterface\\BusinessLogicInterface.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\hreye\\Desktop\\tester\\OBL-Asadurian-Reyes\\OBLDA2\\BusinessLogicInterface\\BusinessLogicInterface.csproj",
+        "projectUniqueName": "C:\\Users\\Diego\\Desktop\\Reyes- Asadurian\\OBL-Asadurian-Reyes\\OBLDA2\\BusinessLogicInterface\\BusinessLogicInterface.csproj",
         "projectName": "BusinessLogicInterface",
-        "projectPath": "C:\\Users\\hreye\\Desktop\\tester\\OBL-Asadurian-Reyes\\OBLDA2\\BusinessLogicInterface\\BusinessLogicInterface.csproj",
-        "packagesPath": "C:\\Users\\hreye\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\hreye\\Desktop\\tester\\OBL-Asadurian-Reyes\\OBLDA2\\BusinessLogicInterface\\obj\\",
+        "projectPath": "C:\\Users\\Diego\\Desktop\\Reyes- Asadurian\\OBL-Asadurian-Reyes\\OBLDA2\\BusinessLogicInterface\\BusinessLogicInterface.csproj",
+        "packagesPath": "C:\\Users\\Diego\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\Diego\\Desktop\\Reyes- Asadurian\\OBL-Asadurian-Reyes\\OBLDA2\\BusinessLogicInterface\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\hreye\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\Diego\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -28,11 +28,11 @@
           "netcoreapp3.1": {
             "targetAlias": "netcoreapp3.1",
             "projectReferences": {
-              "C:\\Users\\hreye\\Desktop\\tester\\OBL-Asadurian-Reyes\\OBLDA2\\DataAccessInterface\\DataAccessInterface.csproj": {
-                "projectPath": "C:\\Users\\hreye\\Desktop\\tester\\OBL-Asadurian-Reyes\\OBLDA2\\DataAccessInterface\\DataAccessInterface.csproj"
+              "C:\\Users\\Diego\\Desktop\\Reyes- Asadurian\\OBL-Asadurian-Reyes\\OBLDA2\\DataAccessInterface\\DataAccessInterface.csproj": {
+                "projectPath": "C:\\Users\\Diego\\Desktop\\Reyes- Asadurian\\OBL-Asadurian-Reyes\\OBLDA2\\DataAccessInterface\\DataAccessInterface.csproj"
               },
-              "C:\\Users\\hreye\\Desktop\\tester\\OBL-Asadurian-Reyes\\OBLDA2\\LogicaNegocio\\Domain.csproj": {
-                "projectPath": "C:\\Users\\hreye\\Desktop\\tester\\OBL-Asadurian-Reyes\\OBLDA2\\LogicaNegocio\\Domain.csproj"
+              "C:\\Users\\Diego\\Desktop\\Reyes- Asadurian\\OBL-Asadurian-Reyes\\OBLDA2\\LogicaNegocio\\Domain.csproj": {
+                "projectPath": "C:\\Users\\Diego\\Desktop\\Reyes- Asadurian\\OBL-Asadurian-Reyes\\OBLDA2\\LogicaNegocio\\Domain.csproj"
               }
             }
           }
@@ -65,17 +65,17 @@
         }
       }
     },
-    "C:\\Users\\hreye\\Desktop\\tester\\OBL-Asadurian-Reyes\\OBLDA2\\BusinessLogic\\BusinessLogic.csproj": {
+    "C:\\Users\\Diego\\Desktop\\Reyes- Asadurian\\OBL-Asadurian-Reyes\\OBLDA2\\BusinessLogic\\BusinessLogic.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\hreye\\Desktop\\tester\\OBL-Asadurian-Reyes\\OBLDA2\\BusinessLogic\\BusinessLogic.csproj",
+        "projectUniqueName": "C:\\Users\\Diego\\Desktop\\Reyes- Asadurian\\OBL-Asadurian-Reyes\\OBLDA2\\BusinessLogic\\BusinessLogic.csproj",
         "projectName": "BusinessLogic",
-        "projectPath": "C:\\Users\\hreye\\Desktop\\tester\\OBL-Asadurian-Reyes\\OBLDA2\\BusinessLogic\\BusinessLogic.csproj",
-        "packagesPath": "C:\\Users\\hreye\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\hreye\\Desktop\\tester\\OBL-Asadurian-Reyes\\OBLDA2\\BusinessLogic\\obj\\",
+        "projectPath": "C:\\Users\\Diego\\Desktop\\Reyes- Asadurian\\OBL-Asadurian-Reyes\\OBLDA2\\BusinessLogic\\BusinessLogic.csproj",
+        "packagesPath": "C:\\Users\\Diego\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\Diego\\Desktop\\Reyes- Asadurian\\OBL-Asadurian-Reyes\\OBLDA2\\BusinessLogic\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\hreye\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\Diego\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -89,17 +89,17 @@
           "netcoreapp3.1": {
             "targetAlias": "netcoreapp3.1",
             "projectReferences": {
-              "C:\\Users\\hreye\\Desktop\\tester\\OBL-Asadurian-Reyes\\OBLDA2\\BusinessLogicInterface\\BusinessLogicInterface.csproj": {
-                "projectPath": "C:\\Users\\hreye\\Desktop\\tester\\OBL-Asadurian-Reyes\\OBLDA2\\BusinessLogicInterface\\BusinessLogicInterface.csproj"
+              "C:\\Users\\Diego\\Desktop\\Reyes- Asadurian\\OBL-Asadurian-Reyes\\OBLDA2\\BusinessLogicInterface\\BusinessLogicInterface.csproj": {
+                "projectPath": "C:\\Users\\Diego\\Desktop\\Reyes- Asadurian\\OBL-Asadurian-Reyes\\OBLDA2\\BusinessLogicInterface\\BusinessLogicInterface.csproj"
               },
-              "C:\\Users\\hreye\\Desktop\\tester\\OBL-Asadurian-Reyes\\OBLDA2\\DataAccessInterface\\DataAccessInterface.csproj": {
-                "projectPath": "C:\\Users\\hreye\\Desktop\\tester\\OBL-Asadurian-Reyes\\OBLDA2\\DataAccessInterface\\DataAccessInterface.csproj"
+              "C:\\Users\\Diego\\Desktop\\Reyes- Asadurian\\OBL-Asadurian-Reyes\\OBLDA2\\DataAccessInterface\\DataAccessInterface.csproj": {
+                "projectPath": "C:\\Users\\Diego\\Desktop\\Reyes- Asadurian\\OBL-Asadurian-Reyes\\OBLDA2\\DataAccessInterface\\DataAccessInterface.csproj"
               },
-              "C:\\Users\\hreye\\Desktop\\tester\\OBL-Asadurian-Reyes\\OBLDA2\\DataAccessTest\\DataAccessTest.csproj": {
-                "projectPath": "C:\\Users\\hreye\\Desktop\\tester\\OBL-Asadurian-Reyes\\OBLDA2\\DataAccessTest\\DataAccessTest.csproj"
+              "C:\\Users\\Diego\\Desktop\\Reyes- Asadurian\\OBL-Asadurian-Reyes\\OBLDA2\\DataAccessTest\\DataAccessTest.csproj": {
+                "projectPath": "C:\\Users\\Diego\\Desktop\\Reyes- Asadurian\\OBL-Asadurian-Reyes\\OBLDA2\\DataAccessTest\\DataAccessTest.csproj"
               },
-              "C:\\Users\\hreye\\Desktop\\tester\\OBL-Asadurian-Reyes\\OBLDA2\\LogicaNegocio\\Domain.csproj": {
-                "projectPath": "C:\\Users\\hreye\\Desktop\\tester\\OBL-Asadurian-Reyes\\OBLDA2\\LogicaNegocio\\Domain.csproj"
+              "C:\\Users\\Diego\\Desktop\\Reyes- Asadurian\\OBL-Asadurian-Reyes\\OBLDA2\\LogicaNegocio\\Domain.csproj": {
+                "projectPath": "C:\\Users\\Diego\\Desktop\\Reyes- Asadurian\\OBL-Asadurian-Reyes\\OBLDA2\\LogicaNegocio\\Domain.csproj"
               }
             }
           }
@@ -132,17 +132,17 @@
         }
       }
     },
-    "C:\\Users\\hreye\\Desktop\\tester\\OBL-Asadurian-Reyes\\OBLDA2\\DataAccessInterface\\DataAccessInterface.csproj": {
+    "C:\\Users\\Diego\\Desktop\\Reyes- Asadurian\\OBL-Asadurian-Reyes\\OBLDA2\\DataAccessInterface\\DataAccessInterface.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\hreye\\Desktop\\tester\\OBL-Asadurian-Reyes\\OBLDA2\\DataAccessInterface\\DataAccessInterface.csproj",
+        "projectUniqueName": "C:\\Users\\Diego\\Desktop\\Reyes- Asadurian\\OBL-Asadurian-Reyes\\OBLDA2\\DataAccessInterface\\DataAccessInterface.csproj",
         "projectName": "DataAccessInterface",
-        "projectPath": "C:\\Users\\hreye\\Desktop\\tester\\OBL-Asadurian-Reyes\\OBLDA2\\DataAccessInterface\\DataAccessInterface.csproj",
-        "packagesPath": "C:\\Users\\hreye\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\hreye\\Desktop\\tester\\OBL-Asadurian-Reyes\\OBLDA2\\DataAccessInterface\\obj\\",
+        "projectPath": "C:\\Users\\Diego\\Desktop\\Reyes- Asadurian\\OBL-Asadurian-Reyes\\OBLDA2\\DataAccessInterface\\DataAccessInterface.csproj",
+        "packagesPath": "C:\\Users\\Diego\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\Diego\\Desktop\\Reyes- Asadurian\\OBL-Asadurian-Reyes\\OBLDA2\\DataAccessInterface\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\hreye\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\Diego\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -156,8 +156,8 @@
           "netcoreapp3.1": {
             "targetAlias": "netcoreapp3.1",
             "projectReferences": {
-              "C:\\Users\\hreye\\Desktop\\tester\\OBL-Asadurian-Reyes\\OBLDA2\\LogicaNegocio\\Domain.csproj": {
-                "projectPath": "C:\\Users\\hreye\\Desktop\\tester\\OBL-Asadurian-Reyes\\OBLDA2\\LogicaNegocio\\Domain.csproj"
+              "C:\\Users\\Diego\\Desktop\\Reyes- Asadurian\\OBL-Asadurian-Reyes\\OBLDA2\\LogicaNegocio\\Domain.csproj": {
+                "projectPath": "C:\\Users\\Diego\\Desktop\\Reyes- Asadurian\\OBL-Asadurian-Reyes\\OBLDA2\\LogicaNegocio\\Domain.csproj"
               }
             }
           }
@@ -190,17 +190,17 @@
         }
       }
     },
-    "C:\\Users\\hreye\\Desktop\\tester\\OBL-Asadurian-Reyes\\OBLDA2\\DataAccessTest\\DataAccessTest.csproj": {
+    "C:\\Users\\Diego\\Desktop\\Reyes- Asadurian\\OBL-Asadurian-Reyes\\OBLDA2\\DataAccessTest\\DataAccessTest.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\hreye\\Desktop\\tester\\OBL-Asadurian-Reyes\\OBLDA2\\DataAccessTest\\DataAccessTest.csproj",
+        "projectUniqueName": "C:\\Users\\Diego\\Desktop\\Reyes- Asadurian\\OBL-Asadurian-Reyes\\OBLDA2\\DataAccessTest\\DataAccessTest.csproj",
         "projectName": "DataAccessTest",
-        "projectPath": "C:\\Users\\hreye\\Desktop\\tester\\OBL-Asadurian-Reyes\\OBLDA2\\DataAccessTest\\DataAccessTest.csproj",
-        "packagesPath": "C:\\Users\\hreye\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\hreye\\Desktop\\tester\\OBL-Asadurian-Reyes\\OBLDA2\\DataAccessTest\\obj\\",
+        "projectPath": "C:\\Users\\Diego\\Desktop\\Reyes- Asadurian\\OBL-Asadurian-Reyes\\OBLDA2\\DataAccessTest\\DataAccessTest.csproj",
+        "packagesPath": "C:\\Users\\Diego\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\Diego\\Desktop\\Reyes- Asadurian\\OBL-Asadurian-Reyes\\OBLDA2\\DataAccessTest\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\hreye\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\Diego\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -262,17 +262,17 @@
         }
       }
     },
-    "C:\\Users\\hreye\\Desktop\\tester\\OBL-Asadurian-Reyes\\OBLDA2\\LogicaNegocio\\Domain.csproj": {
+    "C:\\Users\\Diego\\Desktop\\Reyes- Asadurian\\OBL-Asadurian-Reyes\\OBLDA2\\LogicaNegocio\\Domain.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\hreye\\Desktop\\tester\\OBL-Asadurian-Reyes\\OBLDA2\\LogicaNegocio\\Domain.csproj",
+        "projectUniqueName": "C:\\Users\\Diego\\Desktop\\Reyes- Asadurian\\OBL-Asadurian-Reyes\\OBLDA2\\LogicaNegocio\\Domain.csproj",
         "projectName": "Domain",
-        "projectPath": "C:\\Users\\hreye\\Desktop\\tester\\OBL-Asadurian-Reyes\\OBLDA2\\LogicaNegocio\\Domain.csproj",
-        "packagesPath": "C:\\Users\\hreye\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\hreye\\Desktop\\tester\\OBL-Asadurian-Reyes\\OBLDA2\\LogicaNegocio\\obj\\",
+        "projectPath": "C:\\Users\\Diego\\Desktop\\Reyes- Asadurian\\OBL-Asadurian-Reyes\\OBLDA2\\LogicaNegocio\\Domain.csproj",
+        "packagesPath": "C:\\Users\\Diego\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\Diego\\Desktop\\Reyes- Asadurian\\OBL-Asadurian-Reyes\\OBLDA2\\LogicaNegocio\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\hreye\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\Diego\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [

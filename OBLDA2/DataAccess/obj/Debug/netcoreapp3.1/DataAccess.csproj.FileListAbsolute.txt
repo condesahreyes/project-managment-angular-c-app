@@ -13,3 +13,18 @@ C:\Users\hreye\Desktop\tester\OBL-Asadurian-Reyes\OBLDA2\DataAccess\obj\Debug\ne
 C:\Users\hreye\Desktop\tester\OBL-Asadurian-Reyes\OBLDA2\DataAccess\obj\Debug\netcoreapp3.1\DataAccess.csproj.CopyComplete
 C:\Users\hreye\Desktop\tester\OBL-Asadurian-Reyes\OBLDA2\DataAccess\obj\Debug\netcoreapp3.1\DataAccess.dll
 C:\Users\hreye\Desktop\tester\OBL-Asadurian-Reyes\OBLDA2\DataAccess\obj\Debug\netcoreapp3.1\DataAccess.pdb
+C:\Users\Diego\Desktop\Reyes- Asadurian\OBL-Asadurian-Reyes\OBLDA2\DataAccess\bin\Debug\netcoreapp3.1\DataAccess.deps.json
+C:\Users\Diego\Desktop\Reyes- Asadurian\OBL-Asadurian-Reyes\OBLDA2\DataAccess\bin\Debug\netcoreapp3.1\DataAccess.dll
+C:\Users\Diego\Desktop\Reyes- Asadurian\OBL-Asadurian-Reyes\OBLDA2\DataAccess\bin\Debug\netcoreapp3.1\DataAccess.pdb
+C:\Users\Diego\Desktop\Reyes- Asadurian\OBL-Asadurian-Reyes\OBLDA2\DataAccess\bin\Debug\netcoreapp3.1\DataAccessInterface.dll
+C:\Users\Diego\Desktop\Reyes- Asadurian\OBL-Asadurian-Reyes\OBLDA2\DataAccess\bin\Debug\netcoreapp3.1\Domain.dll
+C:\Users\Diego\Desktop\Reyes- Asadurian\OBL-Asadurian-Reyes\OBLDA2\DataAccess\bin\Debug\netcoreapp3.1\DataAccessInterface.pdb
+C:\Users\Diego\Desktop\Reyes- Asadurian\OBL-Asadurian-Reyes\OBLDA2\DataAccess\bin\Debug\netcoreapp3.1\Domain.pdb
+C:\Users\Diego\Desktop\Reyes- Asadurian\OBL-Asadurian-Reyes\OBLDA2\DataAccess\obj\Debug\netcoreapp3.1\DataAccess.csprojAssemblyReference.cache
+C:\Users\Diego\Desktop\Reyes- Asadurian\OBL-Asadurian-Reyes\OBLDA2\DataAccess\obj\Debug\netcoreapp3.1\DataAccess.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Diego\Desktop\Reyes- Asadurian\OBL-Asadurian-Reyes\OBLDA2\DataAccess\obj\Debug\netcoreapp3.1\DataAccess.AssemblyInfoInputs.cache
+C:\Users\Diego\Desktop\Reyes- Asadurian\OBL-Asadurian-Reyes\OBLDA2\DataAccess\obj\Debug\netcoreapp3.1\DataAccess.AssemblyInfo.cs
+C:\Users\Diego\Desktop\Reyes- Asadurian\OBL-Asadurian-Reyes\OBLDA2\DataAccess\obj\Debug\netcoreapp3.1\DataAccess.csproj.CoreCompileInputs.cache
+C:\Users\Diego\Desktop\Reyes- Asadurian\OBL-Asadurian-Reyes\OBLDA2\DataAccess\obj\Debug\netcoreapp3.1\DataAccess.csproj.CopyComplete
+C:\Users\Diego\Desktop\Reyes- Asadurian\OBL-Asadurian-Reyes\OBLDA2\DataAccess\obj\Debug\netcoreapp3.1\DataAccess.dll
+C:\Users\Diego\Desktop\Reyes- Asadurian\OBL-Asadurian-Reyes\OBLDA2\DataAccess\obj\Debug\netcoreapp3.1\DataAccess.pdb

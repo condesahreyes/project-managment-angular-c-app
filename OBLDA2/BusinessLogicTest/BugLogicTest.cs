@@ -12,8 +12,8 @@ namespace BusinessLogicTest
     [TestClass]
     public class BugLogicTest
     {
-        private Mock<IRepository<Bug,int>> mock;
- 
+        private Mock<IRepository<Bug, int>> mock;
+
         private static string version = "3.0";
         private static string stateActive = "Activo";
         private static string stateResolved = "Resuelto";
@@ -143,7 +143,7 @@ namespace BusinessLogicTest
             mock.Setup(r => r.GetAll()).Returns(bugs);
             var bugLogic = new BugLogic(mock.Object);
 
-            IEnumerable<Bug> bugsSaved= bugLogic.GetAll();
+            IEnumerable<Bug> bugsSaved = bugLogic.GetAll();
 
             mock.VerifyAll();
             Assert.IsTrue(bugsSaved.SequenceEqual(bugs));
@@ -163,7 +163,7 @@ namespace BusinessLogicTest
             bugLogic.Delete(bug.Id);
 
             IEnumerable<Bug> bugSaved = bugLogic.GetAll();
-            
+
             mock.VerifyAll();
 
             Assert.IsTrue(bugSaved.SequenceEqual(bugs));
@@ -175,22 +175,15 @@ namespace BusinessLogicTest
             Project newProject = new Project(new Guid(), "Nuevo proyecto");
             var bug = new Bug(project, id, name, domain, version, stateActive);
             var bugUpdate = new Bug(newProject, id, name, domain, version, stateActive);
-           
-            List<Bug> bugs = new List<Bug>();
-            bugs.Add(bugUpdate);
 
-            mock.Setup(r => r.GetAll()).Returns(bugs);
-            mock.Setup(r => r.Update(bug.Id, bugUpdate));
+            mock.Setup(r => r.Update(bug.Id, bugUpdate)).Returns(bugUpdate);
 
             var bugLogic = new BugLogic(mock.Object);
-
-            bugLogic.Update(bug.Id, bugUpdate);
-
-            IEnumerable<Bug> bugSaved = bugLogic.GetAll();
+            var bugNew = bugLogic.Update(bug.Id, bugUpdate);
 
             mock.VerifyAll();
-            string nombre = bugSaved.First().Project.Name;
-            Assert.IsTrue(bugSaved.First().Project.Name=="Nuevo proyecto");
+            string nombre = bugNew.Project.Name;
+            Assert.IsTrue(bugNew.Project.Name == "Nuevo proyecto");
         }
 
         [TestMethod]
@@ -199,21 +192,14 @@ namespace BusinessLogicTest
             var bug = new Bug(project, id, name, domain, version, stateActive);
             var bugUpdate = new Bug(project, id, name2, domain, version, stateActive);
 
-            List<Bug> bugs = new List<Bug>();
-            bugs.Add(bugUpdate);
-
-            mock.Setup(r => r.GetAll()).Returns(bugs);
-            mock.Setup(r => r.Update(bug.Id, bugUpdate));
+            mock.Setup(r => r.Update(bug.Id, bugUpdate)).Returns(bugUpdate);
 
             var bugLogic = new BugLogic(mock.Object);
-
-            bugLogic.Update(bug.Id, bugUpdate);
-
-            IEnumerable<Bug> bugSaved = bugLogic.GetAll();
+            var bugNew = bugLogic.Update(bug.Id, bugUpdate);
 
             mock.VerifyAll();
 
-            Assert.IsTrue(bugSaved.First().Name == name2);
+            Assert.IsTrue(bugNew.Name == name2);
         }
 
         [TestMethod]
@@ -221,21 +207,14 @@ namespace BusinessLogicTest
         {
             var bug = new Bug(project, id, name, domain, version, stateActive);
             var bugUpdate = new Bug(project, id, name2, "Otro dominio", version, stateActive);
-
-            List<Bug> bugs = new List<Bug>();
-            bugs.Add(bugUpdate);
-
-            mock.Setup(r => r.GetAll()).Returns(bugs);
-            mock.Setup(r => r.Update(bug.Id, bugUpdate));
+            mock.Setup(r => r.Update(bug.Id, bugUpdate)).Returns(bugUpdate);
 
             var bugLogic = new BugLogic(mock.Object);
-
-            bugLogic.Update(bug.Id, bugUpdate);
-
-            IEnumerable<Bug> bugsSaved = bugLogic.GetAll();
+            var bugNew = bugLogic.Update(bug.Id, bugUpdate);
 
             mock.VerifyAll();
-            Assert.IsTrue(bugsSaved.First().Domain == "Otro dominio");
+
+            Assert.IsTrue(bugNew.Domain == "Otro dominio");
         }
 
         [TestMethod]
@@ -244,21 +223,14 @@ namespace BusinessLogicTest
             var bug = new Bug(project, id, name, domain, version, stateActive);
             var bugUpdate = new Bug(project, id, name2, domain, "3.5", stateActive);
 
-            List<Bug> bugs = new List<Bug>();
-            bugs.Add(bugUpdate);
-
-            mock.Setup(r => r.GetAll()).Returns(bugs);
-            mock.Setup(r => r.Update(bug.Id, bugUpdate));
+            mock.Setup(r => r.Update(bug.Id, bugUpdate)).Returns(bugUpdate);
 
             var bugLogic = new BugLogic(mock.Object);
-
-            bugLogic.Update(bug.Id, bugUpdate);
-
-            IEnumerable<Bug> bugSaved = bugLogic.GetAll();
+            var bugNew = bugLogic.Update(bug.Id, bugUpdate);
 
             mock.VerifyAll();
 
-            Assert.IsTrue(bugSaved.First().Version == "3.5");
+            Assert.IsTrue(bugNew.Version == "3.5");
         }
 
         [TestMethod]
@@ -267,21 +239,13 @@ namespace BusinessLogicTest
             var bug = new Bug(project, id, name, domain, version, stateActive);
             var bugUpdate = new Bug(project, id, name2, domain, "3.5", stateResolved);
 
-            List<Bug> bugs = new List<Bug>();
-            bugs.Add(bugUpdate);
-
-            mock.Setup(r => r.GetAll()).Returns(bugs);
-            mock.Setup(r => r.Update(bug.Id, bugUpdate));
+            mock.Setup(r => r.Update(bug.Id, bugUpdate)).Returns(bugUpdate);
 
             var bugLogic = new BugLogic(mock.Object);
-
-            bugLogic.Update(bug.Id, bugUpdate);
-
-            IEnumerable<Bug> bugSaved = bugLogic.GetAll();
+            var bugNew = bugLogic.Update(bug.Id, bugUpdate);
 
             mock.VerifyAll();
-
-            Assert.IsTrue(bugSaved.First().State == stateResolved);
+            Assert.IsTrue(bugNew.State == stateResolved);
         }
 
         [TestMethod]

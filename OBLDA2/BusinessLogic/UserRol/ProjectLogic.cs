@@ -5,7 +5,7 @@ using BusinessLogicInterface;
 using DataAccessInterface;
 using Domain;
 
-namespace BusinessLogic
+namespace BusinessLogic.UserRol
 {
     public class ProjectLogic : IProjectLogic
     {
@@ -16,12 +16,16 @@ namespace BusinessLogic
             this.projectDa = ProjectDa;
         }
 
+        public ProjectLogic()
+        {
+        }
+
         public Project Create(Project projectToCreate)
         {
             throw new NotImplementedException();
         }
 
-        public void Update(Guid id, Project updatedProject)
+        public Project Update(Guid id, Project updatedProject)
         {
             throw new NotImplementedException();
         }

@@ -12,6 +12,6 @@ namespace DataAccessInterface
         IEnumerable<T> GetAll();
         void Save();
         void Delete(K id);
-        void Update(K id, T entity);
+        T Update(K id, T entity);
     }
 }

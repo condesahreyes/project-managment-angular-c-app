@@ -6,15 +6,19 @@ using System.Collections.Generic;
 
 namespace BusinessLogic
 {
-    public class BugLogic:IBugLogic
+    public class BugLogic : IBugLogic
     {
         private string[] possibleStates = { "activo", "resuelto" };
 
-        private IRepository<Bug,int> bugRepository;
+        private IRepository<Bug, int> bugRepository;
 
-        public BugLogic(IRepository<Bug,int> bugRepository)
+        public BugLogic(IRepository<Bug, int> bugRepository)
         {
             this.bugRepository = bugRepository;
+        }
+
+        public BugLogic()
+        {
         }
 
         public Bug Create(Bug bug)
@@ -34,11 +38,11 @@ namespace BusinessLogic
             return bugRepository.GetAll();
         }
 
-        public void Update(int id, Bug bugUpdate)
+        public Bug Update(int id, Bug bugUpdate)
         {
             AreCorrectData(bugUpdate);
 
-            bugRepository.Update(id, bugUpdate);
+            return bugRepository.Update(id, bugUpdate);
         }
 
         private void AreCorrectData(Bug oneBug)
@@ -60,7 +64,7 @@ namespace BusinessLogic
         {
             int nameLength = oneName.Length;
 
-            if(!(nameLength <= 60 && nameLength > 0))
+            if (!(nameLength <= 60 && nameLength > 0))
                 throw new Exception("");
         }
 
@@ -88,7 +92,7 @@ namespace BusinessLogic
                 if (possibleStates[i] == oneVersion.ToLower())
                     isValidState = true;
 
-            if(!isValidState)
+            if (!isValidState)
                 throw new Exception("");
         }
 

@@ -14,7 +14,7 @@ namespace BusinessLogic.UserRol
         private IRepository<Rol, Guid> rolRepository;
         private IRepository<Bug, int> bugRepository;
 
-        public DeveloperLogic(IRepository<User, Guid> userRepository, IRepository<Project, Guid> projectRepository, 
+        public DeveloperLogic(IRepository<User, Guid> userRepository, IRepository<Project, Guid> projectRepository,
             IRepository<Rol, Guid> rolRepository, IRepository<Bug, int> bugRepository)
         {
             this.userRepository = userRepository;

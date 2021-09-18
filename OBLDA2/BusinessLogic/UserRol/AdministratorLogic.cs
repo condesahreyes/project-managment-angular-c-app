@@ -12,21 +12,29 @@ namespace BusinessLogic
     public class AdministratorLogic : IAdministratorLogic
 
     {
-        private IRepository<User,Guid> admDA;
-        private UserLogic userLogic;
-        private ProjectLogic projectLogic;
-        private BugLogic bugLogic;
+        private IUserLogic userLogic;
+        private IProjectLogic projectLogic;
+        private IBugLogic bugLogic;
 
 
-        public AdministratorLogic(IRepository<User,Guid> AdmDA)
+
+        public AdministratorLogic(IUserLogic userLogic, IProjectLogic projectLogic)
         {
-            this.admDA = AdmDA;
+            this.userLogic = userLogic;
+            this.projectLogic = projectLogic;
+            this.bugLogic = new BugLogic();
+        }
+
+        public User Create(User adminToCreate)
+        {
+            return userLogic.Create(adminToCreate);
 
         }
 
+
         public IEnumerable<User> GetAll()
         {
-            return this.admDA.GetAll().Where(user => user.Rol.Name.Equals("Administrator")); 
+            return this.userLogic.GetAll().Where(user => user.Rol.Name.Equals("Administrator"));
 
         }
 
@@ -34,7 +42,7 @@ namespace BusinessLogic
         {
             var getUser = this.userLogic.Get(id);
 
-            if (!getUser.Rol.Name.Equals("Administrator"))
+            if (getUser == null || !getUser.Rol.Name.Equals("Administrator"))
             {
                 throw new Exception("Administrator does not exist");
 
@@ -43,20 +51,20 @@ namespace BusinessLogic
 
         }
 
-        public User Create(User admin1)
-        {
-            return userLogic.Create(admin1);
-
-        }
-
         public Project CreteProject(Project projectToCreate)
         {
             return projectLogic.Create(projectToCreate);
         }
 
-        public void UpdateProject(Guid id, Project updatedProject )
+        public List<Project> GetAllProject()
         {
-            projectLogic.Update(id, updatedProject);
+            return projectLogic.GetAll();
+
+        }
+
+        public Project UpdateProject(Guid id, Project updatedProject)
+        {
+            return projectLogic.Update(id, updatedProject);
         }
 
         public void DeleteProject(Guid id)
@@ -95,7 +103,7 @@ namespace BusinessLogic
             projectLogic.AssignDeveloper(project, idDeveloper);
 
         }
-        
+
         public void AssignTesterByProject(Project project, Guid idTester)
         {
             projectLogic.AssignTester(project, idTester);
@@ -110,7 +118,7 @@ namespace BusinessLogic
         public List<Project> GetTotalBugByAllProject()
         {
             return projectLogic.GetAll();
-           
+
         }
 
         public int GetFixedBugsByDeveloper()
