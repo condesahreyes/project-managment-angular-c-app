@@ -1,4 +1,5 @@
 ﻿using BusinessLogicInterface;
+using DataAccess;
 using DataAccessInterface;
 using Domain;
 using System;
@@ -19,6 +20,7 @@ namespace BusinessLogic
 
         public BugLogic()
         {
+            bugRepository = new Repository<Bug, int>();
         }
 
         public Bug Create(Bug bug)
