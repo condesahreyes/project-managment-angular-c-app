@@ -1,15 +1,30 @@
-﻿using Domain;
-using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using System.Collections.Generic;
+using BusinessLogicInterface;
+using Domain;
 
 namespace BusinessLogic.Imports
 {
     public class BugsImport
     {
-        public static List<Bug> CreateBugs(List<Bug> bugs)
+
+        private IBugLogic bugLogic = new BugLogic();
+
+        public BugsImport(IBugLogic bugLogic)
         {
-            throw new NotImplementedException();
+            this.bugLogic = bugLogic;
+        }
+
+        public List<Bug> CreateBugs(List<Bug> bugs)
+        {
+            List<Bug> bugsSaved = new List<Bug>();
+
+            foreach(Bug bug in bugs)
+            {
+                bugsSaved.Add(bugLogic.Create(bug));
+            }
+
+            return bugsSaved;
         }
     }
+
 }

@@ -56,3 +56,5 @@ C:\Users\Diego\Desktop\Reyes- Asadurian\OBL-Asadurian-Reyes\OBLDA2\BusinessLogic
 C:\Users\Diego\Desktop\Reyes- Asadurian\OBL-Asadurian-Reyes\OBLDA2\BusinessLogic\obj\Debug\netcoreapp3.1\BusinessLogic.csproj.CopyComplete
 C:\Users\Diego\Desktop\Reyes- Asadurian\OBL-Asadurian-Reyes\OBLDA2\BusinessLogic\obj\Debug\netcoreapp3.1\BusinessLogic.dll
 C:\Users\Diego\Desktop\Reyes- Asadurian\OBL-Asadurian-Reyes\OBLDA2\BusinessLogic\obj\Debug\netcoreapp3.1\BusinessLogic.pdb
+C:\Users\hreye\Desktop\tester\OBL-Asadurian-Reyes\OBLDA2\BusinessLogic\bin\Debug\netcoreapp3.1\DataAccess.dll
+C:\Users\hreye\Desktop\tester\OBL-Asadurian-Reyes\OBLDA2\BusinessLogic\bin\Debug\netcoreapp3.1\DataAccess.pdb

@@ -1,8 +1,10 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.Collections.Generic;
+using BusinessLogicInterface;
 using BusinessLogic.Imports;
 using Domain;
 using System;
+using Moq;
 
 namespace BusinessLogicTest.BugsImportTest
 {
@@ -18,10 +20,20 @@ namespace BusinessLogicTest.BugsImportTest
             new Bug(project, 2, "nombre2", "dominio2", "V 2.0", doneStatus)
         };
 
+        private Mock<IBugLogic> bugLogic;
+        private BugsImport bugsImport;
+
+        [TestInitialize]
+        public void Setup()
+        {
+            bugLogic = new Mock<IBugLogic>(MockBehavior.Strict);
+            bugsImport = new BugsImport(bugLogic.Object);
+        }
+
         [TestMethod]
         public void CreateImportBugs()
         {
-            List<Bug> savedImportedBugs = BugsImport.CreateBugs(bugs);
+            List<Bug> savedImportedBugs = bugsImport.CreateBugs(bugs);
 
             CollectionAssert.AreEqual(savedImportedBugs, bugs);
         }

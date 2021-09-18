@@ -1175,6 +1175,7 @@
       "BusinessLogic/1.0.0": {
         "dependencies": {
           "BusinessLogicInterface": "1.0.0",
+          "DataAccess": "1.0.0",
           "DataAccessInterface": "1.0.0",
           "DataAccessTest": "1.0.0",
           "Domain": "1.0.0"
@@ -1190,6 +1191,14 @@
         },
         "runtime": {
           "BusinessLogicInterface.dll": {}
+        }
+      },
+      "DataAccess/1.0.0": {
+        "dependencies": {
+          "DataAccessInterface": "1.0.0"
+        },
+        "runtime": {
+          "DataAccess.dll": {}
         }
       },
       "DataAccessInterface/1.0.0": {
@@ -1902,6 +1911,11 @@
       "sha512": ""
     },
     "BusinessLogicInterface/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "DataAccess/1.0.0": {
       "type": "project",
       "serviceable": false,
       "sha512": ""

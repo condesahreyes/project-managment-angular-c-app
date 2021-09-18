@@ -224,3 +224,5 @@ C:\Users\Diego\Desktop\Reyes- Asadurian\OBL-Asadurian-Reyes\OBLDA2\BusinessLogic
 C:\Users\Diego\Desktop\Reyes- Asadurian\OBL-Asadurian-Reyes\OBLDA2\BusinessLogicTest\obj\Debug\netcoreapp3.1\BusinessLogicTest.dll
 C:\Users\Diego\Desktop\Reyes- Asadurian\OBL-Asadurian-Reyes\OBLDA2\BusinessLogicTest\obj\Debug\netcoreapp3.1\BusinessLogicTest.pdb
 C:\Users\Diego\Desktop\Reyes- Asadurian\OBL-Asadurian-Reyes\OBLDA2\BusinessLogicTest\obj\Debug\netcoreapp3.1\BusinessLogicTest.genruntimeconfig.cache
+C:\Users\hreye\Desktop\tester\OBL-Asadurian-Reyes\OBLDA2\BusinessLogicTest\bin\Debug\netcoreapp3.1\DataAccess.dll
+C:\Users\hreye\Desktop\tester\OBL-Asadurian-Reyes\OBLDA2\BusinessLogicTest\bin\Debug\netcoreapp3.1\DataAccess.pdb

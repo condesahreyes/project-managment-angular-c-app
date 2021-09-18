@@ -191,3 +191,4 @@ C:\Users\Diego\Desktop\Reyes- Asadurian\OBL-Asadurian-Reyes\OBLDA2\DataAccessTes
 C:\Users\Diego\Desktop\Reyes- Asadurian\OBL-Asadurian-Reyes\OBLDA2\DataAccessTest\obj\Debug\netcoreapp3.1\DataAccessTest.dll
 C:\Users\Diego\Desktop\Reyes- Asadurian\OBL-Asadurian-Reyes\OBLDA2\DataAccessTest\obj\Debug\netcoreapp3.1\DataAccessTest.pdb
 C:\Users\Diego\Desktop\Reyes- Asadurian\OBL-Asadurian-Reyes\OBLDA2\DataAccessTest\obj\Debug\netcoreapp3.1\DataAccessTest.genruntimeconfig.cache
+C:\Users\hreye\Desktop\tester\OBL-Asadurian-Reyes\OBLDA2\DataAccessTest\obj\Debug\netcoreapp3.1\DataAccessTest.csproj.AssemblyReference.cache
