@@ -1,12 +1,11 @@
-﻿using System;
+﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.Collections.Generic;
-using System.Linq;
-using BusinessLogic;
-using BusinessLogic.UserRol;
 using BusinessLogicInterface;
+using BusinessLogic.UserRol;
 using DataAccessInterface;
+using System.Linq;
+using System;
 using Domain;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
 
 namespace BusinessLogicTest
@@ -17,22 +16,25 @@ namespace BusinessLogicTest
 
         private Mock<IRepository<Project, Guid>> mock;
         private Mock<IProjectLogic> projectMock;
-
+        private Mock<IBugLogic> bugMock;
 
         private ProjectLogic projectLogic;
         private Project project;
-        private User tester;
-        private Rol rolTester;
+
         private User developer;
+        private User tester;
+
         private Rol rolDeveloper;
+        private Rol rolTester;
 
         [TestInitialize]
         public void Setup()
         {
             mock = new Mock<IRepository<Project,Guid>>(MockBehavior.Strict);
             projectMock = new Mock<IProjectLogic>(MockBehavior.Strict);
+            bugMock = new Mock<IBugLogic>(MockBehavior.Strict);
 
-            this.projectLogic = new ProjectLogic(mock.Object, projectMock.Object);
+            this.projectLogic = new ProjectLogic(mock.Object, projectMock.Object, bugMock.Object);
 
             Guid id = new Guid();
             project = new Project(id, "Project - Pineapple ");
@@ -40,7 +42,6 @@ namespace BusinessLogicTest
             rolDeveloper = new Rol(id,"Developer");
             tester = new User(id, "Fiorella", "Petrone", "fioPetro", "fio1245", "fiore@gmail.com", rolTester);
             developer = new User(id, "Juan", "Gomez", "juanG", "juann245", "juan@gmail.com", rolDeveloper);
-
         }
 
         [TestMethod]
@@ -55,7 +56,6 @@ namespace BusinessLogicTest
         [TestMethod]
         public void GetAllProjects()
         {
-
             List<Project> list = new List<Project>();
             list.Add(project);
             mock.Setup(x => x.GetAll()).Returns(list);
@@ -64,7 +64,6 @@ namespace BusinessLogicTest
             Assert.IsTrue(ret.SequenceEqual(list));
         }
 
-
         [TestMethod]
         public void GetProjectByIdOk()
         {
@@ -72,7 +71,6 @@ namespace BusinessLogicTest
             var ret = projectLogic.Get(project.Id);
             mock.VerifyAll();
             Assert.IsTrue(ret.Equals(project));
-
         }
 
         [ExpectedException(typeof(Exception), "The project doesn't exists")]
@@ -83,13 +81,11 @@ namespace BusinessLogicTest
             Project projectoEmpty = null;
             mock.Setup(x => x.Get(It.IsAny<Guid>())).Returns(projectoEmpty);
             var ret = projectLogic.Get(id);
-
         }
 
         [TestMethod]
         public void RemoveProjectOk()
         {
-
             List<Project> list = new List<Project>();
 
             mock.Setup(r => r.GetAll()).Returns(list);
@@ -102,13 +98,11 @@ namespace BusinessLogicTest
             mock.VerifyAll();
 
             Assert.IsTrue(projectSaved.SequenceEqual(list));
-
         }
 
         [TestMethod]
         public void ProjectUpdateOk()
         {
-
             Guid id = Guid.NewGuid();
             var updatedProject = new Project(id, "Project Lab");
 
@@ -116,7 +110,6 @@ namespace BusinessLogicTest
             var ret = projectLogic.Update(project.Id, updatedProject);
             mock.VerifyAll();
             Assert.AreEqual(ret.Name, updatedProject.Name);
-
         }
 
         [TestMethod]
@@ -137,7 +130,6 @@ namespace BusinessLogicTest
             mock.VerifyAll();
 
             Assert.IsTrue(ret.SequenceEqual(list));
-
         }
 
         [TestMethod]
@@ -177,7 +169,6 @@ namespace BusinessLogicTest
             mock.VerifyAll();
 
             Assert.IsTrue(retList.SequenceEqual(list));
-
         }
 
         [TestMethod]
@@ -197,16 +188,6 @@ namespace BusinessLogicTest
             mock.VerifyAll();
 
             Assert.IsTrue(retList.SequenceEqual(list));
-
-
-        }
-
-        [TestMethod]
-        public void ImportBugsByProviderOk()
-        {
-            // implementar cuando este terminado
-
-
         }
 
         [TestMethod]
@@ -226,7 +207,6 @@ namespace BusinessLogicTest
             mock.VerifyAll();
 
             Assert.IsTrue(ret.SequenceEqual(list));
-
         }
 
         [TestMethod]
@@ -246,21 +226,6 @@ namespace BusinessLogicTest
             mock.VerifyAll();
 
             Assert.IsTrue(ret.SequenceEqual(list));
-
-
-        }
-
-        [TestMethod]
-        public void GetAllFixedBugsByDeveloperOk()
-        {
-            int fixedBugs = 3;
-            projectMock.Setup(x => x.GetAllFixedBugsByDeveloper(developer.Id)).Returns(fixedBugs);
-
-            var ret = projectLogic.GetAllFixedBugsByDeveloper(developer.Id);
-            projectMock.VerifyAll();
-
-            Assert.AreEqual(fixedBugs, ret);
-
         }
 
     }

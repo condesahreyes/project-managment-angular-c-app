@@ -1,13 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using System.Collections.Generic;
 using Domain;
+using System;
 
 namespace BusinessLogicInterface
 {
     public interface IProjectLogic
     {
-
         Project Create(Project projectToCreate);
 
         Project Update(Guid id, Project updatedProject);
@@ -22,14 +20,12 @@ namespace BusinessLogicInterface
 
         void AssignTester(Project project, User tester);
 
-        void ImportBugsByProvider(Project project, List<Bug> bugsProject);
-
         List<Project> GetAll();
 
-        int GetAllFixedBugsByDeveloper(Guid id);
-
         Project Get(Guid id);
+
         List<User> GetAllTesters(Project project);
+
         List<User> GetAllDevelopers(Project project);
     }
 }

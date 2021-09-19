@@ -115,7 +115,7 @@ namespace BusinessLogic
 
         public void ImportBugsByProjectByProvider(Project project, List<Bug> bugsProject)
         {
-            projectLogic.ImportBugsByProvider(project, bugsProject);
+            //projectLogic.ImportBugsByProvider(project, bugsProject);
         }
 
         public int GetTotalBugByAllProject()
@@ -143,7 +143,19 @@ namespace BusinessLogic
 
         public int GetFixedBugsByDeveloper(Guid id)
         {
-            return projectLogic.GetAllFixedBugsByDeveloper(id);
+            List<Bug> bugs = (List<Bug>)bugLogic.GetAll();
+            List<Bug> bugsByDeveloper = new List<Bug>();
+
+            foreach (Bug bug in bugs)
+            {
+                if(bug.SolvedBy != null && bug.SolvedBy.Id == id)
+                {
+                    bugsByDeveloper.Add(bug);
+                }
+
+            }
+
+            return bugsByDeveloper.Count;
         }
 
     }

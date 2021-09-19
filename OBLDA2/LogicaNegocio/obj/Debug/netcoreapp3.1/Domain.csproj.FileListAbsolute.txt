@@ -17,3 +17,13 @@ C:\Users\Diego\Desktop\Reyes- Asadurian\OBL-Asadurian-Reyes\OBLDA2\LogicaNegocio
 C:\Users\Diego\Desktop\Reyes- Asadurian\OBL-Asadurian-Reyes\OBLDA2\LogicaNegocio\obj\Debug\netcoreapp3.1\Domain.dll
 C:\Users\Diego\Desktop\Reyes- Asadurian\OBL-Asadurian-Reyes\OBLDA2\LogicaNegocio\obj\Debug\netcoreapp3.1\Domain.pdb
 C:\Users\Diego\Desktop\Reyes- Asadurian\OBL-Asadurian-Reyes\OBLDA2\LogicaNegocio\obj\Debug\netcoreapp3.1\Domain.csprojAssemblyReference.cache
+C:\Users\hreye\Desktop\OBL-Asadurian-Reyes\OBLDA2\LogicaNegocio\bin\Debug\netcoreapp3.1\Domain.deps.json
+C:\Users\hreye\Desktop\OBL-Asadurian-Reyes\OBLDA2\LogicaNegocio\bin\Debug\netcoreapp3.1\Domain.dll
+C:\Users\hreye\Desktop\OBL-Asadurian-Reyes\OBLDA2\LogicaNegocio\bin\Debug\netcoreapp3.1\Domain.pdb
+C:\Users\hreye\Desktop\OBL-Asadurian-Reyes\OBLDA2\LogicaNegocio\obj\Debug\netcoreapp3.1\Domain.csproj.AssemblyReference.cache
+C:\Users\hreye\Desktop\OBL-Asadurian-Reyes\OBLDA2\LogicaNegocio\obj\Debug\netcoreapp3.1\Domain.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\hreye\Desktop\OBL-Asadurian-Reyes\OBLDA2\LogicaNegocio\obj\Debug\netcoreapp3.1\Domain.AssemblyInfoInputs.cache
+C:\Users\hreye\Desktop\OBL-Asadurian-Reyes\OBLDA2\LogicaNegocio\obj\Debug\netcoreapp3.1\Domain.AssemblyInfo.cs
+C:\Users\hreye\Desktop\OBL-Asadurian-Reyes\OBLDA2\LogicaNegocio\obj\Debug\netcoreapp3.1\Domain.csproj.CoreCompileInputs.cache
+C:\Users\hreye\Desktop\OBL-Asadurian-Reyes\OBLDA2\LogicaNegocio\obj\Debug\netcoreapp3.1\Domain.dll
+C:\Users\hreye\Desktop\OBL-Asadurian-Reyes\OBLDA2\LogicaNegocio\obj\Debug\netcoreapp3.1\Domain.pdb

@@ -11,11 +11,13 @@ namespace BusinessLogic.UserRol
     {
         private IRepository<Project, Guid> projectDa;
         private IProjectLogic projectLogic;
+        private IBugLogic bugLogic;
 
-        public ProjectLogic(IRepository<Project, Guid> ProjectDa, IProjectLogic projectLogic)
+        public ProjectLogic(IRepository<Project, Guid> ProjectDa, IProjectLogic projectLogic, IBugLogic bugLogic)
         {
             this.projectDa = ProjectDa;
             this.projectLogic = projectLogic;
+            this.bugLogic = bugLogic;
         }
 
         public ProjectLogic()
@@ -85,11 +87,6 @@ namespace BusinessLogic.UserRol
             }
         }
 
-        public void ImportBugsByProvider(Project project, List<Bug> bugsProject)
-        {
-            throw new NotImplementedException();
-        }
-
         public List<Project> GetAll()
         {
             return projectDa.GetAll();
@@ -109,9 +106,16 @@ namespace BusinessLogic.UserRol
             return proj.developers;
         }
 
-        public int GetAllFixedBugsByDeveloper(Guid id)
+        public List<Bug> GetAllBugByProject(Project project)
         {
-            throw new NotImplementedException();
+            List<Bug> bugs = (List<Bug>)bugLogic.GetAll();
+            List<Bug> bugsByProject = new List<Bug>();
+
+            foreach (Bug bug in bugs)
+                if (bug.Project.Id == project.Id)
+                    bugsByProject.Add(bug);
+
+            return bugsByProject;
         }
 
         public Project Get(Guid id)
