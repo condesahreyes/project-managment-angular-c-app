@@ -8,6 +8,7 @@ using Moq;
 
 namespace BusinessLogicTest.BugsImportTest
 {
+    [TestClass]
     public class BugsImportTest
     {
         private static string activeStatus = "Activo";
@@ -33,6 +34,9 @@ namespace BusinessLogicTest.BugsImportTest
         [TestMethod]
         public void CreateImportBugs()
         {
+            bugLogic.Setup(x => x.Create(bugs[0])).Returns(bugs[0]);
+            bugLogic.Setup(x => x.Create(bugs[1])).Returns(bugs[1]);
+
             List<Bug> savedImportedBugs = bugsImport.CreateBugs(bugs);
 
             CollectionAssert.AreEqual(savedImportedBugs, bugs);

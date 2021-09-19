@@ -77,7 +77,7 @@ namespace BusinessLogicTest
 
             project.developers.Add(tester);
 
-            IEnumerable<Bug> bugs = new List<Bug>
+            List<Bug> bugs = new List<Bug>
             {
                 new Bug(project, 1234, "Error de login", "Intento inicio de sesion", "2.0", "Activo"),
                 new Bug(project, 4321, "Error de UI", "Intento inicio de sesion", "2.1", "Activo"),
@@ -104,7 +104,7 @@ namespace BusinessLogicTest
             list.Add(tester);
             mockUser.Setup(x => x.GetAll()).Returns(list);
 
-            IEnumerable<User> ret = testerLogic.GetAll();
+            List<User> ret = testerLogic.GetAll();
             mockUser.VerifyAll();
             Assert.IsTrue(ret.SequenceEqual(list));
         }

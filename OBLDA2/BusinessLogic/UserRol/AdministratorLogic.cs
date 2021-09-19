@@ -1,44 +1,35 @@
-using BusinessLogicInterface;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using BusinessLogic.UserRol;
 using BusinessLogicInterface;
-using DataAccessInterface;
+using System.Linq;
+using System;
 using Domain;
 
 namespace BusinessLogic
 {
     public class AdministratorLogic : IAdministratorLogic
-
     {
         private IUserLogic userLogic;
         private IProjectLogic projectLogic;
         private IBugLogic bugLogic;
         private ITesterLogic testerLogic;
 
-
-
-        public AdministratorLogic(IUserLogic userLogic, IProjectLogic projectLogic, ITesterLogic testerLogic, IBugLogic bugLogic)
+        public AdministratorLogic(IUserLogic userLogic, 
+            IProjectLogic projectLogic, ITesterLogic testerLogic, IBugLogic bugLogic)
         {
             this.userLogic = userLogic;
             this.projectLogic = projectLogic;
             this.bugLogic = bugLogic;
             this.testerLogic = testerLogic;
-
         }
 
         public User Create(User adminToCreate)
         {
             return userLogic.Create(adminToCreate);
-
         }
 
-
-        public IEnumerable<User> GetAll()
+        public List<User> GetAll()
         {
-            return this.userLogic.GetAll().Where(user => user.Rol.Name.Equals("Administrator"));
-
+            return (List<User>)this.userLogic.GetAll().Where(user => user.Rol.Name.Equals("Administrator"));
         }
 
         public User Get(Guid id)
@@ -48,10 +39,9 @@ namespace BusinessLogic
             if (getUser == null || !getUser.Rol.Name.Equals("Administrator"))
             {
                 throw new Exception("Administrator does not exist");
-
             }
-            return getUser;
 
+            return getUser;
         }
 
         public Project CreteProject(Project projectToCreate)
@@ -62,7 +52,6 @@ namespace BusinessLogic
         public List<Project> GetAllProject()
         {
             return projectLogic.GetAll();
-
         }
 
         public Project UpdateProject(Guid id, Project updatedProject)
@@ -78,12 +67,11 @@ namespace BusinessLogic
         public void DeleteTesterByProject(Project project, User tester)
         {
             projectLogic.DeleteTester(project, tester);
-
         }
+
         public void DeleteDeveloperByProject(Project project, User developer)
         {
             projectLogic.DeleteDeveloper(project, developer);
-
         }
 
         public Bug CreateBug(Bug bugToCreate)
@@ -104,13 +92,11 @@ namespace BusinessLogic
         public void AssignDeveloperByProject(Project project, User developer)
         {
             projectLogic.AssignDeveloper(project, developer);
-
         }
 
         public void AssignTesterByProject(Project project, User tester)
         {
             projectLogic.AssignTester(project, tester);
-
         }
 
         public void ImportBugsByProjectByProvider(Project project, List<Bug> bugsProject)
@@ -122,23 +108,23 @@ namespace BusinessLogic
         {
             int total = 0;
             var projects = projectLogic.GetAll();
+
             foreach (var project in projects)
             {
                 total += project.totalBugs;
             }
+
             return total;
         }
 
         public List<User> GetAllTesters(Project project)
         {
             return projectLogic.GetAllTesters(project);
-
         }
 
         public List<User> GetAllDevelopers(Project project)
         {
             return projectLogic.GetAllDevelopers(project);
-
         }
 
         public int GetFixedBugsByDeveloper(Guid id)
@@ -152,7 +138,6 @@ namespace BusinessLogic
                 {
                     bugsByDeveloper.Add(bug);
                 }
-
             }
 
             return bugsByDeveloper.Count;

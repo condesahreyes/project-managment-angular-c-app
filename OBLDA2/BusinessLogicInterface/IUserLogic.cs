@@ -1,6 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using Domain;
+using System;
 
 namespace BusinessLogicInterface
 {
@@ -8,6 +8,6 @@ namespace BusinessLogicInterface
     {
         User Create(User userToCreate);
         User Get(Guid id);
-        IEnumerable<User> GetAll();
+        List<User> GetAll();
     }
 }

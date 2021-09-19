@@ -1,15 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using System.Collections.Generic;
 using Domain;
+using System;
 
 namespace BusinessLogicInterface
 {
     public interface ITesterLogic
     {
-        IEnumerable<Project> GetProjectsByTester(Guid id);
+        List<Project> GetProjectsByTester(Guid id);
 
-        IEnumerable<User> GetAll();
+        List<User> GetAll();
         User Get(Guid id);
 
         User Create(User tester);

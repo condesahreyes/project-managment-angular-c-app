@@ -72,7 +72,7 @@ namespace BusinessLogicTest
 
             project.developers.Add(developer);
 
-            IEnumerable<Bug> bugs = new List<Bug>
+            List<Bug> bugs = new List<Bug>
             {
                 new Bug(project, 1234, "Error de login", "Intento inicio de sesion", "2.0", "Activo"),
                 new Bug(project, 4321, "Error de UI", "Intento inicio de sesion", "2.1", "Activo"),

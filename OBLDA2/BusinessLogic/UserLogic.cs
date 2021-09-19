@@ -1,15 +1,14 @@
 ﻿using System.Collections.Generic;
+using BusinessLogicInterface;
 using DataAccessInterface;
 using System.Linq;
 using System;
 using Domain;
-using BusinessLogicInterface;
 
 namespace BusinessLogic
 {
     public class UserLogic : IUserLogic
     {
-
         private IRepository<User, Guid> userDA;
         private IRepository<Rol, Guid> rolRepository;
 
@@ -51,7 +50,7 @@ namespace BusinessLogic
 
         private void ValidateRol(Rol rol)
         {
-            IEnumerable<Rol> roles = rolRepository.GetAll();
+            List<Rol> roles = rolRepository.GetAll();
 
             if (!roles.Contains(rol))
                 throw new Exception();
@@ -59,7 +58,6 @@ namespace BusinessLogic
 
         public User Get(Guid id)
         {
-
             User user = userDA.Get(id);
 
             if (user == null)
@@ -70,9 +68,10 @@ namespace BusinessLogic
             return user;
         }
 
-        public IEnumerable<User> GetAll()
+        public List<User> GetAll()
         {
             return userDA.GetAll();
         }
+
     }
 }

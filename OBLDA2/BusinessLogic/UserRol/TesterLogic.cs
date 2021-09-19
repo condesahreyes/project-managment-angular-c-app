@@ -1,14 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using BusinessLogicInterface;
 using DataAccessInterface;
 using Domain;
+using System;
 
 namespace BusinessLogic.UserRol
 {
     public class TesterLogic : ITesterLogic
     {
-
         private IRepository<User, Guid> userRepository;
         private IRepository<Project, Guid> projectRepository;
         private IRepository<Rol, Guid> rolRepository;
@@ -23,8 +22,7 @@ namespace BusinessLogic.UserRol
             this.bugRepository = bugRepository;
         }
 
-
-        public IEnumerable<User> GetAll()
+        public List<User> GetAll()
         {
             List<User> users = (List<User>)userRepository.GetAll();
 
@@ -52,7 +50,7 @@ namespace BusinessLogic.UserRol
             return developerCreate;
         }
 
-        public IEnumerable<Project> GetProjectsByTester(Guid id)
+        public List<Project> GetProjectsByTester(Guid id)
         {
             throw new NotImplementedException();
         }
@@ -64,7 +62,7 @@ namespace BusinessLogic.UserRol
 
         public List<Bug> GetAllBugs(User tester)
         {
-            IEnumerable<Project> allProjects = projectRepository.GetAll();
+            List<Project> allProjects = projectRepository.GetAll();
 
             List<Bug> bugs = new List<Bug>();
 
@@ -79,5 +77,6 @@ namespace BusinessLogic.UserRol
         {
             bugRepository.Delete(id);
         }
+
     }
 }

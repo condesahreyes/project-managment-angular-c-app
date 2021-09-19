@@ -39,7 +39,7 @@ namespace BusinessLogic.UserRol
 
         public List<Bug> GetAllBugs(User developer)
         {
-            IEnumerable<Project> allProjects = projectRepository.GetAll();
+            List<Project> allProjects = projectRepository.GetAll();
 
             List<Bug> bugs = new List<Bug>();
 
@@ -76,5 +76,6 @@ namespace BusinessLogic.UserRol
         {
             return new Bug(bug.Project, bug.Id, bug.Name, bug.Domain, bug.Version, bug.State);
         }
+
     }
 }

@@ -9,7 +9,6 @@ namespace BusinessLogic.Imports
     {
         public BugsImportTxt(IBugLogic bugLogic) :base(bugLogic)
         {
-
         }
 
         public List<Bug> ImportBugs(string fileAddress)
@@ -65,5 +64,6 @@ namespace BusinessLogic.Imports
 
             return new Bug(project, id, name, domain, version, estado);
         }
+
     }
 }

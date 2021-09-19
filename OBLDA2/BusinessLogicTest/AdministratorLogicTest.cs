@@ -65,7 +65,7 @@ namespace BusinessLogicTest
             List<User> list = new List<User>();
             list.Add(admin1);
             userLogicMock.Setup(x => x.GetAll()).Returns(list);
-            IEnumerable<User> ret = administratorLogic.GetAll();
+            List<User> ret = administratorLogic.GetAll();
             userLogicMock.VerifyAll();
             Assert.IsTrue(ret.SequenceEqual(list));
         }

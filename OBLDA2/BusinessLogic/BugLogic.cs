@@ -1,9 +1,9 @@
-﻿using BusinessLogicInterface;
-using DataAccess;
+﻿using System.Collections.Generic;
+using BusinessLogicInterface;
 using DataAccessInterface;
+using DataAccess;
 using Domain;
 using System;
-using System.Collections.Generic;
 
 namespace BusinessLogic
 {
@@ -25,7 +25,7 @@ namespace BusinessLogic
 
         public Bug Create(Bug bug)
         {
-            AreCorrectData(bug);
+            IsValidBug(bug);
             bugRepository.Create(bug);
             return bug;
         }
@@ -35,55 +35,22 @@ namespace BusinessLogic
             bugRepository.Delete(id);
         }
 
-        public IEnumerable<Bug> GetAll()
+        public List<Bug> GetAll()
         {
             return bugRepository.GetAll();
         }
 
         public Bug Update(int id, Bug bugUpdate)
         {
-            AreCorrectData(bugUpdate);
+            IsValidBug(bugUpdate);
 
             return bugRepository.Update(id, bugUpdate);
         }
 
-        private void AreCorrectData(Bug oneBug)
+        private void IsValidBug(Bug oneBug)
         {
-            IsValidId(oneBug.Id);
-            IsValidName(oneBug.Name);
-            IsValidDomain(oneBug.Domain);
-            IsValidVersion(oneBug.Version);
+            Bug.AreCorrectData(oneBug);
             IsValidState(oneBug.State);
-        }
-
-        private void IsValidId(int oneId)
-        {
-            if (!(oneId <= 9999 && oneId >= 0))
-                throw new Exception("");
-        }
-
-        private void IsValidName(string oneName)
-        {
-            int nameLength = oneName.Length;
-
-            if (!(nameLength <= 60 && nameLength > 0))
-                throw new Exception("");
-        }
-
-        private void IsValidDomain(string oneDomain)
-        {
-            int domainLength = oneDomain.Length;
-
-            if (!(domainLength <= 150 && domainLength > 0))
-                throw new Exception("");
-        }
-
-        private void IsValidVersion(string oneVersion)
-        {
-            int versionLength = oneVersion.Length;
-
-            if (!(versionLength <= 10 && versionLength > 0))
-                throw new Exception("");
         }
 
         private void IsValidState(string oneVersion)
