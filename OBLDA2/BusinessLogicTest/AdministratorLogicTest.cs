@@ -17,6 +17,7 @@ namespace BusinessLogicTest
         private Mock<IUserLogic> userLogicMock;
         private Mock<ITesterLogic> testerLogicMock;
         private Mock<IProjectLogic> projectMock;
+        private Mock<IBugLogic> mockBug;
 
         private Rol rolAdministrator;
         private Rol rolTester;
@@ -27,6 +28,7 @@ namespace BusinessLogicTest
         private User developer;
         private Project project;
         private User tester;
+        private Bug bug;
 
         [TestInitialize]
         public void Setup()
@@ -34,7 +36,8 @@ namespace BusinessLogicTest
             userLogicMock = new Mock<IUserLogic>(MockBehavior.Strict);
             testerLogicMock = new Mock<ITesterLogic>(MockBehavior.Strict);
             projectMock = new Mock<IProjectLogic>(MockBehavior.Strict);
-            this.administratorLogic = new AdministratorLogic(userLogicMock.Object, projectMock.Object, testerLogicMock.Object);
+            mockBug = new Mock<IBugLogic>(MockBehavior.Strict);
+            this.administratorLogic = new AdministratorLogic(userLogicMock.Object, projectMock.Object, testerLogicMock.Object, mockBug.Object);
 
             Guid id = new Guid();
             rolAdministrator = new Rol(id, "Administrator");
@@ -43,6 +46,7 @@ namespace BusinessLogicTest
             admin1 = new User(id, "Hernan", "reyes", "hernanReyes", "admin1234", "reyesH@gmail.com", rolAdministrator);
             project = new Project(id, "Project - GXC ");
             developer = new User(id, "Juan", "Gomez", "juanG", "juann245", "juan@gmail.com", rolDeveloper);
+            bug = new Bug(project, 1, "Error de login", "Intento de sesión", "3.0", "Activo");
             tester = new User(id, "Fiorella", "Petrone", "fioPetro", "fio1245", "fiore@gmail.com", rolTester);
         }
 
@@ -134,18 +138,12 @@ namespace BusinessLogicTest
         [TestMethod]
         public void DeleteTesterProject()
         {
-           /* projectMock.Setup(x => x.Get(It.IsAny<Guid>())).Returns(project);
-            testerLogicMock.Setup(x => x.Get(It.IsAny<Guid>())).Returns(tester);
-           */
             projectMock.Setup(m => m.DeleteTester(project, tester.Id));
             administratorLogic.DeleteTesterByProject(project, tester.Id);
 
-           /* User testerNull = null;
-            testerLogicMock.Setup(x => x.Get(It.IsAny<Guid>())).Returns(testerNull);
-            */
             List<User> list = new List<User>();
-            projectMock.Setup(x => x.GetAllTesters()).Returns(list);
-            var ret = administratorLogic.GetAllTesters();
+            projectMock.Setup(x => x.GetAllTesters(project)).Returns(list);
+            var ret = administratorLogic.GetAllTesters(project);
             userLogicMock.VerifyAll();
 
             Assert.AreEqual(ret, list);
@@ -155,34 +153,40 @@ namespace BusinessLogicTest
         [TestMethod]
         public void DeleteDeveloperProject()
         {
-            /* projectMock.Setup(x => x.Get(It.IsAny<Guid>())).Returns(project);
-           testerLogicMock.Setup(x => x.Get(It.IsAny<Guid>())).Returns(tester);
-          */
-            projectMock.Setup(m => m.DeleteTester(project, developer.Id));
-            administratorLogic.DeleteTesterByProject(project, developer.Id);
+            projectMock.Setup(m => m.DeleteDeveloper(project, developer.Id));
+            administratorLogic.DeleteDeveloperByProject(project, developer.Id);
 
-            /* User testerNull = null;
-             testerLogicMock.Setup(x => x.Get(It.IsAny<Guid>())).Returns(testerNull);
-             */
             List<User> list = new List<User>();
-            projectMock.Setup(x => x.GetAllDevelopers()).Returns(list);
-            var ret = administratorLogic.GetAllDevelopers();
+            projectMock.Setup(x => x.GetAllDevelopers(project)).Returns(list);
+            var ret = administratorLogic.GetAllDevelopers(project);
             userLogicMock.VerifyAll();
 
             Assert.AreEqual(ret, list);
 
         }
         [TestMethod]
-        public void CreteBugProject()
+        public void CreateBugByAdmin()
         {
 
+            mockBug.Setup(x => x.Create(bug)).Returns(bug);
 
+            var ret = administratorLogic.CreateBug(bug);
+            mockBug.VerifyAll();
+
+            Assert.IsTrue(ret.Id == bug.Id);
         }
 
         [TestMethod]
         public void UpdateBugProject()
         {
 
+            var bugUpdate = new Bug(project, 3, "Bug login", "Intetno logOut", "4.1", "activo");
+            mockBug.Setup(x => x.Update(bug.Id, bugUpdate)).Returns(bugUpdate);
+
+            var ret = administratorLogic.UpdateBug(bug.Id , bugUpdate);
+            mockBug.VerifyAll();
+
+            Assert.AreEqual(ret.Name, bugUpdate.Name);
 
         }
 
@@ -190,7 +194,18 @@ namespace BusinessLogicTest
         [TestMethod]
         public void DeleteBugProject()
         {
+            mockBug.Setup(x => x.Get(bug.Id)).Returns(bug);
+            mockBug.Setup(m => m.Delete(bug.Id));
+            administratorLogic.DeleteBug(bug.Id);
 
+            List<Project> list = new List<Project>();
+
+            projectMock.Setup(x => x.GetAll()).Returns(list);
+
+            var ret = administratorLogic.GetTotalBugByAllProject();
+            userLogicMock.VerifyAll();
+
+            Assert.IsTrue(ret == 0);
 
         }
 
@@ -203,8 +218,8 @@ namespace BusinessLogicTest
             List<User> list = new List<User>();
             list.Add(developer);
 
-            projectMock.Setup(x => x.GetAllDevelopers()).Returns(list);
-            var ret = administratorLogic.GetAllDevelopers();
+            projectMock.Setup(x => x.GetAllDevelopers(project)).Returns(list);
+            var ret = administratorLogic.GetAllDevelopers(project);
             projectMock.VerifyAll();
 
             Assert.AreEqual(ret, list);
@@ -220,8 +235,8 @@ namespace BusinessLogicTest
             List<User> list = new List<User>();
             list.Add(tester);
 
-            projectMock.Setup(x => x.GetAllTesters()).Returns(list);
-            var ret = administratorLogic.GetAllTesters();
+            projectMock.Setup(x => x.GetAllTesters(project)).Returns(list);
+            var ret = administratorLogic.GetAllTesters(project);
             projectMock.VerifyAll();
 
             Assert.AreEqual(ret, list);
@@ -232,7 +247,7 @@ namespace BusinessLogicTest
         public void ImportBugsProjectByProvider()
         {
 
-
+            //Ver despues 
         }
 
         [TestMethod]

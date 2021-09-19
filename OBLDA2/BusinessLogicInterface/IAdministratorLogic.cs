@@ -15,15 +15,15 @@ namespace BusinessLogicInterface
         void DeleteProject(Guid id);
         void DeleteTesterByProject(Project project, Guid idTester);
         void DeleteDeveloperByProject(Project project, Guid idDeveloper);
-        void CreteBug(Bug bugToCreate);
-        void UpdateBug(int id, Bug updatedBug);
+        Bug CreateBug(Bug bugToCreate);
+        Bug UpdateBug(int id, Bug updatedBug);
         void DeleteBug(int id);
         void AssignDeveloperByProject(Project project, Guid idDeveloper);
         void AssignTesterByProject(Project project, Guid idTester);
         void ImportBugsByProjectByProvider(Project project, List<Bug> bugsProject);
         int GetFixedBugsByDeveloper(Guid id);
-        List<User> GetAllTesters();
-        List<User> GetAllDevelopers();
+        List<User> GetAllTesters(Project project);
+        List<User> GetAllDevelopers(Project project);
         int GetTotalBugByAllProject();
 
 

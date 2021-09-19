@@ -19,12 +19,13 @@ namespace BusinessLogic
 
 
 
-        public AdministratorLogic(IUserLogic userLogic, IProjectLogic projectLogic, ITesterLogic testerLogic)
+        public AdministratorLogic(IUserLogic userLogic, IProjectLogic projectLogic, ITesterLogic testerLogic, IBugLogic bugLogic)
         {
             this.userLogic = userLogic;
             this.projectLogic = projectLogic;
-            this.bugLogic = new BugLogic();
+            this.bugLogic = bugLogic;
             this.testerLogic = testerLogic;
+
         }
 
         public User Create(User adminToCreate)
@@ -85,14 +86,14 @@ namespace BusinessLogic
 
         }
 
-        public void CreteBug(Bug bugToCreate)
+        public Bug CreateBug(Bug bugToCreate)
         {
-            bugLogic.Create(bugToCreate);
+            return bugLogic.Create(bugToCreate);
         }
 
-        public void UpdateBug(int id, Bug updatedBug)
+        public Bug UpdateBug(int id, Bug updatedBug)
         {
-            bugLogic.Update(id, updatedBug);
+            return bugLogic.Update(id, updatedBug);
         }
 
         public void DeleteBug(int id)
@@ -128,15 +129,15 @@ namespace BusinessLogic
             return total;
         }
 
-        public List<User> GetAllTesters()
+        public List<User> GetAllTesters(Project project)
         {
-            return projectLogic.GetAllTesters();
+            return projectLogic.GetAllTesters(project);
 
         }
 
-        public List<User> GetAllDevelopers()
+        public List<User> GetAllDevelopers(Project project)
         {
-            return projectLogic.GetAllDevelopers();
+            return projectLogic.GetAllDevelopers(project);
 
         }
 

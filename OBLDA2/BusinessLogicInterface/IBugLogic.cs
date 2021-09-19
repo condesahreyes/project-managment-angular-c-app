@@ -11,6 +11,7 @@ namespace BusinessLogicInterface
         void Delete(int id);
         IEnumerable<Bug> GetAll();
         Bug Update(int id, Bug bugUpdate);
+        Bug Get(int id);
 
     }
 }

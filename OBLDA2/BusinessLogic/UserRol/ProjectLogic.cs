@@ -10,10 +10,12 @@ namespace BusinessLogic.UserRol
     public class ProjectLogic : IProjectLogic
     {
         private IRepository<Project, Guid> projectDa;
+        private IProjectLogic projectLogic;
 
-        public ProjectLogic(IRepository<Project, Guid> ProjectDa)
+        public ProjectLogic(IRepository<Project, Guid> ProjectDa, IProjectLogic projectLogic)
         {
             this.projectDa = ProjectDa;
+            this.projectLogic = projectLogic;
         }
 
         public ProjectLogic()
@@ -65,12 +67,12 @@ namespace BusinessLogic.UserRol
             throw new NotImplementedException();
         }
 
-        public List<User> GetAllTesters()
+        public List<User> GetAllTesters(Project project)
         {
             throw new NotImplementedException();
         }
 
-        public List<User> GetAllDevelopers()
+        public List<User> GetAllDevelopers(Project project)
         {
             throw new NotImplementedException();
         }
