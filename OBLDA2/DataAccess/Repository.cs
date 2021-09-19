@@ -21,7 +21,7 @@ namespace DataAccess
             throw new NotImplementedException();
         }
 
-        public IEnumerable<T> GetAll()
+        public List<T> GetAll()
         {
             throw new NotImplementedException();
         }

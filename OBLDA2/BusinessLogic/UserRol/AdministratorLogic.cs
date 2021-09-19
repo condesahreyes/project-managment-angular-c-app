@@ -15,14 +15,17 @@ namespace BusinessLogic
         private IUserLogic userLogic;
         private IProjectLogic projectLogic;
         private IBugLogic bugLogic;
+        private ITesterLogic testerLogic;
 
 
 
-        public AdministratorLogic(IUserLogic userLogic, IProjectLogic projectLogic)
+        public AdministratorLogic(IUserLogic userLogic, IProjectLogic projectLogic, ITesterLogic testerLogic, IBugLogic bugLogic)
         {
             this.userLogic = userLogic;
             this.projectLogic = projectLogic;
-            this.bugLogic = new BugLogic();
+            this.bugLogic = bugLogic;
+            this.testerLogic = testerLogic;
+
         }
 
         public User Create(User adminToCreate)
@@ -72,25 +75,25 @@ namespace BusinessLogic
             projectLogic.Delete(id);
         }
 
-        public void DeleteTesterByProject(Project project, Guid idTester)
+        public void DeleteTesterByProject(Project project, User tester)
         {
-            projectLogic.DeleteTester(project, idTester);
+            projectLogic.DeleteTester(project, tester);
 
         }
-        public void DeleteDeveloperByProject(Project project, Guid idDeveloper)
+        public void DeleteDeveloperByProject(Project project, User developer)
         {
-            projectLogic.DeleteDeveloper(project, idDeveloper);
+            projectLogic.DeleteDeveloper(project, developer);
 
         }
 
-        public void CreteBug(Bug bugToCreate)
+        public Bug CreateBug(Bug bugToCreate)
         {
-            bugLogic.Create(bugToCreate);
+            return bugLogic.Create(bugToCreate);
         }
 
-        public void UpdateBug(int id, Bug updatedBug)
+        public Bug UpdateBug(int id, Bug updatedBug)
         {
-            bugLogic.Update(id, updatedBug);
+            return bugLogic.Update(id, updatedBug);
         }
 
         public void DeleteBug(int id)
@@ -98,32 +101,61 @@ namespace BusinessLogic
             bugLogic.Delete(id);
         }
 
-        public void AssignDeveloperByProject(Project project, Guid idDeveloper)
+        public void AssignDeveloperByProject(Project project, User developer)
         {
-            projectLogic.AssignDeveloper(project, idDeveloper);
+            projectLogic.AssignDeveloper(project, developer);
 
         }
 
-        public void AssignTesterByProject(Project project, Guid idTester)
+        public void AssignTesterByProject(Project project, User tester)
         {
-            projectLogic.AssignTester(project, idTester);
+            projectLogic.AssignTester(project, tester);
 
         }
 
         public void ImportBugsByProjectByProvider(Project project, List<Bug> bugsProject)
         {
-            projectLogic.ImportBugsByProvider(project, bugsProject);
+            //projectLogic.ImportBugsByProvider(project, bugsProject);
         }
 
-        public List<Project> GetTotalBugByAllProject()
+        public int GetTotalBugByAllProject()
         {
-            return projectLogic.GetAll();
+            int total = 0;
+            var projects = projectLogic.GetAll();
+            foreach (var project in projects)
+            {
+                total += project.totalBugs;
+            }
+            return total;
+        }
+
+        public List<User> GetAllTesters(Project project)
+        {
+            return projectLogic.GetAllTesters(project);
 
         }
 
-        public int GetFixedBugsByDeveloper()
+        public List<User> GetAllDevelopers(Project project)
         {
-            return projectLogic.GetAllFixedBugsByDeveloper();
+            return projectLogic.GetAllDevelopers(project);
+
+        }
+
+        public int GetFixedBugsByDeveloper(Guid id)
+        {
+            List<Bug> bugs = (List<Bug>)bugLogic.GetAll();
+            List<Bug> bugsByDeveloper = new List<Bug>();
+
+            foreach (Bug bug in bugs)
+            {
+                if(bug.SolvedBy != null && bug.SolvedBy.Id == id)
+                {
+                    bugsByDeveloper.Add(bug);
+                }
+
+            }
+
+            return bugsByDeveloper.Count;
         }
 
     }

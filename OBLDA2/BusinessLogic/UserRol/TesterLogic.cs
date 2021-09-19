@@ -52,7 +52,7 @@ namespace BusinessLogic.UserRol
             return developerCreate;
         }
 
-        public IEnumerable<Project> getProjectsByTester(Guid id)
+        public IEnumerable<Project> GetProjectsByTester(Guid id)
         {
             throw new NotImplementedException();
         }
@@ -69,7 +69,7 @@ namespace BusinessLogic.UserRol
             List<Bug> bugs = new List<Bug>();
 
             foreach (var project in allProjects)
-                if (project.desarrolladores.Contains(tester))
+                if (project.developers.Contains(tester))
                     bugs.AddRange(project.incidentes);
 
             return bugs;

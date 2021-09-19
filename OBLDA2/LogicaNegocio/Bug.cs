@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace Domain
 {
@@ -8,6 +6,7 @@ namespace Domain
     {
 
         public Project Project { get; set; }
+        public User SolvedBy { get; set; }
         public int Id { get; set; }
         public string Name { get; set; }
         public string Domain { get; set; }
@@ -23,6 +22,7 @@ namespace Domain
             this.Version = version;
             this.State = state;
         }
+
         public override bool Equals(Object obj)
         {
             var result = false;

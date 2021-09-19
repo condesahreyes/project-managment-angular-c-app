@@ -68,7 +68,7 @@ namespace Domain
                 throw new Exception();
             }
         }
-        /*
+        
         public override bool Equals(Object obj)
         {
             var result = false;
@@ -78,7 +78,8 @@ namespace Domain
                 result = this.Id == user.Id && this.UserName == user.UserName;
 
             }
+            return result;
         } 
-        */
+        
     }
 }
