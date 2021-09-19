@@ -14,13 +14,13 @@ namespace BusinessLogicInterface
 
         void Delete(Guid id);
 
-        void DeleteTester(Project project, Guid idTester);
+        void DeleteTester(Project project, User tester);
 
-        void DeleteDeveloper(Project project, Guid idDeveloper);
+        void DeleteDeveloper(Project project, User developer);
 
-        void AssignDeveloper(Project project, Guid idDeveloper);
+        void AssignDeveloper(Project project, User developer);
 
-        void AssignTester(Project project, Guid idTester);
+        void AssignTester(Project project, User tester);
 
         void ImportBugsByProvider(Project project, List<Bug> bugsProject);
 

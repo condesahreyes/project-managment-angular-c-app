@@ -112,6 +112,11 @@ C:\Users\hreye\Desktop\tester\OBL-Asadurian-Reyes\OBLDA2\BusinessLogicTest\obj\D
 C:\Users\hreye\Desktop\tester\OBL-Asadurian-Reyes\OBLDA2\BusinessLogicTest\obj\Debug\netcoreapp3.1\BusinessLogicTest.pdb
 C:\Users\hreye\Desktop\tester\OBL-Asadurian-Reyes\OBLDA2\BusinessLogicTest\obj\Debug\netcoreapp3.1\BusinessLogicTest.genruntimeconfig.cache
 C:\Users\Diego\Desktop\Reyes- Asadurian\OBL-Asadurian-Reyes\OBLDA2\BusinessLogicTest\bin\Debug\netcoreapp3.1\CoverletSourceRootsMapping
+C:\Users\Diego\Desktop\Reyes- Asadurian\OBL-Asadurian-Reyes\OBLDA2\BusinessLogicTest\obj\Debug\netcoreapp3.1\BusinessLogicTest.csprojAssemblyReference.cache
+C:\Users\Diego\Desktop\Reyes- Asadurian\OBL-Asadurian-Reyes\OBLDA2\BusinessLogicTest\obj\Debug\netcoreapp3.1\BusinessLogicTest.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Diego\Desktop\Reyes- Asadurian\OBL-Asadurian-Reyes\OBLDA2\BusinessLogicTest\obj\Debug\netcoreapp3.1\BusinessLogicTest.AssemblyInfoInputs.cache
+C:\Users\Diego\Desktop\Reyes- Asadurian\OBL-Asadurian-Reyes\OBLDA2\BusinessLogicTest\obj\Debug\netcoreapp3.1\BusinessLogicTest.AssemblyInfo.cs
+C:\Users\Diego\Desktop\Reyes- Asadurian\OBL-Asadurian-Reyes\OBLDA2\BusinessLogicTest\obj\Debug\netcoreapp3.1\BusinessLogicTest.csproj.CoreCompileInputs.cache
 C:\Users\Diego\Desktop\Reyes- Asadurian\OBL-Asadurian-Reyes\OBLDA2\BusinessLogicTest\bin\Debug\netcoreapp3.1\testhost.dll
 C:\Users\Diego\Desktop\Reyes- Asadurian\OBL-Asadurian-Reyes\OBLDA2\BusinessLogicTest\bin\Debug\netcoreapp3.1\DataAccessTest.deps.json
 C:\Users\Diego\Desktop\Reyes- Asadurian\OBL-Asadurian-Reyes\OBLDA2\BusinessLogicTest\bin\Debug\netcoreapp3.1\DataAccessTest.runtimeconfig.json
@@ -215,11 +220,6 @@ C:\Users\Diego\Desktop\Reyes- Asadurian\OBL-Asadurian-Reyes\OBLDA2\BusinessLogic
 C:\Users\Diego\Desktop\Reyes- Asadurian\OBL-Asadurian-Reyes\OBLDA2\BusinessLogicTest\bin\Debug\netcoreapp3.1\Domain.pdb
 C:\Users\Diego\Desktop\Reyes- Asadurian\OBL-Asadurian-Reyes\OBLDA2\BusinessLogicTest\bin\Debug\netcoreapp3.1\BusinessLogicInterface.pdb
 C:\Users\Diego\Desktop\Reyes- Asadurian\OBL-Asadurian-Reyes\OBLDA2\BusinessLogicTest\bin\Debug\netcoreapp3.1\DataAccessTest.pdb
-C:\Users\Diego\Desktop\Reyes- Asadurian\OBL-Asadurian-Reyes\OBLDA2\BusinessLogicTest\obj\Debug\netcoreapp3.1\BusinessLogicTest.csprojAssemblyReference.cache
-C:\Users\Diego\Desktop\Reyes- Asadurian\OBL-Asadurian-Reyes\OBLDA2\BusinessLogicTest\obj\Debug\netcoreapp3.1\BusinessLogicTest.GeneratedMSBuildEditorConfig.editorconfig
-C:\Users\Diego\Desktop\Reyes- Asadurian\OBL-Asadurian-Reyes\OBLDA2\BusinessLogicTest\obj\Debug\netcoreapp3.1\BusinessLogicTest.AssemblyInfoInputs.cache
-C:\Users\Diego\Desktop\Reyes- Asadurian\OBL-Asadurian-Reyes\OBLDA2\BusinessLogicTest\obj\Debug\netcoreapp3.1\BusinessLogicTest.AssemblyInfo.cs
-C:\Users\Diego\Desktop\Reyes- Asadurian\OBL-Asadurian-Reyes\OBLDA2\BusinessLogicTest\obj\Debug\netcoreapp3.1\BusinessLogicTest.csproj.CoreCompileInputs.cache
 C:\Users\Diego\Desktop\Reyes- Asadurian\OBL-Asadurian-Reyes\OBLDA2\BusinessLogicTest\obj\Debug\netcoreapp3.1\BusinessLogicTest.csproj.CopyComplete
 C:\Users\Diego\Desktop\Reyes- Asadurian\OBL-Asadurian-Reyes\OBLDA2\BusinessLogicTest\obj\Debug\netcoreapp3.1\BusinessLogicTest.dll
 C:\Users\Diego\Desktop\Reyes- Asadurian\OBL-Asadurian-Reyes\OBLDA2\BusinessLogicTest\obj\Debug\netcoreapp3.1\BusinessLogicTest.pdb

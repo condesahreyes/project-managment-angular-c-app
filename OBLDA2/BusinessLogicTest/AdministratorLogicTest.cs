@@ -138,8 +138,8 @@ namespace BusinessLogicTest
         [TestMethod]
         public void DeleteTesterProject()
         {
-            projectMock.Setup(m => m.DeleteTester(project, tester.Id));
-            administratorLogic.DeleteTesterByProject(project, tester.Id);
+            projectMock.Setup(m => m.DeleteTester(project, tester));
+            administratorLogic.DeleteTesterByProject(project, tester);
 
             List<User> list = new List<User>();
             projectMock.Setup(x => x.GetAllTesters(project)).Returns(list);
@@ -153,8 +153,8 @@ namespace BusinessLogicTest
         [TestMethod]
         public void DeleteDeveloperProject()
         {
-            projectMock.Setup(m => m.DeleteDeveloper(project, developer.Id));
-            administratorLogic.DeleteDeveloperByProject(project, developer.Id);
+            projectMock.Setup(m => m.DeleteDeveloper(project, developer));
+            administratorLogic.DeleteDeveloperByProject(project, developer);
 
             List<User> list = new List<User>();
             projectMock.Setup(x => x.GetAllDevelopers(project)).Returns(list);
@@ -212,8 +212,8 @@ namespace BusinessLogicTest
         [TestMethod]
         public void AssignDeveloperProject()
         {
-            projectMock.Setup(x => x.AssignDeveloper(project, developer.Id));
-            administratorLogic.AssignDeveloperByProject(project, developer.Id);
+            projectMock.Setup(x => x.AssignDeveloper(project, developer));
+            administratorLogic.AssignDeveloperByProject(project, developer);
 
             List<User> list = new List<User>();
             list.Add(developer);
@@ -229,8 +229,8 @@ namespace BusinessLogicTest
         [TestMethod]
         public void AssignTesterProject()
         {
-            projectMock.Setup(x => x.AssignTester(project, tester.Id));
-            administratorLogic.AssignTesterByProject(project, tester.Id);
+            projectMock.Setup(x => x.AssignTester(project, tester));
+            administratorLogic.AssignTesterByProject(project, tester);
 
             List<User> list = new List<User>();
             list.Add(tester);

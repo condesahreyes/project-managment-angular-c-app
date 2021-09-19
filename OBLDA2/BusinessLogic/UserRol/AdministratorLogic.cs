@@ -75,14 +75,14 @@ namespace BusinessLogic
             projectLogic.Delete(id);
         }
 
-        public void DeleteTesterByProject(Project project, Guid idTester)
+        public void DeleteTesterByProject(Project project, User tester)
         {
-            projectLogic.DeleteTester(project, idTester);
+            projectLogic.DeleteTester(project, tester);
 
         }
-        public void DeleteDeveloperByProject(Project project, Guid idDeveloper)
+        public void DeleteDeveloperByProject(Project project, User developer)
         {
-            projectLogic.DeleteDeveloper(project, idDeveloper);
+            projectLogic.DeleteDeveloper(project, developer);
 
         }
 
@@ -101,15 +101,15 @@ namespace BusinessLogic
             bugLogic.Delete(id);
         }
 
-        public void AssignDeveloperByProject(Project project, Guid idDeveloper)
+        public void AssignDeveloperByProject(Project project, User developer)
         {
-            projectLogic.AssignDeveloper(project, idDeveloper);
+            projectLogic.AssignDeveloper(project, developer);
 
         }
 
-        public void AssignTesterByProject(Project project, Guid idTester)
+        public void AssignTesterByProject(Project project, User tester)
         {
-            projectLogic.AssignTester(project, idTester);
+            projectLogic.AssignTester(project, tester);
 
         }
 

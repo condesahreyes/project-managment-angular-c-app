@@ -24,37 +24,65 @@ namespace BusinessLogic.UserRol
 
         public Project Create(Project projectToCreate)
         {
-            throw new NotImplementedException();
+            Project.ValidateName(projectToCreate.Name);
+
+            return projectDa.Create(projectToCreate);
+
         }
 
         public Project Update(Guid id, Project updatedProject)
         {
-            throw new NotImplementedException();
+            Project.ValidateName(updatedProject.Name);
+            
+            return projectDa.Update(id, updatedProject);
         }
 
         public void Delete(Guid id)
         {
-            throw new NotImplementedException();
+            projectDa.Delete(id);
         }
 
-        public void DeleteTester(Project project, Guid idTester)
+        public void DeleteTester(Project project, User tester)
         {
-            throw new NotImplementedException();
+            var proj = projectDa.Get(project.Id);
+
+              if (proj.testers.Contains(tester))
+              {
+                 proj.testers.Remove(tester);
+              }
+            
         }
 
-        public void DeleteDeveloper(Project project, Guid idDeveloper)
+        public void DeleteDeveloper(Project project, User developer)
         {
-            throw new NotImplementedException();
+            var proj = projectDa.Get(project.Id);
+
+            if (proj.developers.Contains(developer))
+            {
+                proj.developers.Remove(developer);
+            }
+
         }
 
-        public void AssignDeveloper(Project project, Guid idDeveloper)
+        public void AssignDeveloper(Project project, User developer)
         {
-            throw new NotImplementedException();
+            var proj = projectDa.Get(project.Id);
+
+            if (!proj.developers.Contains(developer))
+            {
+                proj.developers.Add(developer);
+            }
+
         }
 
-        public void AssignTester(Project project, Guid idTester)
+        public void AssignTester(Project project, User tester)
         {
-            throw new NotImplementedException();
+            var proj = projectDa.Get(project.Id);
+
+            if (!proj.testers.Contains(tester))
+            {
+                proj.testers.Add(tester);
+            }
         }
 
         public void ImportBugsByProvider(Project project, List<Bug> bugsProject)
@@ -64,17 +92,21 @@ namespace BusinessLogic.UserRol
 
         public List<Project> GetAll()
         {
-            throw new NotImplementedException();
+            return projectDa.GetAll();
         }
 
         public List<User> GetAllTesters(Project project)
         {
-            throw new NotImplementedException();
+            var proj = projectDa.Get(project.Id);
+
+            return proj.testers;
         }
 
         public List<User> GetAllDevelopers(Project project)
         {
-            throw new NotImplementedException();
+            var proj = projectDa.Get(project.Id);
+
+            return proj.developers;
         }
 
         public int GetAllFixedBugsByDeveloper(Guid id)
@@ -84,7 +116,15 @@ namespace BusinessLogic.UserRol
 
         public Project Get(Guid id)
         {
-            throw new NotImplementedException();
+            var projcet = projectDa.Get(id);
+            if (projcet != null)
+            {
+                return projcet;
+            }
+            else
+            {
+                throw new Exception("Project does not exist");
+            }
         }
     }
 }

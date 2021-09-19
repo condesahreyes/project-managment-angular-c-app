@@ -56,7 +56,7 @@ namespace BusinessLogicTest
         [TestMethod]
         public void CreateTester()
         {
-            IEnumerable<User> users = new List<User>();
+            List<User> users = new List<User>();
             mockUser.Setup(x => x.GetAll()).Returns(users);
             mockUser.Setup(x => x.Create(tester)).Returns(tester);
 
@@ -75,7 +75,7 @@ namespace BusinessLogicTest
         {
             Project project = new Project(new Guid(), "Montes Del Plata");
 
-            project.desarrolladores.Add(tester);
+            project.developers.Add(tester);
 
             IEnumerable<Bug> bugs = new List<Bug>
             {

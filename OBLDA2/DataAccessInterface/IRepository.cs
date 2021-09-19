@@ -9,7 +9,7 @@ namespace DataAccessInterface
     {
         T Create(T entity);
         T Get(K id);
-        IEnumerable<T> GetAll();
+        List<T> GetAll();
         void Save();
         void Delete(K id);
         T Update(K id, T entity);
