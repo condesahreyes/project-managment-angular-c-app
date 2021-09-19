@@ -105,7 +105,7 @@ namespace BusinessLogic.UserRol
 
         public List<Bug> GetAllBugByProject(Project project)
         {
-            List<Bug> bugs = (List<Bug>)bugLogic.GetAll();
+            List<Bug> bugs = bugLogic.GetAll();
             List<Bug> bugsByProject = new List<Bug>();
 
             foreach (Bug bug in bugs)

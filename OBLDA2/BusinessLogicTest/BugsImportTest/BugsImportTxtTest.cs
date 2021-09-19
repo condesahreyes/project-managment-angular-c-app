@@ -13,14 +13,11 @@ namespace BusinessLogicTest.BugsImportTest
     {
         private readonly string fileAddress = @"..\..\..\FileImport\archivoTxtBugs.txt";
 
-        private static string activeStatus = "Activo";
-        private static string doneStatus = "Resuelto";
-
         private static Project project = new Project(new Guid(), "Proyecto en txt");
 
         private List<Bug> bugsInTxt = new List<Bug>{
-            new Bug(project, 1, "nombre1", "dominio1", "V 1.0", activeStatus),
-            new Bug(project, 2, "nombre2", "dominio2", "V 2.0", doneStatus)
+            new Bug(project, 1, "nombre1", "dominio1", "V 1.0", StatesBug.active),
+            new Bug(project, 2, "nombre2", "dominio2", "V 2.0", StatesBug.done)
         };
 
         private Mock<IBugLogic> bugLogic;

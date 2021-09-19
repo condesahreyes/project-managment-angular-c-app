@@ -1,5 +1,6 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.Collections.Generic;
+using BusinessLogicInterface;
 using BusinessLogic.UserRol;
 using DataAccessInterface;
 using System.Linq;
@@ -12,10 +13,10 @@ namespace BusinessLogicTest
     [TestClass]
     public class DeveloperLogicTest
     {
-        private Mock<IRepository<User, Guid>> mockUser;
-        private Mock<IRepository<Project, Guid>> mockProject;
+        private Mock<IUserLogic> mockUser;
+        private Mock<IProjectLogic> mockProject;
         private Mock<IRepository<Rol, Guid>> mockRol;
-        private Mock<IRepository<Bug, int>> mockBug;
+        private Mock<IBugLogic> mockBug;
 
         private List<Rol> roles;
 
@@ -24,9 +25,9 @@ namespace BusinessLogicTest
         [TestInitialize]
         public void Setup()
         {
-            mockProject = new Mock<IRepository<Project, Guid>>(MockBehavior.Strict);
-            mockUser = new Mock<IRepository<User, Guid>>(MockBehavior.Strict);
-            mockBug = new Mock<IRepository<Bug, int>>(MockBehavior.Strict);
+            mockProject = new Mock<IProjectLogic>(MockBehavior.Strict);
+            mockUser = new Mock<IUserLogic>(MockBehavior.Strict);
+            mockBug = new Mock<IBugLogic> (MockBehavior.Strict);
 
             CofnigurationMockRol();
 
@@ -40,9 +41,9 @@ namespace BusinessLogicTest
 
             roles = new List<Rol>
             {
-                new Rol(new Guid(), "Tester"),
-                new Rol(new Guid(), "Administrator"),
-                new Rol(new Guid(), "Developer"),
+                new Rol(new Guid(), Rol.tester),
+                new Rol(new Guid(), Rol.administrator),
+                new Rol(new Guid(), Rol.developer),
             };
 
             mockRol.Setup(x => x.GetAll()).Returns(roles);
@@ -51,8 +52,6 @@ namespace BusinessLogicTest
         [TestMethod]
         public void CreateDeveloper()
         {
-            List<User> users = new List<User>();
-            mockUser.Setup(x => x.GetAll()).Returns(users);
             mockUser.Setup(x => x.Create(developer)).Returns(developer);
             
             var developerLogic = new DeveloperLogic(mockUser.Object, mockProject.Object, mockRol.Object, 
@@ -74,8 +73,8 @@ namespace BusinessLogicTest
 
             List<Bug> bugs = new List<Bug>
             {
-                new Bug(project, 1234, "Error de login", "Intento inicio de sesion", "2.0", "Activo"),
-                new Bug(project, 4321, "Error de UI", "Intento inicio de sesion", "2.1", "Activo"),
+                new Bug(project, 1234, "Error de login", "Intento inicio de sesion", "2.0", StatesBug.active),
+                new Bug(project, 4321, "Error de UI", "Intento inicio de sesion", "2.1", StatesBug.active),
             };
 
             List<Project> projects = new List<Project>();

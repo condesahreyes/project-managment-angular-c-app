@@ -7,9 +7,9 @@ namespace BusinessLogic.Imports
 {
     public class BugsImportTxt : BugsImport
     {
-        public BugsImportTxt(IBugLogic bugLogic) :base(bugLogic)
-        {
-        }
+        public BugsImportTxt(IBugLogic bugLogic) : base(bugLogic) { }
+
+        public BugsImportTxt() : base() { }
 
         public List<Bug> ImportBugs(string fileAddress)
         {

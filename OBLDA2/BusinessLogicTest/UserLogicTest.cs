@@ -33,9 +33,9 @@ namespace BusinessLogicTest
 
             roles = new List<Rol>
             {
-                new Rol( new Guid(), "Tester"),
-                new Rol(new Guid(), "Administrator"),
-                new Rol(new Guid(), "Developer"),
+                new Rol( new Guid(), Rol.tester),
+                new Rol(new Guid(), Rol.administrator),
+                new Rol(new Guid(), Rol.developer),
             };
 
             mockRol.Setup(x => x.GetAll()).Returns(roles);

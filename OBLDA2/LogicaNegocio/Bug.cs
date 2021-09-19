@@ -4,6 +4,7 @@ namespace Domain
 {
     public class Bug
     {
+
         public Project Project { get; set; }
         public User SolvedBy { get; set; }
 
@@ -27,10 +28,24 @@ namespace Domain
 
         public static void AreCorrectData(Bug oneBug)
         {
+            IsValidState(oneBug.State);
             IsValidId(oneBug.Id);
             IsValidName(oneBug.Name);
             IsValidDomain(oneBug.Domain);
             IsValidVersion(oneBug.Version);
+        }
+
+        private static void IsValidState(string state)
+        {
+            for (int i = 0; i < StatesBug.all.Length; i++)
+            {
+                if (StatesBug.all[i] == state.ToLower())
+                {
+                    return;
+                }
+            }
+
+            throw new Exception("");
         }
 
         private static void IsValidId(int oneId)

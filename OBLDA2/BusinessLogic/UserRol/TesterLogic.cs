@@ -29,7 +29,7 @@ namespace BusinessLogic.UserRol
             List<User> testers = new List<User>();
             foreach (User user in users)
             {
-                if (user.Rol.Name == "Tester")
+                if (user.Rol.Name == Rol.tester)
                     testers.Add(user);
             }
 

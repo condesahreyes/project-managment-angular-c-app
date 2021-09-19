@@ -14,6 +14,11 @@ namespace BusinessLogic.Imports
             this.bugLogic = bugLogic;
         }
 
+        public BugsImport()
+        {
+            this.bugLogic = new BugLogic();
+        }
+
         public List<Bug> CreateBugs(List<Bug> bugs)
         {
             List<Bug> bugsSaved = new List<Bug>();

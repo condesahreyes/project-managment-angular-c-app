@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using BusinessLogicInterface;
 using BusinessLogic;
-using System.Linq;
 using System;
 using Domain;
 using Moq;
@@ -40,8 +39,8 @@ namespace BusinessLogicTest
             this.administratorLogic = new AdministratorLogic(userLogicMock.Object, projectMock.Object, testerLogicMock.Object, mockBug.Object);
 
             Guid id = new Guid();
-            rolAdministrator = new Rol(id, "Administrator");
-            rolTester = new Rol(id, "Tester");
+            rolAdministrator = new Rol(id, Rol.administrator);
+            rolTester = new Rol(id, Rol.tester);
 
             admin1 = new User(id, "Hernan", "reyes", "hernanReyes", "admin1234", "reyesH@gmail.com", rolAdministrator);
             project = new Project(id, "Project - GXC ");
@@ -67,7 +66,7 @@ namespace BusinessLogicTest
             userLogicMock.Setup(x => x.GetAll()).Returns(list);
             List<User> ret = administratorLogic.GetAll();
             userLogicMock.VerifyAll();
-            Assert.IsTrue(ret.SequenceEqual(list));
+            CollectionAssert.AreEquivalent(ret, list);
         }
 
         [TestMethod]
@@ -167,7 +166,7 @@ namespace BusinessLogicTest
         [TestMethod]
         public void UpdateBugProject()
         {
-            var bugUpdate = new Bug(project, 3, "Bug login", "Intetno logOut", "4.1", "activo");
+            var bugUpdate = new Bug(project, 3, "Bug login", "Intetno logOut", "4.1", StatesBug.active);
             mockBug.Setup(x => x.Update(bug.Id, bugUpdate)).Returns(bugUpdate);
 
             var ret = administratorLogic.UpdateBug(bug.Id , bugUpdate);

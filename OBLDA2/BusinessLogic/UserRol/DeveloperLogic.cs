@@ -9,24 +9,21 @@ namespace BusinessLogic.UserRol
 {
     public class DeveloperLogic : IDeveloperLogic
     {
-        private IRepository<User, Guid> userRepository;
-        private IRepository<Project, Guid> projectRepository;
-        private IRepository<Rol, Guid> rolRepository;
-        private IRepository<Bug, int> bugRepository;
 
-        public DeveloperLogic(IRepository<User, Guid> userRepository, IRepository<Project, Guid> projectRepository,
-            IRepository<Rol, Guid> rolRepository, IRepository<Bug, int> bugRepository)
+        private IUserLogic userLogic;
+        private IProjectLogic projectLogic;
+        private IBugLogic bugLogic;
+
+        public DeveloperLogic(IUserLogic userLogic, IProjectLogic projectLogic,
+            IRepository<Rol, Guid> rolRepository, IBugLogic bugLogic)
         {
-            this.userRepository = userRepository;
-            this.projectRepository = projectRepository;
-            this.rolRepository = rolRepository;
-            this.bugRepository = bugRepository;
+            this.userLogic = userLogic;
+            this.projectLogic = projectLogic;
+            this.bugLogic = bugLogic;
         }
 
         public User Create(User developerToCreate)
         {
-            UserLogic userLogic = new UserLogic(userRepository, rolRepository);
-
             User developerCreate = userLogic.Create(developerToCreate);
 
             return developerCreate;
@@ -34,12 +31,12 @@ namespace BusinessLogic.UserRol
 
         public User GetByString(string userName)
         {
-            return userRepository.GetAll().Where(user => (user.UserName == userName)).First();
+            return userLogic.GetAll().Where(user => (user.UserName == userName)).First();
         }
 
         public List<Bug> GetAllBugs(User developer)
         {
-            List<Project> allProjects = projectRepository.GetAll();
+            List<Project> allProjects = projectLogic.GetAll();
 
             List<Bug> bugs = new List<Bug>();
 
@@ -54,9 +51,9 @@ namespace BusinessLogic.UserRol
         {
             Bug activeBug = CloneBug(bug);
 
-            activeBug.State = "Activo";
+            activeBug.State = StatesBug.active;
 
-            bugRepository.Update(bug.Id, activeBug);
+            bugLogic.Update(bug.Id, activeBug);
 
             return activeBug;
         }
@@ -65,9 +62,9 @@ namespace BusinessLogic.UserRol
         {
             Bug doneBug = CloneBug(bug);
 
-            doneBug.State = "Resuelto";
+            doneBug.State = StatesBug.done;
 
-            bugRepository.Update(bug.Id, doneBug);
+            bugLogic.Update(bug.Id, doneBug);
 
             return doneBug;
         }

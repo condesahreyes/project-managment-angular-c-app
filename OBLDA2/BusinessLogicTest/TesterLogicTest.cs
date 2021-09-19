@@ -45,9 +45,9 @@ namespace BusinessLogicTest
 
             roles = new List<Rol>
             {
-                new Rol(new Guid(), "Tester"),
-                new Rol(new Guid(), "Administrator"),
-                new Rol(new Guid(), "Developer"),
+                new Rol(new Guid(), Rol.tester),
+                new Rol(new Guid(), Rol.administrator),
+                new Rol(new Guid(), Rol.administrator),
             };
 
             mockRol.Setup(x => x.GetAll()).Returns(roles);
@@ -79,8 +79,8 @@ namespace BusinessLogicTest
 
             List<Bug> bugs = new List<Bug>
             {
-                new Bug(project, 1234, "Error de login", "Intento inicio de sesion", "2.0", "Activo"),
-                new Bug(project, 4321, "Error de UI", "Intento inicio de sesion", "2.1", "Activo"),
+                new Bug(project, 1234, "Error de login", "Intento inicio de sesion", "2.0", StatesBug.active),
+                new Bug(project, 4321, "Error de UI", "Intento inicio de sesion", "2.1", StatesBug.active),
             };
 
             List<Project> projects = new List<Project>();
@@ -123,7 +123,7 @@ namespace BusinessLogicTest
         public void CreateBugByTester()
         {
             Project project = new Project(new Guid(), "Montes Del Plata");
-            var bug = new Bug(project, 1, "Error de login", "Intento de sesión", "3.0", "Activo");
+            var bug = new Bug(project, 1, "Error de login", "Intento de sesión", "3.0", StatesBug.active);
 
             mockBug.Setup(x => x.Create(bug)).Returns(bug);
 

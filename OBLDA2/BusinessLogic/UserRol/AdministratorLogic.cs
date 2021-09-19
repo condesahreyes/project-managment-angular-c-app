@@ -1,6 +1,6 @@
 using System.Collections.Generic;
 using BusinessLogicInterface;
-using System.Linq;
+using BusinessLogic.UserRol;
 using System;
 using Domain;
 
@@ -11,7 +11,6 @@ namespace BusinessLogic
         private IUserLogic userLogic;
         private IProjectLogic projectLogic;
         private IBugLogic bugLogic;
-        private ITesterLogic testerLogic;
 
         public AdministratorLogic(IUserLogic userLogic, 
             IProjectLogic projectLogic, ITesterLogic testerLogic, IBugLogic bugLogic)
@@ -19,7 +18,13 @@ namespace BusinessLogic
             this.userLogic = userLogic;
             this.projectLogic = projectLogic;
             this.bugLogic = bugLogic;
-            this.testerLogic = testerLogic;
+        }
+
+        public AdministratorLogic()
+        {
+            this.userLogic = new UserLogic();
+            this.projectLogic = new ProjectLogic();
+            this.bugLogic = new BugLogic();
         }
 
         public User Create(User adminToCreate)
@@ -29,14 +34,25 @@ namespace BusinessLogic
 
         public List<User> GetAll()
         {
-            return (List<User>)this.userLogic.GetAll().Where(user => user.Rol.Name.Equals("Administrator"));
+            List<User> users = userLogic.GetAll();
+            List<User> admins = new List<User>();
+
+            foreach (User user in users)
+            {
+                if (user.Rol.Name == Rol.administrator)
+                {
+                    admins.Add(user);
+                }
+            }
+
+            return admins;
         }
 
         public User Get(Guid id)
         {
             var getUser = this.userLogic.Get(id);
 
-            if (getUser == null || !getUser.Rol.Name.Equals("Administrator"))
+            if (getUser == null || !getUser.Rol.Name.Equals(Rol.administrator))
             {
                 throw new Exception("Administrator does not exist");
             }
@@ -129,7 +145,7 @@ namespace BusinessLogic
 
         public int GetFixedBugsByDeveloper(Guid id)
         {
-            List<Bug> bugs = (List<Bug>)bugLogic.GetAll();
+            List<Bug> bugs = bugLogic.GetAll();
             List<Bug> bugsByDeveloper = new List<Bug>();
 
             foreach (Bug bug in bugs)

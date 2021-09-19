@@ -3,14 +3,11 @@ using BusinessLogicInterface;
 using DataAccessInterface;
 using DataAccess;
 using Domain;
-using System;
 
 namespace BusinessLogic
 {
     public class BugLogic : IBugLogic
     {
-        private string[] possibleStates = { "activo", "resuelto" };
-
         private IRepository<Bug, int> bugRepository;
 
         public BugLogic(IRepository<Bug, int> bugRepository)
@@ -50,19 +47,6 @@ namespace BusinessLogic
         private void IsValidBug(Bug oneBug)
         {
             Bug.AreCorrectData(oneBug);
-            IsValidState(oneBug.State);
-        }
-
-        private void IsValidState(string oneVersion)
-        {
-            bool isValidState = false;
-
-            for (int i = 0; i < possibleStates.Length && !isValidState; i++)
-                if (possibleStates[i] == oneVersion.ToLower())
-                    isValidState = true;
-
-            if (!isValidState)
-                throw new Exception("");
         }
 
         public Bug Get(int id)

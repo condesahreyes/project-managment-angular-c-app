@@ -38,8 +38,8 @@ namespace BusinessLogicTest
 
             Guid id = new Guid();
             project = new Project(id, "Project - Pineapple ");
-            rolTester = new Rol(id, "Tester");
-            rolDeveloper = new Rol(id,"Developer");
+            rolTester = new Rol(id, Rol.tester);
+            rolDeveloper = new Rol(id, Rol.developer);
             tester = new User(id, "Fiorella", "Petrone", "fioPetro", "fio1245", "fiore@gmail.com", rolTester);
             developer = new User(id, "Juan", "Gomez", "juanG", "juann245", "juan@gmail.com", rolDeveloper);
         }
