@@ -11,6 +11,8 @@ namespace BusinessLogicTest
     [TestClass]
     public class AdministratorLogicTest
     {
+        private static State activeState = new State(State.active);
+
         private Mock<IUserLogic> userLogicMock;
         private Mock<ITesterLogic> testerLogicMock;
         private Mock<IProjectLogic> projectMock;
@@ -45,7 +47,7 @@ namespace BusinessLogicTest
             admin1 = new User(id, "Hernan", "reyes", "hernanReyes", "admin1234", "reyesH@gmail.com", rolAdministrator);
             project = new Project(id, "Project - GXC ");
             developer = new User(id, "Juan", "Gomez", "juanG", "juann245", "juan@gmail.com", rolDeveloper);
-            bug = new Bug(project, 1, "Error de login", "Intento de sesión", "3.0", "Activo");
+            bug = new Bug(project, 1, "Error de login", "Intento de sesión", "3.0", activeState);
             tester = new User(id, "Fiorella", "Petrone", "fioPetro", "fio1245", "fiore@gmail.com", rolTester);
         }
 
@@ -166,7 +168,8 @@ namespace BusinessLogicTest
         [TestMethod]
         public void UpdateBugProject()
         {
-            var bugUpdate = new Bug(project, 3, "Bug login", "Intetno logOut", "4.1", StatesBug.active);
+            State state = new State(State.active);
+            var bugUpdate = new Bug(project, 3, "Bug login", "Intetno logOut", "4.1", state);
             mockBug.Setup(x => x.Update(bug.Id, bugUpdate)).Returns(bugUpdate);
 
             var ret = administratorLogic.UpdateBug(bug.Id , bugUpdate);

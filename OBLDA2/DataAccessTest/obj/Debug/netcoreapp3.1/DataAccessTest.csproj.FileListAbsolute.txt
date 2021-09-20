@@ -86,7 +86,6 @@ C:\Users\hreye\Desktop\OBL-Asadurian-Reyes\OBLDA2\DataAccessTest\bin\Debug\netco
 C:\Users\hreye\Desktop\OBL-Asadurian-Reyes\OBLDA2\DataAccessTest\bin\Debug\netcoreapp3.1\zh-Hant\Microsoft.TestPlatform.CommunicationUtilities.resources.dll
 C:\Users\hreye\Desktop\OBL-Asadurian-Reyes\OBLDA2\DataAccessTest\bin\Debug\netcoreapp3.1\zh-Hant\Microsoft.TestPlatform.CrossPlatEngine.resources.dll
 C:\Users\hreye\Desktop\OBL-Asadurian-Reyes\OBLDA2\DataAccessTest\bin\Debug\netcoreapp3.1\zh-Hant\Microsoft.VisualStudio.TestPlatform.Common.resources.dll
-C:\Users\hreye\Desktop\OBL-Asadurian-Reyes\OBLDA2\DataAccessTest\obj\Debug\netcoreapp3.1\DataAccessTest.csproj.AssemblyReference.cache
 C:\Users\hreye\Desktop\OBL-Asadurian-Reyes\OBLDA2\DataAccessTest\obj\Debug\netcoreapp3.1\DataAccessTest.GeneratedMSBuildEditorConfig.editorconfig
 C:\Users\hreye\Desktop\OBL-Asadurian-Reyes\OBLDA2\DataAccessTest\obj\Debug\netcoreapp3.1\DataAccessTest.AssemblyInfoInputs.cache
 C:\Users\hreye\Desktop\OBL-Asadurian-Reyes\OBLDA2\DataAccessTest\obj\Debug\netcoreapp3.1\DataAccessTest.AssemblyInfo.cs

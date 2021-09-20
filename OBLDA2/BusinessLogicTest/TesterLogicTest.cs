@@ -77,10 +77,11 @@ namespace BusinessLogicTest
 
             project.developers.Add(tester);
 
+            State stateActive = new State(State.active);
             List<Bug> bugs = new List<Bug>
             {
-                new Bug(project, 1234, "Error de login", "Intento inicio de sesion", "2.0", StatesBug.active),
-                new Bug(project, 4321, "Error de UI", "Intento inicio de sesion", "2.1", StatesBug.active),
+                new Bug(project, 1234, "Error de login", "Intento inicio de sesion", "2.0", stateActive),
+                new Bug(project, 4321, "Error de UI", "Intento inicio de sesion", "2.1", stateActive),
             };
 
             List<Project> projects = new List<Project>();
@@ -123,7 +124,9 @@ namespace BusinessLogicTest
         public void CreateBugByTester()
         {
             Project project = new Project(new Guid(), "Montes Del Plata");
-            var bug = new Bug(project, 1, "Error de login", "Intento de sesión", "3.0", StatesBug.active);
+            State stateActive = new State(State.active);
+
+            var bug = new Bug(project, 1, "Error de login", "Intento de sesión", "3.0", stateActive);
 
             mockBug.Setup(x => x.Create(bug)).Returns(bug);
 

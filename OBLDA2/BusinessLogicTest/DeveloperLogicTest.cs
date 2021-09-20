@@ -71,10 +71,11 @@ namespace BusinessLogicTest
 
             project.developers.Add(developer);
 
+            State stateActive = new State(State.active);
             List<Bug> bugs = new List<Bug>
             {
-                new Bug(project, 1234, "Error de login", "Intento inicio de sesion", "2.0", StatesBug.active),
-                new Bug(project, 4321, "Error de UI", "Intento inicio de sesion", "2.1", StatesBug.active),
+                new Bug(project, 1234, "Error de login", "Intento inicio de sesion", "2.0", stateActive),
+                new Bug(project, 4321, "Error de UI", "Intento inicio de sesion", "2.1", stateActive),
             };
 
             List<Project> projects = new List<Project>();

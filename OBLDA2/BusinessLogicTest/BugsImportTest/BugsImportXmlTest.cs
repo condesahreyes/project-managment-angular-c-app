@@ -14,12 +14,13 @@ namespace BusinessLogicTest.BugsImportTest
         private readonly string fileAddress = @"..\..\..\FileImport\archivoXmlBugs.xml";
 
         private static Project project = new Project(new Guid(), "Proyecto en xml");
+        private static State activeState = new State(State.active);
 
         private List<Bug> bugsInXml = new List<Bug>{
             new Bug(project, 1, "Error en el envío de correo 2", "El error se " +
-                "produce cuando el usuario no tiene un correo asignado", "1.0", "Activo"),
+                "produce cuando el usuario no tiene un correo asignado", "1.0", activeState),
             new Bug(project, 2, "Error en el envío de correo 2", "El error se produce cuando el" +
-                " usuario no tiene un correo asignado 2", "1.0", "Activo")
+                " usuario no tiene un correo asignado 2", "1.0", activeState)
         };
 
         private Mock<IBugLogic> bugLogic;

@@ -51,7 +51,7 @@ namespace BusinessLogic.UserRol
         {
             Bug activeBug = CloneBug(bug);
 
-            activeBug.State = StatesBug.active;
+            activeBug.State.Name = State.active;
 
             bugLogic.Update(bug.Id, activeBug);
 
@@ -62,7 +62,7 @@ namespace BusinessLogic.UserRol
         {
             Bug doneBug = CloneBug(bug);
 
-            doneBug.State = StatesBug.done;
+            doneBug.State.Name = State.done;
 
             bugLogic.Update(bug.Id, doneBug);
 

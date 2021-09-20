@@ -13,10 +13,10 @@ namespace Domain
         public string Name { get; set; }
         public string Domain { get; set; }
         public string Version { get; set; }
-        public string State { get; set; }
+        public State State { get; set; }
 
         public Bug(Project project, int id, string name, 
-            string domain, string version, string state)
+            string domain, string version, State state)
         {
             this.Project = project;
             this.Id = id;
@@ -28,24 +28,10 @@ namespace Domain
 
         public static void AreCorrectData(Bug oneBug)
         {
-            IsValidState(oneBug.State);
             IsValidId(oneBug.Id);
             IsValidName(oneBug.Name);
             IsValidDomain(oneBug.Domain);
             IsValidVersion(oneBug.Version);
-        }
-
-        private static void IsValidState(string state)
-        {
-            for (int i = 0; i < StatesBug.all.Length; i++)
-            {
-                if (StatesBug.all[i] == state.ToLower())
-                {
-                    return;
-                }
-            }
-
-            throw new Exception("");
         }
 
         private static void IsValidId(int oneId)

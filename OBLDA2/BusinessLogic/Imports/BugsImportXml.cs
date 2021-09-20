@@ -28,7 +28,7 @@ namespace BusinessLogic.Imports
             string name="";
             string domain="";
             string version="";
-            string state="";
+            string stateString="";
 
             XmlReader reader = XmlReader.Create(fileAddress);
 
@@ -54,7 +54,8 @@ namespace BusinessLogic.Imports
                             version = reader.ReadString();
                             break;
                         case "Estado":
-                            state = reader.ReadString();
+                            stateString = reader.ReadString();
+                            State state = new State(stateString);
                             bugs.Add(new Bug(project, id, name, domain, version, state));
                             break;
                     }

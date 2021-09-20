@@ -11,8 +11,8 @@ namespace BusinessLogicTest.BugsImportTest
     [TestClass]
     public class BugsImportTest
     {
-        private static string activeStatus = "Activo";
-        private static string doneStatus = "Resuelto";
+        private static State activeStatus = new State(State.active);
+        private static State doneStatus = new State(State.done);
 
         private static Project project = new Project(new Guid(), "Proyecto en xml");
 

@@ -13,11 +13,13 @@ namespace BusinessLogicTest
     public class BugLogicTest
     {
         private Mock<IRepository<Bug, int>> mock;
+        private Mock<IRepository<State, Guid>> stateMock;
 
         private static Project project = new Project(new Guid(), "Montes Del Plata");
+        private static State stateActive = new State(State.active);
+        private static State stateResolved = new State(State.done);
 
         private static string domain = "Al intentar iniciar sesión, no reconoce usuario";
-        private static string stateResolved = "Resuelto";
         private static string otherName = "Error de UI";
         private static string name = "Error de login";
         private static string version = "3.0";
@@ -31,15 +33,28 @@ namespace BusinessLogicTest
         public void Setup()
         {
             mock = new Mock<IRepository<Bug, int>>(MockBehavior.Strict);
+            stateMock = new Mock<IRepository<State, Guid>>(MockBehavior.Strict);
             InicializarBugs();
+            ConfigurationStateMock();
         }
 
         private void InicializarBugs()
         {
             Project project = new Project(new Guid(), "Montes Del Plata");
+            State state = new State(State.active);
 
-            bug = new Bug(project, id, name, domain, version, StatesBug.active);
-            otherBug = new Bug(project, id, otherName, domain, version, StatesBug.active);
+            bug = new Bug(project, id, name, domain, version, state);
+            otherBug = new Bug(project, id, otherName, domain, version, state);
+        }
+
+        private void ConfigurationStateMock()
+        {
+            List<State> states = new List<State>
+            {
+                stateActive, stateResolved,
+            };
+
+            stateMock.Setup(x => x.GetAll()).Returns(states);
         }
 
         [TestMethod]
@@ -47,7 +62,7 @@ namespace BusinessLogicTest
         {
             mock.Setup(x => x.Create(bug)).Returns(bug);
 
-            var bugLogic = new BugLogic(mock.Object);
+            var bugLogic = new BugLogic(mock.Object, stateMock.Object);
 
             Bug bugSaved = bugLogic.Create(bug);
 
@@ -61,7 +76,7 @@ namespace BusinessLogicTest
         {
             mock.Setup(x => x.Create(bug)).Returns(bug);
 
-            var bugLogic = new BugLogic(mock.Object);
+            var bugLogic = new BugLogic(mock.Object, stateMock.Object);
 
             Bug bugSaved = bugLogic.Create(bug);
 
@@ -75,11 +90,11 @@ namespace BusinessLogicTest
         public void CreateBugInvalidId()
         {
             var bugInvalidProject = new Bug(project, 12345,
-                name, domain, version, StatesBug.active);
+                name, domain, version, stateActive);
 
             mock.Setup(x => x.Create(bugInvalidProject)).Returns(bugInvalidProject);
 
-            var bugLogic = new BugLogic(mock.Object);
+            var bugLogic = new BugLogic(mock.Object, stateMock.Object);
 
             Bug bugSaved = bugLogic.Create(bugInvalidProject);
         }
@@ -88,12 +103,13 @@ namespace BusinessLogicTest
         [ExpectedException(typeof(Exception))]
         public void CreateBugInvalidName()
         {
+            State stateActive = new State(State.active);
             var bugInvalidName = new Bug(project, id, "Nombre mayor a 60 caracteres " +
-                "Nombre mayor a 60 caracteres mal", domain, version, StatesBug.active);
+                "Nombre mayor a 60 caracteres mal", domain, version, stateActive);
 
             mock.Setup(x => x.Create(bugInvalidName)).Returns(bugInvalidName);
 
-            var bugLogic = new BugLogic(mock.Object);
+            var bugLogic = new BugLogic(mock.Object, stateMock.Object);
 
             Bug bugSaved = bugLogic.Create(bugInvalidName);
         }
@@ -104,11 +120,11 @@ namespace BusinessLogicTest
         {
             var bugInvalidDomain = new Bug(project, id, name, "Dominio mayor a 150 caracteres " +
                 "Dominio mayor a 150 caracteres Dominio mayor a 150 caracteres Dominio mayor " +
-                "a 150 caracteres Dominio mayor a 150 caracteres 123456789", version, StatesBug.active);
+                "a 150 caracteres Dominio mayor a 150 caracteres 123456789", version, stateActive);
 
             mock.Setup(x => x.Create(bugInvalidDomain)).Returns(bugInvalidDomain);
 
-            var bugLogic = new BugLogic(mock.Object);
+            var bugLogic = new BugLogic(mock.Object, stateMock.Object);
 
             Bug bugSaved = bugLogic.Create(bugInvalidDomain);
         }
@@ -117,11 +133,11 @@ namespace BusinessLogicTest
         [ExpectedException(typeof(Exception))]
         public void CreateBugInvalidVersion()
         {
-            var bugInvalidVersion = new Bug(project, id, name, domain, "mayor a 10 ", StatesBug.active);
+            var bugInvalidVersion = new Bug(project, id, name, domain, "mayor a 10 ", stateActive);
 
             mock.Setup(x => x.Create(bugInvalidVersion)).Returns(bugInvalidVersion);
 
-            var bugLogic = new BugLogic(mock.Object);
+            var bugLogic = new BugLogic(mock.Object, stateMock.Object);
 
             Bug bugSaved = bugLogic.Create(bugInvalidVersion);
         }
@@ -130,11 +146,12 @@ namespace BusinessLogicTest
         [ExpectedException(typeof(Exception))]
         public void CreateBugInvalidState()
         {
-            var bugInvalidState = new Bug(project, id, name, domain, version, "desactivado");
+            State invalidState = new State("desactivado");
+            var bugInvalidState = new Bug(project, id, name, domain, version, invalidState);
 
             mock.Setup(x => x.Create(bugInvalidState)).Returns(bugInvalidState);
 
-            var bugLogic = new BugLogic(mock.Object);
+            var bugLogic = new BugLogic(mock.Object, stateMock.Object);
 
             Bug bugSaved = bugLogic.Create(bugInvalidState);
         }
@@ -145,7 +162,7 @@ namespace BusinessLogicTest
             List<Bug> bugs = new List<Bug> { bug, otherBug };
 
             mock.Setup(r => r.GetAll()).Returns(bugs);
-            var bugLogic = new BugLogic(mock.Object);
+            var bugLogic = new BugLogic(mock.Object, stateMock.Object);
 
             List<Bug> bugsSaved = bugLogic.GetAll();
 
@@ -161,7 +178,7 @@ namespace BusinessLogicTest
             mock.Setup(r => r.GetAll()).Returns(bugs);
             mock.Setup(r => r.Delete(bug.Id));
 
-            var bugLogic = new BugLogic(mock.Object);
+            var bugLogic = new BugLogic(mock.Object, stateMock.Object);
 
             bugLogic.Delete(bug.Id);
 
@@ -176,11 +193,11 @@ namespace BusinessLogicTest
         public void UpdateBugProject()
         {
             Project newProject = new Project(new Guid(), "Nuevo proyecto");
-            var bugUpdate = new Bug(newProject, id, name, domain, version, StatesBug.active);
+            var bugUpdate = new Bug(newProject, id, name, domain, version, stateActive);
 
             mock.Setup(r => r.Update(bug.Id, bugUpdate)).Returns(bugUpdate);
 
-            var bugLogic = new BugLogic(mock.Object);
+            var bugLogic = new BugLogic(mock.Object, stateMock.Object);
             var bugNew = bugLogic.Update(bug.Id, bugUpdate);
 
             mock.VerifyAll();
@@ -191,11 +208,11 @@ namespace BusinessLogicTest
         [TestMethod]
         public void UpdateBugName()
         {
-            var bugUpdate = new Bug(project, id, otherName, domain, version, StatesBug.active);
+            var bugUpdate = new Bug(project, id, otherName, domain, version, stateActive);
 
             mock.Setup(r => r.Update(bug.Id, bugUpdate)).Returns(bugUpdate);
 
-            var bugLogic = new BugLogic(mock.Object);
+            var bugLogic = new BugLogic(mock.Object, stateMock.Object);
             var bugNew = bugLogic.Update(bug.Id, bugUpdate);
 
             mock.VerifyAll();
@@ -206,10 +223,10 @@ namespace BusinessLogicTest
         [TestMethod]
         public void UpdateBugDomain()
         {
-            var bugUpdate = new Bug(project, id, otherName, "Otro dominio", version, StatesBug.active);
+            var bugUpdate = new Bug(project, id, otherName, "Otro dominio", version, stateActive);
             mock.Setup(r => r.Update(bug.Id, bugUpdate)).Returns(bugUpdate);
 
-            var bugLogic = new BugLogic(mock.Object);
+            var bugLogic = new BugLogic(mock.Object, stateMock.Object);
             var bugNew = bugLogic.Update(bug.Id, bugUpdate);
 
             mock.VerifyAll();
@@ -220,11 +237,11 @@ namespace BusinessLogicTest
         [TestMethod]
         public void UpdateBugVersion()
         {
-            var bugUpdate = new Bug(project, id, otherName, domain, "3.5", StatesBug.active);
+            var bugUpdate = new Bug(project, id, otherName, domain, "3.5", stateActive);
 
             mock.Setup(r => r.Update(bug.Id, bugUpdate)).Returns(bugUpdate);
 
-            var bugLogic = new BugLogic(mock.Object);
+            var bugLogic = new BugLogic(mock.Object, stateMock.Object);
             var bugNew = bugLogic.Update(bug.Id, bugUpdate);
 
             mock.VerifyAll();
@@ -239,7 +256,7 @@ namespace BusinessLogicTest
 
             mock.Setup(r => r.Update(bug.Id, bugUpdate)).Returns(bugUpdate);
 
-            var bugLogic = new BugLogic(mock.Object);
+            var bugLogic = new BugLogic(mock.Object, stateMock.Object);
             var bugNew = bugLogic.Update(bug.Id, bugUpdate);
 
             mock.VerifyAll();
@@ -251,7 +268,7 @@ namespace BusinessLogicTest
         {
             mock.Setup(r => r.Get(bug.Id)).Returns(bug);
 
-            var bugLogic = new BugLogic(mock.Object);
+            var bugLogic = new BugLogic(mock.Object, stateMock.Object);
 
             Bug bugGet = bugLogic.Get(bug.Id);
 
