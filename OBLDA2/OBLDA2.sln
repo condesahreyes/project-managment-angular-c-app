@@ -3,13 +3,23 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.31624.102
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OBLDA2", "OBLDA2\OBLDA2.csproj", "{1C9B44BF-8BCF-469A-ACF7-7BEEEEF02E7C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OBLDA2", "OBLDA2\OBLDA2.csproj", "{1C9B44BF-8BCF-469A-ACF7-7BEEEEF02E7C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataAccess", "DataAccess\DataAccess.csproj", "{EDD3D9B6-6CC2-4DDC-8F4D-C244F901AFE5}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DataAccess", "DataAccess\DataAccess.csproj", "{EDD3D9B6-6CC2-4DDC-8F4D-C244F901AFE5}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Domain", "Domain\Domain.csproj", "{FE1C4CD5-11DD-46ED-B0CC-AA2F5C686E7B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Domain", "Domain\Domain.csproj", "{FE1C4CD5-11DD-46ED-B0CC-AA2F5C686E7B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataAccessTest", "DataAccessTest\DataAccessTest.csproj", "{3893217F-8A82-476A-A475-FE7C711D41B5}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DataAccessTest", "DataAccessTest\DataAccessTest.csproj", "{3893217F-8A82-476A-A475-FE7C711D41B5}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BusinessLogic", "BusinessLogic\BusinessLogic.csproj", "{148C3DF4-56B8-4BB7-A9A0-104A5B59B6E5}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BusinessLogicInterface", "BusinessLogicInterface\BusinessLogicInterface.csproj", "{CD12BAFE-070E-46AF-9CE4-30BBAC653EB9}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataAccessInterface", "DataAccesInterface\DataAccessInterface.csproj", "{9935C1D4-47BF-42CC-B38D-E1A2C9EC3C53}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BusinessLogicTest", "BusinessLogicTest\BusinessLogicTest.csproj", "{B5DC0E7C-C3EE-41BB-8120-F3653913CC1E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebApiTest", "WebApiTest\WebApiTest.csproj", "{4AC47473-38BF-4033-A4B0-68082CE58E50}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -33,6 +43,26 @@ Global
 		{3893217F-8A82-476A-A475-FE7C711D41B5}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3893217F-8A82-476A-A475-FE7C711D41B5}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3893217F-8A82-476A-A475-FE7C711D41B5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{148C3DF4-56B8-4BB7-A9A0-104A5B59B6E5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{148C3DF4-56B8-4BB7-A9A0-104A5B59B6E5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{148C3DF4-56B8-4BB7-A9A0-104A5B59B6E5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{148C3DF4-56B8-4BB7-A9A0-104A5B59B6E5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CD12BAFE-070E-46AF-9CE4-30BBAC653EB9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CD12BAFE-070E-46AF-9CE4-30BBAC653EB9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CD12BAFE-070E-46AF-9CE4-30BBAC653EB9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CD12BAFE-070E-46AF-9CE4-30BBAC653EB9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9935C1D4-47BF-42CC-B38D-E1A2C9EC3C53}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9935C1D4-47BF-42CC-B38D-E1A2C9EC3C53}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9935C1D4-47BF-42CC-B38D-E1A2C9EC3C53}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9935C1D4-47BF-42CC-B38D-E1A2C9EC3C53}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B5DC0E7C-C3EE-41BB-8120-F3653913CC1E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B5DC0E7C-C3EE-41BB-8120-F3653913CC1E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B5DC0E7C-C3EE-41BB-8120-F3653913CC1E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B5DC0E7C-C3EE-41BB-8120-F3653913CC1E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4AC47473-38BF-4033-A4B0-68082CE58E50}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4AC47473-38BF-4033-A4B0-68082CE58E50}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4AC47473-38BF-4033-A4B0-68082CE58E50}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4AC47473-38BF-4033-A4B0-68082CE58E50}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

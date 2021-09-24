@@ -13,11 +13,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\hreye\\Desktop\\OBLDA2\\DataAccessTest\\DataAccessTest.csproj",
+      "projectUniqueName": "C:\\Users\\hreye\\Desktop\\Diseño\\OBL-Asadurian-Reyes\\OBLDA2\\DataAccessTest\\DataAccessTest.csproj",
       "projectName": "DataAccessTest",
-      "projectPath": "C:\\Users\\hreye\\Desktop\\OBLDA2\\DataAccessTest\\DataAccessTest.csproj",
+      "projectPath": "C:\\Users\\hreye\\Desktop\\Diseño\\OBL-Asadurian-Reyes\\OBLDA2\\DataAccessTest\\DataAccessTest.csproj",
       "packagesPath": "C:\\Users\\hreye\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\hreye\\Desktop\\OBLDA2\\DataAccessTest\\obj\\",
+      "outputPath": "C:\\Users\\hreye\\Desktop\\Diseño\\OBL-Asadurian-Reyes\\OBLDA2\\DataAccessTest\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\hreye\\AppData\\Roaming\\NuGet\\NuGet.Config",

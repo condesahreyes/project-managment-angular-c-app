@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "syscYK4DRmBI2aqe45IqHSmWsChqTPB07PcBSVtoWl8xRyeTAdssmaos9a6SF1YA8ahlQQhz60v1fZrFB6XEcw==",
+  "dgSpecHash": "CAaZkslPEXG0rhKtEH5sx2OWdL1zCMAB4g8ScpJu6TciQU/3AWhB0gfStf9C6qveza3xiqe/Evc+2DPEALY+LQ==",
   "success": true,
-  "projectFilePath": "C:\\Users\\hreye\\Desktop\\OBLDA2\\OBLDA2\\OBLDA2.csproj",
+  "projectFilePath": "C:\\Users\\hreye\\Desktop\\Diseño\\OBL-Asadurian-Reyes\\OBLDA2\\OBLDA2\\OBLDA2.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\hreye\\.nuget\\packages\\entityframeworkcore.mappingextension\\2.0.0\\entityframeworkcore.mappingextension.2.0.0.nupkg.sha512",
     "C:\\Users\\hreye\\.nuget\\packages\\humanizer.core\\2.8.26\\humanizer.core.2.8.26.nupkg.sha512",
