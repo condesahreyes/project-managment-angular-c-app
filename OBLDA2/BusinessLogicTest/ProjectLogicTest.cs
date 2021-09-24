@@ -34,7 +34,7 @@ namespace BusinessLogicTest
             projectMock = new Mock<IProjectLogic>(MockBehavior.Strict);
             bugMock = new Mock<IBugLogic>(MockBehavior.Strict);
 
-            this.projectLogic = new ProjectLogic(mock.Object, projectMock.Object, bugMock.Object);
+            this.projectLogic = new ProjectLogic(mock.Object, bugMock.Object);
 
             Guid id = new Guid();
             project = new Project(id, "Project - Pineapple ");

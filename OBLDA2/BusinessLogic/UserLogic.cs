@@ -12,14 +12,29 @@ namespace BusinessLogic
         private IRepository<User, Guid> userDA;
         private IRepository<Rol, Guid> rolRepository;
 
+        public UserLogic() { }
+
         public UserLogic(IRepository<User, Guid> UserDA, IRepository<Rol, Guid> rolRepository)
         {
             this.userDA = UserDA;
             this.rolRepository = rolRepository;
         }
 
-        public UserLogic()
+        public User Get(Guid id)
         {
+            User user = userDA.Get(id);
+
+            if (user == null)
+            {
+                throw new Exception("User does not exist");
+            }
+
+            return user;
+        }
+
+        public List<User> GetAll()
+        {
+            return userDA.GetAll();
         }
 
         public User Create(User userToCreate)
@@ -54,23 +69,6 @@ namespace BusinessLogic
 
             if (!roles.Contains(rol))
                 throw new Exception();
-        }
-
-        public User Get(Guid id)
-        {
-            User user = userDA.Get(id);
-
-            if (user == null)
-            {
-                throw new Exception("User does not exist");
-            }
-
-            return user;
-        }
-
-        public List<User> GetAll()
-        {
-            return userDA.GetAll();
         }
 
     }

@@ -69,7 +69,7 @@ namespace BusinessLogicTest
         {
             Project project = new Project(new Guid(), "Montes Del Plata");
 
-            project.developers.Add(developer);
+            project.Users.Add(developer);
 
             State stateActive = new State(State.active);
             List<Bug> bugs = new List<Bug>
@@ -81,7 +81,7 @@ namespace BusinessLogicTest
             List<Project> projects = new List<Project>();
             projects.Add(project);
 
-            project.incidentes.AddRange(bugs);
+            project.Bugs.AddRange(bugs);
 
             mockProject.Setup(r => r.GetAll()).Returns(projects);
             var bugLogic = new DeveloperLogic(mockUser.Object, mockProject.Object, mockRol.Object, mockBug.Object);

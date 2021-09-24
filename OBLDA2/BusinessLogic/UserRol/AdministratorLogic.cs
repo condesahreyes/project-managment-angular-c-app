@@ -50,7 +50,7 @@ namespace BusinessLogic
 
         public User Get(Guid id)
         {
-            var getUser = this.userLogic.Get(id);
+            User getUser = this.userLogic.Get(id);
 
             if (getUser == null || !getUser.Rol.Name.Equals(Rol.administrator))
             {
@@ -127,7 +127,7 @@ namespace BusinessLogic
 
             foreach (var project in projects)
             {
-                total += project.totalBugs;
+                total += project.TotalBugs;
             }
 
             return total;

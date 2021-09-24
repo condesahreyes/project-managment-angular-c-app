@@ -9,20 +9,14 @@ namespace BusinessLogic.UserRol
     public class ProjectLogic : IProjectLogic
     {
         private IRepository<Project, Guid> projectDa;
-
-        private IProjectLogic projectLogic;
         private IBugLogic bugLogic;
 
-        public ProjectLogic(IRepository<Project, Guid> ProjectDa, 
-            IProjectLogic projectLogic, IBugLogic bugLogic)
+        public ProjectLogic() { }
+
+        public ProjectLogic(IRepository<Project, Guid> ProjectDa, IBugLogic bugLogic)
         {
             this.projectDa = ProjectDa;
-            this.projectLogic = projectLogic;
             this.bugLogic = bugLogic;
-        }
-
-        public ProjectLogic()
-        {
         }
 
         public Project Create(Project projectToCreate)
@@ -30,6 +24,20 @@ namespace BusinessLogic.UserRol
             Project.ValidateName(projectToCreate.Name);
 
             return projectDa.Create(projectToCreate);
+        }
+
+        public Project Get(Guid id)
+        {
+            Project projcet = projectDa.Get(id);
+
+            if (projcet != null)
+            {
+                return projcet;
+            }
+            else
+            {
+                throw new Exception("Project does not exist");
+            }
         }
 
         public Project Update(Guid id, Project updatedProject)
@@ -44,43 +52,43 @@ namespace BusinessLogic.UserRol
             projectDa.Delete(id);
         }
 
-        public void DeleteTester(Project project, User tester)
+        public void DeleteTester(Project oneProject, User tester)
         {
-            var proj = projectDa.Get(project.Id);
+            Project project = projectDa.Get(oneProject.Id);
 
-              if (proj.testers.Contains(tester))
+              if (project.Users.Contains(tester))
               {
-                 proj.testers.Remove(tester);
+                project.Users.Remove(tester);
               }
         }
 
-        public void DeleteDeveloper(Project project, User developer)
+        public void DeleteDeveloper(Project oneProject, User developer)
         {
-            var proj = projectDa.Get(project.Id);
+            Project project = projectDa.Get(oneProject.Id);
 
-            if (proj.developers.Contains(developer))
+            if (project.Users.Contains(developer))
             {
-                proj.developers.Remove(developer);
+                project.Users.Remove(developer);
             }
         }
 
-        public void AssignDeveloper(Project project, User developer)
+        public void AssignDeveloper(Project oneProject, User developer)
         {
-            var proj = projectDa.Get(project.Id);
+            Project project = projectDa.Get(oneProject.Id);
 
-            if (!proj.developers.Contains(developer))
+            if (!project.Users.Contains(developer))
             {
-                proj.developers.Add(developer);
+                project.Users.Add(developer);
             }
         }
 
-        public void AssignTester(Project project, User tester)
+        public void AssignTester(Project oneProject, User tester)
         {
-            var proj = projectDa.Get(project.Id);
+            Project project = projectDa.Get(oneProject.Id);
 
-            if (!proj.testers.Contains(tester))
+            if (!project.Users.Contains(tester))
             {
-                proj.testers.Add(tester);
+                project.Users.Add(tester);
             }
         }
 
@@ -89,23 +97,39 @@ namespace BusinessLogic.UserRol
             return projectDa.GetAll();
         }
 
-        public List<User> GetAllTesters(Project project)
+        public List<User> GetAllTesters(Project oneProject)
         {
-            var proj = projectDa.Get(project.Id);
+            List<User> testers = new List<User>();
 
-            return proj.testers;
+            Project project = projectDa.Get(oneProject.Id);
+
+            foreach (User user in project.Users)
+            {
+                if (user.Rol.Name == Rol.tester)
+                    testers.Add(user);
+            }
+
+            return testers;
         }
 
-        public List<User> GetAllDevelopers(Project project)
+        public List<User> GetAllDevelopers(Project oneProject)
         {
-            var proj = projectDa.Get(project.Id);
+            List<User> developers = new List<User>();
 
-            return proj.developers;
+            Project project = projectDa.Get(oneProject.Id);
+
+            foreach (User user in project.Users)
+            {
+                if (user.Rol.Name == Rol.developer)
+                    developers.Add(user);
+            }
+
+            return developers;
         }
 
         public List<Bug> GetAllBugByProject(Project project)
         {
-            List<Bug> bugs = bugLogic.GetAll();
+            List<Bug> bugs = bugLogic.GetAll();  // ESTO PODRIA SER GER(PROJECT.ID) Y DEVOLVE PROJECT.BUGS
             List<Bug> bugsByProject = new List<Bug>();
 
             foreach (Bug bug in bugs)
@@ -113,19 +137,6 @@ namespace BusinessLogic.UserRol
                     bugsByProject.Add(bug);
 
             return bugsByProject;
-        }
-
-        public Project Get(Guid id)
-        {
-            var projcet = projectDa.Get(id);
-            if (projcet != null)
-            {
-                return projcet;
-            }
-            else
-            {
-                throw new Exception("Project does not exist");
-            }
         }
 
     }

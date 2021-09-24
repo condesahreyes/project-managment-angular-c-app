@@ -24,7 +24,7 @@ namespace BusinessLogic.UserRol
 
         public List<User> GetAll()
         {
-            List<User> users = (List<User>)userRepository.GetAll();
+            List<User> users = userRepository.GetAll();
 
             List<User> testers = new List<User>();
             foreach (User user in users)
@@ -67,8 +67,8 @@ namespace BusinessLogic.UserRol
             List<Bug> bugs = new List<Bug>();
 
             foreach (var project in allProjects)
-                if (project.developers.Contains(tester))
-                    bugs.AddRange(project.incidentes);
+                if (project.Users.Contains(tester))
+                    bugs.AddRange(project.Bugs);
 
             return bugs;
         }

@@ -41,8 +41,8 @@ namespace BusinessLogic.UserRol
             List<Bug> bugs = new List<Bug>();
 
             foreach (var project in allProjects)
-                if (project.developers.Contains(developer))
-                    bugs.AddRange(project.incidentes);
+                if (project.Users.Contains(developer))
+                    bugs.AddRange(project.Bugs);
 
             return bugs;
         }

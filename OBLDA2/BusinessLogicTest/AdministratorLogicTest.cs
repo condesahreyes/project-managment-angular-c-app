@@ -239,7 +239,7 @@ namespace BusinessLogicTest
         {
             Guid id = new Guid();
             Project pro = new Project(id,"New");
-            pro.totalBugs = 5;
+            pro.TotalBugs = 5;
 
             List<Project> list = new List<Project>();
             list.Add(pro);

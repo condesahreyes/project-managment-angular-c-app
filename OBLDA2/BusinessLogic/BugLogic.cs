@@ -31,19 +31,9 @@ namespace BusinessLogic
             return bug;
         }
 
-        private void IsValidState(State state)
+        public Bug Get(int id)
         {
-            List<State> states = stateRepository.GetAll();
-            
-            foreach (State oneState in states)
-            {
-                if (oneState.Name == state.Name.ToLower())
-                {
-                    return;
-                }
-            }
-
-            throw new Exception("");
+            return bugRepository.Get(id);
         }
 
         public void Delete(int id)
@@ -69,9 +59,20 @@ namespace BusinessLogic
             Bug.AreCorrectData(bug);
         }
 
-        public Bug Get(int id)
+        private void IsValidState(State state)
         {
-            return bugRepository.Get(id);
+            List<State> states = stateRepository.GetAll();
+
+            foreach (State oneState in states)
+            {
+                if (oneState.Name == state.Name.ToLower())
+                {
+                    return;
+                }
+            }
+
+            throw new Exception("");
         }
+
     }
 }
