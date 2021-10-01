@@ -1,10 +1,9 @@
-﻿using Domain;
-using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Configuration;
+﻿using Microsoft.Extensions.Configuration;
 using System.Diagnostics.CodeAnalysis;
-using System.IO;
+using Microsoft.EntityFrameworkCore;
 using System.Reflection;
-
+using System.IO;
+using Domain;
 
 namespace DataAccess
 {
@@ -34,13 +33,12 @@ namespace DataAccess
         {
             if (!optionsBuilder.IsConfigured)
             {
-                string directory = Directory.GetCurrentDirectory();
-                IConfigurationRoot configuration = new ConfigurationBuilder()
-                .SetBasePath(directory)
-                .AddJsonFile("appsettings.json")
-                .Build();
-                var connectionString = @"Server=localhost\SQLEXPRESS;Database=OBL2;Trusted_Connection=True;MultipleActiveResultSets=True;";
-                optionsBuilder.UseSqlServer(connectionString);
+                IConfiguration configuration = new ConfigurationBuilder()
+                    .SetBasePath(Directory.GetCurrentDirectory())
+                    .AddJsonFile("ConfigurationDataBase.json", optional: false).Build();
+
+                string connection = configuration["BD"];
+                optionsBuilder.UseSqlServer(connection);
             }
         }
     }

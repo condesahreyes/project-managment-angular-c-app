@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "T6Il3qhn30rrhX03bzPjfxlL/7f2RaBwOKg9Rl1/tTpu1qJoQUncYyCdDlfcpLzJhNGAiwo4yKlQBorlzVY6Kw==",
+  "dgSpecHash": "UiRl75CMqfS9iMKEV4LYpkGGYgzHZSbSk6nLaKsyRYvxBfdnWjv0kVnbSVpeaxm5sye3E8C3R5u+WZ7RIY8Oaw==",
   "success": true,
-  "projectFilePath": "C:\\Users\\hreye\\Desktop\\Diseño\\OBL-Asadurian-Reyes\\OBLDA2\\BusinessLogic\\BusinessLogic.csproj",
+  "projectFilePath": "C:\\Users\\hreye\\Desktop\\Trabajando en el repo\\OBL-Asadurian-Reyes\\OBLDA2\\BusinessLogic\\BusinessLogic.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\hreye\\.nuget\\packages\\entityframeworkcore.mappingextension\\2.0.0\\entityframeworkcore.mappingextension.2.0.0.nupkg.sha512",
     "C:\\Users\\hreye\\.nuget\\packages\\microsoft.csharp\\4.5.0\\microsoft.csharp.4.5.0.nupkg.sha512",

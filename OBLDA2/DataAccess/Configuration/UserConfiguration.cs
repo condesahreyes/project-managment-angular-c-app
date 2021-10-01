@@ -1,6 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using System;
+﻿using Microsoft.EntityFrameworkCore.Metadata.Builders;
+using Microsoft.EntityFrameworkCore;
 using Domain;
 
 namespace DataAccess.Configuration
@@ -10,6 +9,9 @@ namespace DataAccess.Configuration
         public void Configure(EntityTypeBuilder<User> builder)
         {
             builder.HasKey(a => a.Id);
+
+            builder.HasMany(p => p.Projects)
+                .WithMany(u => u.Users).UsingEntity(j => j.ToTable("UsersProject"));
         }
     }
 }

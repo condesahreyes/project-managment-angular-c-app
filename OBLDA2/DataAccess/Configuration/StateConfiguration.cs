@@ -1,7 +1,6 @@
-﻿using Domain;
+﻿using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using System;
+using Domain;
 
 namespace DataAccess.Configuration
 {

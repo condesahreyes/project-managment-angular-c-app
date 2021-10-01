@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\hreye\\Desktop\\Diseño\\OBL-Asadurian-Reyes\\OBLDA2\\DataAccess\\DataAccess.csproj": {}
+    "C:\\Users\\hreye\\Desktop\\Trabajando en el repo\\OBL-Asadurian-Reyes\\OBLDA2\\DataAccess\\DataAccess.csproj": {}
   },
   "projects": {
-    "C:\\Users\\hreye\\Desktop\\Diseño\\OBL-Asadurian-Reyes\\OBLDA2\\DataAccessTest\\DataAccessTest.csproj": {
+    "C:\\Users\\hreye\\Desktop\\Trabajando en el repo\\OBL-Asadurian-Reyes\\OBLDA2\\DataAccessTest\\DataAccessTest.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\hreye\\Desktop\\Diseño\\OBL-Asadurian-Reyes\\OBLDA2\\DataAccessTest\\DataAccessTest.csproj",
+        "projectUniqueName": "C:\\Users\\hreye\\Desktop\\Trabajando en el repo\\OBL-Asadurian-Reyes\\OBLDA2\\DataAccessTest\\DataAccessTest.csproj",
         "projectName": "DataAccessTest",
-        "projectPath": "C:\\Users\\hreye\\Desktop\\Diseño\\OBL-Asadurian-Reyes\\OBLDA2\\DataAccessTest\\DataAccessTest.csproj",
+        "projectPath": "C:\\Users\\hreye\\Desktop\\Trabajando en el repo\\OBL-Asadurian-Reyes\\OBLDA2\\DataAccessTest\\DataAccessTest.csproj",
         "packagesPath": "C:\\Users\\hreye\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\hreye\\Desktop\\Diseño\\OBL-Asadurian-Reyes\\OBLDA2\\DataAccessTest\\obj\\",
+        "outputPath": "C:\\Users\\hreye\\Desktop\\Trabajando en el repo\\OBL-Asadurian-Reyes\\OBLDA2\\DataAccessTest\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\hreye\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -58,14 +58,14 @@
         }
       }
     },
-    "C:\\Users\\hreye\\Desktop\\Diseño\\OBL-Asadurian-Reyes\\OBLDA2\\DataAccess\\DataAccess.csproj": {
+    "C:\\Users\\hreye\\Desktop\\Trabajando en el repo\\OBL-Asadurian-Reyes\\OBLDA2\\DataAccess\\DataAccess.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\hreye\\Desktop\\Diseño\\OBL-Asadurian-Reyes\\OBLDA2\\DataAccess\\DataAccess.csproj",
+        "projectUniqueName": "C:\\Users\\hreye\\Desktop\\Trabajando en el repo\\OBL-Asadurian-Reyes\\OBLDA2\\DataAccess\\DataAccess.csproj",
         "projectName": "DataAccess",
-        "projectPath": "C:\\Users\\hreye\\Desktop\\Diseño\\OBL-Asadurian-Reyes\\OBLDA2\\DataAccess\\DataAccess.csproj",
+        "projectPath": "C:\\Users\\hreye\\Desktop\\Trabajando en el repo\\OBL-Asadurian-Reyes\\OBLDA2\\DataAccess\\DataAccess.csproj",
         "packagesPath": "C:\\Users\\hreye\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\hreye\\Desktop\\Diseño\\OBL-Asadurian-Reyes\\OBLDA2\\DataAccess\\obj\\",
+        "outputPath": "C:\\Users\\hreye\\Desktop\\Trabajando en el repo\\OBL-Asadurian-Reyes\\OBLDA2\\DataAccess\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\hreye\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -82,11 +82,11 @@
           "net5.0": {
             "targetAlias": "net5.0",
             "projectReferences": {
-              "C:\\Users\\hreye\\Desktop\\Diseño\\OBL-Asadurian-Reyes\\OBLDA2\\DataAccessTest\\DataAccessTest.csproj": {
-                "projectPath": "C:\\Users\\hreye\\Desktop\\Diseño\\OBL-Asadurian-Reyes\\OBLDA2\\DataAccessTest\\DataAccessTest.csproj"
+              "C:\\Users\\hreye\\Desktop\\Trabajando en el repo\\OBL-Asadurian-Reyes\\OBLDA2\\DataAccessTest\\DataAccessTest.csproj": {
+                "projectPath": "C:\\Users\\hreye\\Desktop\\Trabajando en el repo\\OBL-Asadurian-Reyes\\OBLDA2\\DataAccessTest\\DataAccessTest.csproj"
               },
-              "C:\\Users\\hreye\\Desktop\\Diseño\\OBL-Asadurian-Reyes\\OBLDA2\\Domain\\Domain.csproj": {
-                "projectPath": "C:\\Users\\hreye\\Desktop\\Diseño\\OBL-Asadurian-Reyes\\OBLDA2\\Domain\\Domain.csproj"
+              "C:\\Users\\hreye\\Desktop\\Trabajando en el repo\\OBL-Asadurian-Reyes\\OBLDA2\\Domain\\Domain.csproj": {
+                "projectPath": "C:\\Users\\hreye\\Desktop\\Trabajando en el repo\\OBL-Asadurian-Reyes\\OBLDA2\\Domain\\Domain.csproj"
               }
             }
           }
@@ -159,14 +159,14 @@
         }
       }
     },
-    "C:\\Users\\hreye\\Desktop\\Diseño\\OBL-Asadurian-Reyes\\OBLDA2\\Domain\\Domain.csproj": {
+    "C:\\Users\\hreye\\Desktop\\Trabajando en el repo\\OBL-Asadurian-Reyes\\OBLDA2\\Domain\\Domain.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\hreye\\Desktop\\Diseño\\OBL-Asadurian-Reyes\\OBLDA2\\Domain\\Domain.csproj",
+        "projectUniqueName": "C:\\Users\\hreye\\Desktop\\Trabajando en el repo\\OBL-Asadurian-Reyes\\OBLDA2\\Domain\\Domain.csproj",
         "projectName": "Domain",
-        "projectPath": "C:\\Users\\hreye\\Desktop\\Diseño\\OBL-Asadurian-Reyes\\OBLDA2\\Domain\\Domain.csproj",
+        "projectPath": "C:\\Users\\hreye\\Desktop\\Trabajando en el repo\\OBL-Asadurian-Reyes\\OBLDA2\\Domain\\Domain.csproj",
         "packagesPath": "C:\\Users\\hreye\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\hreye\\Desktop\\Diseño\\OBL-Asadurian-Reyes\\OBLDA2\\Domain\\obj\\",
+        "outputPath": "C:\\Users\\hreye\\Desktop\\Trabajando en el repo\\OBL-Asadurian-Reyes\\OBLDA2\\Domain\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\hreye\\AppData\\Roaming\\NuGet\\NuGet.Config",

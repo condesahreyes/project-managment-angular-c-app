@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\hreye\\Desktop\\Diseño\\OBL-Asadurian-Reyes\\OBLDA2\\WebApiTest\\WebApiTest.csproj": {}
+    "C:\\Users\\hreye\\Desktop\\Trabajando en el repo\\OBL-Asadurian-Reyes\\OBLDA2\\WebApiTest\\WebApiTest.csproj": {}
   },
   "projects": {
-    "C:\\Users\\hreye\\Desktop\\Diseño\\OBL-Asadurian-Reyes\\OBLDA2\\WebApiTest\\WebApiTest.csproj": {
+    "C:\\Users\\hreye\\Desktop\\Trabajando en el repo\\OBL-Asadurian-Reyes\\OBLDA2\\WebApiTest\\WebApiTest.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\hreye\\Desktop\\Diseño\\OBL-Asadurian-Reyes\\OBLDA2\\WebApiTest\\WebApiTest.csproj",
+        "projectUniqueName": "C:\\Users\\hreye\\Desktop\\Trabajando en el repo\\OBL-Asadurian-Reyes\\OBLDA2\\WebApiTest\\WebApiTest.csproj",
         "projectName": "WebApiTest",
-        "projectPath": "C:\\Users\\hreye\\Desktop\\Diseño\\OBL-Asadurian-Reyes\\OBLDA2\\WebApiTest\\WebApiTest.csproj",
+        "projectPath": "C:\\Users\\hreye\\Desktop\\Trabajando en el repo\\OBL-Asadurian-Reyes\\OBLDA2\\WebApiTest\\WebApiTest.csproj",
         "packagesPath": "C:\\Users\\hreye\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\hreye\\Desktop\\Diseño\\OBL-Asadurian-Reyes\\OBLDA2\\WebApiTest\\obj\\",
+        "outputPath": "C:\\Users\\hreye\\Desktop\\Trabajando en el repo\\OBL-Asadurian-Reyes\\OBLDA2\\WebApiTest\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\hreye\\AppData\\Roaming\\NuGet\\NuGet.Config",
