@@ -14,7 +14,7 @@ namespace BusinessLogicTest.BugsImportTest
         private static State activeStatus = new State(State.active);
         private static State doneStatus = new State(State.done);
 
-        private static Project project = new Project(new Guid(), "Proyecto en xml");
+        private static Project project = new Project("Proyecto en xml");
 
         private List<Bug> bugs = new List<Bug>{
             new Bug(project, 1, "nombre1", "dominio1", "V 1.0", activeStatus),

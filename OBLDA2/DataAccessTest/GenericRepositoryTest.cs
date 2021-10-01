@@ -1,4 +1,4 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
 using Microsoft.Data.Sqlite;
@@ -9,13 +9,11 @@ using DataAccess;
 using Domain;
 using System;
 
-
 namespace DataAccessTest
 {
     [TestClass]
     public class GenericRepositoryTest
     {
-
         private DbContextOptions<DataContext> _contextOptions;
         private DbConnection _connection;
         private DataContext _context;
@@ -84,7 +82,7 @@ namespace DataAccessTest
             _context.Add(users.First());
             _context.SaveChanges();
 
-            List<User> usersDB = _userRepository.GetAll();
+            List<User> usersDB = _userRepository.GetAllGeneric();
 
             CollectionAssert.AreEqual(users, usersDB);
         }
@@ -112,7 +110,7 @@ namespace DataAccessTest
 
             _userRepository.Delete(user.Id);
 
-            List<User> usersBD = _userRepository.GetAll();
+            List<User> usersBD = _userRepository.GetAllGeneric();
 
             CollectionAssert.AreEqual(usersBD, new List<User>());
         }
@@ -140,7 +138,7 @@ namespace DataAccessTest
 
             return new User()
             {
-                Name = "Hernán",
+                Name = "Hern�n",
                 LastName = "Reyes",
                 UserName = "hreyes",
                 Password = "password",
@@ -159,7 +157,7 @@ namespace DataAccessTest
             _context.SaveChanges();
 
             var repository = new Repository<Rol, Guid>(_context);
-            rols = repository.GetAll();
+            rols = repository.GetAllGeneric();
 
             foreach (Rol oneRol in rols)
             {

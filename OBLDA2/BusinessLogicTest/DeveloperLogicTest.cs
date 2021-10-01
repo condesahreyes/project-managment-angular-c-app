@@ -31,7 +31,7 @@ namespace BusinessLogicTest
 
             CofnigurationMockRol();
 
-            developer = new User(new Guid(), "Diego", "Asadurian", "diegoAsa", "admin1234",
+            developer = new User("Diego", "Asadurian", "diegoAsa", "admin1234",
                 "diegoasadurian@gmail.com", roles[2]);
         }
 
@@ -41,12 +41,12 @@ namespace BusinessLogicTest
 
             roles = new List<Rol>
             {
-                new Rol(new Guid(), Rol.tester),
-                new Rol(new Guid(), Rol.administrator),
-                new Rol(new Guid(), Rol.developer),
+                new Rol(Rol.tester),
+                new Rol(Rol.administrator),
+                new Rol(Rol.developer),
             };
 
-            mockRol.Setup(x => x.GetAll()).Returns(roles);
+            mockRol.Setup(x => x.GetAllGeneric()).Returns(roles);
         }
 
         [TestMethod]
@@ -67,7 +67,7 @@ namespace BusinessLogicTest
         [TestMethod]
         public void GetAllBugs()
         {
-            Project project = new Project(new Guid(), "Montes Del Plata");
+            Project project = new Project("Montes Del Plata");
 
             project.Users.Add(developer);
 

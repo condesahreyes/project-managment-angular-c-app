@@ -94,7 +94,7 @@ namespace BusinessLogic.UserRol
 
         public List<Project> GetAll()
         {
-            return projectDa.GetAll();
+            return projectDa.GetAllGeneric();
         }
 
         public List<User> GetAllTesters(Project oneProject)

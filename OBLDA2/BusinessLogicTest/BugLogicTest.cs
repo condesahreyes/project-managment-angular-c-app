@@ -15,7 +15,7 @@ namespace BusinessLogicTest
         private Mock<IRepository<Bug, int>> mock;
         private Mock<IRepository<State, Guid>> stateMock;
 
-        private static Project project = new Project(new Guid(), "Montes Del Plata");
+        private static Project project = new Project("Montes Del Plata");
         private static State stateActive = new State(State.active);
         private static State stateResolved = new State(State.done);
 
@@ -40,7 +40,7 @@ namespace BusinessLogicTest
 
         private void InicializarBugs()
         {
-            Project project = new Project(new Guid(), "Montes Del Plata");
+            Project project = new Project("Montes Del Plata");
             State state = new State(State.active);
 
             bug = new Bug(project, id, name, domain, version, state);
@@ -54,7 +54,7 @@ namespace BusinessLogicTest
                 stateActive, stateResolved,
             };
 
-            stateMock.Setup(x => x.GetAll()).Returns(states);
+            stateMock.Setup(x => x.GetAllGeneric()).Returns(states);
         }
 
         [TestMethod]
@@ -161,7 +161,7 @@ namespace BusinessLogicTest
         {
             List<Bug> bugs = new List<Bug> { bug, otherBug };
 
-            mock.Setup(r => r.GetAll()).Returns(bugs);
+            mock.Setup(r => r.GetAllGeneric()).Returns(bugs);
             var bugLogic = new BugLogic(mock.Object, stateMock.Object);
 
             List<Bug> bugsSaved = bugLogic.GetAll();
@@ -175,7 +175,7 @@ namespace BusinessLogicTest
         {
             var bugs = new List<Bug>();
 
-            mock.Setup(r => r.GetAll()).Returns(bugs);
+            mock.Setup(r => r.GetAllGeneric()).Returns(bugs);
             mock.Setup(r => r.Delete(bug.Id));
 
             var bugLogic = new BugLogic(mock.Object, stateMock.Object);
@@ -192,7 +192,7 @@ namespace BusinessLogicTest
         [TestMethod]
         public void UpdateBugProject()
         {
-            Project newProject = new Project(new Guid(), "Nuevo proyecto");
+            Project newProject = new Project("Nuevo proyecto");
             var bugUpdate = new Bug(newProject, id, name, domain, version, stateActive);
 
             mock.Setup(r => r.Update(bug.Id, bugUpdate)).Returns(bugUpdate);

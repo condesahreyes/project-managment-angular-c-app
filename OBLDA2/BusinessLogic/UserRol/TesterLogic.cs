@@ -24,7 +24,7 @@ namespace BusinessLogic.UserRol
 
         public List<User> GetAll()
         {
-            List<User> users = userRepository.GetAll();
+            List<User> users = userRepository.GetAllGeneric();
 
             List<User> testers = new List<User>();
             foreach (User user in users)
@@ -62,7 +62,7 @@ namespace BusinessLogic.UserRol
 
         public List<Bug> GetAllBugs(User tester)
         {
-            List<Project> allProjects = projectRepository.GetAll();
+            List<Project> allProjects = projectRepository.GetAllGeneric();
 
             List<Bug> bugs = new List<Bug>();
 

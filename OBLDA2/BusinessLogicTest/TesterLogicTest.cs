@@ -33,7 +33,7 @@ namespace BusinessLogicTest
 
             CofnigurationMockRol();
 
-            tester = new User(new Guid(), "Diego", "Asadurian", "diegoAsa", "admin1234",
+            tester = new User("Diego", "Asadurian", "diegoAsa", "admin1234",
                 "diegoasadurian@gmail.com", roles[0]);
 
             testerLogic = new TesterLogic(mockUser.Object, mockProject.Object, mockRol.Object, mockBug.Object);
@@ -45,19 +45,19 @@ namespace BusinessLogicTest
 
             roles = new List<Rol>
             {
-                new Rol(new Guid(), Rol.tester),
-                new Rol(new Guid(), Rol.administrator),
-                new Rol(new Guid(), Rol.administrator),
+                new Rol(Rol.tester),
+                new Rol(Rol.administrator),
+                new Rol(Rol.administrator),
             };
 
-            mockRol.Setup(x => x.GetAll()).Returns(roles);
+            mockRol.Setup(x => x.GetAllGeneric()).Returns(roles);
         }
 
         [TestMethod]
         public void CreateTester()
         {
             List<User> users = new List<User>();
-            mockUser.Setup(x => x.GetAll()).Returns(users);
+            mockUser.Setup(x => x.GetAllGeneric()).Returns(users);
             mockUser.Setup(x => x.Create(tester)).Returns(tester);
 
             var testerLogic = new TesterLogic(mockUser.Object, mockProject.Object, mockRol.Object,
@@ -73,7 +73,7 @@ namespace BusinessLogicTest
         [TestMethod]
         public void GetAllBugs()
         {
-            Project project = new Project(new Guid(), "Montes Del Plata");
+            Project project = new Project("Montes Del Plata");
 
             project.Users.Add(tester);
 
@@ -89,7 +89,7 @@ namespace BusinessLogicTest
 
             project.Bugs.AddRange(bugs);
 
-            mockProject.Setup(r => r.GetAll()).Returns(projects);
+            mockProject.Setup(r => r.GetAllGeneric()).Returns(projects);
             
 
             List<Bug> bugsSaved = testerLogic.GetAllBugs(tester);
@@ -103,7 +103,7 @@ namespace BusinessLogicTest
         {
             List<User> list = new List<User>();
             list.Add(tester);
-            mockUser.Setup(x => x.GetAll()).Returns(list);
+            mockUser.Setup(x => x.GetAllGeneric()).Returns(list);
 
             List<User> ret = testerLogic.GetAll();
             mockUser.VerifyAll();
@@ -123,7 +123,7 @@ namespace BusinessLogicTest
         [TestMethod]
         public void CreateBugByTester()
         {
-            Project project = new Project(new Guid(), "Montes Del Plata");
+            Project project = new Project("Montes Del Plata");
             State stateActive = new State(State.active);
 
             var bug = new Bug(project, 1, "Error de login", "Intento de sesión", "3.0", stateActive);

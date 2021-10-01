@@ -39,7 +39,7 @@ namespace BusinessLogic.Imports
                     switch (reader.Name.ToString())
                     {
                         case "Proyecto":
-                            project = new Project(new Guid(), reader.ReadString());
+                            project = new Project(reader.ReadString());
                             break;
                         case "Id":
                             id = Convert.ToInt32(reader.ReadString());

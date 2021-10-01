@@ -13,7 +13,7 @@ namespace BusinessLogicTest.BugsImportTest
     {
         private readonly string fileAddress = @"..\..\..\FileImport\archivoTxtBugs.txt";
 
-        private static Project project = new Project(new Guid(), "Proyecto en txt");
+        private static Project project = new Project("Proyecto en txt");
         private static State stateActive = new State(State.active);
         private static State stateDone = new State(State.done);
 

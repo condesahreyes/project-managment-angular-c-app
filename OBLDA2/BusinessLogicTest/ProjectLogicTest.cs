@@ -36,12 +36,11 @@ namespace BusinessLogicTest
 
             this.projectLogic = new ProjectLogic(mock.Object, bugMock.Object);
 
-            Guid id = new Guid();
-            project = new Project(id, "Project - Pineapple ");
-            rolTester = new Rol(id, Rol.tester);
-            rolDeveloper = new Rol(id, Rol.developer);
-            tester = new User(id, "Fiorella", "Petrone", "fioPetro", "fio1245", "fiore@gmail.com", rolTester);
-            developer = new User(id, "Juan", "Gomez", "juanG", "juann245", "juan@gmail.com", rolDeveloper);
+            project = new Project("Project - Pineapple ");
+            rolTester = new Rol(Rol.tester);
+            rolDeveloper = new Rol(Rol.developer);
+            tester = new User("Fiorella", "Petrone", "fioPetro", "fio1245", "fiore@gmail.com", rolTester);
+            developer = new User("Juan", "Gomez", "juanG", "juann245", "juan@gmail.com", rolDeveloper);
         }
 
         [TestMethod]
@@ -58,7 +57,7 @@ namespace BusinessLogicTest
         {
             List<Project> list = new List<Project>();
             list.Add(project);
-            mock.Setup(x => x.GetAll()).Returns(list);
+            mock.Setup(x => x.GetAllGeneric()).Returns(list);
             List<Project> ret = projectLogic.GetAll();
             mock.VerifyAll();
             Assert.IsTrue(ret.SequenceEqual(list));
@@ -88,7 +87,7 @@ namespace BusinessLogicTest
         {
             List<Project> list = new List<Project>();
 
-            mock.Setup(r => r.GetAll()).Returns(list);
+            mock.Setup(r => r.GetAllGeneric()).Returns(list);
             mock.Setup(r => r.Delete(project.Id));
 
             projectLogic.Delete(project.Id);
@@ -103,8 +102,7 @@ namespace BusinessLogicTest
         [TestMethod]
         public void ProjectUpdateOk()
         {
-            Guid id = Guid.NewGuid();
-            var updatedProject = new Project(id, "Project Lab");
+            var updatedProject = new Project("Project Lab");
 
             mock.Setup(x => x.Update(project.Id, updatedProject)).Returns(updatedProject);
             var ret = projectLogic.Update(project.Id, updatedProject);

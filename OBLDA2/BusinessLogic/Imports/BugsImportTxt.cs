@@ -60,7 +60,7 @@ namespace BusinessLogic.Imports
 
             int id = Convert.ToInt32(idString);
 
-            Project project = new Project(new Guid(), projectName);
+            Project project = new Project(projectName);
             State state = new State(stateString);
 
             return new Bug(project, id, name, domain, version, state);
