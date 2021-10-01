@@ -1,11 +1,22 @@
 ﻿using System;
 using System.Collections.Generic;
 using DataAccessInterface;
+using Microsoft.EntityFrameworkCore;
 
 namespace DataAccess
 {
     public class Repository<T, K> : IRepository<T, K> where T : class
     {
+        private readonly DbSet<T> _DbSet;
+        private readonly DbContext _context;
+
+        public Repository(DbContext context)
+        {
+            this._context = context;
+            this._DbSet = context.Set<T>();
+
+        }
+
         public T Create(T entity)
         {
             throw new NotImplementedException();

@@ -16,7 +16,7 @@ namespace Domain
         public Rol Rol { get; set; }
         public List<Project> Projects { get; set; }
 
-        public User(Guid id, string name, string lastName, string userName, string password, string email, Rol rol)
+        public User(string name, string lastName, string userName, string password, string email, Rol rol)
         {
             this.Id = Guid.NewGuid();
             this.Name = name;
