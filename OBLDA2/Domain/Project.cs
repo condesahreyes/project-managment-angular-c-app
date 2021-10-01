@@ -1,7 +1,6 @@
 ﻿using System.Collections.Generic;
 using System;
 
-
 namespace Domain
 {
     public class Project

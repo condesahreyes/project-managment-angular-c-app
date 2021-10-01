@@ -1,6 +1,6 @@
 ﻿using System.Text.RegularExpressions;
-using System;
 using System.Collections.Generic;
+using System;
 
 namespace Domain
 {
@@ -13,10 +13,12 @@ namespace Domain
         public string UserName { get; set; }
         public string Password { get; set; }
         public string Email { get; set; }
+
         public Rol Rol { get; set; }
         public List<Project> Projects { get; set; }
 
-        public User(string name, string lastName, string userName, string password, string email, Rol rol)
+        public User(string name, string lastName, string userName, string password, 
+            string email, Rol rol)
         {
             this.Id = Guid.NewGuid();
             this.Name = name;
@@ -27,7 +29,6 @@ namespace Domain
             this.Rol = rol;
         }
         public User(){}
-
 
         public static void IsValidUser(User user)
         {
