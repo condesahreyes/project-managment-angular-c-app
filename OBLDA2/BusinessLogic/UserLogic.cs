@@ -34,7 +34,7 @@ namespace BusinessLogic
 
         public List<User> GetAll()
         {
-            return userDA.GetAll();
+            return userDA.GetAllGeneric();
         }
 
         public User Create(User userToCreate)
@@ -55,7 +55,7 @@ namespace BusinessLogic
 
         private void NotExistUser(User user)
         {
-            bool existUser = userDA.GetAll().Any(u => (u.Email == user.Email));
+            bool existUser = userDA.GetAllGeneric().Any(u => (u.Email == user.Email));
 
             if (existUser)
             {
@@ -65,7 +65,7 @@ namespace BusinessLogic
 
         private void ValidateRol(Rol rol)
         {
-            List<Rol> roles = rolRepository.GetAll();
+            List<Rol> roles = rolRepository.GetAllGeneric();
 
             if (!roles.Contains(rol))
                 throw new Exception();

@@ -43,7 +43,7 @@ namespace BusinessLogic
 
         public List<Bug> GetAll()
         {
-            return bugRepository.GetAll();
+            return bugRepository.GetAllGeneric();
         }
 
         public Bug Update(int id, Bug bugUpdate)
@@ -61,7 +61,7 @@ namespace BusinessLogic
 
         private void IsValidState(State state)
         {
-            List<State> states = stateRepository.GetAll();
+            List<State> states = stateRepository.GetAllGeneric();
 
             foreach (State oneState in states)
             {

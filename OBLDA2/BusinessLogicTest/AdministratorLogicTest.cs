@@ -40,15 +40,14 @@ namespace BusinessLogicTest
             mockBug = new Mock<IBugLogic>(MockBehavior.Strict);
             this.administratorLogic = new AdministratorLogic(userLogicMock.Object, projectMock.Object, testerLogicMock.Object, mockBug.Object);
 
-            Guid id = new Guid();
-            rolAdministrator = new Rol(id, Rol.administrator);
-            rolTester = new Rol(id, Rol.tester);
+            rolAdministrator = new Rol( Rol.administrator);
+            rolTester = new Rol(Rol.tester);
 
-            admin1 = new User(id, "Hernan", "reyes", "hernanReyes", "admin1234", "reyesH@gmail.com", rolAdministrator);
-            project = new Project(id, "Project - GXC ");
-            developer = new User(id, "Juan", "Gomez", "juanG", "juann245", "juan@gmail.com", rolDeveloper);
+            admin1 = new User("Hernan", "reyes", "hernanReyes", "admin1234", "reyesH@gmail.com", rolAdministrator);
+            project = new Project("Project - GXC ");
+            developer = new User("Juan", "Gomez", "juanG", "juann245", "juan@gmail.com", rolDeveloper);
             bug = new Bug(project, 1, "Error de login", "Intento de sesión", "3.0", activeState);
-            tester = new User(id, "Fiorella", "Petrone", "fioPetro", "fio1245", "fiore@gmail.com", rolTester);
+            tester = new User("Fiorella", "Petrone", "fioPetro", "fio1245", "fiore@gmail.com", rolTester);
         }
 
         [TestMethod]
@@ -118,8 +117,7 @@ namespace BusinessLogicTest
         [TestMethod]
         public void ProjectUpdateOk()
         {
-            Guid id = Guid.NewGuid();
-            var updatedProject = new Project(id, "Project Lab");
+            var updatedProject = new Project( "Project Lab");
             projectMock.Setup(x => x.Update(project.Id, updatedProject)).Returns(updatedProject);
             var ret = administratorLogic.UpdateProject(project.Id, updatedProject);
             projectMock.VerifyAll();
@@ -237,8 +235,7 @@ namespace BusinessLogicTest
         [TestMethod]
         public void GetAllBugInAllProjects()
         {
-            Guid id = new Guid();
-            Project pro = new Project(id,"New");
+            Project pro = new Project("New");
             pro.TotalBugs = 5;
 
             List<Project> list = new List<Project>();

@@ -1,7 +1,6 @@
 ﻿using System.Collections.Generic;
 using System;
 
-
 namespace Domain
 {
     public class Project
@@ -13,9 +12,9 @@ namespace Domain
 
         public string Name { get; set; }
 
-        public Project(Guid id, string name)
+        public Project(string name)
         {
-            this.Id = id;
+            this.Id = new Guid();
             this.Name = name;
             this.Users = new List<User>();
             this.Bugs = new List<Bug>();

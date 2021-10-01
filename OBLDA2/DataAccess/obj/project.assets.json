@@ -1628,16 +1628,6 @@
           "bin/placeholder/DataAccessInterface.dll": {}
         }
       },
-      "DataAccessTest/1.0.0": {
-        "type": "project",
-        "framework": ".NETCoreApp,Version=v5.0",
-        "compile": {
-          "bin/placeholder/DataAccessTest.dll": {}
-        },
-        "runtime": {
-          "bin/placeholder/DataAccessTest.dll": {}
-        }
-      },
       "Domain/1.0.0": {
         "type": "project",
         "framework": ".NETCoreApp,Version=v5.0",
@@ -6106,11 +6096,6 @@
       "path": "../DataAccesInterface/DataAccessInterface.csproj",
       "msbuildProject": "../DataAccesInterface/DataAccessInterface.csproj"
     },
-    "DataAccessTest/1.0.0": {
-      "type": "project",
-      "path": "../DataAccessTest/DataAccessTest.csproj",
-      "msbuildProject": "../DataAccessTest/DataAccessTest.csproj"
-    },
     "Domain/1.0.0": {
       "type": "project",
       "path": "../Domain/Domain.csproj",
@@ -6120,7 +6105,6 @@
   "projectFileDependencyGroups": {
     "net5.0": [
       "DataAccessInterface >= 1.0.0",
-      "DataAccessTest >= 1.0.0",
       "Domain >= 1.0.0",
       "EntityFrameworkCore.MappingExtension >= 2.0.0",
       "Microsoft.EntityFrameworkCore >= 5.0.10",
@@ -6161,9 +6145,6 @@
           "projectReferences": {
             "C:\\Users\\hreye\\Desktop\\OBL-Asadurian-Reyes\\OBLDA2\\DataAccesInterface\\DataAccessInterface.csproj": {
               "projectPath": "C:\\Users\\hreye\\Desktop\\OBL-Asadurian-Reyes\\OBLDA2\\DataAccesInterface\\DataAccessInterface.csproj"
-            },
-            "C:\\Users\\hreye\\Desktop\\OBL-Asadurian-Reyes\\OBLDA2\\DataAccessTest\\DataAccessTest.csproj": {
-              "projectPath": "C:\\Users\\hreye\\Desktop\\OBL-Asadurian-Reyes\\OBLDA2\\DataAccessTest\\DataAccessTest.csproj"
             },
             "C:\\Users\\hreye\\Desktop\\OBL-Asadurian-Reyes\\OBLDA2\\Domain\\Domain.csproj": {
               "projectPath": "C:\\Users\\hreye\\Desktop\\OBL-Asadurian-Reyes\\OBLDA2\\Domain\\Domain.csproj"

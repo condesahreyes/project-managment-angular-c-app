@@ -26,7 +26,6 @@
 
   <ItemGroup>
     <ProjectReference Include="..\DataAccesInterface\DataAccessInterface.csproj" />
-    <ProjectReference Include="..\DataAccessTest\DataAccessTest.csproj" />
     <ProjectReference Include="..\Domain\Domain.csproj" />
   </ItemGroup>
 

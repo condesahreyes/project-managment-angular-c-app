@@ -9,11 +9,11 @@ namespace Domain
         public static string tester = "Tester";
 
         public Guid Id { get; set; }
-        public String Name { get; set; }
+        public string Name { get; set; }
 
-        public Rol(Guid id, string name)
+        public Rol(string name)
         {
-            this.Id = id;
+            this.Id = new Guid();
             this.Name = name;
         }
 
