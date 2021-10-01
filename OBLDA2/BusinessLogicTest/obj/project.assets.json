@@ -2597,6 +2597,7 @@
         "type": "project",
         "framework": ".NETCoreApp,Version=v5.0",
         "dependencies": {
+          "DataAccessInterface": "1.0.0",
           "DataAccessTest": "1.0.0",
           "Domain": "1.0.0",
           "EntityFrameworkCore.MappingExtension": "2.0.0",
@@ -2610,6 +2611,16 @@
         },
         "runtime": {
           "bin/placeholder/DataAccess.dll": {}
+        }
+      },
+      "DataAccessInterface/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v5.0",
+        "compile": {
+          "bin/placeholder/DataAccessInterface.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/DataAccessInterface.dll": {}
         }
       },
       "DataAccessTest/1.0.0": {
@@ -8910,6 +8921,11 @@
       "path": "../DataAccess/DataAccess.csproj",
       "msbuildProject": "../DataAccess/DataAccess.csproj"
     },
+    "DataAccessInterface/1.0.0": {
+      "type": "project",
+      "path": "../DataAccesInterface/DataAccessInterface.csproj",
+      "msbuildProject": "../DataAccesInterface/DataAccessInterface.csproj"
+    },
     "DataAccessTest/1.0.0": {
       "type": "project",
       "path": "../DataAccessTest/DataAccessTest.csproj",
@@ -8939,11 +8955,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\hreye\\Desktop\\Trabajando en el repo\\OBL-Asadurian-Reyes\\OBLDA2\\BusinessLogicTest\\BusinessLogicTest.csproj",
+      "projectUniqueName": "C:\\Users\\hreye\\Desktop\\OBL-Asadurian-Reyes\\OBLDA2\\BusinessLogicTest\\BusinessLogicTest.csproj",
       "projectName": "BusinessLogicTest",
-      "projectPath": "C:\\Users\\hreye\\Desktop\\Trabajando en el repo\\OBL-Asadurian-Reyes\\OBLDA2\\BusinessLogicTest\\BusinessLogicTest.csproj",
+      "projectPath": "C:\\Users\\hreye\\Desktop\\OBL-Asadurian-Reyes\\OBLDA2\\BusinessLogicTest\\BusinessLogicTest.csproj",
       "packagesPath": "C:\\Users\\hreye\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\hreye\\Desktop\\Trabajando en el repo\\OBL-Asadurian-Reyes\\OBLDA2\\BusinessLogicTest\\obj\\",
+      "outputPath": "C:\\Users\\hreye\\Desktop\\OBL-Asadurian-Reyes\\OBLDA2\\BusinessLogicTest\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\hreye\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -8960,14 +8976,14 @@
         "net5.0": {
           "targetAlias": "net5.0",
           "projectReferences": {
-            "C:\\Users\\hreye\\Desktop\\Trabajando en el repo\\OBL-Asadurian-Reyes\\OBLDA2\\BusinessLogicInterface\\BusinessLogicInterface.csproj": {
-              "projectPath": "C:\\Users\\hreye\\Desktop\\Trabajando en el repo\\OBL-Asadurian-Reyes\\OBLDA2\\BusinessLogicInterface\\BusinessLogicInterface.csproj"
+            "C:\\Users\\hreye\\Desktop\\OBL-Asadurian-Reyes\\OBLDA2\\BusinessLogicInterface\\BusinessLogicInterface.csproj": {
+              "projectPath": "C:\\Users\\hreye\\Desktop\\OBL-Asadurian-Reyes\\OBLDA2\\BusinessLogicInterface\\BusinessLogicInterface.csproj"
             },
-            "C:\\Users\\hreye\\Desktop\\Trabajando en el repo\\OBL-Asadurian-Reyes\\OBLDA2\\BusinessLogic\\BusinessLogic.csproj": {
-              "projectPath": "C:\\Users\\hreye\\Desktop\\Trabajando en el repo\\OBL-Asadurian-Reyes\\OBLDA2\\BusinessLogic\\BusinessLogic.csproj"
+            "C:\\Users\\hreye\\Desktop\\OBL-Asadurian-Reyes\\OBLDA2\\BusinessLogic\\BusinessLogic.csproj": {
+              "projectPath": "C:\\Users\\hreye\\Desktop\\OBL-Asadurian-Reyes\\OBLDA2\\BusinessLogic\\BusinessLogic.csproj"
             },
-            "C:\\Users\\hreye\\Desktop\\Trabajando en el repo\\OBL-Asadurian-Reyes\\OBLDA2\\Domain\\Domain.csproj": {
-              "projectPath": "C:\\Users\\hreye\\Desktop\\Trabajando en el repo\\OBL-Asadurian-Reyes\\OBLDA2\\Domain\\Domain.csproj"
+            "C:\\Users\\hreye\\Desktop\\OBL-Asadurian-Reyes\\OBLDA2\\Domain\\Domain.csproj": {
+              "projectPath": "C:\\Users\\hreye\\Desktop\\OBL-Asadurian-Reyes\\OBLDA2\\Domain\\Domain.csproj"
             }
           }
         }
