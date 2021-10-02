@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.31624.102
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OBLDA2", "OBLDA2\OBLDA2.csproj", "{1C9B44BF-8BCF-469A-ACF7-7BEEEEF02E7C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WebApi", "WebApi\WebApi.csproj", "{1C9B44BF-8BCF-469A-ACF7-7BEEEEF02E7C}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DataAccess", "DataAccess\DataAccess.csproj", "{EDD3D9B6-6CC2-4DDC-8F4D-C244F901AFE5}"
 EndProject

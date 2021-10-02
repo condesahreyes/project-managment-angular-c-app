@@ -1,10 +1,10 @@
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.EntityFrameworkCore;
+using DataAccess.Repositories;
 using DataAccessInterface;
 using DataAccess;
 using Domain;
 using System;
-using DataAccess.Repositories;
 
 namespace Factory
 {
@@ -27,5 +27,6 @@ namespace Factory
 
             _serviceCollection.AddDbContext<DbContext, DataContext>();
         }
+
     }
 }
