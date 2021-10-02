@@ -8,6 +8,7 @@ using System.Data.Common;
 using System.Linq;
 using DataAccess;
 using Domain;
+using System;
 
 namespace DataAccessTest
 {
@@ -43,7 +44,7 @@ namespace DataAccessTest
         }
 
         [TestMethod]
-        public void GetAllUsers()
+        public void GetAllProject()
         {
             List<Project> projects = new List<Project>{
                 CreateProject("Proyecto 1"),
@@ -60,7 +61,7 @@ namespace DataAccessTest
         }
 
         [TestMethod]
-        public void GetUser()
+        public void GetProject()
         {
             Project project = CreateProject("Projecto 1");
 
@@ -76,7 +77,8 @@ namespace DataAccessTest
         {
             return new Project()
             {
-                Name = projectName
+                Name = projectName,
+                Id = new Guid()
             };
         }
 

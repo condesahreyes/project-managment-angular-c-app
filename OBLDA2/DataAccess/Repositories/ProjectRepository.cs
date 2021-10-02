@@ -1,6 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
 using DataAccessInterface;
+using System.Linq;
 using Domain;
 using System;
 
@@ -19,12 +20,15 @@ namespace DataAccess.Repositories
 
         public List<Project> GetAll()
         {
-            throw new NotImplementedException();
+            return _DbSet.Include(u => u.Users)
+                .Include(b => b.Bugs)
+                .ToList();
         }
 
         public Project GetById(Guid id)
         {
-            throw new NotImplementedException();
+            return _DbSet.Include(u => u.Users)
+                .Include(b => b.Bugs).First(b => b.Id == id);
         }
     }
 }
