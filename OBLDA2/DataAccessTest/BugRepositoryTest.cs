@@ -13,21 +13,21 @@ using System;
 namespace DataAccessTest
 {
     [TestClass]
-    public class ProjectRepositoryTest
+    public class BugRepositoryTest
     {
         private DbContextOptions<DataContext> _contextOptions;
         private DbConnection _connection;
         private DataContext _context;
 
-        private IProjectRepository _projectRepository;
+        private IBugRepository _bugRepository;
 
-        public ProjectRepositoryTest()
+        public BugRepositoryTest()
         {
             this._connection = new SqliteConnection("Filename=:memory:");
             this._contextOptions = new DbContextOptionsBuilder<DataContext>()
                 .UseSqlite(this._connection).Options;
             this._context = new DataContext(this._contextOptions);
-            this._projectRepository = new ProjectRepository(this._context);
+            this._bugRepository = new BugRepository(this._context);
         }
 
         [TestInitialize]
@@ -44,33 +44,46 @@ namespace DataAccessTest
         }
 
         [TestMethod]
-        public void GetAllProject()
+        public void GetAllBugs()
         {
-            List<Project> projects = new List<Project>{
-                CreateProject("Proyecto 1"),
-                CreateProject("Proyecto 2")
+            List<Bug> bugs = new List<Bug>{
+                CreateBug(1),
+                CreateBug(2)
             };
 
-            _context.Add(projects.Last());
-            _context.Add(projects.First());
+            _context.Add(bugs.Last());
+            _context.Add(bugs.First());
             _context.SaveChanges();
 
-            List<Project> projectDB = _projectRepository.GetAll();
+            List<Bug> bugsBD = _bugRepository.GetAll();
 
-            CollectionAssert.AreEqual(projects, projectDB);
+            CollectionAssert.AreEqual(bugs, bugsBD);
         }
 
         [TestMethod]
         public void GetProject()
         {
-            Project project = CreateProject("Projecto 1");
+            Bug bug = CreateBug(1);
 
-            _context.Add(project);
+            _context.Add(bug);
             _context.SaveChanges();
 
-            Project projectDB = _projectRepository.GetById(project.Id);
+            Bug bugDB = _bugRepository.GetById(bug.Id);
 
-            Assert.AreEqual(project.Id, projectDB.Id);
+            Assert.AreEqual(bug.Id, bugDB.Id);
+        }
+
+        private Bug CreateBug(int id)
+        {
+            return new Bug()
+            {
+                Id = id,
+                Name = "Name",
+                Domain = "Domain",
+                Version = "Version",
+                State = new State(State.active),
+                Project = CreateProject("OneProject")
+            };
         }
 
         private Project CreateProject(string projectName)
