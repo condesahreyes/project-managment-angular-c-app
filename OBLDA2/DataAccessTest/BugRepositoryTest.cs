@@ -20,7 +20,6 @@ namespace DataAccessTest
         private DataContext _context;
 
         private IBugRepository _bugRepository;
-
         public BugRepositoryTest()
         {
             this._connection = new SqliteConnection("Filename=:memory:");
@@ -47,8 +46,8 @@ namespace DataAccessTest
         public void GetAllBugs()
         {
             List<Bug> bugs = new List<Bug>{
-                CreateBug(1),
-                CreateBug(2)
+                CreateBug(1, State.active),
+                CreateBug(2, State.done)
             };
 
             _context.Add(bugs.Last());
@@ -61,9 +60,9 @@ namespace DataAccessTest
         }
 
         [TestMethod]
-        public void GetProject()
+        public void GetBug()
         {
-            Bug bug = CreateBug(1);
+            Bug bug = CreateBug(1, State.active);
 
             _context.Add(bug);
             _context.SaveChanges();
@@ -73,26 +72,22 @@ namespace DataAccessTest
             Assert.AreEqual(bug.Id, bugDB.Id);
         }
 
-        private Bug CreateBug(int id)
+        private Bug CreateBug(int id, string oneState)
         {
-            return new Bug()
-            {
-                Id = id,
-                Name = "Name",
-                Domain = "Domain",
-                Version = "Version",
-                State = new State(State.active),
-                Project = CreateProject("OneProject")
-            };
+            State state = new State(oneState);
+            state.Id = Guid.NewGuid();
+            return new Bug(CreateProject("OneProject"), id, "", "", "", state);
+        }
+
+        private void CreateState(string state)
+        {
+            _context.Add(new State(State.active));
+            _context.SaveChanges();
         }
 
         private Project CreateProject(string projectName)
         {
-            return new Project()
-            {
-                Name = projectName,
-                Id = new Guid()
-            };
+            return new Project(projectName);
         }
 
     }

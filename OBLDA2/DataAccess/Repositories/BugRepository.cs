@@ -20,12 +20,14 @@ namespace DataAccess.Repositories
 
         public List<Bug> GetAll()
         {
-            throw new NotImplementedException();
+            return _DbSet.Include(p => p.Project).Include(s => s.State).Include(u => u.SolvedBy)
+            .ToList();
         }
 
         public Bug GetById(int id)
         {
-            throw new NotImplementedException();
+            return _DbSet.Include(p => p.Project).Include(s => s.State)
+                .Include(u => u.SolvedBy).First(b => b.Id == id);
         }
     }
 }

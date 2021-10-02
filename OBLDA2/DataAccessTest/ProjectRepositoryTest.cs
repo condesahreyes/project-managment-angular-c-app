@@ -75,11 +75,7 @@ namespace DataAccessTest
 
         private Project CreateProject(string projectName)
         {
-            return new Project()
-            {
-                Name = projectName,
-                Id = new Guid()
-            };
+            return new Project(projectName);
         }
 
     }
