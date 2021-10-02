@@ -14,7 +14,7 @@ namespace BusinessLogicTest
         private List<User> users;
 
         private Mock<IRepository<Rol, Guid>> mockRol;
-        private Mock<IRepository<User, Guid>> mockUser;
+        private Mock<IUserRepository> mockUser;
 
         private List<Rol> roles;
         private User oneUser;
@@ -27,9 +27,9 @@ namespace BusinessLogicTest
             users = new List<User>();
 
             mockRol = new Mock<IRepository<Rol, Guid>>(MockBehavior.Strict);
-            mockUser = new Mock<IRepository<User, Guid>>(MockBehavior.Strict);
+            mockUser = new Mock<IUserRepository>(MockBehavior.Strict);
             
-            mockUser.Setup(x => x.GetAllGeneric()).Returns(users);
+            mockUser.Setup(x => x.GetAll()).Returns(users);
 
             roles = new List<Rol>
             {
@@ -132,7 +132,7 @@ namespace BusinessLogicTest
         public void CreateExistingUser()
         {
             users.Add(oneUser);
-            mockUser.Setup(x => x.GetAllGeneric()).Returns(users);
+            mockUser.Setup(x => x.GetAll()).Returns(users);
 
             mockUser.Setup(x => x.Create(oneUser)).Returns(oneUser);
 

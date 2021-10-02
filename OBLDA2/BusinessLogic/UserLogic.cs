@@ -9,12 +9,12 @@ namespace BusinessLogic
 {
     public class UserLogic : IUserLogic
     {
-        private IRepository<User, Guid> userDA;
+        private IUserRepository userDA;
         private IRepository<Rol, Guid> rolRepository;
 
         public UserLogic() { }
 
-        public UserLogic(IRepository<User, Guid> UserDA, IRepository<Rol, Guid> rolRepository)
+        public UserLogic(IUserRepository UserDA, IRepository<Rol, Guid> rolRepository)
         {
             this.userDA = UserDA;
             this.rolRepository = rolRepository;
@@ -22,7 +22,7 @@ namespace BusinessLogic
 
         public User Get(Guid id)
         {
-            User user = userDA.Get(id);
+            User user = userDA.GetById(id);
 
             if (user == null)
             {
@@ -34,7 +34,7 @@ namespace BusinessLogic
 
         public List<User> GetAll()
         {
-            return userDA.GetAllGeneric();
+            return userDA.GetAll();
         }
 
         public User Create(User userToCreate)
@@ -55,7 +55,7 @@ namespace BusinessLogic
 
         private void NotExistUser(User user)
         {
-            bool existUser = userDA.GetAllGeneric().Any(u => (u.Email == user.Email));
+            bool existUser = userDA.GetAll().Any(u => (u.Email == user.Email));
 
             if (existUser)
             {
