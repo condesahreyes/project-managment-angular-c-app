@@ -1,4 +1,3 @@
-using System;
 using Domain;
 
 namespace OBLDA2.Models
@@ -22,5 +21,6 @@ namespace OBLDA2.Models
             Domain = this.Domain,
             Name = this.Name
         };
+
     }
 }

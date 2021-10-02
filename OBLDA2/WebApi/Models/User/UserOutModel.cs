@@ -29,18 +29,5 @@ namespace OBLDA2.Models
             this.Projects = user.Projects.Select(p => new ProjectOutModel(p));
         }
 
-        public User ToEntity()
-        {
-            return new User
-            {
-                Name = this.Name,
-                LastName = this.LastName,
-                UserName = this.UserName,
-                Password = this.Password,
-                Email = this.Email,
-                Rol = new Rol(this.Rol)
-            };
-        }
-
     }
 }

@@ -13,16 +13,6 @@ namespace OBLDA2.Models
 
         public UserEntryModel() { }
 
-        public UserEntryModel(User user)
-        {
-            this.Name = user.Name;
-            this.LastName = user.LastName;
-            this.UserName = user.UserName;
-            this.Password = user.Password;
-            this.Email = user.Email;
-            this.Rol = user.Rol.Name;
-        }
-
         public User ToEntity()
         {
             return new User
