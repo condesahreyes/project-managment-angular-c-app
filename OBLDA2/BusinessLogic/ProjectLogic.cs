@@ -8,12 +8,12 @@ namespace BusinessLogic.UserRol
 {
     public class ProjectLogic : IProjectLogic
     {
-        private IRepository<Project, Guid> projectDa;
+        private IProjectRepository projectDa;
         private IBugLogic bugLogic;
 
         public ProjectLogic() { }
 
-        public ProjectLogic(IRepository<Project, Guid> ProjectDa, IBugLogic bugLogic)
+        public ProjectLogic(IProjectRepository ProjectDa, IBugLogic bugLogic)
         {
             this.projectDa = ProjectDa;
             this.bugLogic = bugLogic;
@@ -28,7 +28,7 @@ namespace BusinessLogic.UserRol
 
         public Project Get(Guid id)
         {
-            Project projcet = projectDa.Get(id);
+            Project projcet = projectDa.GetById(id);
 
             if (projcet != null)
             {
@@ -54,7 +54,7 @@ namespace BusinessLogic.UserRol
 
         public void DeleteTester(Project oneProject, User tester)
         {
-            Project project = projectDa.Get(oneProject.Id);
+            Project project = projectDa.GetById(oneProject.Id);
 
               if (project.Users.Contains(tester))
               {
@@ -64,7 +64,7 @@ namespace BusinessLogic.UserRol
 
         public void DeleteDeveloper(Project oneProject, User developer)
         {
-            Project project = projectDa.Get(oneProject.Id);
+            Project project = projectDa.GetById(oneProject.Id);
 
             if (project.Users.Contains(developer))
             {
@@ -74,7 +74,7 @@ namespace BusinessLogic.UserRol
 
         public void AssignDeveloper(Project oneProject, User developer)
         {
-            Project project = projectDa.Get(oneProject.Id);
+            Project project = projectDa.GetById(oneProject.Id);
 
             if (!project.Users.Contains(developer))
             {
@@ -84,7 +84,7 @@ namespace BusinessLogic.UserRol
 
         public void AssignTester(Project oneProject, User tester)
         {
-            Project project = projectDa.Get(oneProject.Id);
+            Project project = projectDa.GetById(oneProject.Id);
 
             if (!project.Users.Contains(tester))
             {
@@ -94,14 +94,14 @@ namespace BusinessLogic.UserRol
 
         public List<Project> GetAll()
         {
-            return projectDa.GetAllGeneric();
+            return projectDa.GetAll();
         }
 
         public List<User> GetAllTesters(Project oneProject)
         {
             List<User> testers = new List<User>();
 
-            Project project = projectDa.Get(oneProject.Id);
+            Project project = projectDa.GetById(oneProject.Id);
 
             foreach (User user in project.Users)
             {
@@ -116,7 +116,7 @@ namespace BusinessLogic.UserRol
         {
             List<User> developers = new List<User>();
 
-            Project project = projectDa.Get(oneProject.Id);
+            Project project = projectDa.GetById(oneProject.Id);
 
             foreach (User user in project.Users)
             {

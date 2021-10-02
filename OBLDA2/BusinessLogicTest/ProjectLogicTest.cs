@@ -14,7 +14,7 @@ namespace BusinessLogicTest
     public class ProjectLogicTest
     {
 
-        private Mock<IRepository<Project, Guid>> mock;
+        private Mock<IProjectRepository> mock;
         private Mock<IProjectLogic> projectMock;
         private Mock<IBugLogic> bugMock;
 
@@ -30,7 +30,7 @@ namespace BusinessLogicTest
         [TestInitialize]
         public void Setup()
         {
-            mock = new Mock<IRepository<Project,Guid>>(MockBehavior.Strict);
+            mock = new Mock<IProjectRepository>(MockBehavior.Strict);
             projectMock = new Mock<IProjectLogic>(MockBehavior.Strict);
             bugMock = new Mock<IBugLogic>(MockBehavior.Strict);
 
@@ -57,7 +57,7 @@ namespace BusinessLogicTest
         {
             List<Project> list = new List<Project>();
             list.Add(project);
-            mock.Setup(x => x.GetAllGeneric()).Returns(list);
+            mock.Setup(x => x.GetAll()).Returns(list);
             List<Project> ret = projectLogic.GetAll();
             mock.VerifyAll();
             Assert.IsTrue(ret.SequenceEqual(list));
@@ -66,7 +66,7 @@ namespace BusinessLogicTest
         [TestMethod]
         public void GetProjectByIdOk()
         {
-            mock.Setup(x => x.Get(It.IsAny<Guid>())).Returns(project);
+            mock.Setup(x => x.GetById(It.IsAny<Guid>())).Returns(project);
             var ret = projectLogic.Get(project.Id);
             mock.VerifyAll();
             Assert.IsTrue(ret.Equals(project));
@@ -78,7 +78,7 @@ namespace BusinessLogicTest
         {
             Guid id = Guid.NewGuid();
             Project projectoEmpty = null;
-            mock.Setup(x => x.Get(It.IsAny<Guid>())).Returns(projectoEmpty);
+            mock.Setup(x => x.GetById(It.IsAny<Guid>())).Returns(projectoEmpty);
             var ret = projectLogic.Get(id);
         }
 
@@ -87,7 +87,7 @@ namespace BusinessLogicTest
         {
             List<Project> list = new List<Project>();
 
-            mock.Setup(r => r.GetAllGeneric()).Returns(list);
+            mock.Setup(r => r.GetAll()).Returns(list);
             mock.Setup(r => r.Delete(project.Id));
 
             projectLogic.Delete(project.Id);
@@ -113,7 +113,7 @@ namespace BusinessLogicTest
         [TestMethod]
         public void DeleteTesterOk()
         {
-            mock.Setup(x => x.Get(It.IsAny<Guid>())).Returns(project);
+            mock.Setup(x => x.GetById(It.IsAny<Guid>())).Returns(project);
             var proj = projectLogic.Get(project.Id);
 
             projectMock.Setup(x => x.AssignTester(proj, tester));
@@ -133,7 +133,7 @@ namespace BusinessLogicTest
         [TestMethod]
         public void DeleteDeveloperOk()
         {
-            mock.Setup(x => x.Get(It.IsAny<Guid>())).Returns(project);
+            mock.Setup(x => x.GetById(It.IsAny<Guid>())).Returns(project);
             var proj = projectLogic.Get(project.Id);
 
             projectMock.Setup(x => x.AssignDeveloper(proj, developer));
@@ -153,7 +153,7 @@ namespace BusinessLogicTest
         [TestMethod]
         public void AssignDeveloperOk()
         {
-            mock.Setup(x => x.Get(It.IsAny<Guid>())).Returns(project);
+            mock.Setup(x => x.GetById(It.IsAny<Guid>())).Returns(project);
             var ret = projectLogic.Get(project.Id);
 
             projectMock.Setup(x => x.AssignDeveloper(ret, developer));
@@ -172,7 +172,7 @@ namespace BusinessLogicTest
         [TestMethod]
         public void AssignTesterOk()
         {
-            mock.Setup(x => x.Get(It.IsAny<Guid>())).Returns(project);
+            mock.Setup(x => x.GetById(It.IsAny<Guid>())).Returns(project);
             var ret = projectLogic.Get(project.Id);
 
             projectMock.Setup(x => x.AssignTester(ret, tester));
@@ -191,7 +191,7 @@ namespace BusinessLogicTest
         [TestMethod]
         public void GetAllTesterOk()
         {
-            mock.Setup(x => x.Get(It.IsAny<Guid>())).Returns(project);
+            mock.Setup(x => x.GetById(It.IsAny<Guid>())).Returns(project);
             var proj = projectLogic.Get(project.Id);
 
             projectMock.Setup(x => x.AssignTester(proj, tester));
@@ -210,7 +210,7 @@ namespace BusinessLogicTest
         [TestMethod]
         public void GetAllDeveloperOk()
         {
-            mock.Setup(x => x.Get(It.IsAny<Guid>())).Returns(project);
+            mock.Setup(x => x.GetById(It.IsAny<Guid>())).Returns(project);
             var proj = projectLogic.Get(project.Id);
 
             projectMock.Setup(x => x.AssignDeveloper(proj, developer));
