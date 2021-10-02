@@ -1,13 +1,13 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.Data.Sqlite;
+using System.Collections.Generic;
 using DataAccess.Repositories;
+using Microsoft.Data.Sqlite;
 using DataAccessInterface;
 using System.Data.Common;
 using DataAccess;
-using System.Collections.Generic;
-using Domain;
 using System.Linq;
+using Domain;
 using System;
 
 namespace DataAccessTest

@@ -4,15 +4,16 @@ using DataAccessInterface;
 using DataAccess;
 using Domain;
 using System;
+using DataAccess.Repositories;
 
 namespace BusinessLogic
 {
     public class BugLogic : IBugLogic
     {
-        private IRepository<Bug, int> bugRepository;
+        private IBugRepository bugRepository;
         private IRepository<State, Guid> stateRepository;
 
-        public BugLogic(IRepository<Bug, int> bugRepository, IRepository<State, Guid> stateRepository)
+        public BugLogic(IBugRepository bugRepository, IRepository<State, Guid> stateRepository)
         {
             this.bugRepository = bugRepository;
             this.stateRepository = stateRepository;
@@ -20,7 +21,7 @@ namespace BusinessLogic
 
         public BugLogic()
         {
-            bugRepository = new Repository<Bug, int>();
+            bugRepository = new BugRepository();
             stateRepository = new Repository<State, Guid>();
         }
 
@@ -33,7 +34,7 @@ namespace BusinessLogic
 
         public Bug Get(int id)
         {
-            return bugRepository.Get(id);
+            return bugRepository.GetById(id);
         }
 
         public void Delete(int id)
@@ -43,7 +44,7 @@ namespace BusinessLogic
 
         public List<Bug> GetAll()
         {
-            return bugRepository.GetAllGeneric();
+            return bugRepository.GetAll();
         }
 
         public Bug Update(int id, Bug bugUpdate)

@@ -14,8 +14,8 @@ namespace Domain
 
         public State(string name)
         {
-            this.Id = new Guid();
             this.Name = name;
+            this.Id = new Guid();
         }
 
         public State() { }
