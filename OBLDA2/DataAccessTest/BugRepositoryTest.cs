@@ -79,12 +79,6 @@ namespace DataAccessTest
             return new Bug(CreateProject("OneProject"), id, "", "", "", state);
         }
 
-        private void CreateState(string state)
-        {
-            _context.Add(new State(State.active));
-            _context.SaveChanges();
-        }
-
         private Project CreateProject(string projectName)
         {
             return new Project(projectName);

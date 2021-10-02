@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using DataAccessInterface;
 using System.Linq;
 using Domain;
-using System;
 
 namespace DataAccess.Repositories
 {
@@ -11,6 +10,8 @@ namespace DataAccess.Repositories
     {
         private readonly DbSet<Bug> _DbSet;
         private readonly DbContext _context;
+
+        public BugRepository() { }
 
         public BugRepository(DbContext context) : base(context)
         {

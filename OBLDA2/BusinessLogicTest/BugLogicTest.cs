@@ -12,7 +12,7 @@ namespace BusinessLogicTest
     [TestClass]
     public class BugLogicTest
     {
-        private Mock<IRepository<Bug, int>> mock;
+        private Mock<IBugRepository> mock;
         private Mock<IRepository<State, Guid>> stateMock;
 
         private static Project project = new Project("Montes Del Plata");
@@ -32,7 +32,7 @@ namespace BusinessLogicTest
         [TestInitialize]
         public void Setup()
         {
-            mock = new Mock<IRepository<Bug, int>>(MockBehavior.Strict);
+            mock = new Mock<IBugRepository>(MockBehavior.Strict);
             stateMock = new Mock<IRepository<State, Guid>>(MockBehavior.Strict);
             InicializarBugs();
             ConfigurationStateMock();
@@ -161,7 +161,7 @@ namespace BusinessLogicTest
         {
             List<Bug> bugs = new List<Bug> { bug, otherBug };
 
-            mock.Setup(r => r.GetAllGeneric()).Returns(bugs);
+            mock.Setup(r => r.GetAll()).Returns(bugs);
             var bugLogic = new BugLogic(mock.Object, stateMock.Object);
 
             List<Bug> bugsSaved = bugLogic.GetAll();
@@ -175,7 +175,7 @@ namespace BusinessLogicTest
         {
             var bugs = new List<Bug>();
 
-            mock.Setup(r => r.GetAllGeneric()).Returns(bugs);
+            mock.Setup(r => r.GetAll()).Returns(bugs);
             mock.Setup(r => r.Delete(bug.Id));
 
             var bugLogic = new BugLogic(mock.Object, stateMock.Object);
@@ -266,7 +266,7 @@ namespace BusinessLogicTest
         [TestMethod]
         public void GetBug()
         {
-            mock.Setup(r => r.Get(bug.Id)).Returns(bug);
+            mock.Setup(r => r.GetById(bug.Id)).Returns(bug);
 
             var bugLogic = new BugLogic(mock.Object, stateMock.Object);
 

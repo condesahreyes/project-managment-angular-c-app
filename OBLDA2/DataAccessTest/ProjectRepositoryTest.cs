@@ -8,7 +8,6 @@ using System.Data.Common;
 using System.Linq;
 using DataAccess;
 using Domain;
-using System;
 
 namespace DataAccessTest
 {
@@ -51,8 +50,8 @@ namespace DataAccessTest
                 CreateProject("Proyecto 2")
             };
 
-            _context.Add(projects.Last());
             _context.Add(projects.First());
+            _context.Add(projects.Last());
             _context.SaveChanges();
 
             List<Project> projectDB = _projectRepository.GetAll();

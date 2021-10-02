@@ -293,4 +293,3 @@ C:\Users\hreye\Desktop\OBL-Asadurian-Reyes\OBLDA2\WebApiTest\obj\Debug\net5.0\We
 C:\Users\hreye\Desktop\OBL-Asadurian-Reyes\OBLDA2\WebApiTest\obj\Debug\net5.0\ref\WebApiTest.dll
 C:\Users\hreye\Desktop\OBL-Asadurian-Reyes\OBLDA2\WebApiTest\obj\Debug\net5.0\WebApiTest.pdb
 C:\Users\hreye\Desktop\OBL-Asadurian-Reyes\OBLDA2\WebApiTest\obj\Debug\net5.0\WebApiTest.genruntimeconfig.cache
-C:\Users\hreye\Desktop\OBL-Asadurian-Reyes\OBLDA2\WebApiTest\obj\Debug\net5.0\WebApiTest.csproj.AssemblyReference.cache
