@@ -47,24 +47,24 @@ namespace BusinessLogic.UserRol
             return bugs;
         }
 
-        public Bug UpdateStateToActiveBug(Bug bug)
+        public Bug UpdateStateToActiveBug(int id)
         {
-            Bug activeBug = CloneBug(bug);
+            Bug activeBug = bugLogic.Get(id);
 
             activeBug.State.Name = State.active;
 
-            bugLogic.Update(bug.Id, activeBug);
+            bugLogic.Update(id, activeBug);
 
             return activeBug;
         }
 
-        public Bug UpdateStateToDoneBug(Bug bug)
+        public Bug UpdateStateToDoneBug(int id)
         {
-            Bug doneBug = CloneBug(bug);
+            Bug doneBug = bugLogic.Get(id);
 
             doneBug.State.Name = State.done;
 
-            bugLogic.Update(bug.Id, doneBug);
+            bugLogic.Update(id, doneBug);
 
             return doneBug;
         }
