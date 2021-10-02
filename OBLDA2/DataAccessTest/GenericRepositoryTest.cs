@@ -88,7 +88,7 @@ namespace DataAccessTest
         }
 
         [TestMethod]
-        public void GetUserById()
+        public void GetUser()
         {
             User user = CreateUser(Rol.tester);
 

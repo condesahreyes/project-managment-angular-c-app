@@ -13,7 +13,7 @@ namespace BusinessLogicTest
     public class TesterLogicTest
     {
 
-        private Mock<IRepository<User, Guid>> mockUser;
+        private Mock<IUserRepository> mockUser;
         private Mock<IRepository<Project, Guid>> mockProject;
         private Mock<IRepository<Rol, Guid>> mockRol;
         private Mock<IRepository<Bug, int>> mockBug;
@@ -28,7 +28,7 @@ namespace BusinessLogicTest
         public void Setup()
         {
             mockProject = new Mock<IRepository<Project, Guid>>(MockBehavior.Strict);
-            mockUser = new Mock<IRepository<User, Guid>>(MockBehavior.Strict);
+            mockUser = new Mock<IUserRepository>(MockBehavior.Strict);
             mockBug = new Mock<IRepository<Bug, int>>(MockBehavior.Strict);
 
             CofnigurationMockRol();
@@ -57,7 +57,7 @@ namespace BusinessLogicTest
         public void CreateTester()
         {
             List<User> users = new List<User>();
-            mockUser.Setup(x => x.GetAllGeneric()).Returns(users);
+            mockUser.Setup(x => x.GetAll()).Returns(users);
             mockUser.Setup(x => x.Create(tester)).Returns(tester);
 
             var testerLogic = new TesterLogic(mockUser.Object, mockProject.Object, mockRol.Object,
