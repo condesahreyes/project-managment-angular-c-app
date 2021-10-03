@@ -23,6 +23,13 @@ namespace OBLDA2.Models
             this.State = bug.State.Name;
         }
 
+        public static BugEntryOutModel BugEntryOutModel2(Bug bug)
+        {
+            BugEntryOutModel pepe = new BugEntryOutModel(bug);
+
+            return pepe;
+        }
+
         public Bug ToEntity() => new Bug
         {
             Project = new Project(this.Project),

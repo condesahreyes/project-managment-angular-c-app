@@ -10,7 +10,13 @@ namespace OBLDA2.Models
         public string Version { get; set; }
         public string State { get; set; }
 
-        public BugUpdateModel() { }
+        public BugUpdateModel(Bug bug) { 
+            this.Project = bug.Project.Name;
+            this.Name = bug.Name;
+            this.Domain = bug.Domain;
+            this.Version = bug.Version;
+            this.State = bug.State.Name;
+        }
 
         public Bug ToEntity(int id) => new Bug
         {
