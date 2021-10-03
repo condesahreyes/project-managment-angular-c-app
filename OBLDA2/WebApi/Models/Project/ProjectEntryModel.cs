@@ -9,6 +9,11 @@ namespace OBLDA2.Models
 
         public ProjectEntryModel() { }
 
+        public ProjectEntryModel(Project project)
+        {
+            this.Name = project.Name;
+        }
+
         public Project toEntity() => new Project
         {
             Id = new Guid(),
