@@ -12,5 +12,8 @@ namespace BusinessLogicInterface
         List<Bug> GetAll();
 
         void Delete(int id);
+
+        Bug UpdateStateToActiveBug(int id);
+        Bug UpdateStateToDoneBug(int id);
     }
 }
