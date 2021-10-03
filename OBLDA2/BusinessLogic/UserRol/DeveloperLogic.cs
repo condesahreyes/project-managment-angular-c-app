@@ -76,5 +76,19 @@ namespace BusinessLogic.UserRol
             return new Bug(bug.Project, bug.Id, bug.Name, bug.Domain, bug.Version, bug.State);
         }
 
+        public void AssignDeveloperToProject(Project project, User developer)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void DeleteDeveloperInProject(Project project, User developer)
+        {
+            throw new NotImplementedException();
+        }
+
+        public int CountBugDoneByDeveloper(User developer)
+        {
+            throw new NotImplementedException();
+        }
     }
 }
