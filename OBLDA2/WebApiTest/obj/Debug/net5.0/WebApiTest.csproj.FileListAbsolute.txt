@@ -97,13 +97,13 @@ C:\Users\hreye\Desktop\OBL-Asadurian-Reyes\OBLDA2\WebApiTest\obj\Debug\net5.0\We
 C:\Users\hreye\Desktop\OBL-Asadurian-Reyes\OBLDA2\WebApiTest\obj\Debug\net5.0\ref\WebApiTest.dll
 C:\Users\hreye\Desktop\OBL-Asadurian-Reyes\OBLDA2\WebApiTest\obj\Debug\net5.0\WebApiTest.pdb
 C:\Users\hreye\Desktop\OBL-Asadurian-Reyes\OBLDA2\WebApiTest\obj\Debug\net5.0\WebApiTest.genruntimeconfig.cache
-C:\Users\hreye\Desktop\el RefactorGeneral\OBL-Asadurian-Reyes\OBLDA2\WebApiTest\bin\Debug\net5.0\testhost.exe
 C:\Users\hreye\Desktop\el RefactorGeneral\OBL-Asadurian-Reyes\OBLDA2\WebApiTest\bin\Debug\net5.0\testhost.dll
+C:\Users\hreye\Desktop\el RefactorGeneral\OBL-Asadurian-Reyes\OBLDA2\WebApiTest\bin\Debug\net5.0\testhost.exe
+C:\Users\hreye\Desktop\el RefactorGeneral\OBL-Asadurian-Reyes\OBLDA2\WebApiTest\bin\Debug\net5.0\Microsoft.TestPlatform.PlatformAbstractions.dll
 C:\Users\hreye\Desktop\el RefactorGeneral\OBL-Asadurian-Reyes\OBLDA2\WebApiTest\bin\Debug\net5.0\Microsoft.VisualStudio.TestPlatform.MSTest.TestAdapter.dll
 C:\Users\hreye\Desktop\el RefactorGeneral\OBL-Asadurian-Reyes\OBLDA2\WebApiTest\bin\Debug\net5.0\Microsoft.VisualStudio.TestPlatform.MSTestAdapter.PlatformServices.Interface.dll
 C:\Users\hreye\Desktop\el RefactorGeneral\OBL-Asadurian-Reyes\OBLDA2\WebApiTest\bin\Debug\net5.0\Microsoft.VisualStudio.TestPlatform.MSTestAdapter.PlatformServices.dll
 C:\Users\hreye\Desktop\el RefactorGeneral\OBL-Asadurian-Reyes\OBLDA2\WebApiTest\bin\Debug\net5.0\Microsoft.TestPlatform.AdapterUtilities.dll
-C:\Users\hreye\Desktop\el RefactorGeneral\OBL-Asadurian-Reyes\OBLDA2\WebApiTest\bin\Debug\net5.0\Microsoft.TestPlatform.PlatformAbstractions.dll
 C:\Users\hreye\Desktop\el RefactorGeneral\OBL-Asadurian-Reyes\OBLDA2\WebApiTest\bin\Debug\net5.0\WebApiTest.deps.json
 C:\Users\hreye\Desktop\el RefactorGeneral\OBL-Asadurian-Reyes\OBLDA2\WebApiTest\bin\Debug\net5.0\WebApiTest.runtimeconfig.json
 C:\Users\hreye\Desktop\el RefactorGeneral\OBL-Asadurian-Reyes\OBLDA2\WebApiTest\bin\Debug\net5.0\WebApiTest.runtimeconfig.dev.json
