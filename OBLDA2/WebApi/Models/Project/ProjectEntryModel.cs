@@ -9,7 +9,12 @@ namespace OBLDA2.Models
 
         public ProjectEntryModel() { }
 
+<<<<<<< HEAD
         public ProjectEntryModel(Project project) {
+=======
+        public ProjectEntryModel(Project project)
+        {
+>>>>>>> feature/ProjectController
             this.Name = project.Name;
         }
 
