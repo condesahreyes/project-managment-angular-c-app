@@ -49,7 +49,7 @@ namespace WebApiTest
 
             importBugsTxt.VerifyAll();
 
-            Assert.AreEqual(204, okResult.StatusCode);
+            Assert.AreEqual(200, okResult.StatusCode);
             Assert.AreEqual(bugs.First().Id, bugsResult.First().Id);
         }
 
@@ -70,7 +70,7 @@ namespace WebApiTest
 
             importBugsTxt.VerifyAll();
 
-            Assert.AreEqual(204, okResult.StatusCode);
+            Assert.AreEqual(200, okResult.StatusCode);
             Assert.AreEqual(bugs.First().Id, bugsResult.First().Id);
         }
     }

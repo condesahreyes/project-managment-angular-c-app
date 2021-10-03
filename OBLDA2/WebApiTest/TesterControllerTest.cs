@@ -1,14 +1,13 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.Linq;
-using BusinessLogicInterface;
-using Domain;
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using Moq;
-using OBLDA2.Models;
+using System.Collections.Generic;
+using Microsoft.AspNetCore.Mvc;
+using BusinessLogicInterface;
 using WebApi.Controllers;
+using OBLDA2.Models;
+using System.Linq;
+using System;
+using Domain;
+using Moq;
 
 namespace WebApiTest
 {
@@ -67,7 +66,6 @@ namespace WebApiTest
             testerLogic.VerifyAll();
             Assert.AreEqual(204, status.StatusCode);
         }
-
 
         [TestMethod]
         public void GetTotalBugsTest()

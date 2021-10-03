@@ -1,11 +1,9 @@
-using Domain;
-using Microsoft.AspNetCore.Mvc;
+using BusinessLogicInterface.Imports;
 using System.Collections.Generic;
+using Microsoft.AspNetCore.Mvc;
 using OBLDA2.Models;
 using System.Linq;
-using System;
-using BusinessLogic.Imports;
-using BusinessLogicInterface.Imports;
+using Domain;
 
 namespace OBLDA2.Controllers
 {
@@ -23,13 +21,19 @@ namespace OBLDA2.Controllers
         [HttpPost]
         public IActionResult ImportBugsTxt(string fileAddress)
         {
-             throw new Exception();
+            List<Bug> bugs = this.import.ImportBugs(fileAddress);
+            IEnumerable<BugEntryOutModel> bugsModel = bugs.Select(b => new BugEntryOutModel(b));
+
+            return Ok(bugsModel);
         }
 
         [HttpPost]
         public IActionResult ImportBugsXml(string fileAddress)
         {
-            throw new Exception();
+            List<Bug> bugs = this.import.ImportBugs(fileAddress);
+            IEnumerable<BugEntryOutModel> bugsModel = bugs.Select(b => new BugEntryOutModel(b));
+
+            return Ok(bugsModel);
         }
 
     }
