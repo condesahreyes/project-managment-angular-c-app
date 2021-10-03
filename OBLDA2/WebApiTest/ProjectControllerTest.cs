@@ -21,8 +21,8 @@ namespace WebApiTest
         [TestInitialize]
         public void Setup()
         {
-            project = new Project("Project - GXC ");
-            project.Id = Guid.NewGuid();
+            project = new Project("Project - GXC");
+
             projectEntryModel = new ProjectEntryModel(project);
             projectLogic = new Mock<IProjectLogic>(MockBehavior.Strict);
         }
@@ -30,9 +30,9 @@ namespace WebApiTest
         [TestMethod]
         public void AddProjectTest()
         {
+            //projectLogic.Setup(m => m.Create(project)).Returns(project);
             ProjectController controller = new ProjectController(projectLogic.Object);
 
-            projectLogic.Setup(m => m.Create(project)).Returns(project);
             IActionResult result = controller.AddProject(projectEntryModel);
             ProjectOutModel projectAdded = new ProjectOutModel(project);
 
@@ -41,7 +41,7 @@ namespace WebApiTest
 
             projectLogic.VerifyAll();
 
-            Assert.AreEqual(content, projectAdded);
+            Assert.IsTrue(content.Name == projectAdded.Name);
         }
 
         [TestMethod]
@@ -55,14 +55,19 @@ namespace WebApiTest
 
             var result = controller.GetAllProjects();
 
-            IEnumerable<ProjectOutModel> projectsOut = projects.Select(p => new ProjectOutModel(p));
+            List<ProjectOutModel> projectsOut = new List<ProjectOutModel>();
+
+            foreach (Project project in projects)
+            {
+                projectsOut.Add(new ProjectOutModel(project));
+            }
 
             var okResult = result as OkObjectResult;
             var projectResult = okResult.Value as IEnumerable<ProjectOutModel>;
 
             projectLogic.VerifyAll();
 
-            Assert.IsTrue(projectsOut.SequenceEqual(projectResult));
+            Assert.IsTrue(projectsOut.First().Id == projectResult.First().Id);
         }
 
         [TestMethod]

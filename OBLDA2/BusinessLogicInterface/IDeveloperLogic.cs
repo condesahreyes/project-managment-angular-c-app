@@ -10,5 +10,8 @@ namespace BusinessLogicInterface
         User GetByString(string userName);
         Bug UpdateStateToDoneBug(int id);
         Bug UpdateStateToActiveBug(int id);
+        void AssignDeveloperToProject(Project project, User developer);
+        void DeleteDeveloperInProject(Project project, User developer);
+        int CountBugDoneByDeveloper(User developer);
     }
 }

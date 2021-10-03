@@ -12,7 +12,7 @@ namespace WebApi.Controllers
     [Route("Penguin/testers")]
     public class TesterController : ApiBaseController
     {
-        private ITesterLogic testerLogic;
+        private readonly ITesterLogic testerLogic;
 
         public TesterController(ITesterLogic testerLogic)
         {
