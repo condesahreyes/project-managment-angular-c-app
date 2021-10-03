@@ -4,6 +4,7 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.OpenApi.Models;
+using Factory;
 
 namespace OBLDA2
 {
@@ -24,6 +25,17 @@ namespace OBLDA2
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "OBLDA2", Version = "v1" });
             });
+
+            var repositoryFactory = new RepositoryFactory(services);
+            repositoryFactory.AddCustomServices();
+
+            var businessContainer = new BusinessLogicFactory(services);
+            businessContainer.AddBusinessLogicServices();
+
+            services.AddControllersWithViews().AddNewtonsoftJson(options =>
+                options.SerializerSettings.ReferenceLoopHandling 
+                = Newtonsoft.Json.ReferenceLoopHandling.Ignore
+            );
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
