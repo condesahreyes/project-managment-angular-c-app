@@ -19,8 +19,8 @@ namespace WebApi.Controllers
             this.developerLogic = developerLogic;
         }
 
-        [HttpGet("{id}/GetAllBugs")]
-        public IActionResult GetAllBugs(Guid id)
+        [HttpGet("{id}/DeveloperGetAllBugs")]
+        public IActionResult GetAllBugsDeveloper(Guid id)
         {
             User developer = new User();
             developer.Id = id;
@@ -30,8 +30,8 @@ namespace WebApi.Controllers
             return (StatusCode((int)HttpStatusCode.OK, bugs));
 
         }
-
-        [HttpPost("{id}")]
+        
+        [HttpPost("{id}/AssignDeveloperToProject")]
         public IActionResult AssignDeveloperToProject(ProjectEntryModel project, Guid id)
         {
 
@@ -42,7 +42,7 @@ namespace WebApi.Controllers
             return NoContent();
         }
 
-        [HttpDelete("{id}")]
+        [HttpDelete("{id}/DeleteProject")]
         public IActionResult DeleteDeveloperToProject(Guid id, Project project)
         {
             User developer = new User();

@@ -19,8 +19,8 @@ namespace WebApi.Controllers
             this.testerLogic = testerLogic;
         }
 
-        [HttpGet("{id}/GetAllBugs")]
-        public IActionResult GetAllBugs(Guid id)
+        [HttpGet("{id}/GetAllBugsForTester")]
+        public IActionResult GetAllBugsTester(Guid id)
         {
             User user = new User();
             user.Id = id;
@@ -31,7 +31,7 @@ namespace WebApi.Controllers
 
         }
 
-        [HttpPost("{id}")]
+        [HttpPost("{id}/AssignTesterToProject")]
         public IActionResult AssignTester(ProjectEntryModel project, Guid id)
         {
 
@@ -50,7 +50,7 @@ namespace WebApi.Controllers
 
         }
 
-        [HttpDelete("{id}")]
+        [HttpDelete("{id}/DeleteTesterToProject")]
         public IActionResult DeleteTester(Guid id, Project project)
         {
             User tester = new User();
