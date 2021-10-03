@@ -22,6 +22,8 @@ namespace BusinessLogic.UserRol
             this.bugLogic = bugLogic;
         }
 
+        public DeveloperLogic() { }
+
         public User Create(User developerToCreate)
         {
             User developerCreate = userLogic.Create(developerToCreate);

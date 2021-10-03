@@ -39,17 +39,17 @@ namespace BusinessLogic
 
         public User Create(User userToCreate)
         {
-            IsValidUser(userToCreate);
+            IsValidUser(ref userToCreate);
             NotExistUser(userToCreate);
-
+            userToCreate.Projects = new List<Project>();
             User userCreate = userDA.Create(userToCreate);
 
             return userCreate;
         }
 
-        private void IsValidUser(User userToCreate)
+        private void IsValidUser(ref User userToCreate)
         {
-            ValidateRol(userToCreate.Rol);
+            userToCreate.Rol = ValidateRol(userToCreate.Rol);
             User.IsValidUser(userToCreate);
         }
 
@@ -63,12 +63,19 @@ namespace BusinessLogic
             }
         }
 
-        private void ValidateRol(Rol rol)
+        private Rol ValidateRol(Rol rol)
         {
             List<Rol> roles = rolRepository.GetAllGeneric();
 
-            if (!roles.Contains(rol))
-                throw new Exception();
+            foreach (Rol oneRol in roles)
+            {
+                if (oneRol.Name.ToLower() == rol.Name.ToLower())
+                {
+                    return oneRol;
+                }
+            }
+
+            throw new Exception();
         }
 
     }

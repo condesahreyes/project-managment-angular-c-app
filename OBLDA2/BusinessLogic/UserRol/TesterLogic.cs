@@ -12,6 +12,7 @@ namespace BusinessLogic.UserRol
         private IRepository<Project, Guid> projectRepository;
         private IRepository<Rol, Guid> rolRepository;
         private IRepository<Bug, int> bugRepository;
+        private IProjectLogic projcetLogic;
 
         public TesterLogic(IUserRepository userRepository, IRepository<Project, Guid> projectRepository,
             IRepository<Rol, Guid> rolRepository, IRepository<Bug, int> bugRepository)
@@ -22,9 +23,11 @@ namespace BusinessLogic.UserRol
             this.bugRepository = bugRepository;
         }
 
+        public TesterLogic() { }
+
         public List<User> GetAll()
         {
-            List<User> users = userRepository.GetAllGeneric();
+            List<User> users = userRepository.GetAll();
 
             List<User> testers = new List<User>();
             foreach (User user in users)
@@ -48,6 +51,21 @@ namespace BusinessLogic.UserRol
             User developerCreate = userLogic.Create(tester);
 
             return developerCreate;
+        }
+
+        public void AssignTesterToProject(Project project, User tester)
+        {
+            projcetLogic.AssignTester(project, tester);
+        }
+
+        public void AssignDeveloperToProject(Project project, User tester)
+        {
+            projcetLogic.AssignDeveloper(project, tester);
+        }
+
+        public void DeleteTesterInProject(Project project, User tester)
+        {
+            projcetLogic.DeleteTester(project, tester);
         }
 
         public List<Project> GetProjectsByTester(Guid id)

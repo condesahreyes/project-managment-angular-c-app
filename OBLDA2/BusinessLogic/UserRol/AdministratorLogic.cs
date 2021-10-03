@@ -1,6 +1,5 @@
 using System.Collections.Generic;
 using BusinessLogicInterface;
-using BusinessLogic.UserRol;
 using System;
 using Domain;
 
@@ -20,12 +19,7 @@ namespace BusinessLogic
             this.bugLogic = bugLogic;
         }
 
-        public AdministratorLogic()
-        {
-            this.userLogic = new UserLogic();
-            this.projectLogic = new ProjectLogic();
-            this.bugLogic = new BugLogic();
-        }
+        public AdministratorLogic() { }
 
         public User Create(User adminToCreate)
         {
@@ -39,7 +33,7 @@ namespace BusinessLogic
 
             foreach (User user in users)
             {
-                if (user.Rol.Name == Rol.administrator)
+                if (user.Rol.Name.ToLower() == Rol.administrator.ToLower())
                 {
                     admins.Add(user);
                 }
@@ -52,7 +46,7 @@ namespace BusinessLogic
         {
             User getUser = this.userLogic.Get(id);
 
-            if (getUser == null || !getUser.Rol.Name.Equals(Rol.administrator))
+            if (getUser == null || getUser.Rol.Name.ToLower() != Rol.administrator.ToLower())
             {
                 throw new Exception("Administrator does not exist");
             }
