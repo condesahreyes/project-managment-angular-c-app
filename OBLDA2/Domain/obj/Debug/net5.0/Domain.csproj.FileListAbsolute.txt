@@ -10,3 +10,14 @@ C:\Users\hreye\Desktop\repoFinal\OBL-Asadurian-Reyes\OBLDA2\Domain\obj\Debug\net
 C:\Users\hreye\Desktop\repoFinal\OBL-Asadurian-Reyes\OBLDA2\Domain\obj\Debug\net5.0\Domain.dll
 C:\Users\hreye\Desktop\repoFinal\OBL-Asadurian-Reyes\OBLDA2\Domain\obj\Debug\net5.0\ref\Domain.dll
 C:\Users\hreye\Desktop\repoFinal\OBL-Asadurian-Reyes\OBLDA2\Domain\obj\Debug\net5.0\Domain.pdb
+C:\Users\Diego\Desktop\OBL-Asadurian-Reyes\OBLDA2\Domain\bin\Debug\net5.0\Domain.deps.json
+C:\Users\Diego\Desktop\OBL-Asadurian-Reyes\OBLDA2\Domain\bin\Debug\net5.0\Domain.dll
+C:\Users\Diego\Desktop\OBL-Asadurian-Reyes\OBLDA2\Domain\bin\Debug\net5.0\ref\Domain.dll
+C:\Users\Diego\Desktop\OBL-Asadurian-Reyes\OBLDA2\Domain\bin\Debug\net5.0\Domain.pdb
+C:\Users\Diego\Desktop\OBL-Asadurian-Reyes\OBLDA2\Domain\obj\Debug\net5.0\Domain.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Diego\Desktop\OBL-Asadurian-Reyes\OBLDA2\Domain\obj\Debug\net5.0\Domain.AssemblyInfoInputs.cache
+C:\Users\Diego\Desktop\OBL-Asadurian-Reyes\OBLDA2\Domain\obj\Debug\net5.0\Domain.AssemblyInfo.cs
+C:\Users\Diego\Desktop\OBL-Asadurian-Reyes\OBLDA2\Domain\obj\Debug\net5.0\Domain.csproj.CoreCompileInputs.cache
+C:\Users\Diego\Desktop\OBL-Asadurian-Reyes\OBLDA2\Domain\obj\Debug\net5.0\Domain.dll
+C:\Users\Diego\Desktop\OBL-Asadurian-Reyes\OBLDA2\Domain\obj\Debug\net5.0\ref\Domain.dll
+C:\Users\Diego\Desktop\OBL-Asadurian-Reyes\OBLDA2\Domain\obj\Debug\net5.0\Domain.pdb
