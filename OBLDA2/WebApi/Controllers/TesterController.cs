@@ -9,7 +9,7 @@ using System.Net;
 
 namespace WebApi.Controllers
 {
-    [Route("Penguin/testers")]
+    [Route("penguin/testers")]
     public class TesterController : ApiBaseController
     {
         private readonly ITesterLogic testerLogic;

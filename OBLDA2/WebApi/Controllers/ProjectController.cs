@@ -10,7 +10,7 @@ using System;
 
 namespace WebApi.Controllers
 {
-    [Route("Penguin/projects")]
+    [Route("penguin/projects")]
     public class ProjectController : ApiBaseController
     {
         private readonly IProjectLogic projectLogic;

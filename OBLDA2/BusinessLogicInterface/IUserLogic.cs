@@ -9,5 +9,6 @@ namespace BusinessLogicInterface
         User Create(User userToCreate);
         User Get(Guid id);
         List<User> GetAll();
+        void Update(User user);
     }
 }

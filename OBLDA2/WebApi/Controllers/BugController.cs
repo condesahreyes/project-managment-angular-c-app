@@ -10,7 +10,7 @@ using System;
 namespace WebApi.Controllers
 {
 
-    [Route("Penguin/bugs")]
+    [Route("penguin/bugs")]
     public class BugController : ApiBaseController
     {
         private readonly IBugLogic bugLogic;

@@ -4,7 +4,7 @@ using DataAccessInterface;
 using System;
 using Domain;
 
-namespace BusinessLogic.UserRol
+namespace BusinessLogic
 {
     public class ProjectLogic : IProjectLogic
     {

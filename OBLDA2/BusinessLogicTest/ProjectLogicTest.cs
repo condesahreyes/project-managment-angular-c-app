@@ -7,6 +7,7 @@ using System.Linq;
 using System;
 using Domain;
 using Moq;
+using BusinessLogic;
 
 namespace BusinessLogicTest
 {

@@ -8,5 +8,6 @@ namespace DataAccessInterface
     {
         List<User> GetAll();
         User GetById(Guid id);
+        void UpdateUser(User user);
     }
 }

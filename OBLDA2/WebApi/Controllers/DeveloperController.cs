@@ -9,7 +9,7 @@ using Domain;
 
 namespace WebApi.Controllers
 {
-    [Route("Penguin/developers")]
+    [Route("penguin/developers")]
     public class DeveloperController : ApiBaseController
     {
         private readonly IDeveloperLogic developerLogic;

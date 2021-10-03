@@ -18,5 +18,6 @@ namespace Domain
         }
 
         public Rol() { }
+
     }
 }

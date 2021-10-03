@@ -8,7 +8,7 @@ using Domain;
 namespace OBLDA2.Controllers
 {
     [ApiController]
-    [Route("api/v1/administrators")]
+    [Route("penguin/imports")]
     public class ImportsController<T> : ControllerBase where T : class
     {
         private readonly IBugsImport<T> import;
