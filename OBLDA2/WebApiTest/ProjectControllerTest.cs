@@ -22,6 +22,7 @@ namespace WebApiTest
         public void Setup()
         {
             project = new Project("Project - GXC ");
+            project.Id = Guid.NewGuid();
             projectEntryModel = new ProjectEntryModel(project);
             projectLogic = new Mock<IProjectLogic>(MockBehavior.Strict);
         }
@@ -57,7 +58,7 @@ namespace WebApiTest
             IEnumerable<ProjectOutModel> projectsOut = projects.Select(p => new ProjectOutModel(p));
 
             var okResult = result as OkObjectResult;
-            var projectResult = okResult.Value as List<ProjectOutModel>;
+            var projectResult = okResult.Value as IEnumerable<ProjectOutModel>;
 
             projectLogic.VerifyAll();
 
@@ -67,15 +68,15 @@ namespace WebApiTest
         [TestMethod]
         public void GetProjectId()
         {
-            projectLogic.Setup(m => m.Get(project.Id)).Returns(project); // me queda la duda si es DTO o sin DTO q devuelvo
+            projectLogic.Setup(m => m.Get(project.Id)).Returns(project);
             var controller = new ProjectController(projectLogic.Object);
 
             IActionResult result = controller.GetById(project.Id);
             var okResult = result as OkObjectResult;
-            var projectResult = okResult.Value as ProjectOutModel; // creo que seria un USER
+            var projectResult = okResult.Value as ProjectOutModel;
 
             projectLogic.VerifyAll();
-            Assert.AreEqual(projectResult.Id, project.Id); // ver si seria asi!
+            Assert.AreEqual(projectResult.Id, project.Id);
         }
 
 
@@ -86,14 +87,14 @@ namespace WebApiTest
 
             ProjectEntryModel updateProject = new ProjectEntryModel(updatedProject);
 
-            projectLogic.Setup(m => m.Update(project.Id, updatedProject));
+            projectLogic.Setup(m => m.Update(project.Id, updatedProject)).Returns(updatedProject);
             var controller = new ProjectController(projectLogic.Object);
 
             IActionResult result = controller.UpdateProject(project.Id, updateProject);
-            var status = result as NoContentResult; // VER ACA QUE ONDA???
+            var status = result as NoContentResult;
 
             projectLogic.VerifyAll();
-            Assert.AreEqual(200, status.StatusCode);
+            Assert.AreEqual(204, status.StatusCode);
         }
 
         [TestMethod]
@@ -103,11 +104,10 @@ namespace WebApiTest
             var controller = new ProjectController(projectLogic.Object);
 
             IActionResult result = controller.Delete(project.Id);
-             var status = result as StatusCodeResult;
-            // var status = result as ObjectResult;
+             var status = result as NoContentResult;
 
             projectLogic.VerifyAll();
-            Assert.AreEqual(200, status.StatusCode); // aca lo mismo yo tiro un 200,  ver si esta bien???
+            Assert.AreEqual(204, status.StatusCode);
         }
     }
 }

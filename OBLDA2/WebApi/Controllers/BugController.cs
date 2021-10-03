@@ -19,14 +19,14 @@ namespace WebApi.Controllers
         {
             this.bugLogic = bugLogic;
         }
+
         [HttpPost]
-        public IActionResult AddBug([FromBody] BugEntryOutModel bugDTO)
+        public IActionResult AddBug(BugEntryOutModel bugDTO)
         {
             Bug bug = this.bugLogic.Create(bugDTO.ToEntity());
             BugEntryOutModel bugAdded = new BugEntryOutModel(bug);
 
             return (StatusCode((int)HttpStatusCode.Created, bugAdded));
-
         }
 
         [HttpGet]
@@ -64,36 +64,27 @@ namespace WebApi.Controllers
             try
             {
                 bugLogic.Delete(id);
-                return Ok();
+                return NoContent();
             }
             catch (Exception)
             {
                 return NotFound("Bug not found with id: " + id);
             }
-
         }
 
         [HttpPut("{id}")]
-        public IActionResult UpdateABug([FromRoute] int id, [FromBody] BugUpdateModel bugDTO)
+        public IActionResult UpdateABug(int id, BugUpdateModel bugDTO)
         {
             Bug bugUpdated = this.bugLogic.Update(id, bugDTO.ToEntity(id));
             BugEntryOutModel bugUpdateOut = new BugEntryOutModel(bugUpdated);
 
             return NoContent();
-
         }
 
-        [HttpPut("{id}", Name = "token")]
-        public IActionResult UpdateStateBug([FromBody] BugEntryOutModel bugDto)
+        [HttpPut("{id}/UpdateState")]
+        public IActionResult UpdateStateBug(int id, string state)
         {
-            Bug bugReturn = this.bugLogic.UpdateStateToActiveBug(bugDto.Id);
-            return NoContent();
-        }
-
-        [HttpPut("{id}", Name = "token")]
-        public IActionResult UpdateToDoneBug([FromBody] BugEntryOutModel bugDto)
-        {
-            Bug bugReturn = this.bugLogic.UpdateStateToDoneBug(bugDto.Id);
+            Bug bugReturn = this.bugLogic.UpdateState(id, state);
             return NoContent();
         }
     }

@@ -21,7 +21,7 @@ namespace WebApi.Controllers
         }
 
         [HttpPost]
-        public IActionResult AddProject([FromBody] ProjectEntryModel projectDTO)
+        public IActionResult AddProject(ProjectEntryModel projectDTO)
         {
             Project project = this.projectLogic.Create(projectDTO.ToEntity());
             ProjectOutModel projectAdded = new ProjectOutModel(project);
@@ -37,7 +37,7 @@ namespace WebApi.Controllers
             return Ok(projectsOut);
         }
 
-        [HttpGet("{id}")]
+        [HttpGet("{projectId}")]
         public IActionResult GetById(Guid projectId)
         {
             Project projectToReturn = this.projectLogic.Get(projectId);
@@ -52,7 +52,7 @@ namespace WebApi.Controllers
             }
         }
 
-        [HttpGet]
+        [HttpGet("{projectId}/GetAllBugs")]
         public IActionResult GetAllBugsByProject(Guid projectId)
         {
             Project project = new Project();
@@ -68,7 +68,7 @@ namespace WebApi.Controllers
             try
             {
                 projectLogic.Delete(id);
-                return Ok();
+                return NoContent();
             }
             catch (Exception)
             {
@@ -77,12 +77,12 @@ namespace WebApi.Controllers
         }
 
         [HttpPut("{id}")]
-        public IActionResult UpdateProject([FromRoute] Guid id, [FromBody] ProjectEntryModel projectDTO)
+        public IActionResult UpdateProject(Guid id, ProjectEntryModel projectDTO)
         {
             Project projectUpdated = this.projectLogic.Update(id, projectDTO.ToEntity());
             ProjectOutModel projectAdded = new ProjectOutModel(projectUpdated);
 
-            return (StatusCode((int)HttpStatusCode.Created, projectAdded));
+            return NoContent();
         }
 
     }

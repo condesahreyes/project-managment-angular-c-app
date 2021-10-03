@@ -12,15 +12,15 @@ namespace WebApi.Controllers
     [Route("Penguin/testers")]
     public class TesterController : ApiBaseController
     {
-        private readonly ITesterLogic testerLogic;
+        private ITesterLogic testerLogic;
 
         public TesterController(ITesterLogic testerLogic)
         {
             this.testerLogic = testerLogic;
         }
 
-        [HttpGet]
-        public IActionResult GetAllBugs([FromBody] Guid id)
+        [HttpGet("{id}/GetAllBugs")]
+        public IActionResult GetAllBugs(Guid id)
         {
             User user = new User();
             user.Id = id;
@@ -31,12 +31,16 @@ namespace WebApi.Controllers
 
         }
 
-        [HttpPost]
-        public IActionResult AssignTester([FromBody] ProjectEntryModel project, [FromBody] UserEntryModel tester)
+        [HttpPost("{id}")]
+        public IActionResult AssignTester(ProjectEntryModel project, Guid id)
         {
+
+            User tester = new User();
+            tester.Id = id;
+
             try
             {
-                testerLogic.AssignTesterToProject(project.ToEntity(), tester.ToEntity());
+                testerLogic.AssignTesterToProject(project.ToEntity(), tester);
                 return NoContent();
             }
             catch (Exception)
@@ -46,9 +50,11 @@ namespace WebApi.Controllers
 
         }
 
-        [HttpDelete]
-        public IActionResult DeleteTester(Project project, User tester)
+        [HttpDelete("{id}")]
+        public IActionResult DeleteTester(Guid id, Project project)
         {
+            User tester = new User();
+            tester.Id = id;
             try
             {
                 testerLogic.DeleteTesterInProject(project, tester);

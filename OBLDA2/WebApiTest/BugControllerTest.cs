@@ -109,10 +109,10 @@ namespace WebApiTest
             BugController controller = new BugController(bugLogic.Object);
 
             IActionResult result = controller.Delete(bug.Id);
-            var status = result as StatusCodeResult;
+            var status = result as NoContentResult;
 
             bugLogic.VerifyAll();
-            Assert.AreEqual(200, status.StatusCode);
+            Assert.AreEqual(204, status.StatusCode);
         }
 
     }

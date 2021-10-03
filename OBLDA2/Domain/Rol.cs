@@ -13,7 +13,7 @@ namespace Domain
 
         public Rol(string name)
         {
-            this.Id = new Guid();
+            this.Id = Guid.NewGuid();
             this.Name = name;
         }
 

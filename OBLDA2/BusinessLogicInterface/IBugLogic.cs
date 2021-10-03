@@ -13,7 +13,6 @@ namespace BusinessLogicInterface
 
         void Delete(int id);
 
-        Bug UpdateStateToActiveBug(int id);
-        Bug UpdateStateToDoneBug(int id);
+        Bug UpdateState(int id, string state);
     }
 }

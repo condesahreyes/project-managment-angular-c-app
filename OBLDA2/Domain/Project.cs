@@ -14,7 +14,7 @@ namespace Domain
 
         public Project(string name)
         {
-            this.Id = new Guid();
+            this.Id = Guid.NewGuid();
             this.Name = name;
             this.Users = new List<User>();
             this.Bugs = new List<Bug>();

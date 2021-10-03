@@ -50,6 +50,16 @@ namespace BusinessLogic
             return bugRepository.Update(id, bugUpdate);
         }
 
+        public Bug UpdateState(int id, string state)
+        {
+            if (state.ToLower() == State.active.ToLower())
+                return UpdateStateToActiveBug(id);
+            else if (state.ToLower() == State.done.ToLower())
+                return UpdateStateToDoneBug(id);
+
+            return null;
+        }
+
         public Bug UpdateStateToActiveBug(int id)
         {
             Bug activeBug = bugRepository.Get(id);
