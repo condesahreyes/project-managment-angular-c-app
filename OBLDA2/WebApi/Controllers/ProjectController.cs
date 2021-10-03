@@ -24,6 +24,7 @@ namespace WebApi.Controllers
         public IActionResult AddProject(ProjectEntryModel projectDTO)
         {
             Project project = this.projectLogic.Create(projectDTO.ToEntity());
+
             ProjectOutModel projectAdded = new ProjectOutModel(project);
 
             return (StatusCode((int)HttpStatusCode.Created, projectAdded));
@@ -33,7 +34,14 @@ namespace WebApi.Controllers
         public IActionResult GetAllProjects()
         {
             IEnumerable<Project> projects = this.projectLogic.GetAll();
-            IEnumerable<ProjectOutModel> projectsOut = projects.Select(p => new ProjectOutModel(p));
+
+            List<ProjectOutModel> projectsOut = new List<ProjectOutModel>();
+
+            foreach (Project project in projects)
+            {
+                projectsOut.Add(new ProjectOutModel(project));
+            }
+
             return Ok(projectsOut);
         }
 

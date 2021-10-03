@@ -15,7 +15,7 @@ namespace OBLDA2.Models
 
         public Project ToEntity() => new Project
         {
-            Id = new Guid(),
+            Id = Guid.NewGuid(),
             Name = this.Name
         };
     }

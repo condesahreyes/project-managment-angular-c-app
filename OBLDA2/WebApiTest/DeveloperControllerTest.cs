@@ -27,26 +27,28 @@ namespace WebApiTest
         [TestInitialize]
         public void Setup()
         {
+            developerLogic = new Mock<IDeveloperLogic>(MockBehavior.Strict);
+
             rolDeveloper = new Rol(Rol.developer);
             developer = new User("Juan", "Gomez", "jgomez", "admin1234", "gomez@gmail.com", rolDeveloper);
 
             bug = new Bug(project, 1, "Error de login", "Intento de sesión", "3.0", activeState);
             project = new Project("Project - GXC ");
-
-            developerLogic = new Mock<IDeveloperLogic>(MockBehavior.Strict);
         }
 
 
         [TestMethod]
         public void AssignDeveloperAProject()
         {
-            ProjectEntryModel projectEntryModel = new ProjectEntryModel(project);
             UserEntryModel testerEntryModel = new UserEntryModel(developer);
 
             developerLogic.Setup(x => x.AssignDeveloperToProject(project, developer));
 
             DeveloperController controller = new DeveloperController(developerLogic.Object);
-            var result = controller.AssignDeveloper(projectEntryModel, developer.Id);
+
+            ProjectEntryModel projectEntryModel = new ProjectEntryModel(project);
+            
+            var result = controller.AssignDeveloperToProject(projectEntryModel, developer.Id);
             var status = result as NoContentResult;
 
             Assert.AreEqual(204, status.StatusCode);
@@ -60,7 +62,7 @@ namespace WebApiTest
 
             DeveloperController controller = new DeveloperController(developerLogic.Object);
 
-            IActionResult result = controller.DeleteDeveloper(developer.Id, project);
+            IActionResult result = controller.DeleteDeveloperToProject(developer.Id, project);
             var status = result as NoContentResult;
 
             developerLogic.VerifyAll();
