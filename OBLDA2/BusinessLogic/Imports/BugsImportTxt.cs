@@ -1,11 +1,12 @@
-﻿using System.Collections.Generic;
+﻿using BusinessLogicInterface.Imports;
+using System.Collections.Generic;
 using BusinessLogicInterface;
 using Domain;
 using System;
 
 namespace BusinessLogic.Imports
 {
-    public class BugsImportTxt : BugsImport
+    public class BugsImportTxt : BugsImport, IBugsImport<BugsImportTxt>
     {
         public BugsImportTxt(IBugLogic bugLogic) : base(bugLogic) { }
 

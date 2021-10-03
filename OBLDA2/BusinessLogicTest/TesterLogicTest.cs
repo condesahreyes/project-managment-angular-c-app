@@ -103,7 +103,7 @@ namespace BusinessLogicTest
         {
             List<User> list = new List<User>();
             list.Add(tester);
-            mockUser.Setup(x => x.GetAllGeneric()).Returns(list);
+            mockUser.Setup(x => x.GetAll()).Returns(list);
 
             List<User> ret = testerLogic.GetAll();
             mockUser.VerifyAll();

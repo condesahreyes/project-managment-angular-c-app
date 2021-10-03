@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "AJsLxnRJhcJtdrgpqAM+VUN2Db93TCDvjcor43bnJrCnwZnSmPtfBAPaxU9DE5kaGR9x0kbZZBUYRQ1paaaJPA==",
+  "dgSpecHash": "GLA3xZ9LgoPQAiqcuX0gDxijSg/QOnbVmHkJVwspwP1Wk69MDPaTSdTUURE7Uv+cyEL6DS1uxM3EPjVsvMGWfw==",
   "success": true,
-  "projectFilePath": "C:\\Users\\hreye\\Desktop\\OBL-Asadurian-Reyes\\OBLDA2\\Factory\\Factory.csproj",
+  "projectFilePath": "C:\\Users\\hreye\\Desktop\\el RefactorGeneral\\OBL-Asadurian-Reyes\\OBLDA2\\Factory\\Factory.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\hreye\\.nuget\\packages\\entityframeworkcore.mappingextension\\2.0.0\\entityframeworkcore.mappingextension.2.0.0.nupkg.sha512",
     "C:\\Users\\hreye\\.nuget\\packages\\microsoft.csharp\\4.5.0\\microsoft.csharp.4.5.0.nupkg.sha512",

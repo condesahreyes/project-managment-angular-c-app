@@ -5,7 +5,7 @@ using System.Text;
 
 namespace BusinessLogicInterface.Imports
 {
-    interface IBugsImportTxt
+    public interface IBugsImport<T>
     {
         List<Bug> ImportBugs(string fileAddress);
     }

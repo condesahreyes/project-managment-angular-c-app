@@ -50,8 +50,8 @@ namespace DataAccessTest
                 CreateProject("Proyecto 2")
             };
 
-            _context.Add(projects.First());
             _context.Add(projects.Last());
+            _context.Add(projects.First());
             _context.SaveChanges();
 
             List<Project> projectDB = _projectRepository.GetAll();

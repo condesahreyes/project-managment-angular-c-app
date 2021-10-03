@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "9w4Wb4ifUqrEjkw3Lp96ZfgAAya0kEKfVVKHHq+zKW5E12+mtHuQ1mg497mcaCwuN/Ih2us6+Dfsez9o8XIoZw==",
+  "dgSpecHash": "HN9qWMWVwdyT/U1TzIMyQRkXaKqgKuJbCOdzUilgbqnmkoSha6BYigSsv6huF8CXczMagMwQ++qz311pFc+d4g==",
   "success": true,
-  "projectFilePath": "C:\\Users\\hreye\\Desktop\\OBL-Asadurian-Reyes\\OBLDA2\\DataAccessTest\\DataAccessTest.csproj",
+  "projectFilePath": "C:\\Users\\hreye\\Desktop\\el RefactorGeneral\\OBL-Asadurian-Reyes\\OBLDA2\\DataAccessTest\\DataAccessTest.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\hreye\\.nuget\\packages\\coverlet.collector\\3.0.2\\coverlet.collector.3.0.2.nupkg.sha512",
     "C:\\Users\\hreye\\.nuget\\packages\\entityframeworkcore.mappingextension\\2.0.0\\entityframeworkcore.mappingextension.2.0.0.nupkg.sha512",

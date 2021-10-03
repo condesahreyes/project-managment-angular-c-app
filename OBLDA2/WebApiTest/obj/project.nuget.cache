@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "Vm1/f7V/HA0cO9LO4OeGa0/E/pm1rYfZonEZOYi54Axs8KX0UAAMabQYigwObb9K4Fme76mSSQW/pKPZ0lhe4w==",
+  "dgSpecHash": "ghMwu2TMDFfk6TPnJnMXLbgS3Q/OOxoDPlZ4VycisBzhJcbr12lW3ek+g1aeiFk0ULbEFP9qbazBF2ouhQuBog==",
   "success": true,
-  "projectFilePath": "C:\\Users\\hreye\\Desktop\\OBL-Asadurian-Reyes\\OBLDA2\\WebApiTest\\WebApiTest.csproj",
+  "projectFilePath": "C:\\Users\\hreye\\Desktop\\el RefactorGeneral\\OBL-Asadurian-Reyes\\OBLDA2\\WebApiTest\\WebApiTest.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\hreye\\.nuget\\packages\\coverlet.collector\\3.0.2\\coverlet.collector.3.0.2.nupkg.sha512",
     "C:\\Users\\hreye\\.nuget\\packages\\microsoft.codecoverage\\16.9.4\\microsoft.codecoverage.16.9.4.nupkg.sha512",

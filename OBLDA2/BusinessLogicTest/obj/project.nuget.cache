@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "6vj8wv1cmxq2yxXNea4y6X+I0/t+G98l8oC3OAOb5q45q0kIgBgW7PV7Bp702lYwigsNNrlof8WizcaTjDtl2A==",
+  "dgSpecHash": "4fEQrMMda5x3EWjFq2e8tRCMJOZuXHYXllH24OnNwNl9koUq1xvpcuRXilNm2kLFFz0KyEsAmLzTkriSVS8Hmw==",
   "success": true,
-  "projectFilePath": "C:\\Users\\hreye\\Desktop\\OBL-Asadurian-Reyes\\OBLDA2\\BusinessLogicTest\\BusinessLogicTest.csproj",
+  "projectFilePath": "C:\\Users\\hreye\\Desktop\\el RefactorGeneral\\OBL-Asadurian-Reyes\\OBLDA2\\BusinessLogicTest\\BusinessLogicTest.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\hreye\\.nuget\\packages\\castle.core\\4.4.0\\castle.core.4.4.0.nupkg.sha512",
     "C:\\Users\\hreye\\.nuget\\packages\\coverlet.collector\\3.0.2\\coverlet.collector.3.0.2.nupkg.sha512",

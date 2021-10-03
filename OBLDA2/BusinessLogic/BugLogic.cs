@@ -19,11 +19,7 @@ namespace BusinessLogic
             this.stateRepository = stateRepository;
         }
 
-        public BugLogic()
-        {
-            bugRepository = new BugRepository();
-            stateRepository = new Repository<State, Guid>();
-        }
+        public BugLogic() { }
 
         public Bug Create(Bug bug)
         {
@@ -54,6 +50,28 @@ namespace BusinessLogic
             return bugRepository.Update(id, bugUpdate);
         }
 
+        public Bug UpdateStateToActiveBug(int id)
+        {
+            Bug activeBug = bugRepository.Get(id);
+
+            activeBug.State.Name = State.active;
+
+            bugRepository.Update(id, activeBug);
+
+            return activeBug;
+        }
+
+        public Bug UpdateStateToDoneBug(int id)
+        {
+            Bug doneBug = bugRepository.Get(id);
+
+            doneBug.State.Name = State.done;
+
+            bugRepository.Update(id, doneBug);
+
+            return doneBug;
+        }
+
         private void IsValidBug(Bug bug)
         {
             IsValidState(bug.State);
@@ -66,7 +84,7 @@ namespace BusinessLogic
 
             foreach (State oneState in states)
             {
-                if (oneState.Name == state.Name.ToLower())
+                if (oneState.Name.ToLower() == state.Name.ToLower())
                 {
                     return;
                 }
