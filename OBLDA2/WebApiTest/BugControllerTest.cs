@@ -1,13 +1,13 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using BusinessLogicInterface;
-using Domain;
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using Moq;
-using OBLDA2.Models;
+using System.Collections.Generic;
+using Microsoft.AspNetCore.Mvc;
+using BusinessLogicInterface;
 using WebApi.Controllers;
+using OBLDA2.Models;
+using System.Linq;
+using Domain;
+using System;
+using Moq;
 
 namespace WebApiTest
 {
@@ -16,12 +16,10 @@ namespace WebApiTest
     {
         private static State activeState = new State(State.active);
 
-        private Project project;
-        private Bug bug;
-
-
         private Mock<IBugLogic> bugLogic;
 
+        private Project project;
+        private Bug bug;
 
         [TestInitialize]
         public void Setup()
@@ -30,7 +28,6 @@ namespace WebApiTest
 
             project = new Project("Project - GXC ");
             bug = new Bug(project, 1, "Error de login", "Intento de sesión", "3.0", activeState);
-
         }
 
         [TestMethod]
@@ -70,10 +67,8 @@ namespace WebApiTest
             bugLogic.VerifyAll();
 
             Assert.IsTrue(bugsOut.First().Id == bugsResult.First().Id);
-
         }
 
-        
         [TestMethod]
         public void GetBugIdTest()
         {
@@ -92,9 +87,6 @@ namespace WebApiTest
         [TestMethod]
         public void UpdateBugTest()
         {
-            
-
-            Guid id = new Guid();
             var updatedBug = new Bug(project, 1, "Error cierre de sesion", "Intento", "3.5", activeState);
             var bugUpdateDTO = new BugUpdateModel(updatedBug);
             BugEntryOutModel bugUpdateOutModel = new BugEntryOutModel(updatedBug);

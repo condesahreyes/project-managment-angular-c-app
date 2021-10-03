@@ -1,12 +1,11 @@
-using Domain;
-using Microsoft.AspNetCore.Mvc;
-using System;
 using System.Collections.Generic;
+using Microsoft.AspNetCore.Mvc;
 using BusinessLogicInterface;
 using OBLDA2.Controllers;
 using OBLDA2.Models;
 using System.Net;
-using System.Linq;
+using Domain;
+using System;
 
 namespace WebApi.Controllers
 {
@@ -35,12 +34,11 @@ namespace WebApi.Controllers
         {
             List<Bug> bugs = this.bugLogic.GetAll();
             List<BugEntryOutModel> bugsOut = new List<BugEntryOutModel>();
+
             foreach (var bug in bugs)
             {
                 bugsOut.Add(new BugEntryOutModel(bug));
             }
-            //IEnumerable<BugEntryOutModel> bugsOut = bugs.Select(b => BugEntryOutModel.BugEntryOutModel2(b));
-
 
             return Ok(bugsOut);
         }
@@ -60,7 +58,6 @@ namespace WebApi.Controllers
             }
         }
 
-
         [HttpDelete("{id}")]
         public IActionResult Delete(int id)
         {
@@ -73,7 +70,6 @@ namespace WebApi.Controllers
             {
                 return NotFound("Bug not found with id: " + id);
             }
-
 
         }
 
