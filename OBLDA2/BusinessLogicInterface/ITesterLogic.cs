@@ -16,5 +16,8 @@ namespace BusinessLogicInterface
         List<Bug> GetAllBugs(User tester);
 
         void DeleteBug(int id);
+
+        void AssignTesterToProject(Project project, User tester);
+        void DeleteTesterInProject(Project project, User tester);
     }
 }
