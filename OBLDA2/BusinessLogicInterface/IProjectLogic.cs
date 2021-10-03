@@ -27,5 +27,7 @@ namespace BusinessLogicInterface
         List<User> GetAllTesters(Project project);
 
         List<User> GetAllDevelopers(Project project);
+
+        List<Bug> GetAllBugByProject(Project project);
     }
 }

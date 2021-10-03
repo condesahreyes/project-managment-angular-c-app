@@ -21,3 +21,4 @@ C:\Users\hreye\Desktop\el RefactorGeneral\OBL-Asadurian-Reyes\OBLDA2\Domain\obj\
 C:\Users\hreye\Desktop\el RefactorGeneral\OBL-Asadurian-Reyes\OBLDA2\Domain\obj\Debug\net5.0\Domain.dll
 C:\Users\hreye\Desktop\el RefactorGeneral\OBL-Asadurian-Reyes\OBLDA2\Domain\obj\Debug\net5.0\ref\Domain.dll
 C:\Users\hreye\Desktop\el RefactorGeneral\OBL-Asadurian-Reyes\OBLDA2\Domain\obj\Debug\net5.0\Domain.pdb
+C:\Users\hreye\Desktop\el RefactorGeneral\OBL-Asadurian-Reyes\OBLDA2\Domain\obj\Debug\net5.0\Domain.csproj.AssemblyReference.cache
