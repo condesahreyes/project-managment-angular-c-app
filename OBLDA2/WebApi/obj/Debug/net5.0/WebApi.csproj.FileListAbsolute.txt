@@ -51,8 +51,10 @@ C:\Users\hreye\Desktop\OBL-Asadurian-Reyes\OBLDA2\WebApi\bin\Debug\net5.0\Busine
 C:\Users\hreye\Desktop\OBL-Asadurian-Reyes\OBLDA2\WebApi\bin\Debug\net5.0\DataAccess.dll
 C:\Users\hreye\Desktop\OBL-Asadurian-Reyes\OBLDA2\WebApi\bin\Debug\net5.0\DataAccessInterface.dll
 C:\Users\hreye\Desktop\OBL-Asadurian-Reyes\OBLDA2\WebApi\bin\Debug\net5.0\Domain.dll
+C:\Users\hreye\Desktop\OBL-Asadurian-Reyes\OBLDA2\WebApi\bin\Debug\net5.0\Exceptions.dll
 C:\Users\hreye\Desktop\OBL-Asadurian-Reyes\OBLDA2\WebApi\bin\Debug\net5.0\Factory.dll
 C:\Users\hreye\Desktop\OBL-Asadurian-Reyes\OBLDA2\WebApi\bin\Debug\net5.0\DataAccess.pdb
+C:\Users\hreye\Desktop\OBL-Asadurian-Reyes\OBLDA2\WebApi\bin\Debug\net5.0\Exceptions.pdb
 C:\Users\hreye\Desktop\OBL-Asadurian-Reyes\OBLDA2\WebApi\bin\Debug\net5.0\Factory.pdb
 C:\Users\hreye\Desktop\OBL-Asadurian-Reyes\OBLDA2\WebApi\bin\Debug\net5.0\BusinessLogic.pdb
 C:\Users\hreye\Desktop\OBL-Asadurian-Reyes\OBLDA2\WebApi\bin\Debug\net5.0\BusinessLogicInterface.pdb

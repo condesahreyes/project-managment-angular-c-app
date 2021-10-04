@@ -1609,7 +1609,8 @@
         "framework": ".NETCoreApp,Version=v5.0",
         "dependencies": {
           "BusinessLogicInterface": "1.0.0",
-          "DataAccess": "1.0.0"
+          "DataAccess": "1.0.0",
+          "Exceptions": "1.0.0"
         },
         "compile": {
           "bin/placeholder/BusinessLogic.dll": {}
@@ -1666,11 +1667,24 @@
       "Domain/1.0.0": {
         "type": "project",
         "framework": ".NETCoreApp,Version=v5.0",
+        "dependencies": {
+          "Exceptions": "1.0.0"
+        },
         "compile": {
           "bin/placeholder/Domain.dll": {}
         },
         "runtime": {
           "bin/placeholder/Domain.dll": {}
+        }
+      },
+      "Exceptions/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v5.0",
+        "compile": {
+          "bin/placeholder/Exceptions.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/Exceptions.dll": {}
         }
       },
       "Factory/1.0.0": {
@@ -5972,6 +5986,11 @@
       "path": "../Domain/Domain.csproj",
       "msbuildProject": "../Domain/Domain.csproj"
     },
+    "Exceptions/1.0.0": {
+      "type": "project",
+      "path": "../Exceptions/Exceptions.csproj",
+      "msbuildProject": "../Exceptions/Exceptions.csproj"
+    },
     "Factory/1.0.0": {
       "type": "project",
       "path": "../Factory/Factory.csproj",
@@ -5981,6 +6000,7 @@
   "projectFileDependencyGroups": {
     "net5.0": [
       "DataAccess >= 1.0.0",
+      "Exceptions >= 1.0.0",
       "Factory >= 1.0.0",
       "Microsoft.AspNetCore.Mvc.NewtonsoftJson >= 5.0.10",
       "Microsoft.EntityFrameworkCore.Design >= 5.0.10",
@@ -6016,6 +6036,9 @@
           "projectReferences": {
             "C:\\Users\\hreye\\Desktop\\OBL-Asadurian-Reyes\\OBLDA2\\DataAccess\\DataAccess.csproj": {
               "projectPath": "C:\\Users\\hreye\\Desktop\\OBL-Asadurian-Reyes\\OBLDA2\\DataAccess\\DataAccess.csproj"
+            },
+            "C:\\Users\\hreye\\Desktop\\OBL-Asadurian-Reyes\\OBLDA2\\Exceptions\\Exceptions.csproj": {
+              "projectPath": "C:\\Users\\hreye\\Desktop\\OBL-Asadurian-Reyes\\OBLDA2\\Exceptions\\Exceptions.csproj"
             },
             "C:\\Users\\hreye\\Desktop\\OBL-Asadurian-Reyes\\OBLDA2\\Factory\\Factory.csproj": {
               "projectPath": "C:\\Users\\hreye\\Desktop\\OBL-Asadurian-Reyes\\OBLDA2\\Factory\\Factory.csproj"

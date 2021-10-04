@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using BusinessLogicInterface;
 using DataAccessInterface;
+using Exceptions;
 using System;
 using Domain;
 
@@ -8,13 +9,17 @@ namespace BusinessLogic
 {
     public class ProjectLogic : IProjectLogic
     {
+        private const string notExistProject = "Project does not exist";
+
         private IProjectRepository projectRepository;
+        private IUserLogic userLogic;
 
         public ProjectLogic() { }
 
-        public ProjectLogic(IProjectRepository ProjectDa)
+        public ProjectLogic(IProjectRepository ProjectDa, IUserLogic userLogic)
         {
             this.projectRepository = ProjectDa;
+            this.userLogic = userLogic;
         }
 
         public Project Create(Project projectToCreate)
@@ -28,41 +33,47 @@ namespace BusinessLogic
         {
             Project projcet = projectRepository.GetById(id);
 
-            if (projcet != null)
+            if (projcet == null)
             {
-                return projcet;
+                throw new NoObjectException(notExistProject);
             }
-            else
-            {
-                throw new Exception("Project does not exist");
-            }
+
+            return projcet;
+        }
+
+        public void ExistProject(Guid projectId)
+        {
+            Get(projectId);
         }
 
         public Project Update(Guid id, Project updatedProject)
         {
+            ExistProject(id);
             Project.ValidateName(updatedProject.Name);
-            
             return projectRepository.Update(id, updatedProject);
         }
 
         public void Delete(Guid id)
         {
+            ExistProject(id);
             projectRepository.Delete(id);
         }
 
         public void DeleteTester(Project oneProject, User tester)
         {
-            Project project = projectRepository.GetById(oneProject.Id);
+            Project project = Get(oneProject.Id);
+            userLogic.ExistUser(tester);
 
-              if (project.Users.Contains(tester))
-              {
+            if (project.Users.Contains(tester))
+            {
                 project.Users.Remove(tester);
-              }
+            }
         }
 
         public void DeleteDeveloper(Project oneProject, User developer)
         {
-            Project project = projectRepository.GetById(oneProject.Id);
+            Project project = Get(oneProject.Id);
+            userLogic.ExistUser(developer);
 
             if (project.Users.Contains(developer))
             {
@@ -72,7 +83,8 @@ namespace BusinessLogic
 
         public void AssignDeveloper(Project oneProject, User developer)
         {
-            Project project = projectRepository.GetById(oneProject.Id);
+            Project project = Get(oneProject.Id);
+            userLogic.ExistUser(developer);
 
             if (!project.Users.Contains(developer))
             {
@@ -82,7 +94,8 @@ namespace BusinessLogic
 
         public void AssignTester(Project oneProject, User tester)
         {
-            Project project = projectRepository.GetById(oneProject.Id);
+            Project project = Get(oneProject.Id);
+            userLogic.ExistUser(tester);
 
             if (!project.Users.Contains(tester))
             {
@@ -97,32 +110,27 @@ namespace BusinessLogic
 
         public List<User> GetAllTesters(Project oneProject)
         {
-            List<User> testers = new List<User>();
-
-            Project project = projectRepository.GetById(oneProject.Id);
-
-            foreach (User user in project.Users)
-            {
-                if (user.Rol.Name == Rol.tester)
-                    testers.Add(user);
-            }
-
-            return testers;
+            return GetAllUserByRol(Rol.tester, oneProject);
         }
 
         public List<User> GetAllDevelopers(Project oneProject)
         {
-            List<User> developers = new List<User>();
+            return GetAllUserByRol(Rol.developer, oneProject);
+        }
 
-            Project project = projectRepository.GetById(oneProject.Id);
+        private List<User> GetAllUserByRol(string rol, Project oneProject)
+        {
+            List<User> users = new List<User>();
+
+            Project project = Get(oneProject.Id);
 
             foreach (User user in project.Users)
             {
-                if (user.Rol.Name == Rol.developer)
-                    developers.Add(user);
+                if (user.Rol.Name.ToLower() == rol.ToLower())
+                    users.Add(user);
             }
 
-            return developers;
+            return users;
         }
 
         public List<Bug> GetAllBugByProject(Project project)

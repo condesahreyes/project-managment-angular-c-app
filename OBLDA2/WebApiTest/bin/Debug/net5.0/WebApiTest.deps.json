@@ -1704,7 +1704,8 @@
       "BusinessLogic/1.0.0": {
         "dependencies": {
           "BusinessLogicInterface": "1.0.0",
-          "DataAccess": "1.0.0"
+          "DataAccess": "1.0.0",
+          "Exceptions": "1.0.0"
         },
         "runtime": {
           "BusinessLogic.dll": {}
@@ -1741,8 +1742,16 @@
         }
       },
       "Domain/1.0.0": {
+        "dependencies": {
+          "Exceptions": "1.0.0"
+        },
         "runtime": {
           "Domain.dll": {}
+        }
+      },
+      "Exceptions/1.0.0": {
+        "runtime": {
+          "Exceptions.dll": {}
         }
       },
       "Factory/1.0.0": {
@@ -1758,6 +1767,7 @@
       "WebApi/1.0.0": {
         "dependencies": {
           "DataAccess": "1.0.0",
+          "Exceptions": "1.0.0",
           "Factory": "1.0.0",
           "Microsoft.AspNetCore.Mvc.NewtonsoftJson": "5.0.10",
           "Swashbuckle.AspNetCore": "5.6.3"
@@ -2880,6 +2890,11 @@
       "sha512": ""
     },
     "Domain/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "Exceptions/1.0.0": {
       "type": "project",
       "serviceable": false,
       "sha512": ""

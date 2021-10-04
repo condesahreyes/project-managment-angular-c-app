@@ -2571,7 +2571,8 @@
         "framework": ".NETCoreApp,Version=v5.0",
         "dependencies": {
           "BusinessLogicInterface": "1.0.0",
-          "DataAccess": "1.0.0"
+          "DataAccess": "1.0.0",
+          "Exceptions": "1.0.0"
         },
         "compile": {
           "bin/placeholder/BusinessLogic.dll": {}
@@ -2628,11 +2629,24 @@
       "Domain/1.0.0": {
         "type": "project",
         "framework": ".NETCoreApp,Version=v5.0",
+        "dependencies": {
+          "Exceptions": "1.0.0"
+        },
         "compile": {
           "bin/placeholder/Domain.dll": {}
         },
         "runtime": {
           "bin/placeholder/Domain.dll": {}
+        }
+      },
+      "Exceptions/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v5.0",
+        "compile": {
+          "bin/placeholder/Exceptions.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/Exceptions.dll": {}
         }
       }
     }
@@ -8922,6 +8936,11 @@
       "type": "project",
       "path": "../Domain/Domain.csproj",
       "msbuildProject": "../Domain/Domain.csproj"
+    },
+    "Exceptions/1.0.0": {
+      "type": "project",
+      "path": "../Exceptions/Exceptions.csproj",
+      "msbuildProject": "../Exceptions/Exceptions.csproj"
     }
   },
   "projectFileDependencyGroups": {

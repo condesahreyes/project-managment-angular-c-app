@@ -9,7 +9,8 @@
       "BusinessLogic/1.0.0": {
         "dependencies": {
           "BusinessLogicInterface": "1.0.0",
-          "DataAccess": "1.0.0"
+          "DataAccess": "1.0.0",
+          "Exceptions": "1.0.0"
         },
         "runtime": {
           "BusinessLogic.dll": {}
@@ -1156,8 +1157,16 @@
         }
       },
       "Domain/1.0.0": {
+        "dependencies": {
+          "Exceptions": "1.0.0"
+        },
         "runtime": {
           "Domain.dll": {}
+        }
+      },
+      "Exceptions/1.0.0": {
+        "runtime": {
+          "Exceptions.dll": {}
         }
       }
     }
@@ -1891,6 +1900,11 @@
       "sha512": ""
     },
     "Domain/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "Exceptions/1.0.0": {
       "type": "project",
       "serviceable": false,
       "sha512": ""

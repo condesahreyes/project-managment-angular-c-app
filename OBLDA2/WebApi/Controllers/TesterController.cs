@@ -41,16 +41,8 @@ namespace WebApi.Controllers
             User tester = new User();
             tester.Id = id;
 
-            try
-            {
-                testerLogic.AssignTesterToProject(project.ToEntity(), tester);
-                return NoContent();
-            }
-            catch (Exception)
-            {
-                return NotFound("Project not found or Tester not found");
-            }
-
+            testerLogic.AssignTesterToProject(project.ToEntity(), tester);
+            return NoContent();
         }
 
         [HttpDelete("{id}/DeleteTesterToProject")]
@@ -60,15 +52,9 @@ namespace WebApi.Controllers
         {
             User tester = new User();
             tester.Id = id;
-            try
-            {
-                testerLogic.DeleteTesterInProject(project, tester);
-                return NoContent();
-            }
-            catch (Exception)
-            {
-                return NotFound("Project not found or Tester not found");
-            }
+
+            testerLogic.DeleteTesterInProject(project, tester);
+            return NoContent();
         }
 
     }

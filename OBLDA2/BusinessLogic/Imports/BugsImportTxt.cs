@@ -3,17 +3,23 @@ using System.Collections.Generic;
 using BusinessLogicInterface;
 using Domain;
 using System;
+using System.IO;
+using Exceptions;
 
 namespace BusinessLogic.Imports
 {
     public class BugsImportTxt : BugsImport, IBugsImport<BugsImportTxt>
     {
+        private const string invalidRoute = "Error, it´s not a valid route";
         public BugsImportTxt(IBugLogic bugLogic) : base(bugLogic) { }
 
         public BugsImportTxt() : base() { }
 
         public List<Bug> ImportBugs(string fileAddress)
         {
+            if (!File.Exists(fileAddress))
+                throw new InvalidDataObjException(invalidRoute);
+
             List<string> bugsString = GetBugsString(fileAddress);
             List<Bug> bugs = GetBugsByStrings(bugsString);
 

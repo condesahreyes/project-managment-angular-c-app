@@ -1,7 +1,7 @@
-﻿using System.Security.Authentication;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using BusinessLogicInterface;
 using System.Linq;
+using Exceptions;
 using System;
 using Domain;
 
@@ -9,8 +9,10 @@ namespace BusinessLogic
 {
     public class SessionLogic : ISessionLogic
     {
+        private const string invalidEmailOrPasswordMessage = "Invalid email or password.";
+        private const string invalidToken = "You dont have a valid token";
+
         private IUserLogic userLogic;
-        private readonly string InvalidEmailOrPasswordMessage = "Invalid email or password.";
 
         public SessionLogic(IUserLogic _userLogic)
         {
@@ -35,7 +37,7 @@ namespace BusinessLogic
 
             if (admin == null)
             {
-                throw new InvalidCredentialException(InvalidEmailOrPasswordMessage);
+                throw new NoObjectException(invalidEmailOrPasswordMessage);
             }
 
             return GenerateAndInsertToken(admin);
@@ -65,16 +67,15 @@ namespace BusinessLogic
 
         private void UpdateToken(User user, string token)
         {
-            User usu = userLogic.Get(user.Id);
-            usu.Token = token;
-            userLogic.Update(user);
+            User oneUser = userLogic.Get(user.Id);
+            oneUser.Token = token;
+            userLogic.Update(oneUser);
         }
 
-        public bool Logout(string token)
+        public void Logout(string token)
         {
             var userToLogOut = userLogic.GetAll().Where(u => u.Token == token);
             UpdateToken(userToLogOut.First(), null);
-            return true;
         }
 
     }

@@ -1,10 +1,13 @@
 ﻿using System.Collections.Generic;
+using Exceptions;
 using System;
 
 namespace Domain
 {
     public class Project
     {
+        private const string invalidName = "You must entry a valid name";
+
         public Guid Id { get; set; }
         public List<User> Users { get; set; }
         public List<Bug> Bugs { get; set; }
@@ -26,7 +29,7 @@ namespace Domain
         public static void ValidateName(string name)
         {
             if (name.Length < 1)
-                throw new Exception();
+                throw new InvalidDataObjException(invalidName);
         }
 
     }

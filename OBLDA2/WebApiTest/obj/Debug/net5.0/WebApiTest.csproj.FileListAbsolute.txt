@@ -137,6 +137,7 @@ C:\Users\hreye\Desktop\OBL-Asadurian-Reyes\OBLDA2\WebApiTest\bin\Debug\net5.0\Bu
 C:\Users\hreye\Desktop\OBL-Asadurian-Reyes\OBLDA2\WebApiTest\bin\Debug\net5.0\DataAccess.dll
 C:\Users\hreye\Desktop\OBL-Asadurian-Reyes\OBLDA2\WebApiTest\bin\Debug\net5.0\DataAccessInterface.dll
 C:\Users\hreye\Desktop\OBL-Asadurian-Reyes\OBLDA2\WebApiTest\bin\Debug\net5.0\Domain.dll
+C:\Users\hreye\Desktop\OBL-Asadurian-Reyes\OBLDA2\WebApiTest\bin\Debug\net5.0\Exceptions.dll
 C:\Users\hreye\Desktop\OBL-Asadurian-Reyes\OBLDA2\WebApiTest\bin\Debug\net5.0\Factory.dll
 C:\Users\hreye\Desktop\OBL-Asadurian-Reyes\OBLDA2\WebApiTest\bin\Debug\net5.0\WebApi.dll
 C:\Users\hreye\Desktop\OBL-Asadurian-Reyes\OBLDA2\WebApiTest\bin\Debug\net5.0\BusinessLogicInterface.pdb
@@ -145,6 +146,7 @@ C:\Users\hreye\Desktop\OBL-Asadurian-Reyes\OBLDA2\WebApiTest\bin\Debug\net5.0\We
 C:\Users\hreye\Desktop\OBL-Asadurian-Reyes\OBLDA2\WebApiTest\bin\Debug\net5.0\BusinessLogic.pdb
 C:\Users\hreye\Desktop\OBL-Asadurian-Reyes\OBLDA2\WebApiTest\bin\Debug\net5.0\DataAccess.pdb
 C:\Users\hreye\Desktop\OBL-Asadurian-Reyes\OBLDA2\WebApiTest\bin\Debug\net5.0\DataAccessInterface.pdb
+C:\Users\hreye\Desktop\OBL-Asadurian-Reyes\OBLDA2\WebApiTest\bin\Debug\net5.0\Exceptions.pdb
 C:\Users\hreye\Desktop\OBL-Asadurian-Reyes\OBLDA2\WebApiTest\bin\Debug\net5.0\Factory.pdb
 C:\Users\hreye\Desktop\OBL-Asadurian-Reyes\OBLDA2\WebApiTest\obj\Debug\net5.0\WebApiTest.csproj.AssemblyReference.cache
 C:\Users\hreye\Desktop\OBL-Asadurian-Reyes\OBLDA2\WebApiTest\obj\Debug\net5.0\WebApiTest.GeneratedMSBuildEditorConfig.editorconfig

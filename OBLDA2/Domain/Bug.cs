@@ -1,9 +1,15 @@
-﻿using System;
+﻿using Exceptions;
+using System;
 
 namespace Domain
 {
     public class Bug
     {
+        private const string invalidId = "You must entry a valid id";
+        private const string invalidName = "You must entry a valid name";
+        private const string invalidDomain = "You must entry a valid domain";
+        private const string invalidVersion = "You must entry a valid version";
+
         public int Id { get; set; }
 
         public string Name { get; set; }
@@ -38,7 +44,7 @@ namespace Domain
         private static void IsValidId(int oneId)
         {
             if (!(oneId <= 9999 && oneId >= 0))
-                throw new Exception("");
+                throw new InvalidDataObjException(invalidId);
         }
 
         private static void IsValidName(string oneName)
@@ -46,7 +52,7 @@ namespace Domain
             int nameLength = oneName.Length;
 
             if (!(nameLength <= 60 && nameLength > 0))
-                throw new Exception("");
+                throw new InvalidDataObjException(invalidName);
         }
 
         private static void IsValidDomain(string oneDomain)
@@ -54,7 +60,7 @@ namespace Domain
             int domainLength = oneDomain.Length;
 
             if (!(domainLength <= 150 && domainLength > 0))
-                throw new Exception("");
+                throw new InvalidDataObjException(invalidDomain);
         }
 
         private static void IsValidVersion(string oneVersion)
@@ -62,7 +68,7 @@ namespace Domain
             int versionLength = oneVersion.Length;
 
             if (!(versionLength <= 10 && versionLength > 0))
-                throw new Exception("");
+                throw new InvalidDataObjException(invalidVersion);
         }
 
         public override bool Equals(Object obj)

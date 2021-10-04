@@ -5,7 +5,7 @@ namespace BusinessLogicInterface
     public interface ISessionLogic
     {
         bool IsCorrectToken(string token);
-        bool Logout(string token);
+        void Logout(string token);
 
         string Login(string email, string password);
         string GenerateAndInsertToken(User user);
