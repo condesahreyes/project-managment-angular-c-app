@@ -5,11 +5,13 @@ namespace Domain
     public class Bug
     {
         public int Id { get; set; }
-        public Project Project { get; set; }
-        public User SolvedBy { get; set; }
+
         public string Name { get; set; }
         public string Domain { get; set; }
         public string Version { get; set; }
+
+        public Project Project { get; set; }
+        public User SolvedBy { get; set; }
         public State State { get; set; }
 
         public Bug(Project project, int id, string name, 
