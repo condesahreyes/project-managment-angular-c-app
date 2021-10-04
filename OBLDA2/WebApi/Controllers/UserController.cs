@@ -42,15 +42,7 @@ namespace OBLDA2.Controllers
         {
             User userToReturn = this.userLogic.Get(userID);
 
-            if (userToReturn != null)
-            {
-                return Ok(new UserOutModel(userToReturn));
-            }
-            else
-            {
-                return NotFound("User not found with id: " + userID);
-
-            }
+            return Ok(new UserOutModel(userToReturn));
         }
 
     }

@@ -10,28 +10,19 @@ namespace OBLDA2.Controllers
 {
     [Route("penguin/imports")]
     [AuthorizationFilter(Autorization.Administrator)]
-    public class ImportsController<T> : ControllerBase where T : class
+    public class ImportsController : ApiBaseController
     {
-        private readonly IBugsImport<T> import;
+        private readonly IBugsImport import;
 
-        public ImportsController(IBugsImport<T> txtImport)
+        public ImportsController(IBugsImport import)
         {
-            this.import = txtImport;
+            this.import = import;
         }
 
         [HttpPost]
-        public IActionResult ImportBugsTxt(string fileAddress)
+        public IActionResult ImportBugs(ImportBugModel importBug)
         {
-            List<Bug> bugs = this.import.ImportBugs(fileAddress);
-            IEnumerable<BugEntryOutModel> bugsModel = bugs.Select(b => new BugEntryOutModel(b));
-
-            return Ok(bugsModel);
-        }
-
-        [HttpPost]
-        public IActionResult ImportBugsXml(string fileAddress)
-        {
-            List<Bug> bugs = this.import.ImportBugs(fileAddress);
+            List<Bug> bugs = this.import.ImportBugs(importBug.FileAddress);
             IEnumerable<BugEntryOutModel> bugsModel = bugs.Select(b => new BugEntryOutModel(b));
 
             return Ok(bugsModel);

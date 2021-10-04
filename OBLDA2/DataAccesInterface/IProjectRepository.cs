@@ -8,5 +8,6 @@ namespace DataAccessInterface
     {
         List<Project> GetAll();
         Project GetById(Guid id);
+        Project Update(Guid id, Project projectUpdate);
     }
 }

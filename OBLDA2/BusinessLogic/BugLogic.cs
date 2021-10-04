@@ -27,7 +27,7 @@ namespace BusinessLogic
         public Bug Create(Bug bug)
         {
             NotExistBug(bug.Id);
-            IsValidBug(bug);
+            IsValidBug(ref bug);
             bugRepository.Create(bug);
             return bug;
         }
@@ -73,7 +73,9 @@ namespace BusinessLogic
         public Bug Update(int id, Bug bugUpdate)
         {
             ExistBug(id);
-            IsValidBug(bugUpdate);
+            IsValidBug(ref bugUpdate);
+
+            bugUpdate.Id = id;
 
             return bugRepository.Update(id, bugUpdate);
         }
@@ -112,13 +114,13 @@ namespace BusinessLogic
             return doneBug;
         }
 
-        private void IsValidBug(Bug bug)
+        private void IsValidBug(ref Bug bug)
         {
-            IsValidState(bug.State);
+            bug.State = IsValidState(bug.State);
             Bug.AreCorrectData(bug);
         }
 
-        private void IsValidState(State state)
+        private State IsValidState(State state)
         {
             List<State> states = stateRepository.GetAllGeneric();
 
@@ -126,7 +128,7 @@ namespace BusinessLogic
             {
                 if (oneState.Name.ToLower() == state.Name.ToLower())
                 {
-                    return;
+                    return oneState;
                 }
             }
 

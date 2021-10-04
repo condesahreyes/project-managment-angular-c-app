@@ -7,5 +7,6 @@ namespace DataAccessInterface
     {
         List<Bug> GetAll();
         Bug GetById(int id);
+        Bug Update(int id, Bug bugUpdate);
     }
 }

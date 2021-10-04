@@ -9,7 +9,7 @@ using System;
 
 namespace BusinessLogic.Imports
 {
-    public class BugsImportXml : BugsImport, IBugsImport<BugsImportXml>
+    public class BugsImportXml : BugsImport
     {
         private const string invalidRoute = "Error, it´s not a valid route";
 

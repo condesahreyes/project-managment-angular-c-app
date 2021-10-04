@@ -32,34 +32,34 @@ namespace WebApi.Controllers
             return (StatusCode((int)HttpStatusCode.OK, bugs));
         }
         
-        [HttpPost("{id}/AssignDeveloperToProject")]
+        [HttpPost("{idDeveloper}/AssignDeveloperToProject/{idProject}")]
         [AuthorizationFilter(Autorization.Administrator)]
 
-        public IActionResult AssignDeveloperToProject(ProjectEntryModel project, Guid id)
+        public IActionResult AssignDeveloperToProject(Guid idProject, Guid idDeveloper)
         {
             User developer = new User();
-            developer.Id = id;
+            developer.Id = idDeveloper;
 
-            developerLogic.AssignDeveloperToProject(project.ToEntity(), developer);
+            Project project = new Project();
+            project.Id = idProject;
+
+            developerLogic.AssignDeveloperToProject(project, developer);
             return NoContent();
         }
 
-        [HttpDelete("{id}/DeleteProject")]
+        [HttpDelete("{idDeveloper}/DeleteProject/{idProject}")]
         [AuthorizationFilter(Autorization.Administrator)]
 
-        public IActionResult DeleteDeveloperToProject(Guid id, Project project)
+        public IActionResult DeleteDeveloperToProject(Guid idDeveloper, Guid idProject)
         {
             User developer = new User();
-            developer.Id = id;
-            try
-            {
-                developerLogic.DeleteDeveloperInProject(project, developer);
-                return NoContent();
-            }
-            catch (Exception)
-            {
-                return NotFound("Project not found or Tester not found");
-            }
+            developer.Id = idDeveloper;
+
+            Project project = new Project();
+            project.Id = idProject;
+
+            developerLogic.DeleteDeveloperInProject(project, developer);
+            return NoContent();
         }
 
         [HttpGet("{id}/CountBugsResolved")]

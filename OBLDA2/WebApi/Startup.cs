@@ -1,9 +1,11 @@
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Configuration;
+using Microsoft.AspNetCore.Mvc.Filters;
 using Microsoft.Extensions.Hosting;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.OpenApi.Models;
+using WebApi.Filters;
 using Factory;
 
 namespace OBLDA2
@@ -32,8 +34,10 @@ namespace OBLDA2
             var businessContainer = new BusinessLogicFactory(services);
             businessContainer.AddBusinessLogicServices();
 
+            services.AddScoped<ExceptionFilter>();
+
             services.AddControllersWithViews().AddNewtonsoftJson(options =>
-                options.SerializerSettings.ReferenceLoopHandling 
+                options.SerializerSettings.ReferenceLoopHandling
                 = Newtonsoft.Json.ReferenceLoopHandling.Ignore
             );
         }

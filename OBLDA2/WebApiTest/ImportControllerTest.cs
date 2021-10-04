@@ -16,8 +16,7 @@ namespace WebApiTest
     {
         private static State activeState = new State(State.active);
 
-        private Mock<IBugsImport<BugsImportTxt>> importBugsTxt;
-        private Mock<IBugsImport<BugsImportXml>> importBugsXml;
+        private Mock<IBugsImport> importBug;
 
         private Project project;
         private Bug bug;
@@ -25,8 +24,7 @@ namespace WebApiTest
         [TestInitialize]
         public void Setup()
         {
-            importBugsTxt = new Mock<IBugsImport<BugsImportTxt>>(MockBehavior.Strict);
-            importBugsXml = new Mock<IBugsImport<BugsImportXml>>(MockBehavior.Strict);
+            importBug = new Mock<IBugsImport>(MockBehavior.Strict);
 
             project = new Project("Project - GXC ");
             bug = new Bug(project, 1, "Error de login", "Intento de sesión", "3.0", activeState);
@@ -37,17 +35,16 @@ namespace WebApiTest
         {
             List<Bug> bugs = new List<Bug> { bug };
 
-            importBugsTxt.Setup(m => m.ImportBugs("")).Returns(bugs);
+            importBug.Setup(m => m.ImportBugs("")).Returns(bugs);
             IEnumerable<BugEntryOutModel> bugsModel = bugs.Select(b => new BugEntryOutModel(b));
 
-            ImportsController<BugsImportTxt> controller = 
-                new ImportsController<BugsImportTxt>(importBugsTxt.Object);
-
-            var result = controller.ImportBugsTxt("");
+            ImportsController controller = new ImportsController(importBug.Object);
+            ImportBugModel importModel = new ImportBugModel("");
+            var result = controller.ImportBugs(importModel);
             var okResult = result as OkObjectResult;
             var bugsResult = okResult.Value as IEnumerable<BugEntryOutModel>;
 
-            importBugsTxt.VerifyAll();
+            importBug.VerifyAll();
 
             Assert.AreEqual(200, okResult.StatusCode);
             Assert.AreEqual(bugs.First().Id, bugsResult.First().Id);
@@ -58,17 +55,16 @@ namespace WebApiTest
         {
             List<Bug> bugs = new List<Bug> { bug };
 
-            importBugsXml.Setup(m => m.ImportBugs("")).Returns(bugs);
+            importBug.Setup(m => m.ImportBugs("")).Returns(bugs);
             IEnumerable<BugEntryOutModel> bugsModel = bugs.Select(b => new BugEntryOutModel(b));
 
-            ImportsController<BugsImportXml> controller = 
-                new ImportsController<BugsImportXml>(importBugsXml.Object);
-
-            var result = controller.ImportBugsTxt("");
+            ImportsController controller = new ImportsController(importBug.Object);
+            ImportBugModel importModel = new ImportBugModel("");
+            var result = controller.ImportBugs(importModel);
             var okResult = result as OkObjectResult;
             var bugsResult = okResult.Value as IEnumerable<BugEntryOutModel>;
 
-            importBugsTxt.VerifyAll();
+            importBug.VerifyAll();
 
             Assert.AreEqual(200, okResult.StatusCode);
             Assert.AreEqual(bugs.First().Id, bugsResult.First().Id);

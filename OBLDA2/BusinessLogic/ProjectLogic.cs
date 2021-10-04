@@ -50,6 +50,7 @@ namespace BusinessLogic
         public Project Update(Guid id, Project updatedProject)
         {
             ExistProject(id);
+            updatedProject.Id = id;
             Project.ValidateName(updatedProject.Name);
             return projectRepository.Update(id, updatedProject);
         }

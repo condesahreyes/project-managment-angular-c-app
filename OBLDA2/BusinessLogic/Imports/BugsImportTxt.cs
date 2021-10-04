@@ -8,7 +8,7 @@ using Exceptions;
 
 namespace BusinessLogic.Imports
 {
-    public class BugsImportTxt : BugsImport, IBugsImport<BugsImportTxt>
+    public class BugsImportTxt : BugsImport
     {
         private const string invalidRoute = "Error, it´s not a valid route";
         public BugsImportTxt(IBugLogic bugLogic) : base(bugLogic) { }
@@ -21,9 +21,8 @@ namespace BusinessLogic.Imports
                 throw new InvalidDataObjException(invalidRoute);
 
             List<string> bugsString = GetBugsString(fileAddress);
-            List<Bug> bugs = GetBugsByStrings(bugsString);
 
-            return CreateBugs(bugs);
+            return GetBugsByStrings(bugsString);
         }
 
         private List<string> GetBugsString(string fileAddress)

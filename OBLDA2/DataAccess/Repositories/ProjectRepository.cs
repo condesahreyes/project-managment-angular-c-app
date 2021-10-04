@@ -30,5 +30,24 @@ namespace DataAccess.Repositories
             return _DbSet.Include(u => u.Users)
                 .Include(b => b.Bugs).First(b => b.Id == id);
         }
+
+        public Project Update(Guid id, Project projectUpdate)
+        {
+            Project projectSaved = GetById(id);
+
+            if (projectUpdate.Name != null)
+                projectSaved.Name = projectUpdate.Name;
+            if (projectUpdate.TotalBugs != null)
+                projectSaved.TotalBugs = projectUpdate.TotalBugs;
+            if (projectUpdate.Bugs != null)
+                projectSaved.Bugs = projectUpdate.Bugs;
+            if (projectUpdate.Users != null)
+                projectSaved.Users = projectUpdate.Users;
+
+            Project projectToReturn = _DbSet.Update(projectSaved).Entity;
+            Save();
+
+            return projectToReturn;
+        }
     }
 }

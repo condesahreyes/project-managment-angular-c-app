@@ -6,7 +6,6 @@ namespace DataAccessInterface
     {
         T Create(T entity);
         T Get(K id);
-        T Update(K id, T entity);
         List<T> GetAllGeneric();
         void Save();
         void Delete(K id);

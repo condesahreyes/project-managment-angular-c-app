@@ -13,7 +13,7 @@ namespace WebApi.Filters
         private ISessionLogic sessionLogic;
         private List<string> codeRol;
 
-        public AuthorizationFilter( string codeRol)
+        public AuthorizationFilter(string codeRol)
         {
             AddDiferentsCodeRoles(codeRol);
         }

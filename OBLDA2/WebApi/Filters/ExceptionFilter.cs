@@ -5,9 +5,14 @@ using System;
 
 namespace WebApi.Filters
 {
-    public class ExceptionsFilter : Attribute, IExceptionFilter
+    public class ExceptionFilter : Attribute, IExceptionFilter
     {
         private const string errorGeneric = "An unexpected error occurred";
+
+        public ExceptionFilter() { 
+        
+        }
+
         public void OnException(ExceptionContext context)
         {
             try
@@ -47,6 +52,5 @@ namespace WebApi.Filters
                 };
             }
         }
-
     }
 }
