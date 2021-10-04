@@ -21,12 +21,10 @@ namespace BusinessLogicInterface
 
         void DeleteProject(Guid id);
         void DeleteBug(int id);
-
         void AssignDeveloperByProject(Project project, User developer);
         void AssignTesterByProject(Project project, User tester);
         void DeleteTesterByProject(Project project, User tester);
         void DeleteDeveloperByProject(Project project, User developer);
-        void ImportBugsByProjectByProvider(Project project, List<Bug> bugsProject);
 
         int GetFixedBugsByDeveloper(Guid id);
         int GetTotalBugByAllProject();

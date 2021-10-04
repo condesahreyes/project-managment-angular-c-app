@@ -15,9 +15,8 @@ namespace DataAccess.Repositories
         {
             this._DbSet = context.Set<User>();
         }
-        public UserRepository()
-        {
-        }
+
+        public UserRepository() { }
 
         public List<User> GetAll()
         {

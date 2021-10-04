@@ -88,5 +88,20 @@ namespace BusinessLogic
             throw new Exception();
         }
 
+        public List<string> GetAllTokens()
+        {
+            List<string> tokens = new List<string>();
+            List<User> users = GetAll();
+
+            foreach (var user in users)
+            {
+                if (user.Token != null)
+                {
+                    tokens.Add(user.Token);
+                }
+            }
+            return tokens;
+        }
+
     }
 }

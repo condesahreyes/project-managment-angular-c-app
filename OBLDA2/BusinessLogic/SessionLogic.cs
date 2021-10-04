@@ -1,9 +1,9 @@
-﻿using System.Collections.Generic;
+﻿using System.Security.Authentication;
+using System.Collections.Generic;
 using BusinessLogicInterface;
+using System.Linq;
 using System;
 using Domain;
-using System.Security.Authentication;
-using System.Linq;
 
 namespace BusinessLogic
 {
@@ -16,21 +16,14 @@ namespace BusinessLogic
         {
             userLogic = _userLogic;
         }
+
         public SessionLogic(){}
 
         public List<string> GetAllTokens()
         {
-            List<string> tokens = new List<string>();
-            var users = userLogic.GetAll();
-            foreach (var user in users)
-            {
-                if (user.Token != null) {
-                    tokens.Add(user.Token);
-                }
-            }
-            return tokens;
-
+            return userLogic.GetAllTokens();
         }
+
         public bool IsCorrectToken(string token)
         {
             return GetAllTokens().Contains(token);
@@ -56,26 +49,18 @@ namespace BusinessLogic
 
         public string GenerateAndInsertToken(User user)
         {
-            string token = "";
+            User userDataAcces = userLogic.Get(user.Id); 
 
-            if (user.Rol.Name.ToLower().Equals(Rol.administrator.ToLower()))
-            {
-                token = "a" + Guid.NewGuid().ToString();
-            }
-
-            else if (user.Rol.Name.ToLower().Equals(Rol.tester.ToLower()))
-            {
-                token = "t" + Guid.NewGuid().ToString();
-            }
-
-            else if (user.Rol.Name.ToLower().Equals(Rol.developer.ToLower()))
-            {
-                token = "d" + Guid.NewGuid().ToString();
-            }
+            string token = GenerateToken(userDataAcces);
 
             UpdateToken(user, token);
            
             return token;
+        }
+
+        private string GenerateToken(User user)
+        {
+            return user.Rol.Name + Guid.NewGuid().ToString();
         }
 
         private void UpdateToken(User user, string token)
@@ -84,6 +69,7 @@ namespace BusinessLogic
             usu.Token = token;
             userLogic.Update(user);
         }
+
         public bool Logout(string token)
         {
             var userToLogOut = userLogic.GetAll().Where(u => u.Token == token);

@@ -58,11 +58,6 @@ namespace BusinessLogic.UserRol
             projcetLogic.AssignTester(project, tester);
         }
 
-        public void AssignDeveloperToProject(Project project, User tester)
-        {
-            projcetLogic.AssignDeveloper(project, tester);
-        }
-
         public void DeleteTesterInProject(Project project, User tester)
         {
             projcetLogic.DeleteTester(project, tester);
