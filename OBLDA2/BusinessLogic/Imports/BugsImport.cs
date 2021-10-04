@@ -55,13 +55,15 @@ namespace BusinessLogic.Imports
             }
             else if (Path.GetExtension(fileAddress).ToLower() == xml)
             {
-                BugsImportTxt txt = new BugsImportTxt();
-                bugToSaved = txt.ImportBugs(fileAddress);
+                BugsImportXml xml = new BugsImportXml();
+                bugToSaved = xml.ImportBugs(fileAddress);
+            }
+            else
+            {
+                throw new InvalidDataObjException(invalidFormat);
             }
 
-            CreateBugs(bugToSaved);
-
-            throw new InvalidDataObjException(invalidFormat);
+            return CreateBugs(bugToSaved);
         }
     }
 

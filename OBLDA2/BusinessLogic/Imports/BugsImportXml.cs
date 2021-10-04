@@ -24,7 +24,7 @@ namespace BusinessLogic.Imports
 
             List<Bug> bugs = GetBugsString(fileAddress);
 
-            return CreateBugs(bugs);
+            return bugs;
         }
 
         private List<Bug> GetBugsString(string fileAddress)
