@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\hreye\\Desktop\\repoFinal\\OBL-Asadurian-Reyes\\OBLDA2\\Domain\\Domain.csproj": {}
+    "C:\\Users\\hreye\\Desktop\\OBL-Asadurian-Reyes\\OBLDA2\\Domain\\Domain.csproj": {}
   },
   "projects": {
-    "C:\\Users\\hreye\\Desktop\\repoFinal\\OBL-Asadurian-Reyes\\OBLDA2\\Domain\\Domain.csproj": {
+    "C:\\Users\\hreye\\Desktop\\OBL-Asadurian-Reyes\\OBLDA2\\Domain\\Domain.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\hreye\\Desktop\\repoFinal\\OBL-Asadurian-Reyes\\OBLDA2\\Domain\\Domain.csproj",
+        "projectUniqueName": "C:\\Users\\hreye\\Desktop\\OBL-Asadurian-Reyes\\OBLDA2\\Domain\\Domain.csproj",
         "projectName": "Domain",
-        "projectPath": "C:\\Users\\hreye\\Desktop\\repoFinal\\OBL-Asadurian-Reyes\\OBLDA2\\Domain\\Domain.csproj",
+        "projectPath": "C:\\Users\\hreye\\Desktop\\OBL-Asadurian-Reyes\\OBLDA2\\Domain\\Domain.csproj",
         "packagesPath": "C:\\Users\\hreye\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\hreye\\Desktop\\repoFinal\\OBL-Asadurian-Reyes\\OBLDA2\\Domain\\obj\\",
+        "outputPath": "C:\\Users\\hreye\\Desktop\\OBL-Asadurian-Reyes\\OBLDA2\\Domain\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\hreye\\AppData\\Roaming\\NuGet\\NuGet.Config",

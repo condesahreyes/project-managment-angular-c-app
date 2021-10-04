@@ -5993,11 +5993,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\hreye\\Desktop\\repoFinal\\OBL-Asadurian-Reyes\\OBLDA2\\WebApi\\WebApi.csproj",
+      "projectUniqueName": "C:\\Users\\hreye\\Desktop\\OBL-Asadurian-Reyes\\OBLDA2\\WebApi\\WebApi.csproj",
       "projectName": "WebApi",
-      "projectPath": "C:\\Users\\hreye\\Desktop\\repoFinal\\OBL-Asadurian-Reyes\\OBLDA2\\WebApi\\WebApi.csproj",
+      "projectPath": "C:\\Users\\hreye\\Desktop\\OBL-Asadurian-Reyes\\OBLDA2\\WebApi\\WebApi.csproj",
       "packagesPath": "C:\\Users\\hreye\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\hreye\\Desktop\\repoFinal\\OBL-Asadurian-Reyes\\OBLDA2\\WebApi\\obj\\",
+      "outputPath": "C:\\Users\\hreye\\Desktop\\OBL-Asadurian-Reyes\\OBLDA2\\WebApi\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\hreye\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -6014,11 +6014,11 @@
         "net5.0": {
           "targetAlias": "net5.0",
           "projectReferences": {
-            "C:\\Users\\hreye\\Desktop\\repoFinal\\OBL-Asadurian-Reyes\\OBLDA2\\DataAccess\\DataAccess.csproj": {
-              "projectPath": "C:\\Users\\hreye\\Desktop\\repoFinal\\OBL-Asadurian-Reyes\\OBLDA2\\DataAccess\\DataAccess.csproj"
+            "C:\\Users\\hreye\\Desktop\\OBL-Asadurian-Reyes\\OBLDA2\\DataAccess\\DataAccess.csproj": {
+              "projectPath": "C:\\Users\\hreye\\Desktop\\OBL-Asadurian-Reyes\\OBLDA2\\DataAccess\\DataAccess.csproj"
             },
-            "C:\\Users\\hreye\\Desktop\\repoFinal\\OBL-Asadurian-Reyes\\OBLDA2\\Factory\\Factory.csproj": {
-              "projectPath": "C:\\Users\\hreye\\Desktop\\repoFinal\\OBL-Asadurian-Reyes\\OBLDA2\\Factory\\Factory.csproj"
+            "C:\\Users\\hreye\\Desktop\\OBL-Asadurian-Reyes\\OBLDA2\\Factory\\Factory.csproj": {
+              "projectPath": "C:\\Users\\hreye\\Desktop\\OBL-Asadurian-Reyes\\OBLDA2\\Factory\\Factory.csproj"
             }
           }
         }

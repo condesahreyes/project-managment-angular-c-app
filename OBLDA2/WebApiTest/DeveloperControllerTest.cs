@@ -78,7 +78,7 @@ namespace WebApiTest
             developerLogic.Setup(m => m.GetAllBugs(developer)).Returns(list);
             DeveloperController controller = new DeveloperController(developerLogic.Object);
 
-            var result = controller.GetAllBugs(developer.Id);
+            var result = controller.GetAllBugsDeveloper(developer.Id);
             var okResult = result as OkObjectResult;
             var bugsResult = okResult.Value as List<Bug>;
 

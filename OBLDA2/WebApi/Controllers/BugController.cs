@@ -6,11 +6,12 @@ using OBLDA2.Models;
 using System.Net;
 using Domain;
 using System;
+using WebApi.Filters;
 
 namespace WebApi.Controllers
 {
 
-    [Route("Penguin/bugs")]
+    [Route("penguin/bugs")]
     public class BugController : ApiBaseController
     {
         private readonly IBugLogic bugLogic;
@@ -21,6 +22,8 @@ namespace WebApi.Controllers
         }
 
         [HttpPost]
+        [AuthorizationFilter(Autorization.AdministratorAndTester)]
+
         public IActionResult AddBug(BugEntryOutModel bugDTO)
         {
             Bug bug = this.bugLogic.Create(bugDTO.ToEntity());
@@ -30,6 +33,8 @@ namespace WebApi.Controllers
         }
 
         [HttpGet]
+        [AuthorizationFilter(Autorization.AllAutorization)]
+
         public IActionResult GetAllBugs()
         {
             List<Bug> bugs = this.bugLogic.GetAll();
@@ -44,6 +49,8 @@ namespace WebApi.Controllers
         }
 
         [HttpGet("{id}")]
+        [AuthorizationFilter(Autorization.AllAutorization)]
+
         public IActionResult GetById(int bugId)
         {
             Bug bugToReturn = this.bugLogic.Get(bugId);
@@ -59,6 +66,8 @@ namespace WebApi.Controllers
         }
 
         [HttpDelete("{id}")]
+        [AuthorizationFilter(Autorization.AdministratorAndTester)]
+
         public IActionResult Delete(int id)
         {
             try
@@ -73,6 +82,8 @@ namespace WebApi.Controllers
         }
 
         [HttpPut("{id}")]
+        [AuthorizationFilter(Autorization.AdministratorAndTester)]
+
         public IActionResult UpdateABug(int id, BugUpdateModel bugDTO)
         {
             Bug bugUpdated = this.bugLogic.Update(id, bugDTO.ToEntity(id));
@@ -82,6 +93,7 @@ namespace WebApi.Controllers
         }
 
         [HttpPut("{id}/UpdateState")]
+        [AuthorizationFilter(Autorization.AllAutorization)]
         public IActionResult UpdateStateBug(int id, string state)
         {
             Bug bugReturn = this.bugLogic.UpdateState(id, state);

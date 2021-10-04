@@ -20,6 +20,11 @@ namespace BusinessLogic
             this.rolRepository = rolRepository;
         }
 
+        public UserLogic(IUserRepository UserDA)
+        {
+            this.userDA = UserDA;
+        }
+
         public User Get(Guid id)
         {
             User user = userDA.GetById(id);
@@ -45,6 +50,11 @@ namespace BusinessLogic
             User userCreate = userDA.Create(userToCreate);
 
             return userCreate;
+        }
+
+        public void Update(User user) {
+
+            userDA.UpdateUser(user);
         }
 
         private void IsValidUser(ref User userToCreate)
@@ -76,6 +86,21 @@ namespace BusinessLogic
             }
 
             throw new Exception();
+        }
+
+        public List<string> GetAllTokens()
+        {
+            List<string> tokens = new List<string>();
+            List<User> users = GetAll();
+
+            foreach (var user in users)
+            {
+                if (user.Token != null)
+                {
+                    tokens.Add(user.Token);
+                }
+            }
+            return tokens;
         }
 
     }

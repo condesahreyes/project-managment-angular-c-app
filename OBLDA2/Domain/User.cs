@@ -13,6 +13,7 @@ namespace Domain
         public string UserName { get; set; }
         public string Password { get; set; }
         public string Email { get; set; }
+        public string Token { get; set; }
 
         public Rol Rol { get; set; }
         public List<Project> Projects { get; set; }
@@ -27,6 +28,7 @@ namespace Domain
             this.Password = password;
             this.Email = email;
             this.Rol = rol;
+            this.Token = "";
         }
         public User(){}
 

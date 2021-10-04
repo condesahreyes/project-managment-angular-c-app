@@ -8,11 +8,10 @@ namespace BusinessLogicInterface
         Bug Create(Bug bug);
         Bug Get(int id);
         Bug Update(int id, Bug bugUpdate);
-        
+        Bug UpdateState(int id, string state);
+
         List<Bug> GetAll();
 
         void Delete(int id);
-
-        Bug UpdateState(int id, string state);
     }
 }

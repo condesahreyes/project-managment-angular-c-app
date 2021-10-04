@@ -76,7 +76,7 @@ namespace WebApiTest
             testerLogic.Setup(m => m.GetAllBugs(tester)).Returns(list);
             TesterController controller = new TesterController(testerLogic.Object);
 
-            var result = controller.GetAllBugs(tester.Id);
+            var result = controller.GetAllBugsTester(tester.Id);
             var okResult = result as OkObjectResult;
             var bugsResult = okResult.Value as List<Bug>;
 

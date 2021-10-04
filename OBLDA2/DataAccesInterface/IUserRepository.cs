@@ -1,6 +1,6 @@
-﻿using Domain;
+﻿using System.Collections.Generic;
+using Domain;
 using System;
-using System.Collections.Generic;
 
 namespace DataAccessInterface
 {
@@ -8,5 +8,6 @@ namespace DataAccessInterface
     {
         List<User> GetAll();
         User GetById(Guid id);
+        void UpdateUser(User user);
     }
 }

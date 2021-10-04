@@ -7,10 +7,11 @@ using System.Linq;
 using System.Net;
 using Domain;
 using System;
+using WebApi.Filters;
 
 namespace WebApi.Controllers
 {
-    [Route("Penguin/projects")]
+    [Route("penguin/projects")]
     public class ProjectController : ApiBaseController
     {
         private readonly IProjectLogic projectLogic;
@@ -21,6 +22,8 @@ namespace WebApi.Controllers
         }
 
         [HttpPost]
+        [AuthorizationFilter(Autorization.Administrator)]
+
         public IActionResult AddProject(ProjectEntryModel projectDTO)
         {
             Project project = this.projectLogic.Create(projectDTO.ToEntity());
@@ -31,6 +34,8 @@ namespace WebApi.Controllers
         }
 
         [HttpGet]
+        [AuthorizationFilter(Autorization.Administrator)]
+
         public IActionResult GetAllProjects()
         {
             IEnumerable<Project> projects = this.projectLogic.GetAll();
@@ -45,7 +50,26 @@ namespace WebApi.Controllers
             return Ok(projectsOut);
         }
 
+        [HttpGet]
+        [AuthorizationFilter(Autorization.Administrator)]
+
+        public IActionResult GetTotalBugsByProjects()
+        {
+            IEnumerable<Project> projects = this.projectLogic.GetAll();
+
+            List<ProjectReportModel> projectsOut = new List<ProjectReportModel>();
+
+            foreach (Project project in projects)
+            {
+                projectsOut.Add(new ProjectReportModel(project));
+            }
+
+            return Ok(projectsOut);
+        }
+
         [HttpGet("{projectId}")]
+        [AuthorizationFilter(Autorization.Administrator)]
+
         public IActionResult GetById(Guid projectId)
         {
             Project projectToReturn = this.projectLogic.Get(projectId);
@@ -61,6 +85,8 @@ namespace WebApi.Controllers
         }
 
         [HttpGet("{projectId}/GetAllBugs")]
+        [AuthorizationFilter(Autorization.Administrator)]
+
         public IActionResult GetAllBugsByProject(Guid projectId)
         {
             Project project = new Project();
@@ -71,6 +97,8 @@ namespace WebApi.Controllers
         }
 
         [HttpDelete("{id}")]
+        [AuthorizationFilter(Autorization.Administrator)]
+
         public IActionResult Delete(Guid id)
         {
             try
@@ -85,6 +113,8 @@ namespace WebApi.Controllers
         }
 
         [HttpPut("{id}")]
+        [AuthorizationFilter(Autorization.Administrator)]
+
         public IActionResult UpdateProject(Guid id, ProjectEntryModel projectDTO)
         {
             Project projectUpdated = this.projectLogic.Update(id, projectDTO.ToEntity());

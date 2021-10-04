@@ -36,19 +36,6 @@ namespace BusinessLogic.UserRol
             return userLogic.GetAll().Where(user => (user.UserName == userName)).First();
         }
 
-        public List<Bug> GetAllBugs(User developer)
-        {
-            List<Project> allProjects = projectLogic.GetAll();
-
-            List<Bug> bugs = new List<Bug>();
-
-            foreach (var project in allProjects)
-                if (project.Users.Contains(developer))
-                    bugs.AddRange(project.Bugs);
-
-            return bugs;
-        }
-
         public Bug UpdateStateToActiveBug(int id)
         {
             Bug activeBug = bugLogic.Get(id);
@@ -71,24 +58,44 @@ namespace BusinessLogic.UserRol
             return doneBug;
         }
 
-        private Bug CloneBug(Bug bug)
-        {
-            return new Bug(bug.Project, bug.Id, bug.Name, bug.Domain, bug.Version, bug.State);
-        }
-
         public void AssignDeveloperToProject(Project project, User developer)
         {
-            throw new NotImplementedException();
+            projectLogic.AssignDeveloper(project, developer);
         }
 
         public void DeleteDeveloperInProject(Project project, User developer)
         {
-            throw new NotImplementedException();
+            projectLogic.DeleteDeveloper(project, developer);
         }
 
         public int CountBugDoneByDeveloper(User developer)
         {
-            throw new NotImplementedException();
+            int countBugsResolved = 0;
+
+            List<Bug> bugs = GetAllBugs(developer);
+
+            foreach (Bug bug in bugs)
+            {
+                if(bug.SolvedBy.Id == developer.Id)
+                {
+                    countBugsResolved++;
+                }
+            }
+
+            return countBugsResolved;
+        }
+
+        public List<Bug> GetAllBugs(User developer)
+        {
+            List<Project> allProjects = projectLogic.GetAll();
+
+            List<Bug> bugs = new List<Bug>();
+
+            foreach (var project in allProjects)
+                if (project.Users.Contains(developer))
+                    bugs.AddRange(project.Bugs);
+
+            return bugs;
         }
     }
 }

@@ -120,6 +120,9 @@ namespace DataAccess.Migrations
                     b.Property<Guid?>("RolId")
                         .HasColumnType("uniqueidentifier");
 
+                    b.Property<string>("Token")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("UserName")
                         .HasColumnType("nvarchar(max)");
 

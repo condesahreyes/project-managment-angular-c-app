@@ -6,10 +6,11 @@ using OBLDA2.Models;
 using System;
 using System.Collections.Generic;
 using System.Net;
+using WebApi.Filters;
 
 namespace WebApi.Controllers
 {
-    [Route("Penguin/testers")]
+    [Route("penguin/testers")]
     public class TesterController : ApiBaseController
     {
         private readonly ITesterLogic testerLogic;
@@ -20,6 +21,7 @@ namespace WebApi.Controllers
         }
 
         [HttpGet("{id}/GetAllBugsForTester")]
+        [AuthorizationFilter(Autorization.Tester)]
         public IActionResult GetAllBugsTester(Guid id)
         {
             User user = new User();
@@ -28,10 +30,11 @@ namespace WebApi.Controllers
             IEnumerable<Bug> bugs = this.testerLogic.GetAllBugs(user);
 
             return (StatusCode((int)HttpStatusCode.OK, bugs));
-
         }
 
         [HttpPost("{id}/AssignTesterToProject")]
+        [AuthorizationFilter(Autorization.Administrator)]
+
         public IActionResult AssignTester(ProjectEntryModel project, Guid id)
         {
 
@@ -51,6 +54,8 @@ namespace WebApi.Controllers
         }
 
         [HttpDelete("{id}/DeleteTesterToProject")]
+        [AuthorizationFilter(Autorization.Administrator)]
+
         public IActionResult DeleteTester(Guid id, Project project)
         {
             User tester = new User();
@@ -64,8 +69,6 @@ namespace WebApi.Controllers
             {
                 return NotFound("Project not found or Tester not found");
             }
-
-
         }
 
     }

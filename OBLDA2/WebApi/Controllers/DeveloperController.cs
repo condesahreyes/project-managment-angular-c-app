@@ -6,10 +6,11 @@ using OBLDA2.Models;
 using System.Net;
 using System;
 using Domain;
+using WebApi.Filters;
 
 namespace WebApi.Controllers
 {
-    [Route("Penguin/testers")]
+    [Route("penguin/developers")]
     public class DeveloperController : ApiBaseController
     {
         private readonly IDeveloperLogic developerLogic;
@@ -20,6 +21,7 @@ namespace WebApi.Controllers
         }
 
         [HttpGet("{id}/DeveloperGetAllBugs")]
+        [AuthorizationFilter(Autorization.DeveloperAndAdmin)]
         public IActionResult GetAllBugsDeveloper(Guid id)
         {
             User developer = new User();
@@ -28,13 +30,13 @@ namespace WebApi.Controllers
             IEnumerable<Bug> bugs = this.developerLogic.GetAllBugs(developer);
 
             return (StatusCode((int)HttpStatusCode.OK, bugs));
-
         }
         
         [HttpPost("{id}/AssignDeveloperToProject")]
+        [AuthorizationFilter(Autorization.Administrator)]
+
         public IActionResult AssignDeveloperToProject(ProjectEntryModel project, Guid id)
         {
-
             User developer = new User();
             developer.Id = id;
 
@@ -43,6 +45,8 @@ namespace WebApi.Controllers
         }
 
         [HttpDelete("{id}/DeleteProject")]
+        [AuthorizationFilter(Autorization.Administrator)]
+
         public IActionResult DeleteDeveloperToProject(Guid id, Project project)
         {
             User developer = new User();
@@ -59,6 +63,8 @@ namespace WebApi.Controllers
         }
 
         [HttpGet("{id}/CountBugsResolved")]
+        [AuthorizationFilter(Autorization.Administrator)]
+
         public IActionResult GetCountBugsResolvedByDeveloper(Guid id)
         {
             User developer = new User();

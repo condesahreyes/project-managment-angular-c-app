@@ -109,11 +109,6 @@ namespace BusinessLogic
             projectLogic.AssignTester(project, tester);
         }
 
-        public void ImportBugsByProjectByProvider(Project project, List<Bug> bugsProject)
-        {
-            //projectLogic.ImportBugsByProvider(project, bugsProject);
-        }
-
         public int GetTotalBugByAllProject()
         {
             int total = 0;
