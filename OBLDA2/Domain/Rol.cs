@@ -4,9 +4,9 @@ namespace Domain
 {
     public class Rol
     {
-        public static string administrator = "Administrador";
-        public static string developer = "Desarrollador";
-        public static string tester = "Tester";
+        public const string administrator = "Administrador";
+        public const string developer = "Desarrollador";
+        public const string tester = "Tester";
 
         public Guid Id { get; set; }
         public string Name { get; set; }

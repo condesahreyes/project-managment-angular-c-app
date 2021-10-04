@@ -6,6 +6,7 @@ using OBLDA2.Models;
 using System.Net;
 using Domain;
 using System;
+using WebApi.Filters;
 
 namespace WebApi.Controllers
 {
@@ -21,6 +22,8 @@ namespace WebApi.Controllers
         }
 
         [HttpPost]
+        [AuthorizationFilter(Rol.administrator)]
+
         public IActionResult AddBug(BugEntryOutModel bugDTO)
         {
             Bug bug = this.bugLogic.Create(bugDTO.ToEntity());
@@ -44,6 +47,7 @@ namespace WebApi.Controllers
         }
 
         [HttpGet("{id}")]
+        [AuthorizationFilter(Rol.tester)]
         public IActionResult GetById(int bugId)
         {
             Bug bugToReturn = this.bugLogic.Get(bugId);
@@ -59,6 +63,8 @@ namespace WebApi.Controllers
         }
 
         [HttpDelete("{id}")]
+        [AuthorizationFilter(Rol.administrator + "," + Rol.tester)]
+
         public IActionResult Delete(int id)
         {
             try
@@ -73,6 +79,8 @@ namespace WebApi.Controllers
         }
 
         [HttpPut("{id}")]
+        [AuthorizationFilter(Rol.administrator + "," + Rol.tester)]
+
         public IActionResult UpdateABug(int id, BugUpdateModel bugDTO)
         {
             Bug bugUpdated = this.bugLogic.Update(id, bugDTO.ToEntity(id));
@@ -82,6 +90,7 @@ namespace WebApi.Controllers
         }
 
         [HttpPut("{id}/UpdateState")]
+        [AuthorizationFilter(Rol.developer)]
         public IActionResult UpdateStateBug(int id, string state)
         {
             Bug bugReturn = this.bugLogic.UpdateState(id, state);

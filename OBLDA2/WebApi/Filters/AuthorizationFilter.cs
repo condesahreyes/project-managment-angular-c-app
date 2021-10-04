@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.Net;
 using BusinessLogicInterface;
 using Microsoft.AspNetCore.Mvc;
@@ -10,11 +11,21 @@ namespace WebApi.Filters
     public class AuthorizationFilter : Attribute, IAuthorizationFilter
     {
         private ISessionLogic sessionLogic;
-        private string codeRol;
+        private List<string> codeRol;
 
         public AuthorizationFilter( string codeRol)
         {
-            this.codeRol = codeRol;
+            AddDiferentsCodeRoles(codeRol);
+        }
+
+        private void AddDiferentsCodeRoles(string code) {
+
+            codeRol = new List<string>();
+            string[] ret = code.Split(",");
+            for (int i = 0; i < ret.Length; i++)
+            {
+                codeRol.Add(ret[i].ToLower());
+            }
         }
 
         public void OnAuthorization(AuthorizationFilterContext context)
@@ -40,7 +51,7 @@ namespace WebApi.Filters
                         Content = "You aren't logued correctly."
                     };
                 }
-                else if(token[0].ToString().ToLower() != codeRol.ToLower())
+                else if(!codeRol.Contains(token[0].ToString().ToLower()))
                 {
                     context.Result = new ContentResult()
                     {

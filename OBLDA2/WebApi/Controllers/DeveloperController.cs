@@ -6,6 +6,7 @@ using OBLDA2.Models;
 using System.Net;
 using System;
 using Domain;
+using WebApi.Filters;
 
 namespace WebApi.Controllers
 {
@@ -20,6 +21,7 @@ namespace WebApi.Controllers
         }
 
         [HttpGet("{id}/DeveloperGetAllBugs")]
+        [AuthorizationFilter(Rol.developer)]
         public IActionResult GetAllBugsDeveloper(Guid id)
         {
             User developer = new User();
@@ -32,6 +34,8 @@ namespace WebApi.Controllers
         }
         
         [HttpPost("{id}/AssignDeveloperToProject")]
+        [AuthorizationFilter(Rol.administrator)]
+
         public IActionResult AssignDeveloperToProject(ProjectEntryModel project, Guid id)
         {
 
@@ -43,6 +47,8 @@ namespace WebApi.Controllers
         }
 
         [HttpDelete("{id}/DeleteProject")]
+        [AuthorizationFilter(Rol.administrator)]
+
         public IActionResult DeleteDeveloperToProject(Guid id, Project project)
         {
             User developer = new User();
@@ -59,6 +65,7 @@ namespace WebApi.Controllers
         }
 
         [HttpGet("{id}/CountBugsResolved")]
+        [AuthorizationFilter(Rol.administrator)]
         public IActionResult GetCountBugsResolvedByDeveloper(Guid id)
         {
             User developer = new User();

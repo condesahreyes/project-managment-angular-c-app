@@ -7,6 +7,7 @@ using System.Linq;
 using System.Net;
 using Domain;
 using System;
+using WebApi.Filters;
 
 namespace WebApi.Controllers
 {
@@ -21,6 +22,7 @@ namespace WebApi.Controllers
         }
 
         [HttpPost]
+        [AuthorizationFilter(Rol.administrator)]
         public IActionResult AddProject(ProjectEntryModel projectDTO)
         {
             Project project = this.projectLogic.Create(projectDTO.ToEntity());
@@ -61,6 +63,7 @@ namespace WebApi.Controllers
         }
 
         [HttpGet("{projectId}/GetAllBugs")]
+        [AuthorizationFilter(Rol.administrator)]
         public IActionResult GetAllBugsByProject(Guid projectId)
         {
             Project project = new Project();
@@ -71,6 +74,7 @@ namespace WebApi.Controllers
         }
 
         [HttpDelete("{id}")]
+        [AuthorizationFilter(Rol.administrator)]
         public IActionResult Delete(Guid id)
         {
             try
@@ -85,6 +89,7 @@ namespace WebApi.Controllers
         }
 
         [HttpPut("{id}")]
+        [AuthorizationFilter(Rol.administrator)]
         public IActionResult UpdateProject(Guid id, ProjectEntryModel projectDTO)
         {
             Project projectUpdated = this.projectLogic.Update(id, projectDTO.ToEntity());

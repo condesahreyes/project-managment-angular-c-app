@@ -6,6 +6,7 @@ using OBLDA2.Models;
 using System;
 using System.Collections.Generic;
 using System.Net;
+using WebApi.Filters;
 
 namespace WebApi.Controllers
 {
@@ -20,6 +21,7 @@ namespace WebApi.Controllers
         }
 
         [HttpGet("{id}/GetAllBugsForTester")]
+        [AuthorizationFilter(Rol.tester)]
         public IActionResult GetAllBugsTester(Guid id)
         {
             User user = new User();
@@ -32,6 +34,8 @@ namespace WebApi.Controllers
         }
 
         [HttpPost("{id}/AssignTesterToProject")]
+        [AuthorizationFilter(Rol.administrator)]
+
         public IActionResult AssignTester(ProjectEntryModel project, Guid id)
         {
 
@@ -51,6 +55,8 @@ namespace WebApi.Controllers
         }
 
         [HttpDelete("{id}/DeleteTesterToProject")]
+        [AuthorizationFilter(Rol.administrator)]
+
         public IActionResult DeleteTester(Guid id, Project project)
         {
             User tester = new User();

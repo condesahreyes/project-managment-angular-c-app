@@ -19,7 +19,7 @@ namespace OBLDA2.Controllers
             sessionsLogic = sessions;
         }
 
-        [HttpPost]
+        [HttpPost("login")]
         public IActionResult Login([FromBody] LoginEntryModel model)
         {
             var token = sessionsLogic.Login(model.Email, model.Password);
