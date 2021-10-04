@@ -10,7 +10,7 @@ using WebApi.Filters;
 namespace OBLDA2.Controllers
 {
     [Route("penguin/users")]
-    [AuthorizationFilter(Rol.administrator)]
+    [AuthorizationFilter(Autorization.Administrator)]
     public class UserController : ApiBaseController
     {
         private readonly IUserLogic userLogic;

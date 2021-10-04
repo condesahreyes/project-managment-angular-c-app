@@ -21,7 +21,7 @@ namespace WebApi.Controllers
         }
 
         [HttpGet("{id}/DeveloperGetAllBugs")]
-        [AuthorizationFilter(Rol.developer)]
+        [AuthorizationFilter(Autorization.DeveloperAndAdmin)]
         public IActionResult GetAllBugsDeveloper(Guid id)
         {
             User developer = new User();
@@ -30,15 +30,13 @@ namespace WebApi.Controllers
             IEnumerable<Bug> bugs = this.developerLogic.GetAllBugs(developer);
 
             return (StatusCode((int)HttpStatusCode.OK, bugs));
-
         }
         
         [HttpPost("{id}/AssignDeveloperToProject")]
-        [AuthorizationFilter(Rol.administrator)]
+        [AuthorizationFilter(Autorization.Administrator)]
 
         public IActionResult AssignDeveloperToProject(ProjectEntryModel project, Guid id)
         {
-
             User developer = new User();
             developer.Id = id;
 
@@ -47,7 +45,7 @@ namespace WebApi.Controllers
         }
 
         [HttpDelete("{id}/DeleteProject")]
-        [AuthorizationFilter(Rol.administrator)]
+        [AuthorizationFilter(Autorization.Administrator)]
 
         public IActionResult DeleteDeveloperToProject(Guid id, Project project)
         {
@@ -65,7 +63,8 @@ namespace WebApi.Controllers
         }
 
         [HttpGet("{id}/CountBugsResolved")]
-        [AuthorizationFilter(Rol.administrator)]
+        [AuthorizationFilter(Autorization.Administrator)]
+
         public IActionResult GetCountBugsResolvedByDeveloper(Guid id)
         {
             User developer = new User();

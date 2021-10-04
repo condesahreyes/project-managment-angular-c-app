@@ -1,14 +1,15 @@
 using BusinessLogicInterface.Imports;
 using System.Collections.Generic;
 using Microsoft.AspNetCore.Mvc;
+using WebApi.Filters;
 using OBLDA2.Models;
 using System.Linq;
 using Domain;
 
 namespace OBLDA2.Controllers
 {
-    [ApiController]
     [Route("penguin/imports")]
+    [AuthorizationFilter(Autorization.Administrator)]
     public class ImportsController<T> : ControllerBase where T : class
     {
         private readonly IBugsImport<T> import;

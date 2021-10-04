@@ -22,7 +22,7 @@ namespace WebApi.Controllers
         }
 
         [HttpPost]
-        [AuthorizationFilter(Rol.administrator)]
+        [AuthorizationFilter(Autorization.AdministratorAndTester)]
 
         public IActionResult AddBug(BugEntryOutModel bugDTO)
         {
@@ -33,6 +33,8 @@ namespace WebApi.Controllers
         }
 
         [HttpGet]
+        [AuthorizationFilter(Autorization.AllAutorization)]
+
         public IActionResult GetAllBugs()
         {
             List<Bug> bugs = this.bugLogic.GetAll();
@@ -47,7 +49,8 @@ namespace WebApi.Controllers
         }
 
         [HttpGet("{id}")]
-        [AuthorizationFilter(Rol.tester)]
+        [AuthorizationFilter(Autorization.AllAutorization)]
+
         public IActionResult GetById(int bugId)
         {
             Bug bugToReturn = this.bugLogic.Get(bugId);
@@ -63,7 +66,7 @@ namespace WebApi.Controllers
         }
 
         [HttpDelete("{id}")]
-        [AuthorizationFilter(Rol.administrator + "," + Rol.tester)]
+        [AuthorizationFilter(Autorization.AdministratorAndTester)]
 
         public IActionResult Delete(int id)
         {
@@ -79,7 +82,7 @@ namespace WebApi.Controllers
         }
 
         [HttpPut("{id}")]
-        [AuthorizationFilter(Rol.administrator + "," + Rol.tester)]
+        [AuthorizationFilter(Autorization.AdministratorAndTester)]
 
         public IActionResult UpdateABug(int id, BugUpdateModel bugDTO)
         {
@@ -90,7 +93,7 @@ namespace WebApi.Controllers
         }
 
         [HttpPut("{id}/UpdateState")]
-        [AuthorizationFilter(Rol.developer)]
+        [AuthorizationFilter(Autorization.AllAutorization)]
         public IActionResult UpdateStateBug(int id, string state)
         {
             Bug bugReturn = this.bugLogic.UpdateState(id, state);
