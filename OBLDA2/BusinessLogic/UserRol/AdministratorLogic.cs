@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using BusinessLogicInterface;
+using Exceptions;
 using System;
 using Domain;
 
@@ -7,6 +8,8 @@ namespace BusinessLogic
 {
     public class AdministratorLogic : IAdministratorLogic
     {
+        private const string notExistAdmin = "Administrator does not exist";
+
         private IUserLogic userLogic;
         private IProjectLogic projectLogic;
         private IBugLogic bugLogic;
@@ -48,7 +51,7 @@ namespace BusinessLogic
 
             if (getUser == null || getUser.Rol.Name.ToLower() != Rol.administrator.ToLower())
             {
-                throw new Exception("Administrator does not exist");
+                throw new NoObjectException(notExistAdmin);
             }
 
             return getUser;

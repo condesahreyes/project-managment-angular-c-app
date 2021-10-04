@@ -1,13 +1,12 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.Collections.Generic;
 using BusinessLogicInterface;
-using BusinessLogic.UserRol;
 using DataAccessInterface;
+using BusinessLogic;
 using System.Linq;
 using System;
 using Domain;
 using Moq;
-using BusinessLogic;
 
 namespace BusinessLogicTest
 {
@@ -16,6 +15,7 @@ namespace BusinessLogicTest
     {
 
         private Mock<IProjectRepository> mock;
+        private Mock<IUserLogic> userMock;
         private Mock<IProjectLogic> projectMock;
         private Mock<IBugLogic> bugMock;
 
@@ -33,9 +33,10 @@ namespace BusinessLogicTest
         {
             mock = new Mock<IProjectRepository>(MockBehavior.Strict);
             projectMock = new Mock<IProjectLogic>(MockBehavior.Strict);
+            userMock = new Mock<IUserLogic>(MockBehavior.Strict);
             bugMock = new Mock<IBugLogic>(MockBehavior.Strict);
 
-            this.projectLogic = new ProjectLogic(mock.Object);
+            this.projectLogic = new ProjectLogic(mock.Object, userMock.Object);
 
             project = new Project("Project - Pineapple ");
             rolTester = new Rol(Rol.tester);

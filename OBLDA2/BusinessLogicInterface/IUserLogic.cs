@@ -13,5 +13,6 @@ namespace BusinessLogicInterface
         List<string> GetAllTokens();
 
         void Update(User user);
+        void ExistUser(User user);
     }
 }

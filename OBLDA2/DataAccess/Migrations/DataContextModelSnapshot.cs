@@ -22,9 +22,7 @@ namespace DataAccess.Migrations
             modelBuilder.Entity("Domain.Bug", b =>
                 {
                     b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                        .HasColumnType("int");
 
                     b.Property<string>("Domain")
                         .HasColumnType("nvarchar(max)");

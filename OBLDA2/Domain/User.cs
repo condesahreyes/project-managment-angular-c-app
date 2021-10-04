@@ -1,11 +1,18 @@
 ﻿using System.Text.RegularExpressions;
 using System.Collections.Generic;
 using System;
+using Exceptions;
 
 namespace Domain
 {
     public class User
     {
+        private const string invalidName = "You must entry a valid name";
+        private const string invalidLastName = "You must entry a valid last name";
+        private const string invalidUserName = "You must entry a valid username";
+        private const string invalidPassword = "You must entry a valid password";
+        private const string invalidEmail = "You must entry a valid email";
+
         public Guid Id { get; set; }
 
         public string Name { get; set; }
@@ -44,25 +51,25 @@ namespace Domain
         private static void ValidateName(string name)
         {
             if (name.Length < 1)
-                throw new Exception();
+                throw new InvalidDataObjException(invalidName);
         }
 
         private static void ValidateLastName(string lastName)
         {
             if (lastName.Length < 1)
-                throw new Exception();
+                throw new InvalidDataObjException(invalidLastName);
         }
 
         private static void ValidateUserName(string userName)
         {
             if (userName.Length < 1)
-                throw new Exception();
+                throw new InvalidDataObjException(invalidUserName);
         }
 
         private static void ValidatePassword(string password)
         {
             if (password.Length < 1)
-                throw new Exception();
+                throw new InvalidDataObjException(invalidPassword);
         }
 
         private static void ValidateEmail(string email)
@@ -71,7 +78,7 @@ namespace Domain
                  RegexOptions.IgnoreCase);
             if (!re.IsMatch(email))
             {
-                throw new Exception();
+                throw new InvalidDataObjException(invalidEmail);
             }
         }
 

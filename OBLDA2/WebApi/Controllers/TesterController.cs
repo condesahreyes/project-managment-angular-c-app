@@ -1,12 +1,12 @@
-﻿using BusinessLogicInterface;
-using Domain;
+﻿using System.Collections.Generic;
 using Microsoft.AspNetCore.Mvc;
+using BusinessLogicInterface;
 using OBLDA2.Controllers;
-using OBLDA2.Models;
-using System;
-using System.Collections.Generic;
-using System.Net;
 using WebApi.Filters;
+using OBLDA2.Models;
+using System.Net;
+using Domain;
+using System;
 
 namespace WebApi.Controllers
 {
@@ -32,43 +32,34 @@ namespace WebApi.Controllers
             return (StatusCode((int)HttpStatusCode.OK, bugs));
         }
 
-        [HttpPost("{id}/AssignTesterToProject")]
+        [HttpPost("{idTester}/AssignTesterToProject/{projectId}")]
         [AuthorizationFilter(Autorization.Administrator)]
 
-        public IActionResult AssignTester(ProjectEntryModel project, Guid id)
+        public IActionResult AssignTester(Guid projectId, Guid idTester)
         {
-
             User tester = new User();
-            tester.Id = id;
+            tester.Id = idTester;
 
-            try
-            {
-                testerLogic.AssignTesterToProject(project.ToEntity(), tester);
-                return NoContent();
-            }
-            catch (Exception)
-            {
-                return NotFound("Project not found or Tester not found");
-            }
+            Project project = new Project();
+            project.Id = projectId;
 
+            testerLogic.AssignTesterToProject(project, tester);
+            return NoContent();
         }
 
-        [HttpDelete("{id}/DeleteTesterToProject")]
+        [HttpDelete("{idTester}/DeleteTesterToProject/{projectId}")]
         [AuthorizationFilter(Autorization.Administrator)]
 
-        public IActionResult DeleteTester(Guid id, Project project)
+        public IActionResult DeleteTester(Guid idTester, Guid projectId)
         {
             User tester = new User();
-            tester.Id = id;
-            try
-            {
-                testerLogic.DeleteTesterInProject(project, tester);
-                return NoContent();
-            }
-            catch (Exception)
-            {
-                return NotFound("Project not found or Tester not found");
-            }
+            tester.Id = idTester;
+
+            Project project = new Project();
+            project.Id = projectId;
+
+            testerLogic.DeleteTesterInProject(project, tester);
+            return NoContent();
         }
 
     }

@@ -46,7 +46,7 @@ namespace WebApiTest
             testerLogic.Setup(x => x.AssignTesterToProject(project, tester));
 
             var controller = new TesterController(testerLogic.Object);
-            var result = controller.AssignTester(projectEntryModel, tester.Id);
+            var result = controller.AssignTester(Guid.NewGuid(), tester.Id);
             var status = result as NoContentResult;
 
             Assert.AreEqual(204, status.StatusCode);
@@ -60,7 +60,7 @@ namespace WebApiTest
 
             var controller = new TesterController(testerLogic.Object);
 
-            IActionResult result = controller.DeleteTester(tester.Id, project);
+            IActionResult result = controller.DeleteTester(tester.Id, project.Id);
             var status = result as NoContentResult;
 
             testerLogic.VerifyAll();

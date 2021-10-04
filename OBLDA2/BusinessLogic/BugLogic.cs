@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using BusinessLogicInterface;
 using DataAccessInterface;
-using DataAccess;
+using Exceptions;
 using Domain;
 using System;
 
@@ -9,6 +9,10 @@ namespace BusinessLogic
 {
     public class BugLogic : IBugLogic
     {
+        private const string notExistBug = "Bug does not exist whit this id";
+        private const string existingBug = "The Bug whit that id alredy exist";
+        private const string invalidState = "It´s not a state bug";
+
         private IBugRepository bugRepository;
         private IRepository<State, Guid> stateRepository;
 
@@ -22,18 +26,42 @@ namespace BusinessLogic
 
         public Bug Create(Bug bug)
         {
-            IsValidBug(bug);
+            NotExistBug(bug.Id);
+            IsValidBug(ref bug);
             bugRepository.Create(bug);
             return bug;
         }
 
+        private void NotExistBug(int id)
+        {
+            Bug bug = bugRepository.GetById(id);
+
+            if(bug != null)
+            {
+                throw new ExistingObjectException(existingBug);
+            }
+        }
+
         public Bug Get(int id)
         {
-            return bugRepository.GetById(id);
+            Bug bug = bugRepository.GetById(id);
+
+            if(bug == null)
+            {
+                throw new NoObjectException(notExistBug);
+            }
+
+            return bug;
+        }
+
+        public void ExistBug(int id)
+        {
+            Get(id);
         }
 
         public void Delete(int id)
         {
+            ExistBug(id);
             bugRepository.Delete(id);
         }
 
@@ -44,19 +72,24 @@ namespace BusinessLogic
 
         public Bug Update(int id, Bug bugUpdate)
         {
-            IsValidBug(bugUpdate);
+            ExistBug(id);
+            IsValidBug(ref bugUpdate);
+
+            bugUpdate.Id = id;
 
             return bugRepository.Update(id, bugUpdate);
         }
 
         public Bug UpdateState(int id, string state)
         {
+            ExistBug(id);
+
             if (state.ToLower() == State.active.ToLower())
                 return UpdateStateToActiveBug(id);
             else if (state.ToLower() == State.done.ToLower())
                 return UpdateStateToDoneBug(id);
 
-            return null;
+            throw new InvalidDataObjException(invalidState);
         }
 
         public Bug UpdateStateToActiveBug(int id)
@@ -81,13 +114,13 @@ namespace BusinessLogic
             return doneBug;
         }
 
-        private void IsValidBug(Bug bug)
+        private void IsValidBug(ref Bug bug)
         {
-            IsValidState(bug.State);
+            bug.State = IsValidState(bug.State);
             Bug.AreCorrectData(bug);
         }
 
-        private void IsValidState(State state)
+        private State IsValidState(State state)
         {
             List<State> states = stateRepository.GetAllGeneric();
 
@@ -95,11 +128,11 @@ namespace BusinessLogic
             {
                 if (oneState.Name.ToLower() == state.Name.ToLower())
                 {
-                    return;
+                    return oneState;
                 }
             }
 
-            throw new Exception("");
+            throw new InvalidDataObjException(invalidState);
         }
 
     }

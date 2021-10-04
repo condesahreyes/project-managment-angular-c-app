@@ -1,7 +1,4 @@
-using System;
-using System.Collections.Generic;
 using Domain;
-using Microsoft.AspNetCore.Mvc.Filters;
 
 namespace WebApi.Filters
 {
@@ -19,11 +16,10 @@ namespace WebApi.Filters
         public const string Tester =
             Rol.administrator;
 
-        public const string DeveloperAndTester = Developer + Tester;
+        public const string DeveloperAndTester = Developer + ","+ Tester;
 
-        public const string DeveloperAndAdmin = Developer + Administrator;
+        public const string DeveloperAndAdmin = Developer + "," + Administrator;
 
-        public const string AdministratorAndTester = Administrator + Tester;
-
+        public const string AdministratorAndTester = Administrator + "," + Tester;
     }
 }

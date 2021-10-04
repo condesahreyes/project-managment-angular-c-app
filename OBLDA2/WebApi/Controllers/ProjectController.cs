@@ -50,7 +50,7 @@ namespace WebApi.Controllers
             return Ok(projectsOut);
         }
 
-        [HttpGet]
+        [HttpGet("TotalBugs")]
         [AuthorizationFilter(Autorization.Administrator)]
 
         public IActionResult GetTotalBugsByProjects()
@@ -74,14 +74,7 @@ namespace WebApi.Controllers
         {
             Project projectToReturn = this.projectLogic.Get(projectId);
 
-            if (projectToReturn != null)
-            {
-                return Ok(new ProjectOutModel(projectToReturn));
-            }
-            else
-            {
-                return NotFound("Project not found with id: " + projectId);
-            }
+             return Ok(new ProjectOutModel(projectToReturn));
         }
 
         [HttpGet("{projectId}/GetAllBugs")]
@@ -101,15 +94,8 @@ namespace WebApi.Controllers
 
         public IActionResult Delete(Guid id)
         {
-            try
-            {
-                projectLogic.Delete(id);
-                return NoContent();
-            }
-            catch (Exception)
-            {
-                return NotFound("Project not found with id: " + id);
-            }
+            projectLogic.Delete(id);
+            return NoContent();
         }
 
         [HttpPut("{id}")]

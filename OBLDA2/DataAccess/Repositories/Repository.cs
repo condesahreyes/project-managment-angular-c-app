@@ -42,14 +42,6 @@ namespace DataAccess
             _context.SaveChanges();
         }
 
-        public T Update(K id, T entity)
-        {
-            T entitiyToReturn = _DbSet.Update(entity).Entity;
-            Save();
-
-            return entitiyToReturn;
-        }
-
         public List<T> GetAllGeneric()
         {
             return _DbSet.ToList();

@@ -2,6 +2,7 @@
 using BusinessLogicInterface;
 using DataAccessInterface;
 using System.Linq;
+using Exceptions;
 using System;
 using Domain;
 
@@ -9,6 +10,11 @@ namespace BusinessLogic
 {
     public class UserLogic : IUserLogic
     {
+        private const string invalidRol = "You must entry a valid rol";
+        private const string notExistUser = "User not exist";
+        private const string existingUser = "The user already exists";
+
+
         private IUserRepository userDA;
         private IRepository<Rol, Guid> rolRepository;
 
@@ -31,7 +37,7 @@ namespace BusinessLogic
 
             if (user == null)
             {
-                throw new Exception("User does not exist");
+                throw new NoObjectException(notExistUser);
             }
 
             return user;
@@ -46,14 +52,21 @@ namespace BusinessLogic
         {
             IsValidUser(ref userToCreate);
             NotExistUser(userToCreate);
+
             userToCreate.Projects = new List<Project>();
             User userCreate = userDA.Create(userToCreate);
 
             return userCreate;
         }
 
-        public void Update(User user) {
+        public void ExistUser(User user)
+        {
+            Get(user.Id);
+        }
 
+        public void Update(User user) 
+        {
+            IsValidUser(ref user);
             userDA.UpdateUser(user);
         }
 
@@ -69,7 +82,7 @@ namespace BusinessLogic
 
             if (existUser)
             {
-                throw new Exception("The user already exists");
+                throw new ExistingObjectException(existingUser);
             }
         }
 
@@ -85,7 +98,7 @@ namespace BusinessLogic
                 }
             }
 
-            throw new Exception();
+            throw new InvalidDataObjException(invalidRol);
         }
 
         public List<string> GetAllTokens()
@@ -100,6 +113,7 @@ namespace BusinessLogic
                     tokens.Add(user.Token);
                 }
             }
+
             return tokens;
         }
 

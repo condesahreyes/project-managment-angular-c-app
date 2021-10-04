@@ -9,12 +9,12 @@ namespace BusinessLogic.UserRol
     public class TesterLogic : ITesterLogic
     {
         private IUserRepository userRepository;
-        private IRepository<Project, Guid> projectRepository;
+        private IProjectRepository projectRepository;
         private IRepository<Rol, Guid> rolRepository;
         private IRepository<Bug, int> bugRepository;
         private IProjectLogic projcetLogic;
 
-        public TesterLogic(IUserRepository userRepository, IRepository<Project, Guid> projectRepository,
+        public TesterLogic(IUserRepository userRepository, IProjectRepository projectRepository,
             IRepository<Rol, Guid> rolRepository, IRepository<Bug, int> bugRepository)
         {
             this.userRepository = userRepository;

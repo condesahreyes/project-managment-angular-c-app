@@ -13,7 +13,7 @@ namespace WebApi.Filters
         private ISessionLogic sessionLogic;
         private List<string> codeRol;
 
-        public AuthorizationFilter( string codeRol)
+        public AuthorizationFilter(string codeRol)
         {
             AddDiferentsCodeRoles(codeRol);
         }
@@ -43,6 +43,7 @@ namespace WebApi.Filters
             }
             else
             {
+                string rol = (token.Split("-"))[0].ToString().ToLower();
                 if (!sessionLogic.IsCorrectToken(token))
                 {
                     context.Result = new ContentResult()
@@ -51,7 +52,7 @@ namespace WebApi.Filters
                         Content = "You aren't logued correctly."
                     };
                 }
-                else if(!codeRol.Contains(token[0].ToString().ToLower()))
+                else if(!codeRol.Contains(rol))
                 {
                     context.Result = new ContentResult()
                     {

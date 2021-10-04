@@ -115,23 +115,6 @@ namespace DataAccessTest
             CollectionAssert.AreEqual(usersBD, new List<User>());
         }
 
-        [TestMethod]
-        public void UpdateUser()
-        {
-            User user = CreateUser(Rol.tester);
-
-            _context.Add(user);
-            _context.SaveChanges();
-
-            user.Rol = GetOneRol(Rol.developer);
-
-            _userRepository.Update(user.Id, user);
-
-            List<User> usersBD = _context.Users.ToList();
-
-            Assert.IsTrue(usersBD.First().Rol.Name == user.Rol.Name);
-        }
-
         private User CreateUser(string rol)
         {
             Rol userRol = GetOneRol(rol);

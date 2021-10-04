@@ -14,7 +14,7 @@ namespace BusinessLogicTest
     {
 
         private Mock<IUserRepository> mockUser;
-        private Mock<IRepository<Project, Guid>> mockProject;
+        private Mock<IProjectRepository> mockProject;
         private Mock<IRepository<Rol, Guid>> mockRol;
         private Mock<IRepository<Bug, int>> mockBug;
 
@@ -27,7 +27,7 @@ namespace BusinessLogicTest
         [TestInitialize]
         public void Setup()
         {
-            mockProject = new Mock<IRepository<Project, Guid>>(MockBehavior.Strict);
+            mockProject = new Mock<IProjectRepository>(MockBehavior.Strict);
             mockUser = new Mock<IUserRepository>(MockBehavior.Strict);
             mockBug = new Mock<IRepository<Bug, int>>(MockBehavior.Strict);
 

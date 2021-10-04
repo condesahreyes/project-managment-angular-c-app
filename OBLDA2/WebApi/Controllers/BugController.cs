@@ -54,31 +54,15 @@ namespace WebApi.Controllers
         public IActionResult GetById(int bugId)
         {
             Bug bugToReturn = this.bugLogic.Get(bugId);
-
-            if (bugToReturn != null)
-            {
-                return Ok(new BugEntryOutModel(bugToReturn));
-            }
-            else
-            {
-                return NotFound("Bug not found with id: " + bugId);
-            }
+            return Ok(new BugEntryOutModel(bugToReturn));
         }
 
         [HttpDelete("{id}")]
         [AuthorizationFilter(Autorization.AdministratorAndTester)]
-
         public IActionResult Delete(int id)
         {
-            try
-            {
-                bugLogic.Delete(id);
-                return NoContent();
-            }
-            catch (Exception)
-            {
-                return NotFound("Bug not found with id: " + id);
-            }
+            bugLogic.Delete(id);
+            return NoContent();
         }
 
         [HttpPut("{id}")]
