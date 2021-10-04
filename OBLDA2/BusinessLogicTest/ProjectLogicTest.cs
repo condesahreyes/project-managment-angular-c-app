@@ -1,13 +1,12 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.Collections.Generic;
 using BusinessLogicInterface;
-using BusinessLogic.UserRol;
 using DataAccessInterface;
+using BusinessLogic;
 using System.Linq;
 using System;
 using Domain;
 using Moq;
-using BusinessLogic;
 
 namespace BusinessLogicTest
 {

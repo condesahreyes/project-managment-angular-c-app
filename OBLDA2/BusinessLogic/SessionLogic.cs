@@ -62,7 +62,7 @@ namespace BusinessLogic
 
         private string GenerateToken(User user)
         {
-            return user.Rol.Name + Guid.NewGuid().ToString();
+            return user.Rol.Name + "-" + Guid.NewGuid().ToString();
         }
 
         private void UpdateToken(User user, string token)

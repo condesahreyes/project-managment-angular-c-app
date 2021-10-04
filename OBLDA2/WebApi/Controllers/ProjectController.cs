@@ -50,7 +50,7 @@ namespace WebApi.Controllers
             return Ok(projectsOut);
         }
 
-        [HttpGet]
+        [HttpGet("TotalBugs")]
         [AuthorizationFilter(Autorization.Administrator)]
 
         public IActionResult GetTotalBugsByProjects()
