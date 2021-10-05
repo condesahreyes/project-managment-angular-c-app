@@ -2,7 +2,6 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 using BusinessLogicInterface.Imports;
 using System.Collections.Generic;
 using Microsoft.AspNetCore.Mvc;
-using BusinessLogic.Imports;
 using OBLDA2.Controllers;
 using OBLDA2.Models;
 using System.Linq;
@@ -27,7 +26,8 @@ namespace WebApiTest
             importBug = new Mock<IBugsImport>(MockBehavior.Strict);
 
             project = new Project("Project - GXC ");
-            bug = new Bug(project, 1, "Error de login", "Intento de sesión", "3.0", activeState);
+            bug = new Bug(project, 1, "Error de login", 
+                "Intento de sesión", "3.0", activeState);
         }
 
         [TestMethod]

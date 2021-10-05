@@ -34,7 +34,6 @@ namespace WebApi.Controllers
 
         [HttpGet]
         [AuthorizationFilter(Autorization.AllAutorization)]
-
         public IActionResult GetAllBugs()
         {
             List<Bug> bugs = this.bugLogic.GetAll();

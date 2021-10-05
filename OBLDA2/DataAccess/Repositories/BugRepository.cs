@@ -4,7 +4,6 @@ using DataAccessInterface;
 using System.Linq;
 using Domain;
 using System;
-using Exceptions;
 
 namespace DataAccess.Repositories
 {
@@ -14,13 +13,11 @@ namespace DataAccess.Repositories
         private readonly DbSet<Bug> _DbSet;
         private readonly DbSet<State> _DbSetState;
         private readonly DbSet<User> _DbSetUser;
-        private readonly DbContext _context;
 
         public BugRepository() { }
 
         public BugRepository(DbContext context) : base(context)
         {
-            this._context = context;
             this._DbSet = context.Set<Bug>();
             this._DbSetState = context.Set<State>();
             this._DbSetUser = context.Set<User>();
@@ -28,8 +25,9 @@ namespace DataAccess.Repositories
 
         public List<Bug> GetAll()
         {
-            return _DbSet.Include(p => p.Project).Include(s => s.State).Include(u => u.SolvedBy)
-            .ToList();
+            return _DbSet.Include(p => p.Project)
+                .Include(s => s.State).Include(u => u.SolvedBy)
+                .ToList();
         }
 
         public Bug GetById(int id)
@@ -47,7 +45,6 @@ namespace DataAccess.Repositories
         public Bug Update(int id, Bug bugUpdate)
         {
             Bug bugSaved = GetById(id);
-
 
             if (bugUpdate.Name != null)
                 bugSaved.Name = bugUpdate.Name;

@@ -26,6 +26,8 @@ namespace OBLDA2.Models
             this.Email = user.Email;
 
             this.Projects = new List<ProjectOutModel>();
+
+            if (user.Projects != null)
             this.Projects = user.Projects.Select(p => new ProjectOutModel(p));
         }
 

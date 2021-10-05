@@ -52,7 +52,7 @@ namespace BusinessLogic.UserRol
         {
             Bug activeBug = bugLogic.Get(id);
 
-            activeBug.State.Name = State.active;
+            activeBug.State = new State(State.active);
             activeBug.SolvedBy = null;
 
             bugLogic.Update(id, activeBug);
@@ -64,7 +64,7 @@ namespace BusinessLogic.UserRol
         {
             Bug doneBug = bugLogic.Get(id);
 
-            doneBug.State.Name = State.done;
+            doneBug.State = new State(State.done);
             doneBug.SolvedBy = userLogic.Get(userId);
 
             bugLogic.Update(id, doneBug);

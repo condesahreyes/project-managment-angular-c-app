@@ -41,16 +41,14 @@ namespace WebApiTest
         public void AssignTesterOk()
         {
             ProjectEntryModel projectEntryModel = new ProjectEntryModel(project);
-            UserEntryModel testerEntryModel = new UserEntryModel(tester);
 
-            testerLogic.Setup(x => x.AssignTesterToProject(project, tester));
+            testerLogic.Setup(x => x.AssignTesterToProject(It.IsAny<Project>(), It.IsAny<User>()));
 
             var controller = new TesterController(testerLogic.Object);
             var result = controller.AssignTester(Guid.NewGuid(), tester.Id);
             var status = result as NoContentResult;
 
             Assert.AreEqual(204, status.StatusCode);
-
         }
 
         [TestMethod]
