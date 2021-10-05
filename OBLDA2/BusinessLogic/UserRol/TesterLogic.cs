@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using BusinessLogicInterface;
 using DataAccessInterface;
+using Exceptions;
 using Domain;
 using System;
 
@@ -8,14 +9,16 @@ namespace BusinessLogic.UserRol
 {
     public class TesterLogic : ITesterLogic
     {
-        private IUserRepository userRepository;
+        private const string notUserTester = "This user rol is not Tester";
+
+        private IUserLogic userLogic;
         private IRepository<Rol, Guid> rolRepository;
         private IProjectLogic projcetLogic;
 
-        public TesterLogic(IUserRepository userRepository, 
+        public TesterLogic(IUserLogic userLogic, 
             IProjectLogic projcetLogic, IRepository<Rol, Guid> rolRepository)
         {
-            this.userRepository = userRepository;
+            this.userLogic = userLogic;
             this.projcetLogic = projcetLogic;
             this.rolRepository = rolRepository;
         }
@@ -24,7 +27,7 @@ namespace BusinessLogic.UserRol
 
         public List<User> GetAll()
         {
-            List<User> users = userRepository.GetAll();
+            List<User> users = userLogic.GetAll();
 
             List<User> testers = new List<User>();
             foreach (User user in users)
@@ -38,37 +41,28 @@ namespace BusinessLogic.UserRol
 
         public User Get(Guid id)
         {
-            return userRepository.Get(id);
+            return userLogic.Get(id);
         }
 
-        public User Create(User tester)
+        public void AssignTesterToProject(Guid projectId, Guid testerId)
         {
-            UserLogic userLogic = new UserLogic(userRepository, rolRepository);
-
-            User developerCreate = userLogic.Create(tester);
-
-            return developerCreate;
+            User tester = userLogic.Get(testerId);
+            IsTester(tester);
+            Project project = projcetLogic.Get(projectId);
+            projcetLogic.AssignUser(projectId, ref tester);
         }
 
-        public void AssignTesterToProject(Project project, User tester)
+        public void DeleteTesterInProject(Guid projectId, Guid testerId)
         {
-            projcetLogic.AssignTester(project, tester);
-        }
-
-        public void DeleteTesterInProject(Project project, User tester)
-        {
-            projcetLogic.DeleteTester(project, tester);
+            User tester = userLogic.Get(testerId);
+            IsTester(tester);
+            Project project = projcetLogic.Get(projectId);
+            projcetLogic.DeleteUser(projectId, ref tester);
         }
 
         public List<Project> GetProjectsByTester(Guid id)
         {
             throw new NotImplementedException();
-        }
-
-        public Bug CreateBug(Bug bug)
-        {
-            // return bugRepository.Create(bug);
-            return null;
         }
 
         public List<Bug> GetAllBugs(User tester)
@@ -83,10 +77,12 @@ namespace BusinessLogic.UserRol
             return bugs;
         }
 
-        public void DeleteBug(int id)
+        private void IsTester(User tester)
         {
-           // bugRepository.Delete(id);
+            if (tester.Rol.Name.ToLower() != Rol.tester.ToLower())
+            {
+                throw new InvalidDataObjException(notUserTester);
+            }
         }
-
     }
 }

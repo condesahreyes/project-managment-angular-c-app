@@ -10,17 +10,15 @@ namespace BusinessLogicInterface
         Project Update(Guid id, Project updatedProject);
 
         void Delete(Guid id);
-        void DeleteTester(Project project, User tester);
-        void DeleteDeveloper(Project project, User developer);
-        void AssignDeveloper(Project project, User developer);
-        void AssignTester(Project project, User tester);
+        void DeleteUser(Guid oneProjectId, ref User user);
+        void AssignUser(Guid oneProjectId, ref User user);
 
         Project Get(Guid id);
         Project ExistProjectWithName(Project project);
 
         List<Project> GetAll();
-        List<User> GetAllTesters(Project project);
-        List<User> GetAllDevelopers(Project project);
         List<Bug> GetAllBugByProject(Project project);
+        List<User> GetAllTesters(Project oneProject);
+        List<User> GetAllDevelopers(Project oneProject);
     }
 }

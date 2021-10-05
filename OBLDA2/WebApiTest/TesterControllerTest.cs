@@ -42,7 +42,7 @@ namespace WebApiTest
         {
             ProjectEntryModel projectEntryModel = new ProjectEntryModel(project);
 
-            testerLogic.Setup(x => x.AssignTesterToProject(It.IsAny<Project>(), It.IsAny<User>()));
+            testerLogic.Setup(x => x.AssignTesterToProject(It.IsAny<Guid>(), It.IsAny<Guid>()));
 
             var controller = new TesterController(testerLogic.Object);
             var result = controller.AssignTester(Guid.NewGuid(), tester.Id);
@@ -54,7 +54,7 @@ namespace WebApiTest
         [TestMethod]
         public void DeleteTesterTest()
         {
-            testerLogic.Setup(m => m.DeleteTesterInProject(project, tester));
+            testerLogic.Setup(m => m.DeleteTesterInProject(project.Id, tester.Id));
 
             var controller = new TesterController(testerLogic.Object);
 

@@ -17,8 +17,8 @@ namespace BusinessLogic
         private IRepository<State, Guid> stateRepository;
         private IProjectLogic projectLogic;
 
-        public BugLogic(IBugRepository bugRepository, IRepository<State, Guid> stateRepository,
-            IProjectLogic projectLogic)
+        public BugLogic(IBugRepository bugRepository, 
+            IRepository<State, Guid> stateRepository, IProjectLogic projectLogic)
         {
             this.bugRepository = bugRepository;
             this.stateRepository = stateRepository;
@@ -33,16 +33,6 @@ namespace BusinessLogic
             IsValidBug(ref bug);
             bugRepository.Create(bug);
             return bug;
-        }
-
-        private void NotExistBug(int id)
-        {
-            Bug bug = bugRepository.GetById(id);
-
-            if(bug != null)
-            {
-                throw new ExistingObjectException(existingBug);
-            }
         }
 
         public Bug Get(int id)
@@ -83,14 +73,22 @@ namespace BusinessLogic
             return bugRepository.Update(id, bugUpdate);
         }
 
+        private void NotExistBug(int id)
+        {
+            Bug bug = bugRepository.GetById(id);
+
+            if (bug != null)
+            {
+                throw new ExistingObjectException(existingBug);
+            }
+        }
+
         private void IsValidBug(ref Bug bug)
         {
             bug.State = IsValidState(bug.State);
             bug.Project = projectLogic.ExistProjectWithName(bug.Project);
             Bug.AreCorrectData(bug);
         }
-
-
 
         private State IsValidState(State state)
         {

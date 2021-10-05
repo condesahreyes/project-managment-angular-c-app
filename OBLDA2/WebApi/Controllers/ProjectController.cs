@@ -2,12 +2,11 @@
 using Microsoft.AspNetCore.Mvc;
 using BusinessLogicInterface;
 using OBLDA2.Controllers;
+using WebApi.Filters;
 using OBLDA2.Models;
-using System.Linq;
 using System.Net;
 using Domain;
 using System;
-using WebApi.Filters;
 
 namespace WebApi.Controllers
 {

@@ -113,19 +113,19 @@ namespace BusinessLogicTest
         }
 
         [TestMethod]
-        public void DeleteTesterOk()
+        public void DeleteUserOk()
         {
             mock.Setup(x => x.GetById(It.IsAny<Guid>())).Returns(project);
             var proj = projectLogic.Get(project.Id);
 
-            projectMock.Setup(x => x.AssignTester(proj, tester));
-            projectLogic.AssignTester(proj, tester);
+            projectMock.Setup(x => x.AssignUser(proj.Id, ref tester));
+            projectLogic.AssignUser(proj.Id, ref tester);
 
-            projectMock.Setup(m => m.DeleteTester(proj, tester));
-            projectLogic.DeleteTester(proj, tester);
+            projectMock.Setup(m => m.DeleteUser(proj.Id, ref tester));
+            projectLogic.DeleteUser(proj.Id, ref tester);
 
             List<User> list = new List<User>();
-            projectMock.Setup(x => x.GetAllTesters(proj)).Returns(list);
+            //projectMock.Setup(x => x.GetAll(proj.Id)).Returns(list);
             var ret = projectLogic.GetAllTesters(proj);
             mock.VerifyAll();
 
@@ -133,57 +133,18 @@ namespace BusinessLogicTest
         }
 
         [TestMethod]
-        public void DeleteDeveloperOk()
-        {
-            mock.Setup(x => x.GetById(It.IsAny<Guid>())).Returns(project);
-            var proj = projectLogic.Get(project.Id);
-
-            projectMock.Setup(x => x.AssignDeveloper(proj, developer));
-            projectLogic.AssignDeveloper(proj, developer);
-
-            projectMock.Setup(m => m.DeleteDeveloper(proj, developer));
-            projectLogic.DeleteDeveloper(proj, developer);
-
-            List<User> list = new List<User>();
-            projectMock.Setup(x => x.GetAllDevelopers(proj)).Returns(list);
-            var ret = projectLogic.GetAllDevelopers(proj);
-            mock.VerifyAll();
-
-            Assert.IsTrue(ret.SequenceEqual(list));
-        }
-
-        [TestMethod]
-        public void AssignDeveloperOk()
+        public void AssignUserOk()
         {
             mock.Setup(x => x.GetById(It.IsAny<Guid>())).Returns(project);
             var ret = projectLogic.Get(project.Id);
 
-            projectMock.Setup(x => x.AssignDeveloper(ret, developer));
-            projectLogic.AssignDeveloper(ret, developer);
-
-            List<User> list = new List<User>();
-            list.Add(developer);
-
-            projectMock.Setup(x => x.GetAllDevelopers(ret)).Returns(list);
-            var retList = projectLogic.GetAllDevelopers(ret);
-            mock.VerifyAll();
-
-            Assert.IsTrue(retList.SequenceEqual(list));
-        }
-
-        [TestMethod]
-        public void AssignTesterOk()
-        {
-            mock.Setup(x => x.GetById(It.IsAny<Guid>())).Returns(project);
-            var ret = projectLogic.Get(project.Id);
-
-            projectMock.Setup(x => x.AssignTester(ret, tester));
-            projectLogic.AssignTester(ret, tester);
+            projectMock.Setup(x => x.AssignUser(ret.Id, ref tester));
+            projectLogic.AssignUser(ret.Id, ref tester);
 
             List<User> list = new List<User>();
             list.Add(tester);
 
-            projectMock.Setup(x => x.GetAllTesters(ret)).Returns(list);
+            //projectMock.Setup(x => x.GetAll(ret)).Returns(list);
             var retList = projectLogic.GetAllTesters(ret);
             mock.VerifyAll();
 
@@ -196,13 +157,13 @@ namespace BusinessLogicTest
             mock.Setup(x => x.GetById(It.IsAny<Guid>())).Returns(project);
             var proj = projectLogic.Get(project.Id);
 
-            projectMock.Setup(x => x.AssignTester(proj, tester));
-            projectLogic.AssignTester(proj, tester);
+            projectMock.Setup(x => x.AssignUser(proj.Id, ref tester));
+            projectLogic.AssignUser(proj.Id, ref tester);
 
             List<User> list = new List<User>();
             list.Add(tester);
 
-            projectMock.Setup(x => x.GetAllTesters(proj)).Returns(list);
+            //projectMock.Setup(x => x.GetAllTesters(proj.Id)).Returns(list);
             List<User> ret = projectLogic.GetAllTesters(proj);
             mock.VerifyAll();
 
@@ -215,8 +176,8 @@ namespace BusinessLogicTest
             mock.Setup(x => x.GetById(It.IsAny<Guid>())).Returns(project);
             var proj = projectLogic.Get(project.Id);
 
-            projectMock.Setup(x => x.AssignDeveloper(proj, developer));
-            projectLogic.AssignDeveloper(proj, developer);
+            projectMock.Setup(x => x.AssignUser(proj.Id, ref developer));
+            projectLogic.AssignUser(proj.Id, ref developer);
 
             List<User> list = new List<User>();
             list.Add(developer);

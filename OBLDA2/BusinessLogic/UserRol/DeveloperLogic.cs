@@ -1,16 +1,17 @@
 ﻿using System.Collections.Generic;
 using BusinessLogicInterface;
 using DataAccessInterface;
+using Exceptions;
 using System.Linq;
 using Domain;
 using System;
-using Exceptions;
 
 namespace BusinessLogic.UserRol
 {
     public class DeveloperLogic : IDeveloperLogic
     {
         private const string invalidState = "It´s not a valid state bug";
+        private const string notUserDeveloper = "This user rol is not Developer";
 
         private IUserLogic userLogic;
         private IProjectLogic projectLogic;
@@ -26,81 +27,51 @@ namespace BusinessLogic.UserRol
 
         public DeveloperLogic() { }
 
-        public User Create(User developerToCreate)
-        {
-            User developerCreate = userLogic.Create(developerToCreate);
-
-            return developerCreate;
-        }
-
+        //SACARRRRR
         public User GetByString(string userName)
         {
             return userLogic.GetAll().Where(user => (user.UserName == userName)).First();
         }
 
-        public Bug UpdateState(int id, string state, Guid userResolved)
+        public void AssignDeveloperToProject(Guid projectId, Guid developerId)
         {
-            if (state.ToLower() == State.active.ToLower())
-                return UpdateStateToActiveBug(id, userResolved);
-            else if (state.ToLower() == State.done.ToLower())
-                return UpdateStateToDoneBug(id, userResolved);
+            User developer = GetDeveloper(developerId);
 
-            throw new InvalidDataObjException(invalidState);
+            projectLogic.AssignUser(projectId, ref developer);
         }
 
-        public Bug UpdateStateToActiveBug(int id, Guid userId)
+        public void DeleteDeveloperInProject(Guid projectId, Guid developerId)
         {
-            Bug activeBug = bugLogic.Get(id);
+            User developer = GetDeveloper(developerId);
 
-            activeBug.State = new State(State.active);
-            activeBug.SolvedBy = null;
-
-            bugLogic.Update(id, activeBug);
-
-            return activeBug;
+            projectLogic.DeleteUser(projectId, ref developer);
         }
 
-        public Bug UpdateStateToDoneBug(int id, Guid userId)
+        public int CountBugDoneByDeveloper(Guid developerId)
         {
-            Bug doneBug = bugLogic.Get(id);
+            User developer = GetDeveloper(developerId);
 
-            doneBug.State = new State(State.done);
-            doneBug.SolvedBy = userLogic.Get(userId);
-
-            bugLogic.Update(id, doneBug);
-
-            return doneBug;
-        }
-
-        public void AssignDeveloperToProject(Project project, User developer)
-        {
-            projectLogic.AssignDeveloper(project, developer);
-        }
-
-        public void DeleteDeveloperInProject(Project project, User developer)
-        {
-            projectLogic.DeleteDeveloper(project, developer);
-        }
-
-        public int CountBugDoneByDeveloper(User developer)
-        {
             int countBugsResolved = 0;
 
-            List<Bug> bugs = GetAllBugs(developer);
-
-            foreach (Bug bug in bugs)
+            List<Project> projects = projectLogic.GetAll();
+            foreach (Project project in projects)
             {
-                if(bug.SolvedBy.Id == developer.Id)
+                foreach (Bug bug in project.Bugs)
                 {
-                    countBugsResolved++;
+                    if (bug.SolvedBy != null && bug.SolvedBy.Id == developer.Id)
+                    {
+                        countBugsResolved++;
+                    }
                 }
             }
 
             return countBugsResolved;
         }
 
-        public List<Bug> GetAllBugs(User developer)
+        public List<Bug> GetAllBugs(Guid developerId)
         {
+            User developer = GetDeveloper(developerId);
+
             List<Project> allProjects = projectLogic.GetAll();
 
             List<Bug> bugs = new List<Bug>();
@@ -110,6 +81,57 @@ namespace BusinessLogic.UserRol
                     bugs.AddRange(project.Bugs);
 
             return bugs;
+        }
+
+        public Bug UpdateState(int id, string state, Guid userResolved)
+        {
+            Bug bug = bugLogic.Get(id);
+
+            if (state.ToLower() == State.active.ToLower())
+            {
+                UpdateStateToActiveBug(ref bug);
+            }
+            else if (state.ToLower() == State.done.ToLower())
+            {
+                UpdateStateToDoneBug(ref bug, userResolved);
+            }
+            else
+            {
+                throw new InvalidDataObjException(invalidState);
+            }
+
+            bugLogic.Update(id, bug);
+
+            return bug;
+        }
+
+        private User GetDeveloper(Guid developerId)
+        {
+            User developer = userLogic.Get(developerId);
+
+            IsDeveloper(developer);
+
+            return developer;
+        }
+
+        private void IsDeveloper(User developer)
+        {
+            if (developer.Rol.Name.ToLower() != Rol.developer.ToLower())
+            {
+                throw new InvalidDataObjException(notUserDeveloper);
+            }
+        }
+
+        private void UpdateStateToActiveBug(ref Bug bug)
+        {
+            bug.State = new State(State.active);
+            bug.SolvedBy = null;
+        }
+
+        private void UpdateStateToDoneBug(ref Bug bug, Guid resolvedById)
+        {
+            bug.State = new State(State.done);
+            bug.SolvedBy = userLogic.Get(resolvedById);
         }
     }
 }

@@ -14,10 +14,9 @@ namespace BusinessLogicTest
     public class TesterLogicTest
     {
 
-        private Mock<IUserRepository> mockUser;
+        private Mock<IUserLogic> userLogic;
         private Mock<IProjectLogic> mockProject;
         private Mock<IRepository<Rol, Guid>> mockRol;
-        private Mock<IRepository<Bug, int>> mockBug;
 
         private List<Rol> roles;
 
@@ -29,15 +28,14 @@ namespace BusinessLogicTest
         public void Setup()
         {
             mockProject = new Mock<IProjectLogic>(MockBehavior.Strict);
-            mockUser = new Mock<IUserRepository>(MockBehavior.Strict);
-            mockBug = new Mock<IRepository<Bug, int>>(MockBehavior.Strict);
+            userLogic = new Mock<IUserLogic>(MockBehavior.Strict);
 
             CofnigurationMockRol();
 
             tester = new User("Diego", "Asadurian", "diegoAsa", "admin1234",
                 "diegoasadurian@gmail.com", roles[0]);
 
-            testerLogic = new TesterLogic(mockUser.Object, mockProject.Object, mockRol.Object);
+            testerLogic = new TesterLogic(userLogic.Object, mockProject.Object, mockRol.Object);
         }
 
         private void CofnigurationMockRol()
@@ -52,22 +50,6 @@ namespace BusinessLogicTest
             };
 
             mockRol.Setup(x => x.GetAllGeneric()).Returns(roles);
-        }
-
-        [TestMethod]
-        public void CreateTester()
-        {
-            List<User> users = new List<User>();
-            mockUser.Setup(x => x.GetAll()).Returns(users);
-            mockUser.Setup(x => x.Create(tester)).Returns(tester);
-
-            var testerLogic = new TesterLogic(mockUser.Object, mockProject.Object, mockRol.Object);
-
-            User userSaved = testerLogic.Create(tester);
-
-            mockUser.VerifyAll();
-
-            Assert.AreEqual(tester, userSaved);
         }
 
         [TestMethod]
@@ -94,7 +76,7 @@ namespace BusinessLogicTest
 
             List<Bug> bugsSaved = testerLogic.GetAllBugs(tester);
 
-            mockUser.VerifyAll();
+            userLogic.VerifyAll();
             Assert.IsTrue(bugsSaved.SequenceEqual(bugs));
         }
 
@@ -103,10 +85,10 @@ namespace BusinessLogicTest
         {
             List<User> list = new List<User>();
             list.Add(tester);
-            mockUser.Setup(x => x.GetAll()).Returns(list);
+            userLogic.Setup(x => x.GetAll()).Returns(list);
 
             List<User> ret = testerLogic.GetAll();
-            mockUser.VerifyAll();
+            userLogic.VerifyAll();
             Assert.IsTrue(ret.SequenceEqual(list));
         }
 
@@ -114,26 +96,10 @@ namespace BusinessLogicTest
         public void GetTesterIdOk()
         {
             Guid id = Guid.NewGuid();
-            mockUser.Setup(x => x.Get(It.IsAny<Guid>())).Returns(tester);
+            userLogic.Setup(x => x.Get(It.IsAny<Guid>())).Returns(tester);
             var ret = testerLogic.Get(id);
-            mockUser.VerifyAll();
+            userLogic.VerifyAll();
             Assert.IsTrue(ret.Equals(tester));
-        }
-
-        [TestMethod]
-        public void CreateBugByTester()
-        {
-            Project project = new Project("Montes Del Plata");
-            State stateActive = new State(State.active);
-
-            var bug = new Bug(project, 1, "Error de login", "Intento de sesión", "3.0", stateActive);
-
-            mockBug.Setup(x => x.Create(bug)).Returns(bug);
-
-            var ret = testerLogic.CreateBug(bug);
-            mockBug.VerifyAll();
-
-            Assert.IsTrue(ret.Id == bug.Id);
         }
     }
 }

@@ -3,7 +3,6 @@ using Microsoft.AspNetCore.Mvc;
 using BusinessLogicInterface;
 using OBLDA2.Controllers;
 using WebApi.Filters;
-using OBLDA2.Models;
 using System.Net;
 using Domain;
 using System;
@@ -37,13 +36,7 @@ namespace WebApi.Controllers
 
         public IActionResult AssignTester(Guid projectId, Guid idTester)
         {
-            User tester = new User();
-            tester.Id = idTester;
-
-            Project project = new Project();
-            project.Id = projectId;
-
-            testerLogic.AssignTesterToProject(project, tester);
+            testerLogic.AssignTesterToProject(projectId, idTester);
             return NoContent();
         }
 
@@ -52,13 +45,7 @@ namespace WebApi.Controllers
 
         public IActionResult DeleteTester(Guid idTester, Guid projectId)
         {
-            User tester = new User();
-            tester.Id = idTester;
-
-            Project project = new Project();
-            project.Id = projectId;
-
-            testerLogic.DeleteTesterInProject(project, tester);
+            testerLogic.DeleteTesterInProject(projectId, idTester);
             return NoContent();
         }
 

@@ -20,7 +20,6 @@ namespace Factory
         {
             this._serviceCollection.AddScoped<IUserLogic, UserLogic>();
             this._serviceCollection.AddScoped<ISessionLogic, SessionLogic>();
-            this._serviceCollection.AddScoped<IAdministratorLogic, AdministratorLogic>();
             this._serviceCollection.AddScoped<IDeveloperLogic, DeveloperLogic>();
             this._serviceCollection.AddScoped<IProjectLogic, ProjectLogic>();
             this._serviceCollection.AddScoped<IBugLogic, BugLogic>();

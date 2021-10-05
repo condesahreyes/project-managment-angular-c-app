@@ -11,8 +11,6 @@ namespace BusinessLogic
     {
         private const string notExistProject = "Project does not exist";
         private const string userExistingProject = "This user alredy exist in the project";
-        private const string notUserDeveloper = "This user rol is not Developer";
-        private const string notUserTester = "This user rol is not Tester";
         private const string notUserInProject = "This user is not asigned to this project";
 
         private IProjectRepository projectRepository;
@@ -80,33 +78,16 @@ namespace BusinessLogic
             projectRepository.Delete(id);
         }
 
-        public void DeleteTester(Project oneProject, User tester)
+        public void DeleteUser(Guid oneProjectId, ref User user)
         {
-            User testerDB = userLogic.Get(tester.Id);
+            User userToAsign = userLogic.Get(user.Id);
 
-            if (testerDB.Rol.Name.ToLower() != Rol.tester.ToLower())
-            {
-                throw new InvalidDataObjException(notUserDeveloper);
-            }
-
-            DeleteUserToProject(ref testerDB, oneProject);
+            DeleteUserToProject(ref userToAsign, oneProjectId);
         }
 
-        public void DeleteDeveloper(Project oneProject, User developer)
+        private void DeleteUserToProject(ref User user, Guid oneProjectId)
         {
-            User developerDB = userLogic.Get(developer.Id);
-
-            if (developerDB.Rol.Name.ToLower() != Rol.developer.ToLower())
-            {
-                throw new InvalidDataObjException(notUserDeveloper);
-            }
-
-            DeleteUserToProject(ref developerDB, oneProject);
-        }
-
-        private void DeleteUserToProject(ref User user, Project oneProject)
-        {
-            Project project = Get(oneProject.Id);
+            Project project = Get(oneProjectId);
 
             if (!project.Users.Contains(user))
             {
@@ -117,31 +98,14 @@ namespace BusinessLogic
             projectRepository.Update(project.Id, project);
         }
 
-        public void AssignDeveloper(Project oneProject, User developer)
+        public void AssignUser(Guid oneProjectId, ref User user)
         {
-            User developerDB = userLogic.Get(developer.Id);
-
-            if (developerDB.Rol.Name.ToLower() != Rol.developer.ToLower())
-            {
-                throw new InvalidDataObjException(notUserDeveloper);
-            }
-
-            AssignUserToProject(ref developerDB, oneProject);
+            AssignUserToProject(ref user, oneProjectId);
         }
 
-        public void AssignTester(Project oneProject, User tester)
+        private void AssignUserToProject(ref User userToAsign, Guid oneProjectId)
         {
-            User testerDB = userLogic.Get(tester.Id);
-
-            if (testerDB.Rol.Name.ToLower() != Rol.tester.ToLower())
-                throw new InvalidDataObjException(notUserTester);
-
-            AssignUserToProject(ref testerDB, oneProject);
-        }
-
-        private void AssignUserToProject(ref User userToAsign, Project projectToAsign)
-        {
-            Project project = Get(projectToAsign.Id);
+            Project project = Get(oneProjectId);
 
             if (project.Users.Contains(userToAsign))
             {

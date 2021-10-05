@@ -50,21 +50,6 @@ namespace BusinessLogicTest
         }
 
         [TestMethod]
-        public void CreateDeveloper()
-        {
-            mockUser.Setup(x => x.Create(developer)).Returns(developer);
-            
-            var developerLogic = new DeveloperLogic(mockUser.Object, mockProject.Object, mockRol.Object, 
-                mockBug.Object);
-
-            User userSaved = developerLogic.Create(developer);
-
-            mockUser.VerifyAll();
-
-            Assert.AreEqual(developer, userSaved);
-        }
-
-        [TestMethod]
         public void GetAllBugs()
         {
             Project project = new Project("Montes Del Plata");
@@ -86,7 +71,7 @@ namespace BusinessLogicTest
             mockProject.Setup(r => r.GetAll()).Returns(projects);
             var bugLogic = new DeveloperLogic(mockUser.Object, mockProject.Object, mockRol.Object, mockBug.Object);
 
-            List<Bug> bugsSaved = bugLogic.GetAllBugs(developer);
+            List<Bug> bugsSaved = bugLogic.GetAllBugs(developer.Id);
 
             mockUser.VerifyAll();
             Assert.IsTrue(bugsSaved.SequenceEqual(bugs));

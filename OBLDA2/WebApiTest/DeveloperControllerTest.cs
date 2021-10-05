@@ -42,7 +42,7 @@ namespace WebApiTest
         {
             UserEntryModel testerEntryModel = new UserEntryModel(developer);
 
-            developerLogic.Setup(x => x.AssignDeveloperToProject(project, developer));
+            developerLogic.Setup(x => x.AssignDeveloperToProject(project.Id, developer.Id));
 
             DeveloperController controller = new DeveloperController(developerLogic.Object);
 
@@ -58,7 +58,7 @@ namespace WebApiTest
         [TestMethod]
         public void DeleteDeveloperByProject()
         {
-            developerLogic.Setup(m => m.DeleteDeveloperInProject(project, developer));
+            developerLogic.Setup(m => m.DeleteDeveloperInProject(project.Id, developer.Id));
 
             DeveloperController controller = new DeveloperController(developerLogic.Object);
 
@@ -75,7 +75,7 @@ namespace WebApiTest
             List<Bug> list = new List<Bug>();
             list.Add(bug);
 
-            developerLogic.Setup(m => m.GetAllBugs(developer)).Returns(list);
+            developerLogic.Setup(m => m.GetAllBugs(developer.Id)).Returns(list);
             DeveloperController controller = new DeveloperController(developerLogic.Object);
 
             var result = controller.GetAllBugsDeveloper(developer.Id);
