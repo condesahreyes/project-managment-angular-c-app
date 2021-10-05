@@ -15,7 +15,7 @@ namespace BusinessLogic.Imports
 
         public BugsImportTxt() : base() { }
 
-        public List<Bug> ImportBugs(string fileAddress)
+        public List<Bug> ImportBugsTxt(string fileAddress)
         {
             if (!File.Exists(fileAddress))
                 throw new InvalidDataObjException(invalidRoute);

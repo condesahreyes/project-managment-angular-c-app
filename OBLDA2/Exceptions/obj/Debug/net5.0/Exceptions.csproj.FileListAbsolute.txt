@@ -9,4 +9,3 @@ C:\Users\hreye\Desktop\OBL-Asadurian-Reyes\OBLDA2\Exceptions\obj\Debug\net5.0\Ex
 C:\Users\hreye\Desktop\OBL-Asadurian-Reyes\OBLDA2\Exceptions\obj\Debug\net5.0\Exceptions.dll
 C:\Users\hreye\Desktop\OBL-Asadurian-Reyes\OBLDA2\Exceptions\obj\Debug\net5.0\ref\Exceptions.dll
 C:\Users\hreye\Desktop\OBL-Asadurian-Reyes\OBLDA2\Exceptions\obj\Debug\net5.0\Exceptions.pdb
-C:\Users\hreye\Desktop\OBL-Asadurian-Reyes\OBLDA2\Exceptions\obj\Debug\net5.0\Exceptions.csproj.AssemblyReference.cache

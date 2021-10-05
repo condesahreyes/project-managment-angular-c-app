@@ -39,31 +39,27 @@ namespace BusinessLogic.Imports
 
         public List<Bug> ImportBugs(string fileAddress)
         {
-            int i = 0;
-            if (bugLogic == null)
-                i = 0;
-
             if (!File.Exists(fileAddress))
                 throw new InvalidDataObjException(invalidRoute);
 
-            List<Bug> bugToSaved = new List<Bug>();
+            List<Bug> bugsToSaved = new List<Bug>();
 
             if (Path.GetExtension(fileAddress).ToLower() == txt)
             {
                 BugsImportTxt txt = new BugsImportTxt();
-                bugToSaved = txt.ImportBugs(fileAddress);
+                bugsToSaved = txt.ImportBugs(fileAddress);
             }
             else if (Path.GetExtension(fileAddress).ToLower() == xml)
             {
                 BugsImportXml xml = new BugsImportXml();
-                bugToSaved = xml.ImportBugs(fileAddress);
+                bugsToSaved = xml.ImportBugs(fileAddress);
             }
             else
             {
                 throw new InvalidDataObjException(invalidFormat);
             }
 
-            return CreateBugs(bugToSaved);
+            return CreateBugs(bugsToSaved);
         }
     }
 

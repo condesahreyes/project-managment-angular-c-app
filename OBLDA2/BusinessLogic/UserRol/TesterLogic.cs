@@ -9,18 +9,15 @@ namespace BusinessLogic.UserRol
     public class TesterLogic : ITesterLogic
     {
         private IUserRepository userRepository;
-        private IProjectRepository projectRepository;
         private IRepository<Rol, Guid> rolRepository;
-        private IRepository<Bug, int> bugRepository;
         private IProjectLogic projcetLogic;
 
-        public TesterLogic(IUserRepository userRepository, IProjectRepository projectRepository,
-            IRepository<Rol, Guid> rolRepository, IRepository<Bug, int> bugRepository)
+        public TesterLogic(IUserRepository userRepository, 
+            IProjectLogic projcetLogic, IRepository<Rol, Guid> rolRepository)
         {
             this.userRepository = userRepository;
-            this.projectRepository = projectRepository;
+            this.projcetLogic = projcetLogic;
             this.rolRepository = rolRepository;
-            this.bugRepository = bugRepository;
         }
 
         public TesterLogic() { }
@@ -70,17 +67,17 @@ namespace BusinessLogic.UserRol
 
         public Bug CreateBug(Bug bug)
         {
-            return bugRepository.Create(bug);
+            // return bugRepository.Create(bug);
+            return null;
         }
 
         public List<Bug> GetAllBugs(User tester)
         {
-            List<Project> allProjects = projectRepository.GetAllGeneric();
-
+            List<Project> allProjects = projcetLogic.GetAll();
             List<Bug> bugs = new List<Bug>();
 
             foreach (var project in allProjects)
-                if (project.Users.Contains(tester))
+                if (project.Users.Find(u => u.Id == tester.Id) != null)
                     bugs.AddRange(project.Bugs);
 
             return bugs;
@@ -88,7 +85,7 @@ namespace BusinessLogic.UserRol
 
         public void DeleteBug(int id)
         {
-            bugRepository.Delete(id);
+           // bugRepository.Delete(id);
         }
 
     }

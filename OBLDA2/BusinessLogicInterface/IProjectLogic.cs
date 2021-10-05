@@ -16,6 +16,7 @@ namespace BusinessLogicInterface
         void AssignTester(Project project, User tester);
 
         Project Get(Guid id);
+        Project ExistProjectWithName(Project project);
 
         List<Project> GetAll();
         List<User> GetAllTesters(Project project);

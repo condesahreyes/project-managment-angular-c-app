@@ -62,7 +62,7 @@ namespace BusinessLogicTest
         {
             mock.Setup(x => x.Create(bug)).Returns(bug);
 
-            var bugLogic = new BugLogic(mock.Object, stateMock.Object);
+            var bugLogic = new BugLogic(mock.Object, stateMock.Object, null);
 
             Bug bugSaved = bugLogic.Create(bug);
 
@@ -76,7 +76,7 @@ namespace BusinessLogicTest
         {
             mock.Setup(x => x.Create(bug)).Returns(bug);
 
-            var bugLogic = new BugLogic(mock.Object, stateMock.Object);
+            var bugLogic = new BugLogic(mock.Object, stateMock.Object, null);
 
             Bug bugSaved = bugLogic.Create(bug);
 
@@ -94,7 +94,7 @@ namespace BusinessLogicTest
 
             mock.Setup(x => x.Create(bugInvalidProject)).Returns(bugInvalidProject);
 
-            var bugLogic = new BugLogic(mock.Object, stateMock.Object);
+            var bugLogic = new BugLogic(mock.Object, stateMock.Object, null);
 
             Bug bugSaved = bugLogic.Create(bugInvalidProject);
         }
@@ -109,7 +109,7 @@ namespace BusinessLogicTest
 
             mock.Setup(x => x.Create(bugInvalidName)).Returns(bugInvalidName);
 
-            var bugLogic = new BugLogic(mock.Object, stateMock.Object);
+            var bugLogic = new BugLogic(mock.Object, stateMock.Object, null);
 
             Bug bugSaved = bugLogic.Create(bugInvalidName);
         }
@@ -124,7 +124,7 @@ namespace BusinessLogicTest
 
             mock.Setup(x => x.Create(bugInvalidDomain)).Returns(bugInvalidDomain);
 
-            var bugLogic = new BugLogic(mock.Object, stateMock.Object);
+            var bugLogic = new BugLogic(mock.Object, stateMock.Object, null);
 
             Bug bugSaved = bugLogic.Create(bugInvalidDomain);
         }
@@ -137,7 +137,7 @@ namespace BusinessLogicTest
 
             mock.Setup(x => x.Create(bugInvalidVersion)).Returns(bugInvalidVersion);
 
-            var bugLogic = new BugLogic(mock.Object, stateMock.Object);
+            var bugLogic = new BugLogic(mock.Object, stateMock.Object, null);
 
             Bug bugSaved = bugLogic.Create(bugInvalidVersion);
         }
@@ -151,7 +151,7 @@ namespace BusinessLogicTest
 
             mock.Setup(x => x.Create(bugInvalidState)).Returns(bugInvalidState);
 
-            var bugLogic = new BugLogic(mock.Object, stateMock.Object);
+            var bugLogic = new BugLogic(mock.Object, stateMock.Object, null);
 
             Bug bugSaved = bugLogic.Create(bugInvalidState);
         }
@@ -162,7 +162,7 @@ namespace BusinessLogicTest
             List<Bug> bugs = new List<Bug> { bug, otherBug };
 
             mock.Setup(r => r.GetAll()).Returns(bugs);
-            var bugLogic = new BugLogic(mock.Object, stateMock.Object);
+            var bugLogic = new BugLogic(mock.Object, stateMock.Object, null);
 
             List<Bug> bugsSaved = bugLogic.GetAll();
 
@@ -178,7 +178,7 @@ namespace BusinessLogicTest
             mock.Setup(r => r.GetAll()).Returns(bugs);
             mock.Setup(r => r.Delete(bug.Id));
 
-            var bugLogic = new BugLogic(mock.Object, stateMock.Object);
+            var bugLogic = new BugLogic(mock.Object, stateMock.Object, null);
 
             bugLogic.Delete(bug.Id);
 
@@ -197,7 +197,7 @@ namespace BusinessLogicTest
 
             mock.Setup(r => r.Update(bug.Id, bugUpdate)).Returns(bugUpdate);
 
-            var bugLogic = new BugLogic(mock.Object, stateMock.Object);
+            var bugLogic = new BugLogic(mock.Object, stateMock.Object, null);
             var bugNew = bugLogic.Update(bug.Id, bugUpdate);
 
             mock.VerifyAll();
@@ -212,7 +212,7 @@ namespace BusinessLogicTest
 
             mock.Setup(r => r.Update(bug.Id, bugUpdate)).Returns(bugUpdate);
 
-            var bugLogic = new BugLogic(mock.Object, stateMock.Object);
+            var bugLogic = new BugLogic(mock.Object, stateMock.Object, null);
             var bugNew = bugLogic.Update(bug.Id, bugUpdate);
 
             mock.VerifyAll();
@@ -226,7 +226,7 @@ namespace BusinessLogicTest
             var bugUpdate = new Bug(project, id, otherName, "Otro dominio", version, stateActive);
             mock.Setup(r => r.Update(bug.Id, bugUpdate)).Returns(bugUpdate);
 
-            var bugLogic = new BugLogic(mock.Object, stateMock.Object);
+            var bugLogic = new BugLogic(mock.Object, stateMock.Object, null);
             var bugNew = bugLogic.Update(bug.Id, bugUpdate);
 
             mock.VerifyAll();
@@ -241,7 +241,7 @@ namespace BusinessLogicTest
 
             mock.Setup(r => r.Update(bug.Id, bugUpdate)).Returns(bugUpdate);
 
-            var bugLogic = new BugLogic(mock.Object, stateMock.Object);
+            var bugLogic = new BugLogic(mock.Object, stateMock.Object, null);
             var bugNew = bugLogic.Update(bug.Id, bugUpdate);
 
             mock.VerifyAll();
@@ -256,7 +256,7 @@ namespace BusinessLogicTest
 
             mock.Setup(r => r.Update(bug.Id, bugUpdate)).Returns(bugUpdate);
 
-            var bugLogic = new BugLogic(mock.Object, stateMock.Object);
+            var bugLogic = new BugLogic(mock.Object, stateMock.Object, null);
             var bugNew = bugLogic.Update(bug.Id, bugUpdate);
 
             mock.VerifyAll();
@@ -268,7 +268,7 @@ namespace BusinessLogicTest
         {
             mock.Setup(r => r.GetById(bug.Id)).Returns(bug);
 
-            var bugLogic = new BugLogic(mock.Object, stateMock.Object);
+            var bugLogic = new BugLogic(mock.Object, stateMock.Object, null);
 
             Bug bugGet = bugLogic.Get(bug.Id);
 

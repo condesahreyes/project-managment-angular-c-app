@@ -37,7 +37,7 @@ namespace OBLDA2.Controllers
             return Ok(users);
         }
 
-        [HttpGet("{id}")]
+        [HttpGet("{userID}")]
         public IActionResult GetById(Guid userID)
         {
             User userToReturn = this.userLogic.Get(userID);

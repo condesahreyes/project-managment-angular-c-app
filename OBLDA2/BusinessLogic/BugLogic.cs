@@ -11,15 +11,18 @@ namespace BusinessLogic
     {
         private const string notExistBug = "Bug does not exist whit this id";
         private const string existingBug = "The Bug whit that id alredy exist";
-        private const string invalidState = "It´s not a state bug";
+        private const string invalidState = "It´s not a valid state bug";
 
         private IBugRepository bugRepository;
         private IRepository<State, Guid> stateRepository;
+        private IProjectLogic projectLogic;
 
-        public BugLogic(IBugRepository bugRepository, IRepository<State, Guid> stateRepository)
+        public BugLogic(IBugRepository bugRepository, IRepository<State, Guid> stateRepository,
+            IProjectLogic projectLogic)
         {
             this.bugRepository = bugRepository;
             this.stateRepository = stateRepository;
+            this.projectLogic = projectLogic;
         }
 
         public BugLogic() { }
@@ -80,45 +83,14 @@ namespace BusinessLogic
             return bugRepository.Update(id, bugUpdate);
         }
 
-        public Bug UpdateState(int id, string state)
-        {
-            ExistBug(id);
-
-            if (state.ToLower() == State.active.ToLower())
-                return UpdateStateToActiveBug(id);
-            else if (state.ToLower() == State.done.ToLower())
-                return UpdateStateToDoneBug(id);
-
-            throw new InvalidDataObjException(invalidState);
-        }
-
-        public Bug UpdateStateToActiveBug(int id)
-        {
-            Bug activeBug = bugRepository.Get(id);
-
-            activeBug.State.Name = State.active;
-
-            bugRepository.Update(id, activeBug);
-
-            return activeBug;
-        }
-
-        public Bug UpdateStateToDoneBug(int id)
-        {
-            Bug doneBug = bugRepository.Get(id);
-
-            doneBug.State.Name = State.done;
-
-            bugRepository.Update(id, doneBug);
-
-            return doneBug;
-        }
-
         private void IsValidBug(ref Bug bug)
         {
             bug.State = IsValidState(bug.State);
+            bug.Project = projectLogic.ExistProjectWithName(bug.Project);
             Bug.AreCorrectData(bug);
         }
+
+
 
         private State IsValidState(State state)
         {

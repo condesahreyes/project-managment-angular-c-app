@@ -48,7 +48,7 @@ namespace WebApi.Controllers
             return Ok(bugsOut);
         }
 
-        [HttpGet("{id}")]
+        [HttpGet("{bugId}")]
         [AuthorizationFilter(Autorization.AllAutorization)]
 
         public IActionResult GetById(int bugId)
@@ -73,14 +73,6 @@ namespace WebApi.Controllers
             Bug bugUpdated = this.bugLogic.Update(id, bugDTO.ToEntity(id));
             BugEntryOutModel bugUpdateOut = new BugEntryOutModel(bugUpdated);
 
-            return NoContent();
-        }
-
-        [HttpPut("{id}/UpdateState")]
-        [AuthorizationFilter(Autorization.AllAutorization)]
-        public IActionResult UpdateStateBug(int id, string state)
-        {
-            Bug bugReturn = this.bugLogic.UpdateState(id, state);
             return NoContent();
         }
     }

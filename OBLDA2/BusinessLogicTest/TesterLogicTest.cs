@@ -6,6 +6,7 @@ using System.Linq;
 using Domain;
 using System;
 using Moq;
+using BusinessLogicInterface;
 
 namespace BusinessLogicTest
 {
@@ -14,7 +15,7 @@ namespace BusinessLogicTest
     {
 
         private Mock<IUserRepository> mockUser;
-        private Mock<IProjectRepository> mockProject;
+        private Mock<IProjectLogic> mockProject;
         private Mock<IRepository<Rol, Guid>> mockRol;
         private Mock<IRepository<Bug, int>> mockBug;
 
@@ -27,7 +28,7 @@ namespace BusinessLogicTest
         [TestInitialize]
         public void Setup()
         {
-            mockProject = new Mock<IProjectRepository>(MockBehavior.Strict);
+            mockProject = new Mock<IProjectLogic>(MockBehavior.Strict);
             mockUser = new Mock<IUserRepository>(MockBehavior.Strict);
             mockBug = new Mock<IRepository<Bug, int>>(MockBehavior.Strict);
 
@@ -36,7 +37,7 @@ namespace BusinessLogicTest
             tester = new User("Diego", "Asadurian", "diegoAsa", "admin1234",
                 "diegoasadurian@gmail.com", roles[0]);
 
-            testerLogic = new TesterLogic(mockUser.Object, mockProject.Object, mockRol.Object, mockBug.Object);
+            testerLogic = new TesterLogic(mockUser.Object, mockProject.Object, mockRol.Object);
         }
 
         private void CofnigurationMockRol()
@@ -60,8 +61,7 @@ namespace BusinessLogicTest
             mockUser.Setup(x => x.GetAll()).Returns(users);
             mockUser.Setup(x => x.Create(tester)).Returns(tester);
 
-            var testerLogic = new TesterLogic(mockUser.Object, mockProject.Object, mockRol.Object,
-                mockBug.Object);
+            var testerLogic = new TesterLogic(mockUser.Object, mockProject.Object, mockRol.Object);
 
             User userSaved = testerLogic.Create(tester);
 
@@ -89,7 +89,7 @@ namespace BusinessLogicTest
 
             project.Bugs.AddRange(bugs);
 
-            mockProject.Setup(r => r.GetAllGeneric()).Returns(projects);
+            //mockProject.Setup(r => r.GetAllGeneric()).Returns(projects);
             
 
             List<Bug> bugsSaved = testerLogic.GetAllBugs(tester);

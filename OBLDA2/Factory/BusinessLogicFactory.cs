@@ -22,10 +22,10 @@ namespace Factory
             this._serviceCollection.AddScoped<ISessionLogic, SessionLogic>();
             this._serviceCollection.AddScoped<IAdministratorLogic, AdministratorLogic>();
             this._serviceCollection.AddScoped<IDeveloperLogic, DeveloperLogic>();
-            this._serviceCollection.AddScoped<ITesterLogic, TesterLogic>();
             this._serviceCollection.AddScoped<IProjectLogic, ProjectLogic>();
             this._serviceCollection.AddScoped<IBugLogic, BugLogic>();
             this._serviceCollection.AddScoped<IBugsImport, BugsImport>();
+            this._serviceCollection.AddScoped<ITesterLogic, TesterLogic>();
         }
 
     }

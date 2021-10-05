@@ -10,6 +10,10 @@ namespace BusinessLogic
     public class ProjectLogic : IProjectLogic
     {
         private const string notExistProject = "Project does not exist";
+        private const string userExistingProject = "This user alredy exist in the project";
+        private const string notUserDeveloper = "This user rol is not Developer";
+        private const string notUserTester = "This user rol is not Tester";
+        private const string notUserInProject = "This user is not asigned to this project";
 
         private IProjectRepository projectRepository;
         private IUserLogic userLogic;
@@ -42,9 +46,24 @@ namespace BusinessLogic
             return projcet;
         }
 
+        public Project ExistProjectWithName(Project project)
+        {
+            List<Project> projects = projectRepository.GetAll();
+
+            foreach (Project oneProject in projects)
+            {
+                if (oneProject.Name.ToLower() == project.Name.ToLower())
+                {
+                    return oneProject;
+                }
+            }
+
+            throw new InvalidDataObjException(notExistProject);
+        }
+
         public void ExistProject(Guid projectId)
         {
-            Get(projectId);
+            ExistProjectWithName(Get(projectId));
         }
 
         public Project Update(Guid id, Project updatedProject)
@@ -63,46 +82,74 @@ namespace BusinessLogic
 
         public void DeleteTester(Project oneProject, User tester)
         {
-            Project project = Get(oneProject.Id);
-            userLogic.ExistUser(tester);
+            User testerDB = userLogic.Get(tester.Id);
 
-            if (project.Users.Contains(tester))
+            if (testerDB.Rol.Name.ToLower() != Rol.tester.ToLower())
             {
-                project.Users.Remove(tester);
+                throw new InvalidDataObjException(notUserDeveloper);
             }
+
+            DeleteUserToProject(ref testerDB, oneProject);
         }
 
         public void DeleteDeveloper(Project oneProject, User developer)
         {
-            Project project = Get(oneProject.Id);
-            userLogic.ExistUser(developer);
+            User developerDB = userLogic.Get(developer.Id);
 
-            if (project.Users.Contains(developer))
+            if (developerDB.Rol.Name.ToLower() != Rol.developer.ToLower())
             {
-                project.Users.Remove(developer);
+                throw new InvalidDataObjException(notUserDeveloper);
             }
+
+            DeleteUserToProject(ref developerDB, oneProject);
+        }
+
+        private void DeleteUserToProject(ref User user, Project oneProject)
+        {
+            Project project = Get(oneProject.Id);
+
+            if (!project.Users.Contains(user))
+            {
+                throw new InvalidDataObjException(notUserInProject);
+            }
+
+            project.Users.Remove(user);
+            projectRepository.Update(project.Id, project);
         }
 
         public void AssignDeveloper(Project oneProject, User developer)
         {
-            Project project = Get(oneProject.Id);
-            userLogic.ExistUser(developer);
+            User developerDB = userLogic.Get(developer.Id);
 
-            if (!project.Users.Contains(developer))
+            if (developerDB.Rol.Name.ToLower() != Rol.developer.ToLower())
             {
-                project.Users.Add(developer);
+                throw new InvalidDataObjException(notUserDeveloper);
             }
+
+            AssignUserToProject(ref developerDB, oneProject);
         }
 
         public void AssignTester(Project oneProject, User tester)
         {
-            Project project = Get(oneProject.Id);
-            userLogic.ExistUser(tester);
+            User testerDB = userLogic.Get(tester.Id);
 
-            if (!project.Users.Contains(tester))
+            if (testerDB.Rol.Name.ToLower() != Rol.tester.ToLower())
+                throw new InvalidDataObjException(notUserTester);
+
+            AssignUserToProject(ref testerDB, oneProject);
+        }
+
+        private void AssignUserToProject(ref User userToAsign, Project projectToAsign)
+        {
+            Project project = Get(projectToAsign.Id);
+
+            if (project.Users.Contains(userToAsign))
             {
-                project.Users.Add(tester);
+                throw new ExistingObjectException(userExistingProject);
             }
+
+            project.Users.Add(userToAsign);
+            projectRepository.Update(project.Id, project);
         }
 
         public List<Project> GetAll()

@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using Domain;
 
 namespace BusinessLogicInterface
@@ -8,7 +9,6 @@ namespace BusinessLogicInterface
         Bug Create(Bug bug);
         Bug Get(int id);
         Bug Update(int id, Bug bugUpdate);
-        Bug UpdateState(int id, string state);
 
         List<Bug> GetAll();
 

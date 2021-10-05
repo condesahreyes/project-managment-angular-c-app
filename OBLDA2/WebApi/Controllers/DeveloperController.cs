@@ -75,5 +75,13 @@ namespace WebApi.Controllers
             return (StatusCode((int)HttpStatusCode.OK, countBugsResolved));
         }
 
+        [HttpPut("{developerId}/UpdateBugState")]
+        [AuthorizationFilter(Autorization.AllAutorization)]
+        public IActionResult UpdateStateBug(Guid developerId, BugUpdateStateModel updateState)
+        {
+            Bug bugReturn = this.developerLogic.UpdateState(updateState.BugId, updateState.State, developerId);
+            return NoContent();
+        }
+
     }
 }

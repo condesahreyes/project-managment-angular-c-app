@@ -91,7 +91,6 @@ namespace WebApi.Controllers
 
         [HttpDelete("{id}")]
         [AuthorizationFilter(Autorization.Administrator)]
-
         public IActionResult Delete(Guid id)
         {
             projectLogic.Delete(id);
