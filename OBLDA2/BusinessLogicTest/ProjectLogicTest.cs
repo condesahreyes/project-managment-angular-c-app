@@ -53,7 +53,10 @@ namespace BusinessLogicTest
         [TestMethod]
         public void CreateProjectOk()
         {
+            List<Project> list = new List<Project>();
+            list.Add(project);
             mock.Setup(x => x.Create(project)).Returns(project);
+            mock.Setup(x => x.GetAll()).Returns(list);
             var projectCreated = projectLogic.Create(project);
             mock.VerifyAll();
             Assert.AreEqual(project, projectCreated);

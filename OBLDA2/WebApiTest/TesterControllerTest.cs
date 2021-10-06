@@ -48,7 +48,7 @@ namespace WebApiTest
             testerLogic.Setup(x => x.AssignTesterToProject(It.IsAny<Guid>(), It.IsAny<Guid>()));
 
             var controller = new TesterController(testerLogic.Object);
-            var result = controller.AssignTester(Guid.NewGuid(), tester.Id);
+            var result = controller.AssignTester(project.Id, tester.Id);
             var status = result as NoContentResult;
 
             Assert.AreEqual(204, status.StatusCode);

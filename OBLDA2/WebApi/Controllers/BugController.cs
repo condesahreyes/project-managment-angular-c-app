@@ -48,19 +48,19 @@ namespace WebApi.Controllers
             return Ok(new BugEntryOutModel(bugToReturn));
         }
 
-        [HttpDelete("{id}")]
+        [HttpDelete("{bugId}")]
         [AuthorizationFilter(Autorization.AdministratorAndTester)]
-        public IActionResult Delete(int id)
+        public IActionResult Delete(int bugId)
         {
-            bugLogic.Delete(id);
+            bugLogic.Delete(bugId);
             return NoContent();
         }
 
-        [HttpPut("{id}")]
+        [HttpPut("{bugId}")]
         [AuthorizationFilter(Autorization.AdministratorAndTester)]
-        public IActionResult UpdateABug(int id, BugUpdateModel bugDTO)
+        public IActionResult UpdateABug(int bugId, BugUpdateModel bugDTO)
         {
-            this.bugLogic.Update(id, bugDTO.ToEntity(id));
+            this.bugLogic.Update(bugId, bugDTO.ToEntity(bugId));
             return NoContent();
         }
 

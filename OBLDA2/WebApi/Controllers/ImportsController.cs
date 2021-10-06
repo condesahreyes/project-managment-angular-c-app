@@ -8,7 +8,7 @@ using Domain;
 
 namespace OBLDA2.Controllers
 {
-    [Route("penguin/imports")]
+    [Route("penguin/import")]
     [AuthorizationFilter(Autorization.Administrator)]
     public class ImportsController : ApiBaseController
     {
@@ -19,7 +19,7 @@ namespace OBLDA2.Controllers
             this.import = import;
         }
 
-        [HttpPost]
+        [HttpPost("bugs")]
         public IActionResult ImportBugs(ImportBugModel importBug)
         {
             List<Bug> bugs = this.import.ImportBugs(importBug.FileAddress);

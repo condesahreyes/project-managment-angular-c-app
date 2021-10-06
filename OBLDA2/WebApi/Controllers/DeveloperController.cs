@@ -20,17 +20,17 @@ namespace WebApi.Controllers
             this.developerLogic = developerLogic;
         }
 
-        [HttpGet("{id}/DeveloperGetAllBugs")]
+        [HttpGet("{idDeveloper}/bugs")]
         [AuthorizationFilter(Autorization.DeveloperAndAdmin)]
-        public IActionResult GetAllBugsDeveloper(Guid id)
+        public IActionResult GetAllBugsDeveloper(Guid idDeveloper)
         {
-            List<Bug> bugs = this.developerLogic.GetAllBugs(id);
+            List<Bug> bugs = this.developerLogic.GetAllBugs(idDeveloper);
             IEnumerable<BugEntryOutModel> bugsModel = BugEntryOutModel.ListBugs(bugs);
 
             return (StatusCode((int)HttpStatusCode.OK, bugsModel));
         }
         
-        [HttpPost("{idDeveloper}/AssignDeveloperToProject/{idProject}")]
+        [HttpPost("{idDeveloper}/project/{idProject}")]
         [AuthorizationFilter(Autorization.Administrator)]
         public IActionResult AssignDeveloperToProject(Guid idProject, Guid idDeveloper)
         {
@@ -38,7 +38,7 @@ namespace WebApi.Controllers
             return NoContent();
         }
 
-        [HttpDelete("{idDeveloper}/DeleteProject/{idProject}")]
+        [HttpDelete("{idDeveloper}/project/{idProject}")]
         [AuthorizationFilter(Autorization.Administrator)]
         public IActionResult DeleteDeveloperToProject(Guid idDeveloper, Guid idProject)
         {
@@ -46,15 +46,15 @@ namespace WebApi.Controllers
             return NoContent();
         }
 
-        [HttpGet("{id}/CountBugsResolved")]
+        [HttpGet("{idDeveloper}/countBugs")]
         [AuthorizationFilter(Autorization.Administrator)]
-        public IActionResult GetCountBugsResolvedByDeveloper(Guid id)
+        public IActionResult GetCountBugsResolvedByDeveloper(Guid idDeveloper)
         {
-            int countBugsResolved = this.developerLogic.CountBugDoneByDeveloper(id);
+            int countBugsResolved = this.developerLogic.CountBugDoneByDeveloper(idDeveloper);
             return (StatusCode((int)HttpStatusCode.OK, countBugsResolved));
         }
 
-        [HttpPut("{developerId}/UpdateBugState")]
+        [HttpPut("{developerId}/bugState")]
         [AuthorizationFilter(Autorization.AllAutorization)]
         public IActionResult UpdateStateBug(Guid developerId, BugUpdateStateModel updateState)
         {

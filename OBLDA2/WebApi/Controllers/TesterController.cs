@@ -20,30 +20,30 @@ namespace WebApi.Controllers
             this.testerLogic = testerLogic;
         }
 
-        [HttpGet("{id}/GetAllBugsForTester")]
+        [HttpGet("{idTester}/bugs")]
         [AuthorizationFilter(Autorization.Tester)]
-        public IActionResult GetAllBugsTester(Guid id)
+        public IActionResult GetAllBugsTester(Guid idTester)
         {
-            List<Bug> bugs = this.testerLogic.GetAllBugs(id);
+            List<Bug> bugs = this.testerLogic.GetAllBugs(idTester);
 
             IEnumerable<BugEntryOutModel> bugsModel = BugEntryOutModel.ListBugs(bugs);
 
             return (StatusCode((int)HttpStatusCode.OK, bugsModel));
         }
 
-        [HttpPost("{idTester}/AssignTesterToProject/{projectId}")]
+        [HttpPost("{idTester}/project/{idProject}")]
         [AuthorizationFilter(Autorization.Administrator)]
-        public IActionResult AssignTester(Guid projectId, Guid idTester)
+        public IActionResult AssignTester(Guid idProject, Guid idTester)
         {
-            testerLogic.AssignTesterToProject(projectId, idTester);
+            testerLogic.AssignTesterToProject(idProject, idTester);
             return NoContent();
         }
 
-        [HttpDelete("{idTester}/DeleteTesterToProject/{projectId}")]
+        [HttpDelete("{idTester}/project/{idProject}")]
         [AuthorizationFilter(Autorization.Administrator)]
-        public IActionResult DeleteTester(Guid idTester, Guid projectId)
+        public IActionResult DeleteTester(Guid idTester, Guid idProject)
         {
-            testerLogic.DeleteTesterInProject(projectId, idTester);
+            testerLogic.DeleteTesterInProject(idProject, idTester);
             return NoContent();
         }
 

@@ -47,7 +47,7 @@ namespace WebApi.Controllers
             return Ok(projectsOut);
         }
 
-        [HttpGet("TotalBugs")]
+        [HttpGet("bugs")]
         [AuthorizationFilter(Autorization.Administrator)]
         public IActionResult GetTotalBugsByProjects()
         {
@@ -72,7 +72,7 @@ namespace WebApi.Controllers
              return Ok(new ProjectOutModel(projectToReturn));
         }
 
-        [HttpGet("{projectId}/GetAllBugs")]
+        [HttpGet("{projectId}/bugs")]
         [AuthorizationFilter(Autorization.Administrator)]
         public IActionResult GetAllBugsByProject(Guid projectId)
         {
