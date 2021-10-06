@@ -60,11 +60,6 @@ namespace BusinessLogic.UserRol
             projcetLogic.DeleteUser(projectId, ref tester);
         }
 
-        public List<Project> GetProjectsByTester(Guid id)
-        {
-            throw new NotImplementedException();
-        }
-
         public List<Bug> GetAllBugs(Guid testerId)
         {
             User tester = Get(testerId);

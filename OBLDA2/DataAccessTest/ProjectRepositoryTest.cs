@@ -46,11 +46,9 @@ namespace DataAccessTest
         public void GetAllProject()
         {
             List<Project> projects = new List<Project>{
-                CreateProject("Proyecto 1"),
-                CreateProject("Proyecto 2")
+                CreateProject("Proyecto 1")
             };
 
-            _context.Add(projects.Last());
             _context.Add(projects.First());
             _context.SaveChanges();
 

@@ -62,7 +62,9 @@ namespace BusinessLogicTest
             list.Add(project);
             mock.Setup(x => x.GetAll()).Returns(list);
             List<Project> ret = projectLogic.GetAll();
+
             mock.VerifyAll();
+
             Assert.IsTrue(ret.SequenceEqual(list));
         }
 
@@ -71,7 +73,9 @@ namespace BusinessLogicTest
         {
             mock.Setup(x => x.GetById(It.IsAny<Guid>())).Returns(project);
             var ret = projectLogic.Get(project.Id);
+
             mock.VerifyAll();
+
             Assert.IsTrue(ret.Equals(project));
         }
 
@@ -82,16 +86,18 @@ namespace BusinessLogicTest
             Guid id = Guid.NewGuid();
             Project projectoEmpty = null;
             mock.Setup(x => x.GetById(It.IsAny<Guid>())).Returns(projectoEmpty);
-            var ret = projectLogic.Get(id);
+            Project project = projectLogic.Get(id);
         }
 
         [TestMethod]
         public void RemoveProjectOk()
         {
             List<Project> list = new List<Project>();
+            list.Add(project);
 
             mock.Setup(r => r.GetAll()).Returns(list);
             mock.Setup(r => r.Delete(project.Id));
+            mock.Setup(r => r.GetById(project.Id)).Returns(project);
 
             projectLogic.Delete(project.Id);
 
@@ -105,27 +111,35 @@ namespace BusinessLogicTest
         [TestMethod]
         public void ProjectUpdateOk()
         {
-            var updatedProject = new Project("Project Lab");
+            Project updatedProject = new Project("Project Lab");
 
+            List<Project> projects = new List<Project>();
+            projects.Add(updatedProject);
+
+            mock.Setup(r => r.GetById(It.IsAny<Guid>())).Returns(updatedProject);
+            mock.Setup(r => r.GetAll()).Returns(projects);
             mock.Setup(x => x.Update(project.Id, updatedProject)).Returns(updatedProject);
-            var ret = projectLogic.Update(project.Id, updatedProject);
+
+            Project projectUpdate = projectLogic.Update(project.Id, updatedProject);
+
             mock.VerifyAll();
-            Assert.AreEqual(ret.Name, updatedProject.Name);
+
+            Assert.AreEqual(projectUpdate.Name, updatedProject.Name);
         }
 
         [TestMethod]
         public void DeleteUserOk()
         {
             project.Users.Add(tester);
+            Project projectNoTesters = new Project("Proyecto sin usuarios");
 
-            projectMock.Setup(m => m.DeleteUser(project.Id, ref tester));
             userMock.Setup(m => m.Get(tester.Id)).Returns(tester);
             mock.Setup(x => x.GetById(project.Id)).Returns(project);
-            mock.Setup(x => x.Update(It.IsAny<Guid>(), It.IsAny<Project>()));
+            mock.Setup(x => x.Update(It.IsAny<Guid>(), project)).Returns(projectNoTesters);
             projectLogic.DeleteUser(project.Id, ref tester);
 
             List<User> list = new List<User>();
-            //projectMock.Setup(x => x.GetAll(proj.Id)).Returns(list);
+
             var ret = projectLogic.GetAllTesters(project);
             mock.VerifyAll();
 
@@ -135,9 +149,9 @@ namespace BusinessLogicTest
         [TestMethod]
         public void AssignUserOk()
         {
-            projectMock.Setup(x => x.Get(It.IsAny<Guid>())).Returns(project);
-            //projectMock.Setup(x => x.AssignUser(project.Id, ref tester));
-            mock.Setup(x => x.Update(It.IsAny<Guid>(), project));
+            mock.Setup(x => x.GetById(project.Id)).Returns(project);
+            mock.Setup(x => x.Update(It.IsAny<Guid>(), project)).Returns(project);
+
             projectLogic.AssignUser(project.Id, ref tester);
 
             List<User> list = new List<User>();
@@ -152,39 +166,31 @@ namespace BusinessLogicTest
         [TestMethod]
         public void GetAllTesterOk()
         {
-            mock.Setup(x => x.GetById(It.IsAny<Guid>())).Returns(project);
-            var proj = projectLogic.Get(project.Id);
+            project.Users.Add(tester);
 
-            projectMock.Setup(x => x.AssignUser(proj.Id, ref tester));
-            projectLogic.AssignUser(proj.Id, ref tester);
+            List<User> users = new List<User>();
+            users.Add(tester);
 
-            List<User> list = new List<User>();
-            list.Add(tester);
-
-            //projectMock.Setup(x => x.GetAllTesters(proj.Id)).Returns(list);
-            List<User> ret = projectLogic.GetAllTesters(proj);
+            mock.Setup(x => x.GetById(project.Id)).Returns(project);
+            List<User> usersGeted = projectLogic.GetAllTesters(project);
             mock.VerifyAll();
 
-            Assert.IsTrue(ret.SequenceEqual(list));
+            Assert.IsTrue(usersGeted.SequenceEqual(users));
         }
 
         [TestMethod]
         public void GetAllDeveloperOk()
         {
-            mock.Setup(x => x.GetById(It.IsAny<Guid>())).Returns(project);
-            var proj = projectLogic.Get(project.Id);
+            project.Users.Add(developer);
 
-            projectMock.Setup(x => x.AssignUser(proj.Id, ref developer));
-            projectLogic.AssignUser(proj.Id, ref developer);
+            List<User> users = new List<User>();
+            users.Add(developer);
 
-            List<User> list = new List<User>();
-            list.Add(developer);
-
-            projectMock.Setup(x => x.GetAllDevelopers(proj)).Returns(list);
-            List<User> ret = projectLogic.GetAllDevelopers(proj);
+            mock.Setup(x => x.GetById(project.Id)).Returns(project);
+            List<User> usersGeted = projectLogic.GetAllDevelopers(project);
             mock.VerifyAll();
 
-            Assert.IsTrue(ret.SequenceEqual(list));
+            Assert.IsTrue(usersGeted.SequenceEqual(users));
         }
 
     }
