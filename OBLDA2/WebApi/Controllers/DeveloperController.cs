@@ -2,11 +2,11 @@
 using Microsoft.AspNetCore.Mvc;
 using BusinessLogicInterface;
 using OBLDA2.Controllers;
+using WebApi.Filters;
 using OBLDA2.Models;
 using System.Net;
 using System;
 using Domain;
-using WebApi.Filters;
 
 namespace WebApi.Controllers
 {
@@ -24,14 +24,15 @@ namespace WebApi.Controllers
         [AuthorizationFilter(Autorization.DeveloperAndAdmin)]
         public IActionResult GetAllBugsDeveloper(Guid id)
         {
-            IEnumerable<Bug> bugs = this.developerLogic.GetAllBugs(id);
+            List<Bug> bugs = this.developerLogic.GetAllBugs(id);
 
-            return (StatusCode((int)HttpStatusCode.OK, bugs));
+            IEnumerable<Bug> bugsModel = (IEnumerable<Bug>)BugEntryOutModel.ListBugs(bugs);
+
+            return (StatusCode((int)HttpStatusCode.OK, bugsModel));
         }
         
         [HttpPost("{idDeveloper}/AssignDeveloperToProject/{idProject}")]
         [AuthorizationFilter(Autorization.Administrator)]
-
         public IActionResult AssignDeveloperToProject(Guid idProject, Guid idDeveloper)
         {
             developerLogic.AssignDeveloperToProject(idProject, idDeveloper);
@@ -40,28 +41,17 @@ namespace WebApi.Controllers
 
         [HttpDelete("{idDeveloper}/DeleteProject/{idProject}")]
         [AuthorizationFilter(Autorization.Administrator)]
-
         public IActionResult DeleteDeveloperToProject(Guid idDeveloper, Guid idProject)
         {
-            User developer = new User();
-            developer.Id = idDeveloper;
-
-            Project project = new Project();
-            project.Id = idProject;
-
-            developerLogic.DeleteDeveloperInProject(project.Id, developer.Id);
+            developerLogic.DeleteDeveloperInProject(idProject, idDeveloper);
             return NoContent();
         }
 
         [HttpGet("{id}/CountBugsResolved")]
         [AuthorizationFilter(Autorization.Administrator)]
-
         public IActionResult GetCountBugsResolvedByDeveloper(Guid id)
         {
-            User developer = new User();
-            developer.Id = id;
-
-            int countBugsResolved = this.developerLogic.CountBugDoneByDeveloper(developer.Id);
+            int countBugsResolved = this.developerLogic.CountBugDoneByDeveloper(id);
 
             return (StatusCode((int)HttpStatusCode.OK, countBugsResolved));
         }
@@ -70,7 +60,9 @@ namespace WebApi.Controllers
         [AuthorizationFilter(Autorization.AllAutorization)]
         public IActionResult UpdateStateBug(Guid developerId, BugUpdateStateModel updateState)
         {
-            Bug bugReturn = this.developerLogic.UpdateState(updateState.BugId, updateState.State, developerId);
+            this.developerLogic.UpdateState(updateState.BugId, 
+                updateState.State, developerId);
+
             return NoContent();
         }
 

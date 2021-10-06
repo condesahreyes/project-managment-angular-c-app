@@ -34,7 +34,6 @@ namespace WebApi.Controllers
 
         [HttpGet]
         [AuthorizationFilter(Autorization.Administrator)]
-
         public IActionResult GetAllProjects()
         {
             IEnumerable<Project> projects = this.projectLogic.GetAll();
@@ -51,7 +50,6 @@ namespace WebApi.Controllers
 
         [HttpGet("TotalBugs")]
         [AuthorizationFilter(Autorization.Administrator)]
-
         public IActionResult GetTotalBugsByProjects()
         {
             IEnumerable<Project> projects = this.projectLogic.GetAll();
@@ -68,7 +66,6 @@ namespace WebApi.Controllers
 
         [HttpGet("{projectId}")]
         [AuthorizationFilter(Autorization.Administrator)]
-
         public IActionResult GetById(Guid projectId)
         {
             Project projectToReturn = this.projectLogic.Get(projectId);
@@ -78,7 +75,6 @@ namespace WebApi.Controllers
 
         [HttpGet("{projectId}/GetAllBugs")]
         [AuthorizationFilter(Autorization.Administrator)]
-
         public IActionResult GetAllBugsByProject(Guid projectId)
         {
             Project project = new Project();
@@ -98,7 +94,6 @@ namespace WebApi.Controllers
 
         [HttpPut("{id}")]
         [AuthorizationFilter(Autorization.Administrator)]
-
         public IActionResult UpdateProject(Guid id, ProjectEntryModel projectDTO)
         {
             Project projectUpdated = this.projectLogic.Update(id, projectDTO.ToEntity());

@@ -28,10 +28,13 @@ namespace WebApiTest
         public void Setup()
         {
             rolTester = new Rol( Rol.tester);
-            tester = new User("Juan", "Gomez", "jgomez", "admin1234", "gomez@gmail.com", rolTester);
+            tester = new User("Juan", "Gomez", "jgomez", "admin1234", 
+                "gomez@gmail.com", rolTester);
 
-            bug = new Bug(project, 1, "Error de login", "Intento de sesión", "3.0", activeState);
             project = new Project("Project - GXC ");
+
+            bug = new Bug(project, 1, "Error de login", "Intento de sesión", 
+                "3.0", activeState);
 
             testerLogic = new Mock<ITesterLogic>(MockBehavior.Strict);
         }
@@ -71,7 +74,7 @@ namespace WebApiTest
             List<Bug> list = new List<Bug>();
             list.Add(bug);
 
-            testerLogic.Setup(m => m.GetAllBugs(tester)).Returns(list);
+            testerLogic.Setup(m => m.GetAllBugs(tester.Id)).Returns(list);
             TesterController controller = new TesterController(testerLogic.Object);
 
             var result = controller.GetAllBugsTester(tester.Id);

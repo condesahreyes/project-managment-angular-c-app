@@ -53,11 +53,11 @@ C:\Users\hreye\Desktop\OBL-Asadurian-Reyes\OBLDA2\WebApi\bin\Debug\net5.0\DataAc
 C:\Users\hreye\Desktop\OBL-Asadurian-Reyes\OBLDA2\WebApi\bin\Debug\net5.0\Domain.dll
 C:\Users\hreye\Desktop\OBL-Asadurian-Reyes\OBLDA2\WebApi\bin\Debug\net5.0\Exceptions.dll
 C:\Users\hreye\Desktop\OBL-Asadurian-Reyes\OBLDA2\WebApi\bin\Debug\net5.0\Factory.dll
-C:\Users\hreye\Desktop\OBL-Asadurian-Reyes\OBLDA2\WebApi\bin\Debug\net5.0\DataAccess.pdb
 C:\Users\hreye\Desktop\OBL-Asadurian-Reyes\OBLDA2\WebApi\bin\Debug\net5.0\Exceptions.pdb
 C:\Users\hreye\Desktop\OBL-Asadurian-Reyes\OBLDA2\WebApi\bin\Debug\net5.0\Factory.pdb
 C:\Users\hreye\Desktop\OBL-Asadurian-Reyes\OBLDA2\WebApi\bin\Debug\net5.0\BusinessLogic.pdb
 C:\Users\hreye\Desktop\OBL-Asadurian-Reyes\OBLDA2\WebApi\bin\Debug\net5.0\BusinessLogicInterface.pdb
+C:\Users\hreye\Desktop\OBL-Asadurian-Reyes\OBLDA2\WebApi\bin\Debug\net5.0\DataAccess.pdb
 C:\Users\hreye\Desktop\OBL-Asadurian-Reyes\OBLDA2\WebApi\bin\Debug\net5.0\DataAccessInterface.pdb
 C:\Users\hreye\Desktop\OBL-Asadurian-Reyes\OBLDA2\WebApi\bin\Debug\net5.0\Domain.pdb
 C:\Users\hreye\Desktop\OBL-Asadurian-Reyes\OBLDA2\WebApi\obj\Debug\net5.0\WebApi.csproj.AssemblyReference.cache
@@ -65,6 +65,7 @@ C:\Users\hreye\Desktop\OBL-Asadurian-Reyes\OBLDA2\WebApi\obj\Debug\net5.0\WebApi
 C:\Users\hreye\Desktop\OBL-Asadurian-Reyes\OBLDA2\WebApi\obj\Debug\net5.0\WebApi.AssemblyInfoInputs.cache
 C:\Users\hreye\Desktop\OBL-Asadurian-Reyes\OBLDA2\WebApi\obj\Debug\net5.0\WebApi.AssemblyInfo.cs
 C:\Users\hreye\Desktop\OBL-Asadurian-Reyes\OBLDA2\WebApi\obj\Debug\net5.0\WebApi.csproj.CoreCompileInputs.cache
+C:\Users\hreye\Desktop\OBL-Asadurian-Reyes\OBLDA2\WebApi\obj\Debug\net5.0\WebApi.MvcApplicationPartsAssemblyInfo.cs
 C:\Users\hreye\Desktop\OBL-Asadurian-Reyes\OBLDA2\WebApi\obj\Debug\net5.0\WebApi.MvcApplicationPartsAssemblyInfo.cache
 C:\Users\hreye\Desktop\OBL-Asadurian-Reyes\OBLDA2\WebApi\obj\Debug\net5.0\staticwebassets\WebApi.StaticWebAssets.Manifest.cache
 C:\Users\hreye\Desktop\OBL-Asadurian-Reyes\OBLDA2\WebApi\obj\Debug\net5.0\staticwebassets\WebApi.StaticWebAssets.xml
@@ -75,4 +76,3 @@ C:\Users\hreye\Desktop\OBL-Asadurian-Reyes\OBLDA2\WebApi\obj\Debug\net5.0\WebApi
 C:\Users\hreye\Desktop\OBL-Asadurian-Reyes\OBLDA2\WebApi\obj\Debug\net5.0\ref\WebApi.dll
 C:\Users\hreye\Desktop\OBL-Asadurian-Reyes\OBLDA2\WebApi\obj\Debug\net5.0\WebApi.pdb
 C:\Users\hreye\Desktop\OBL-Asadurian-Reyes\OBLDA2\WebApi\obj\Debug\net5.0\WebApi.genruntimeconfig.cache
-C:\Users\hreye\Desktop\OBL-Asadurian-Reyes\OBLDA2\WebApi\obj\Debug\net5.0\WebApi.MvcApplicationPartsAssemblyInfo.cs

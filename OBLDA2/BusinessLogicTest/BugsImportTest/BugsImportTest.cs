@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using BusinessLogicInterface;
 using BusinessLogic.Imports;
 using Domain;
-using System;
 using Moq;
 
 namespace BusinessLogicTest.BugsImportTest

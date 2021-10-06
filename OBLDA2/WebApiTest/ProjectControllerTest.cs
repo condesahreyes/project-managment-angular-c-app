@@ -30,7 +30,7 @@ namespace WebApiTest
         [TestMethod]
         public void AddProjectTest()
         {
-            //projectLogic.Setup(m => m.Create(project)).Returns(project);
+            projectLogic.Setup(m => m.Create(It.IsAny<Project>())).Returns(project);
             ProjectController controller = new ProjectController(projectLogic.Object);
 
             IActionResult result = controller.AddProject(projectEntryModel);
@@ -92,7 +92,7 @@ namespace WebApiTest
 
             ProjectEntryModel updateProject = new ProjectEntryModel(updatedProject);
 
-            projectLogic.Setup(m => m.Update(project.Id, updatedProject)).Returns(updatedProject);
+            projectLogic.Setup(m => m.Update(It.IsAny<Guid>(), It.IsAny<Project>())).Returns(updatedProject);
             var controller = new ProjectController(projectLogic.Object);
 
             IActionResult result = controller.UpdateProject(project.Id, updateProject);

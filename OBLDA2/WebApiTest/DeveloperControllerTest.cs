@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using Microsoft.AspNetCore.Mvc;
 using BusinessLogicInterface;
 using WebApi.Controllers;
-using OBLDA2.Models;
 using System.Linq;
 using System;
 using Domain;
@@ -23,7 +22,6 @@ namespace WebApiTest
 
         private Mock<IDeveloperLogic> developerLogic;
 
-
         [TestInitialize]
         public void Setup()
         {
@@ -36,23 +34,17 @@ namespace WebApiTest
             project = new Project("Project - GXC ");
         }
 
-
         [TestMethod]
         public void AssignDeveloperAProject()
         {
-            UserEntryModel testerEntryModel = new UserEntryModel(developer);
-
             developerLogic.Setup(x => x.AssignDeveloperToProject(project.Id, developer.Id));
 
             DeveloperController controller = new DeveloperController(developerLogic.Object);
 
-            ProjectEntryModel projectEntryModel = new ProjectEntryModel(project);
-            
-            //var result = controller.AssignDeveloperToProject(projectEntryModel, developer.Id);
-            //var status = result as NoContentResult;
+            var result = controller.AssignDeveloperToProject(project.Id, developer.Id);
+            var status = result as NoContentResult;
 
-            //Assert.AreEqual(204, status.StatusCode);
-
+            Assert.AreEqual(204, status.StatusCode);
         }
 
         [TestMethod]
@@ -78,7 +70,7 @@ namespace WebApiTest
             developerLogic.Setup(m => m.GetAllBugs(developer.Id)).Returns(list);
             DeveloperController controller = new DeveloperController(developerLogic.Object);
 
-            var result = controller.GetAllBugsDeveloper(developer.Id);
+            IActionResult result = controller.GetAllBugsDeveloper(developer.Id);
             var okResult = result as OkObjectResult;
             var bugsResult = okResult.Value as List<Bug>;
 

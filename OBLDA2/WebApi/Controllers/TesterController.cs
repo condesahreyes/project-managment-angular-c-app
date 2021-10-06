@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using BusinessLogicInterface;
 using OBLDA2.Controllers;
 using WebApi.Filters;
+using OBLDA2.Models;
 using System.Net;
 using Domain;
 using System;
@@ -23,17 +24,15 @@ namespace WebApi.Controllers
         [AuthorizationFilter(Autorization.Tester)]
         public IActionResult GetAllBugsTester(Guid id)
         {
-            User user = new User();
-            user.Id = id;
+            List<Bug> bugs = this.testerLogic.GetAllBugs(id);
 
-            IEnumerable<Bug> bugs = this.testerLogic.GetAllBugs(user);
+            IEnumerable<Bug> bugsModel = (IEnumerable<Bug>)BugEntryOutModel.ListBugs(bugs);
 
-            return (StatusCode((int)HttpStatusCode.OK, bugs));
+            return (StatusCode((int)HttpStatusCode.OK, bugsModel));
         }
 
         [HttpPost("{idTester}/AssignTesterToProject/{projectId}")]
         [AuthorizationFilter(Autorization.Administrator)]
-
         public IActionResult AssignTester(Guid projectId, Guid idTester)
         {
             testerLogic.AssignTesterToProject(projectId, idTester);
@@ -42,7 +41,6 @@ namespace WebApi.Controllers
 
         [HttpDelete("{idTester}/DeleteTesterToProject/{projectId}")]
         [AuthorizationFilter(Autorization.Administrator)]
-
         public IActionResult DeleteTester(Guid idTester, Guid projectId)
         {
             testerLogic.DeleteTesterInProject(projectId, idTester);

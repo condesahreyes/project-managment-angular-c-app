@@ -71,10 +71,10 @@ namespace BusinessLogicTest
 
             project.Bugs.AddRange(bugs);
 
-            //mockProject.Setup(r => r.GetAllGeneric()).Returns(projects);
+            mockProject.Setup(r => r.GetAll()).Returns(projects);
+            userLogic.Setup(r => r.Get(tester.Id)).Returns(tester);
             
-
-            List<Bug> bugsSaved = testerLogic.GetAllBugs(tester);
+            List<Bug> bugsSaved = testerLogic.GetAllBugs(tester.Id);
 
             userLogic.VerifyAll();
             Assert.IsTrue(bugsSaved.SequenceEqual(bugs));
@@ -89,6 +89,7 @@ namespace BusinessLogicTest
 
             List<User> ret = testerLogic.GetAll();
             userLogic.VerifyAll();
+
             Assert.IsTrue(ret.SequenceEqual(list));
         }
 

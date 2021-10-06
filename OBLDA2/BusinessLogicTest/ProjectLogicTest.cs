@@ -139,12 +139,13 @@ namespace BusinessLogicTest
             var ret = projectLogic.Get(project.Id);
 
             projectMock.Setup(x => x.AssignUser(ret.Id, ref tester));
+            mock.Setup(x => x.Update(It.IsAny<Guid>(), It.IsAny<Project>()));
             projectLogic.AssignUser(ret.Id, ref tester);
 
             List<User> list = new List<User>();
             list.Add(tester);
 
-            //projectMock.Setup(x => x.GetAll(ret)).Returns(list);
+            projectMock.Setup(x => x.Get(ret.Id)).Returns(ret);
             var retList = projectLogic.GetAllTesters(ret);
             mock.VerifyAll();
 

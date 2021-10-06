@@ -11,8 +11,6 @@ namespace OBLDA2.Models
         public string Password { get; set; }
         public string Email { get; set; }
 
-
-
         public UserEntryModel(User user)
         {
             this.Name = user.Name;
@@ -23,7 +21,6 @@ namespace OBLDA2.Models
             this.Rol = user.Rol.Name;
 
         }
-
         public UserEntryModel() { }
 
         public User ToEntity()

@@ -1,3 +1,5 @@
+using System.Collections.Generic;
+using System.Linq;
 using Domain;
 
 namespace OBLDA2.Models
@@ -23,13 +25,6 @@ namespace OBLDA2.Models
             this.State = bug.State.Name;
         }
 
-        public static BugEntryOutModel BugEntryOutModel2(Bug bug)
-        {
-            BugEntryOutModel pepe = new BugEntryOutModel(bug);
-
-            return pepe;
-        }
-
         public Bug ToEntity() => new Bug
         {
             Project = new Project(this.Project),
@@ -39,5 +34,13 @@ namespace OBLDA2.Models
             Version = this.Version,
             State = new State(this.State)
         };
+
+        public static List<BugEntryOutModel> ListBugs(List<Bug> bugs)
+        {
+            if(bugs!=null)
+                return (List<BugEntryOutModel>)bugs.Select(b => new BugEntryOutModel(b));
+
+            return null;
+        }
     }
 }

@@ -10,7 +10,6 @@ namespace BusinessLogic
     public class SessionLogic : ISessionLogic
     {
         private const string invalidEmailOrPasswordMessage = "Invalid email or password.";
-        private const string invalidToken = "You dont have a valid token";
 
         private IUserLogic userLogic;
 

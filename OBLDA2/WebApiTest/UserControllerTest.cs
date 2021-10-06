@@ -15,8 +15,6 @@ namespace WebApiTest
         private UserEntryModel adminDTO;
 
         private Rol rolAdministrator;
-        private Mock<IUserLogic> userLogic;
-
 
         [TestInitialize]
         public void Setup()

@@ -65,13 +65,14 @@ namespace BusinessLogic.UserRol
             throw new NotImplementedException();
         }
 
-        public List<Bug> GetAllBugs(User tester)
+        public List<Bug> GetAllBugs(Guid testerId)
         {
+            User tester = Get(testerId);
             List<Project> allProjects = projcetLogic.GetAll();
             List<Bug> bugs = new List<Bug>();
 
             foreach (var project in allProjects)
-                if (project.Users.Find(u => u.Id == tester.Id) != null)
+                if (project.Users.Find(u => u.Id == testerId) != null)
                     bugs.AddRange(project.Bugs);
 
             return bugs;
