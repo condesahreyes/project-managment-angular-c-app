@@ -27,8 +27,10 @@ namespace BusinessLogic
         public Project Create(Project projectToCreate)
         {
             Project.ValidateName(projectToCreate.Name);
+
             projectToCreate.Bugs = new List<Bug>();
             projectToCreate.Users = new List<User>();
+
             return projectRepository.Create(projectToCreate);
         }
 

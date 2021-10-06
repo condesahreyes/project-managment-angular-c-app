@@ -1,12 +1,12 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.Collections.Generic;
 using BusinessLogic.UserRol;
+using BusinessLogicInterface;
 using DataAccessInterface;
 using System.Linq;
 using Domain;
 using System;
 using Moq;
-using BusinessLogicInterface;
 
 namespace BusinessLogicTest
 {
@@ -35,7 +35,8 @@ namespace BusinessLogicTest
             tester = new User("Diego", "Asadurian", "diegoAsa", "admin1234",
                 "diegoasadurian@gmail.com", roles[0]);
 
-            testerLogic = new TesterLogic(userLogic.Object, mockProject.Object, mockRol.Object);
+            testerLogic = new TesterLogic(userLogic.Object, mockProject.Object,
+                mockRol.Object);
         }
 
         private void CofnigurationMockRol()
@@ -62,8 +63,10 @@ namespace BusinessLogicTest
             State stateActive = new State(State.active);
             List<Bug> bugs = new List<Bug>
             {
-                new Bug(project, 1234, "Error de login", "Intento inicio de sesion", "2.0", stateActive),
-                new Bug(project, 4321, "Error de UI", "Intento inicio de sesion", "2.1", stateActive),
+                new Bug(project, 1234, "Error de login", 
+                "Intento inicio de sesion", "2.0", stateActive),
+                new Bug(project, 4321, "Error de UI", 
+                "Intento inicio de sesion", "2.1", stateActive),
             };
 
             List<Project> projects = new List<Project>();

@@ -25,7 +25,6 @@ namespace WebApi.Controllers
         public IActionResult GetAllBugsDeveloper(Guid id)
         {
             List<Bug> bugs = this.developerLogic.GetAllBugs(id);
-
             IEnumerable<BugEntryOutModel> bugsModel = BugEntryOutModel.ListBugs(bugs);
 
             return (StatusCode((int)HttpStatusCode.OK, bugsModel));
@@ -52,7 +51,6 @@ namespace WebApi.Controllers
         public IActionResult GetCountBugsResolvedByDeveloper(Guid id)
         {
             int countBugsResolved = this.developerLogic.CountBugDoneByDeveloper(id);
-
             return (StatusCode((int)HttpStatusCode.OK, countBugsResolved));
         }
 

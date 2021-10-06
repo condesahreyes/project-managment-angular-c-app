@@ -90,7 +90,6 @@ namespace WebApiTest
             Bug updatedBug = new Bug(project, 1, "Error cierre de sesion", "Intento", 
                 "3.5", activeState);
             BugUpdateModel bugUpdateDTO = new BugUpdateModel(updatedBug);
-            BugEntryOutModel bugUpdateOutModel = new BugEntryOutModel(updatedBug);
 
             bugLogic.Setup(m => m.Update(bug.Id, updatedBug)).Returns(updatedBug);
             var controller = new BugController(bugLogic.Object);

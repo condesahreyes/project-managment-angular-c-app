@@ -40,10 +40,14 @@ namespace BusinessLogicTest
             this.projectLogic = new ProjectLogic(mock.Object, userMock.Object);
 
             project = new Project("Project - Pineapple ");
+
             rolTester = new Rol(Rol.tester);
             rolDeveloper = new Rol(Rol.developer);
-            tester = new User("Fiorella", "Petrone", "fioPetro", "fio1245", "fiore@gmail.com", rolTester);
-            developer = new User("Juan", "Gomez", "juanG", "juann245", "juan@gmail.com", rolDeveloper);
+
+            tester = new User("Fiorella", "Petrone", "fioPetro", "fio1245",
+                "fiore@gmail.com", rolTester);
+            developer = new User("Juan", "Gomez", "juanG", "juann245", 
+                "juan@gmail.com", rolDeveloper);
         }
 
         [TestMethod]

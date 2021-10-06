@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using DataAccessInterface;
 using System.Linq;
+using Exceptions;
 using Domain;
 using System;
-using Exceptions;
 
 namespace DataAccess.Repositories
 {

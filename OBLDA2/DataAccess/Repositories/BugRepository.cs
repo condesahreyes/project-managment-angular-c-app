@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using DataAccessInterface;
 using System.Linq;
+using Exceptions;
 using Domain;
 using System;
 
@@ -38,7 +39,7 @@ namespace DataAccess.Repositories
             }
             catch (Exception)
             {
-                return null;
+                throw new NoObjectException(noExistBug);
             }
         }
 

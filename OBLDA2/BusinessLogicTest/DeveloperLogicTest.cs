@@ -77,22 +77,5 @@ namespace BusinessLogicTest
             mockUser.VerifyAll();
             Assert.IsTrue(bugsSaved.SequenceEqual(bugs));
         }
-
-        [TestMethod]
-        public void GetDeveloperByName()
-        {
-            List<User> users = new List<User>();
-            users.Add(developer);
-
-            mockUser.Setup(r => r.GetAll()).Returns(users);
-            mockUser.Setup(r => r.Get(developer.Id)).Returns(developer);
-            
-            var developerLogic = new DeveloperLogic(mockUser.Object, mockProject.Object, mockRol.Object, 
-                mockBug.Object);
-
-            User developerSaved = developerLogic.GetByString("diegoAsa");
-
-            Assert.IsTrue(developerSaved.UserName == "diegoAsa");
-        }
     }
 }

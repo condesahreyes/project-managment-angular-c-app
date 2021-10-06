@@ -23,7 +23,8 @@ namespace OBLDA2.Controllers
         public IActionResult ImportBugs(ImportBugModel importBug)
         {
             List<Bug> bugs = this.import.ImportBugs(importBug.FileAddress);
-            IEnumerable<BugEntryOutModel> bugsModel = bugs.Select(b => new BugEntryOutModel(b));
+            IEnumerable<BugEntryOutModel> bugsModel = bugs
+                .Select(b => new BugEntryOutModel(b));
 
             return Ok(bugsModel);
         }

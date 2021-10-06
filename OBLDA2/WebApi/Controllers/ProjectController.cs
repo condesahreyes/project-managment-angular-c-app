@@ -22,7 +22,6 @@ namespace WebApi.Controllers
 
         [HttpPost]
         [AuthorizationFilter(Autorization.Administrator)]
-
         public IActionResult AddProject(ProjectEntryModel projectDTO)
         {
             Project project = this.projectLogic.Create(projectDTO.ToEntity());
@@ -96,9 +95,7 @@ namespace WebApi.Controllers
         [AuthorizationFilter(Autorization.Administrator)]
         public IActionResult UpdateProject(Guid id, ProjectEntryModel projectDTO)
         {
-            Project projectUpdated = this.projectLogic.Update(id, projectDTO.ToEntity());
-            ProjectOutModel projectAdded = new ProjectOutModel(projectUpdated);
-
+            this.projectLogic.Update(id, projectDTO.ToEntity());
             return NoContent();
         }
 

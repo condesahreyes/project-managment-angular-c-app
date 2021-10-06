@@ -9,6 +9,7 @@ using DataAccess;
 using System.Linq;
 using Domain;
 using System;
+using Exceptions;
 
 namespace DataAccessTest
 {
@@ -61,7 +62,24 @@ namespace DataAccessTest
         }
 
         [TestMethod]
-        public void GetUser()
+        public void UpdateUser()
+        {
+            User user = CreateUser(Rol.tester);
+
+            _context.Add(user);
+            _context.SaveChanges();
+
+            user.Rol = GetOneRol(Rol.developer);
+
+            _userRepository.UpdateUser(user);
+
+            List<User> usersBD = _context.Users.ToList();
+
+            Assert.IsTrue(usersBD.First().Rol.Name == user.Rol.Name);
+        }
+
+        [TestMethod]
+        public void GetUserOk()
         {
             User user = CreateUser(Rol.tester);
 
@@ -71,6 +89,13 @@ namespace DataAccessTest
             User userDB = _userRepository.GetById(user.Id);
 
             Assert.AreEqual(user.Id, userDB.Id);
+        }
+
+        [TestMethod]
+        [ExpectedException(typeof(NoObjectException))]
+        public void GetUserFail()
+        {
+            User userDB = _userRepository.GetById(Guid.NewGuid());
         }
 
         private User CreateUser(string rol)

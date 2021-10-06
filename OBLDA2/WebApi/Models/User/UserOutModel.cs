@@ -31,5 +31,17 @@ namespace OBLDA2.Models
             this.Projects = user.Projects.Select(p => new ProjectOutModel(p));
         }
 
+        public static List<UserOutModel> ListUser(List<User> users)
+        {
+            List<UserOutModel> outModel = new List<UserOutModel>();
+
+            foreach (User user in users)
+            {
+                outModel.Add(new UserOutModel(user));
+            }
+
+            return outModel;
+        }
+
     }
 }

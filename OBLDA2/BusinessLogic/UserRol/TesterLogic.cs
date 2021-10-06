@@ -12,7 +12,6 @@ namespace BusinessLogic.UserRol
         private const string notUserTester = "This user rol is not Tester";
 
         private IUserLogic userLogic;
-        private IRepository<Rol, Guid> rolRepository;
         private IProjectLogic projcetLogic;
 
         public TesterLogic(IUserLogic userLogic, 
@@ -20,7 +19,6 @@ namespace BusinessLogic.UserRol
         {
             this.userLogic = userLogic;
             this.projcetLogic = projcetLogic;
-            this.rolRepository = rolRepository;
         }
 
         public TesterLogic() { }

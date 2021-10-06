@@ -1,6 +1,3 @@
-using Domain;
-using System;
-
 namespace OBLDA2.Models
 {
     public class BugUpdateStateModel

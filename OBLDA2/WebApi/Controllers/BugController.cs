@@ -35,12 +35,7 @@ namespace WebApi.Controllers
         public IActionResult GetAllBugs()
         {
             List<Bug> bugs = this.bugLogic.GetAll();
-            List<BugEntryOutModel> bugsOut = new List<BugEntryOutModel>();
-
-            foreach (var bug in bugs)
-            {
-                bugsOut.Add(new BugEntryOutModel(bug));
-            }
+            List<BugEntryOutModel> bugsOut = BugEntryOutModel.ListBugs(bugs);
 
             return Ok(bugsOut);
         }
@@ -65,9 +60,7 @@ namespace WebApi.Controllers
         [AuthorizationFilter(Autorization.AdministratorAndTester)]
         public IActionResult UpdateABug(int id, BugUpdateModel bugDTO)
         {
-            Bug bugUpdated = this.bugLogic.Update(id, bugDTO.ToEntity(id));
-            BugEntryOutModel bugUpdateOut = new BugEntryOutModel(bugUpdated);
-
+            this.bugLogic.Update(id, bugDTO.ToEntity(id));
             return NoContent();
         }
 

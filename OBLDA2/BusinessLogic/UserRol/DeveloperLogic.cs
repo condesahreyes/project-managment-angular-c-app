@@ -1,8 +1,8 @@
 ﻿using System.Collections.Generic;
 using BusinessLogicInterface;
 using DataAccessInterface;
-using Exceptions;
 using System.Linq;
+using Exceptions;
 using Domain;
 using System;
 
@@ -26,12 +26,6 @@ namespace BusinessLogic.UserRol
         }
 
         public DeveloperLogic() { }
-
-        //SACARRRRR
-        public User GetByString(string userName)
-        {
-            return userLogic.GetAll().Where(user => (user.UserName == userName)).First();
-        }
 
         public void AssignDeveloperToProject(Guid projectId, Guid developerId)
         {

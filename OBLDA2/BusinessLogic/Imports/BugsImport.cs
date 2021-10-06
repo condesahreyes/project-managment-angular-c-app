@@ -1,16 +1,16 @@
-﻿using System.Collections.Generic;
-using System.IO;
+﻿using BusinessLogicInterface.Imports;
+using System.Collections.Generic;
 using BusinessLogicInterface;
-using BusinessLogicInterface.Imports;
-using Domain;
+using System.IO;
 using Exceptions;
+using Domain;
 
 namespace BusinessLogic.Imports
 {
     public class BugsImport : IBugsImport
     {
-        private const string txt = ".txt";
-        private const string xml = ".xml";
+        private const string txtExtension = ".txt";
+        private const string xmlExtension = ".xml";
         private const string invalidRoute = "Error, it´s not a valid route";
         private const string invalidFormat = "Error, it´s not a valid format";
 
@@ -21,9 +21,7 @@ namespace BusinessLogic.Imports
             this.bugLogic = bugLogic;
         }
 
-        public BugsImport()
-        {
-        }
+        public BugsImport() { }
 
         public List<Bug> CreateBugs(List<Bug> bugs)
         {
@@ -41,12 +39,12 @@ namespace BusinessLogic.Imports
         {
             List<Bug> bugsToSaved = new List<Bug>();
 
-            if (Path.GetExtension(fileAddress).ToLower() == txt)
+            if (Path.GetExtension(fileAddress).ToLower() == txtExtension)
             {
                 BugsImportTxt txt = new BugsImportTxt();
                 bugsToSaved = txt.ImportBugsTxt(fileAddress);
             }
-            else if (Path.GetExtension(fileAddress).ToLower() == xml)
+            else if (Path.GetExtension(fileAddress).ToLower() == xmlExtension)
             {
                 BugsImportXml xml = new BugsImportXml();
                 bugsToSaved = xml.ImportBugsXml(fileAddress);

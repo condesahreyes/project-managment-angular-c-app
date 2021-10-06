@@ -63,7 +63,7 @@ namespace WebApiTest
         }
 
         [TestMethod]
-        public void GetTotalBugs()
+        public void GetAllBugs()
         {
             List<Bug> list = new List<Bug>();
             list.Add(bug);
@@ -83,6 +83,48 @@ namespace WebApiTest
             developerLogic.VerifyAll();
             Assert.IsTrue(bugsModel.First().Id == bugsResult.First().Id);
         }
-        
+
+        [TestMethod]
+        public void GetTotalBugsResolved()
+        {
+            bug.SolvedBy=developer;
+            List<Bug> list = new List<Bug>();
+            list.Add(bug);
+
+            IEnumerable<BugEntryOutModel> bugsModel = new List<BugEntryOutModel>
+            {
+                new BugEntryOutModel(bug)
+            };
+
+            developerLogic.Setup(m => m.CountBugDoneByDeveloper(It.IsAny<Guid>())).Returns(1);
+            DeveloperController controller = new DeveloperController(developerLogic.Object);
+
+            var result = controller.GetCountBugsResolvedByDeveloper(It.IsAny<Guid>());
+            var okResult = result as ObjectResult;
+
+            developerLogic.VerifyAll();
+            Assert.IsTrue("1" == okResult.Value.ToString());
+        }
+
+        [TestMethod]
+        public void UpdateBugTest()
+        {
+            Bug updatedBug = new Bug(project, 1, "Error cierre de sesion", "Intento",
+                "3.5", activeState);
+            BugUpdateStateModel bugUpdateDTO = new BugUpdateStateModel(activeState.Name, updatedBug.Id);
+
+            developerLogic.Setup(m => m.UpdateState(bugUpdateDTO.BugId, It.IsAny<string>(), developer.Id))
+                .Returns(updatedBug);
+
+            var controller = new DeveloperController(developerLogic.Object);
+
+            IActionResult result = controller.UpdateStateBug(developer.Id, bugUpdateDTO);
+            var status = result as NoContentResult;
+
+            developerLogic.VerifyAll();
+
+            Assert.AreEqual(204, status.StatusCode);
+        }
+
     }
 }

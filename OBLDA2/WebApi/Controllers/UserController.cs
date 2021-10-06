@@ -1,11 +1,11 @@
-using Domain;
-using Microsoft.AspNetCore.Mvc;
-using System;
 using System.Collections.Generic;
-using OBLDA2.Models;
+using Microsoft.AspNetCore.Mvc;
 using BusinessLogicInterface;
-using System.Net;
 using WebApi.Filters;
+using OBLDA2.Models;
+using System.Net;
+using System;
+using Domain;
 
 namespace OBLDA2.Controllers
 {
@@ -33,8 +33,10 @@ namespace OBLDA2.Controllers
         [HttpGet]
         public IActionResult GetAllUser()
         {
-            IEnumerable<User> users = this.userLogic.GetAll();
-            return Ok(users);
+            List<User> users = this.userLogic.GetAll();
+            IEnumerable<UserOutModel> usersOut = UserOutModel.ListUser(users);
+
+            return Ok(usersOut);
         }
 
         [HttpGet("{userID}")]
