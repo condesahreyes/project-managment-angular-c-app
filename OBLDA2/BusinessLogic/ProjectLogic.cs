@@ -10,7 +10,8 @@ namespace BusinessLogic
     public class ProjectLogic : IProjectLogic
     {
         private const string notExistProject = "Project does not exist";
-        private const string userExistingProject = "This user alredy exist in the project";
+        private const string existProject = "Project alraedy exist";
+        private const string userExistingProject = "This user alraedy exist in the project";
         private const string notUserInProject = "This user is not asigned to this project";
 
         private IProjectRepository projectRepository;
@@ -26,6 +27,8 @@ namespace BusinessLogic
 
         public Project Create(Project projectToCreate)
         {
+            NotExistProjectWithName(projectToCreate);
+
             Project.ValidateName(projectToCreate.Name);
 
             projectToCreate.Bugs = new List<Bug>();
@@ -61,6 +64,20 @@ namespace BusinessLogic
             throw new InvalidDataObjException(notExistProject);
         }
 
+        public void NotExistProjectWithName(Project project)
+        {
+            List<Project> projects = projectRepository.GetAll();
+
+            foreach (Project oneProject in projects)
+            {
+                if (oneProject.Name.ToLower() == project.Name.ToLower() && 
+                    project.Id != oneProject.Id)
+                {
+                    throw new InvalidDataObjException(existProject);
+                }
+            }
+        }
+
         public void ExistProject(Guid projectId)
         {
             ExistProjectWithName(Get(projectId));
@@ -70,6 +87,7 @@ namespace BusinessLogic
         {
             ExistProject(id);
             updatedProject.Id = id;
+            NotExistProjectWithName(updatedProject);
             Project.ValidateName(updatedProject.Name);
             return projectRepository.Update(id, updatedProject);
         }

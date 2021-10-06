@@ -74,10 +74,11 @@ namespace DataAccessTest
         }
 
         [TestMethod]
-        [ExpectedException(typeof(NoObjectException))]
         public void GetBugFail()
         {
             Bug bugDB = _bugRepository.GetById(0);
+
+            Assert.IsNull(bugDB);
         }
 
         private Bug CreateBug(int id, string oneState)

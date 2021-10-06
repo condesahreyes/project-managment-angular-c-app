@@ -39,7 +39,7 @@ namespace DataAccess.Repositories
             }
             catch (Exception)
             {
-                throw new NoObjectException(noExistBug);
+                return null;
             }
         }
 
