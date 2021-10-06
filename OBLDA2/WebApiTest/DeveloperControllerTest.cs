@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using Microsoft.AspNetCore.Mvc;
 using BusinessLogicInterface;
 using WebApi.Controllers;
+using OBLDA2.Models;
 using System.Linq;
 using System;
 using Domain;
@@ -29,9 +30,9 @@ namespace WebApiTest
 
             rolDeveloper = new Rol(Rol.developer);
             developer = new User("Juan", "Gomez", "jgomez", "admin1234", "gomez@gmail.com", rolDeveloper);
-
-            bug = new Bug(project, 1, "Error de login", "Intento de sesión", "3.0", activeState);
+            
             project = new Project("Project - GXC ");
+            bug = new Bug(project, 1, "Error de login", "Intento de sesión", "3.0", activeState);
         }
 
         [TestMethod]
@@ -67,16 +68,20 @@ namespace WebApiTest
             List<Bug> list = new List<Bug>();
             list.Add(bug);
 
-            developerLogic.Setup(m => m.GetAllBugs(developer.Id)).Returns(list);
+            IEnumerable<BugEntryOutModel> bugsModel = new List<BugEntryOutModel>
+            {
+                new BugEntryOutModel(bug)
+            };
+
+            developerLogic.Setup(m => m.GetAllBugs(It.IsAny<Guid>())).Returns(list);
             DeveloperController controller = new DeveloperController(developerLogic.Object);
 
-            IActionResult result = controller.GetAllBugsDeveloper(developer.Id);
-            var okResult = result as OkObjectResult;
-            var bugsResult = okResult.Value as List<Bug>;
+            var result = controller.GetAllBugsDeveloper(It.IsAny<Guid>());
+            var okResult = result as ObjectResult;
+            var bugsResult = okResult.Value as IEnumerable<BugEntryOutModel>;
 
             developerLogic.VerifyAll();
-
-            Assert.IsTrue(list.SequenceEqual(bugsResult));
+            Assert.IsTrue(bugsModel.First().Id == bugsResult.First().Id);
         }
         
     }

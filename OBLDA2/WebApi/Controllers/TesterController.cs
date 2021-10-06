@@ -26,7 +26,7 @@ namespace WebApi.Controllers
         {
             List<Bug> bugs = this.testerLogic.GetAllBugs(id);
 
-            IEnumerable<Bug> bugsModel = (IEnumerable<Bug>)BugEntryOutModel.ListBugs(bugs);
+            IEnumerable<BugEntryOutModel> bugsModel = BugEntryOutModel.ListBugs(bugs);
 
             return (StatusCode((int)HttpStatusCode.OK, bugsModel));
         }

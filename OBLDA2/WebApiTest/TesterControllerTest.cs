@@ -74,16 +74,20 @@ namespace WebApiTest
             List<Bug> list = new List<Bug>();
             list.Add(bug);
 
-            testerLogic.Setup(m => m.GetAllBugs(tester.Id)).Returns(list);
+            IEnumerable<BugEntryOutModel> bugsModel = new List<BugEntryOutModel>
+            {
+                new BugEntryOutModel(bug)
+            };
+
+            testerLogic.Setup(m => m.GetAllBugs(It.IsAny<Guid>())).Returns(list);
             TesterController controller = new TesterController(testerLogic.Object);
 
-            var result = controller.GetAllBugsTester(tester.Id);
-            var okResult = result as OkObjectResult;
-            var bugsResult = okResult.Value as List<Bug>;
+            var result = controller.GetAllBugsTester(It.IsAny<Guid>());
+            var okResult = result as ObjectResult;
+            var bugsResult = okResult.Value as IEnumerable<BugEntryOutModel>;
 
             testerLogic.VerifyAll();
-
-            Assert.IsTrue(list.SequenceEqual(bugsResult));
+            Assert.IsTrue(bugsModel.First().Id ==  bugsResult.First().Id);
         }
         
     }

@@ -37,10 +37,14 @@ namespace OBLDA2.Models
 
         public static List<BugEntryOutModel> ListBugs(List<Bug> bugs)
         {
-            if(bugs!=null)
-                return (List<BugEntryOutModel>)bugs.Select(b => new BugEntryOutModel(b));
+            List<BugEntryOutModel> outModel = new List<BugEntryOutModel>();
 
-            return null;
+            foreach (Bug bug in bugs)
+            {
+                outModel.Add(new BugEntryOutModel(bug));
+            }
+
+            return outModel;
         }
     }
 }
