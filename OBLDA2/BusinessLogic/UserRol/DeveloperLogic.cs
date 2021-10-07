@@ -48,6 +48,7 @@ namespace BusinessLogic.UserRol
             List<Project> projects = projectLogic.GetAll();
             foreach (Project project in projects)
             {
+                if(project.Users.Contains(developer))
                 foreach (Bug bug in project.Bugs)
                 {
                     if (bug.SolvedBy != null && bug.SolvedBy.Id == developer.Id)
