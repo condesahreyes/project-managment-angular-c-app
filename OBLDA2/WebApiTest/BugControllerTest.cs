@@ -74,7 +74,7 @@ namespace WebApiTest
         public void GetBugIdTest()
         {
             UserIdModel user = new UserIdModel(Guid.NewGuid());
-            bugLogic.Setup(m => m.Get(bug.Id, user.Id)).Returns(bug);
+            bugLogic.Setup(m => m.Get(bug.Id, user.UserId)).Returns(bug);
             BugController controller = new BugController(bugLogic.Object);
 
             IActionResult result = controller.GetById(bug.Id, user);
@@ -108,7 +108,7 @@ namespace WebApiTest
         public void DeleteBugTest()
         {
             UserIdModel user = new UserIdModel(Guid.NewGuid());
-            bugLogic.Setup(m => m.Delete(bug.Id, user.Id));
+            bugLogic.Setup(m => m.Delete(bug.Id, user.UserId));
             BugController controller = new BugController(bugLogic.Object);
 
             IActionResult result = controller.Delete(bug.Id, user);

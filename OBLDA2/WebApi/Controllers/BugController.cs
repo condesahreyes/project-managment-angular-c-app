@@ -32,7 +32,7 @@ namespace WebApi.Controllers
         }
 
         [HttpGet]
-        [AuthorizationFilter(Autorization.AllAutorization)]
+        [AuthorizationFilter(Autorization.Administrator)]
         public IActionResult GetAllBugs()
         {
             List<Bug> bugs = this.bugLogic.GetAll();
@@ -42,10 +42,10 @@ namespace WebApi.Controllers
         }
 
         [HttpGet("{bugId}")]
-        [AuthorizationFilter(Autorization.AllAutorization)]
+        [AuthorizationFilter(Autorization.AdministratorAndTester)]
         public IActionResult GetById(int bugId, UserIdModel user)
         {
-            Bug bugToReturn = this.bugLogic.Get(bugId, user.Id);
+            Bug bugToReturn = this.bugLogic.Get(bugId, user.UserId);
             return Ok(new BugEntryOutModel(bugToReturn));
         }
 
@@ -53,7 +53,7 @@ namespace WebApi.Controllers
         [AuthorizationFilter(Autorization.AdministratorAndTester)]
         public IActionResult Delete(int bugId, UserIdModel user)
         {
-            bugLogic.Delete(bugId, user.Id);
+            bugLogic.Delete(bugId, user.UserId);
             return NoContent();
         }
 

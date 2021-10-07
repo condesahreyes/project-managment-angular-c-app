@@ -35,6 +35,11 @@ namespace BusinessLogic
             return projectRepository.Create(projectToCreate);
         }
 
+        public List<Bug> GetAllBugByProject(Project project)
+        {
+            return Get(project.Id).Bugs;
+        }
+
         public Project Get(Guid id)
         {
             Project projcet = projectRepository.GetById(id);
@@ -47,6 +52,26 @@ namespace BusinessLogic
             projcet.TotalBugs = projcet.Bugs.Count;
 
             return projcet;
+        }
+
+        public List<User> GetAllTesters(Project oneProject)
+        {
+            return GetAllUserByRol(Rol.tester, oneProject);
+        }
+
+        public List<User> GetAllDevelopers(Project oneProject)
+        {
+            return GetAllUserByRol(Rol.developer, oneProject);
+        }
+
+        public void AssignUser(Guid oneProjectId, ref User user)
+        {
+            AssignUserToProject(ref user, oneProjectId);
+        }
+
+        public void ExistProject(Guid projectId)
+        {
+            ExistProjectWithName(Get(projectId));
         }
 
         public Project ExistProjectWithName(Project project)
@@ -78,11 +103,6 @@ namespace BusinessLogic
             }
         }
 
-        public void ExistProject(Guid projectId)
-        {
-            ExistProjectWithName(Get(projectId));
-        }
-
         public Project Update(Guid id, Project updatedProject)
         {
             ExistProject(id);
@@ -109,6 +129,30 @@ namespace BusinessLogic
             DeleteUserToProject(ref userToAsign, oneProjectId);
         }
 
+        public List<Project> GetAll()
+        {
+            List<Project> projects = projectRepository.GetAll();
+
+            foreach (Project project in projects)
+            {
+                project.TotalBugs = project.Bugs.Count;
+            }
+
+            return projectRepository.GetAll();
+        }
+
+        public void IsUserAssignInProject(string projectName, Guid userId)
+        {
+            User user = userLogic.Get(userId);
+            Project project = ExistProjectWithName(new Project(projectName));
+
+            if (!project.Users.Contains(user) && user.Rol.Name.ToLower() != 
+                Rol.administrator.ToLower())
+            {
+                throw new ExistingObjectException(notUserInProject);
+            }
+        }
+
         private void DeleteUserToProject(ref User user, Guid oneProjectId)
         {
             Project project = Get(oneProjectId);
@@ -118,22 +162,6 @@ namespace BusinessLogic
             project.Users.Remove(user);
 
             projectRepository.Update(project.Id, project);
-        }
-
-        public void AssignUser(Guid oneProjectId, ref User user)
-        {
-            AssignUserToProject(ref user, oneProjectId);
-        }
-
-        public void IsUserAssignInProject(string projectName, Guid userId)
-        {
-            User user = userLogic.Get(userId);
-            Project project = ExistProjectWithName(new Project(projectName));
-
-            if (!project.Users.Contains(user) && user.Rol.Name.ToLower() != Rol.administrator.ToLower())
-            {
-                throw new ExistingObjectException(notUserInProject);
-            }
         }
 
         private void AssignUserToProject(ref User userToAsign, Guid oneProjectId)
@@ -147,33 +175,6 @@ namespace BusinessLogic
 
             project.Users.Add(userToAsign);
             projectRepository.Update(project.Id, project);
-        }
-
-        public List<Project> GetAll()
-        {
-            List<Project> projects = projectRepository.GetAll();
-
-            foreach (Project project in projects)
-            {
-                project.TotalBugs = project.Bugs.Count;
-            }
-
-            return projectRepository.GetAll();
-        }
-
-        public List<User> GetAllTesters(Project oneProject)
-        {
-            return GetAllUserByRol(Rol.tester, oneProject);
-        }
-
-        public List<User> GetAllDevelopers(Project oneProject)
-        {
-            return GetAllUserByRol(Rol.developer, oneProject);
-        }
-
-        public List<Bug> GetAllBugByProject(Project project)
-        {
-            return Get(project.Id).Bugs;
         }
 
         private List<User> GetAllUserByRol(string rol, Project oneProject)

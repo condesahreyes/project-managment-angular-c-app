@@ -36,7 +36,6 @@ namespace BusinessLogic
             NotExistBug(bug.Id);
             IsValidBug(ref bug);
             
-
             bugRepository.Create(bug);
 
             return bug;

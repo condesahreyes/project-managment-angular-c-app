@@ -21,6 +21,19 @@ namespace BusinessLogic.UserRol
             this.projcetLogic = projcetLogic;
         }
 
+        public User Get(Guid id)
+        {
+            return userLogic.Get(id);
+        }
+
+        public void AssignTesterToProject(Guid projectId, Guid testerId)
+        {
+            User tester = userLogic.Get(testerId);
+            IsTester(tester);
+            Project project = projcetLogic.Get(projectId);
+            projcetLogic.AssignUser(projectId, ref tester);
+        }
+
         public List<User> GetAll()
         {
             List<User> users = userLogic.GetAll();
@@ -33,19 +46,6 @@ namespace BusinessLogic.UserRol
             }
 
             return testers;
-        }
-
-        public User Get(Guid id)
-        {
-            return userLogic.Get(id);
-        }
-
-        public void AssignTesterToProject(Guid projectId, Guid testerId)
-        {
-            User tester = userLogic.Get(testerId);
-            IsTester(tester);
-            Project project = projcetLogic.Get(projectId);
-            projcetLogic.AssignUser(projectId, ref tester);
         }
 
         public void DeleteTesterInProject(Guid projectId, Guid testerId)

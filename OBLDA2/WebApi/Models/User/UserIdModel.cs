@@ -6,13 +6,13 @@ namespace OBLDA2.Models
 {
     public class UserIdModel
     {
-        public Guid Id { get; set; }
+        public Guid UserId { get; set; }
 
         public UserIdModel() { }
 
         public UserIdModel(Guid userId)
         {
-            this.Id = userId;
+            this.UserId = userId;
         }
 
     }
