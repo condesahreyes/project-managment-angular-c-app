@@ -10,30 +10,22 @@ namespace BusinessLogic
 {
     public class UserLogic : IUserLogic
     {
-        private const string invalidRol = "You must entry a valid rol";
         private const string notExistUser = "User not exist";
         private const string existingUser = "The user already exists";
-
-
-        private IUserRepository userDA;
+        private const string invalidRol = "You must entry a valid rol";
+        
+        private IUserRepository userRepository;
         private IRepository<Rol, Guid> rolRepository;
 
-        public UserLogic() { }
-
-        public UserLogic(IUserRepository UserDA, IRepository<Rol, Guid> rolRepository)
+        public UserLogic(IUserRepository userRepository, IRepository<Rol, Guid> rolRepository)
         {
-            this.userDA = UserDA;
+            this.userRepository = userRepository;
             this.rolRepository = rolRepository;
-        }
-
-        public UserLogic(IUserRepository UserDA)
-        {
-            this.userDA = UserDA;
         }
 
         public User Get(Guid id)
         {
-            User user = userDA.GetById(id);
+            User user = userRepository.GetById(id);
 
             if (user == null)
             {
@@ -45,7 +37,7 @@ namespace BusinessLogic
 
         public List<User> GetAll()
         {
-            return userDA.GetAll();
+            return userRepository.GetAll();
         }
 
         public User Create(User userToCreate)
@@ -54,20 +46,32 @@ namespace BusinessLogic
             NotExistUser(userToCreate);
 
             userToCreate.Projects = new List<Project>();
-            User userCreate = userDA.Create(userToCreate);
+
+            User userCreate = userRepository.Create(userToCreate);
 
             return userCreate;
-        }
-
-        public void ExistUser(User user)
-        {
-            Get(user.Id);
         }
 
         public void Update(User user) 
         {
             IsValidUser(ref user);
-            userDA.UpdateUser(user);
+            userRepository.UpdateUser(user);
+        }
+
+        public List<string> GetAllTokens()
+        {
+            List<string> tokens = new List<string>();
+            List<User> users = GetAll();
+
+            foreach (var user in users)
+            {
+                if (user.Token != null)
+                {
+                    tokens.Add(user.Token);
+                }
+            }
+
+            return tokens;
         }
 
         private void IsValidUser(ref User userToCreate)
@@ -78,7 +82,7 @@ namespace BusinessLogic
 
         private void NotExistUser(User user)
         {
-            bool existUser = userDA.GetAll().Any(u => (u.Email == user.Email));
+            bool existUser = userRepository.GetAll().Any(u => (u.Email == user.Email));
 
             if (existUser)
             {
@@ -99,22 +103,6 @@ namespace BusinessLogic
             }
 
             throw new InvalidDataObjException(invalidRol);
-        }
-
-        public List<string> GetAllTokens()
-        {
-            List<string> tokens = new List<string>();
-            List<User> users = GetAll();
-
-            foreach (var user in users)
-            {
-                if (user.Token != null)
-                {
-                    tokens.Add(user.Token);
-                }
-            }
-
-            return tokens;
         }
 
     }

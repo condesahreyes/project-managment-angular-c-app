@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using DataAccessInterface;
 using BusinessLogic;
+using Exceptions;
 using System;
 using Domain;
 using Moq;
@@ -42,7 +43,8 @@ namespace BusinessLogicTest
 
             userLogic = new UserLogic(mockUser.Object, mockRol.Object);
 
-            oneUser = new User("Hernán", "Reyes", "hreyes", "contraseña", "hreyes.condesa@gmail.com", roles[0]);
+            oneUser = new User("Hernán", "Reyes", "hreyes", "contraseña", 
+                "hreyes.condesa@gmail.com", roles[0]);
         }
 
         [TestMethod]
@@ -58,10 +60,11 @@ namespace BusinessLogicTest
         }
 
         [TestMethod]
-        [ExpectedException(typeof(Exception))]
+        [ExpectedException(typeof(InvalidDataObjException))]
         public void IsNotValidName()
         {
-            User invalidUser = new User("", "Reyes", "hreyes", "contraseña", "hreyes.condesa@gmail.com", roles[0]);
+            User invalidUser = new User("", "Reyes", "hreyes", "contraseña", 
+                "hreyes.condesa@gmail.com", roles[0]);
             mockUser.Setup(x => x.Create(invalidUser)).Returns(invalidUser);
 
             User userSaved = userLogic.Create(invalidUser);
@@ -69,10 +72,11 @@ namespace BusinessLogicTest
         }
 
         [TestMethod]
-        [ExpectedException(typeof(Exception))]
+        [ExpectedException(typeof(InvalidDataObjException))]
         public void IsNotValidLastName()
         {
-            User invalidUser = new User("Hernán", "", "hreyes", "contraseña", "hreyes.condesa@gmail.com", roles[0]);
+            User invalidUser = new User("Hernán", "", "hreyes", "contraseña", 
+                "hreyes.condesa@gmail.com", roles[0]);
             mockUser.Setup(x => x.Create(invalidUser)).Returns(invalidUser);
 
             User userSaved = userLogic.Create(invalidUser);
@@ -80,10 +84,11 @@ namespace BusinessLogicTest
         }
 
         [TestMethod]
-        [ExpectedException(typeof(Exception))]
+        [ExpectedException(typeof(InvalidDataObjException))]
         public void IsNotValidUserName()
         {
-            User invalidUser = new User("Hernán", "Reyes", "", "contraseña", "hreyes.condesa@gmail.com", roles[0]);
+            User invalidUser = new User("Hernán", "Reyes", "", "contraseña", 
+                "hreyes.condesa@gmail.com", roles[0]);
             mockUser.Setup(x => x.Create(invalidUser)).Returns(invalidUser);
 
             User userSaved = userLogic.Create(invalidUser);
@@ -91,11 +96,12 @@ namespace BusinessLogicTest
         }
 
         [TestMethod]
-        [ExpectedException(typeof(Exception))]
+        [ExpectedException(typeof(InvalidDataObjException))]
         public void IsNotValidRol()
         {
             Rol invalidRol = new Rol("Auxiliar");
-            User invalidUser = new User("Hernán", "Reyes", "hreyes", "contraseña", "hreyes.condesa@gmail.com", invalidRol);
+            User invalidUser = new User("Hernán", "Reyes", "hreyes", "contraseña", 
+                "hreyes.condesa@gmail.com", invalidRol);
 
             mockUser.Setup(x => x.Create(invalidUser)).Returns(invalidUser);
 
@@ -104,10 +110,11 @@ namespace BusinessLogicTest
         }
 
         [TestMethod]
-        [ExpectedException(typeof(Exception))]
+        [ExpectedException(typeof(InvalidDataObjException))]
         public void IsNotValidEmail()
         {
-            User invalidUser = new User("Hernán", "Reyes", "hreyes", "contraseña", "hreyes.condesagmail.com", roles[0]);
+            User invalidUser = new User("Hernán", "Reyes", "hreyes", "contraseña", 
+                "hreyes.condesagmail.com", roles[0]);
 
             mockUser.Setup(x => x.Create(invalidUser)).Returns(invalidUser);
 
@@ -116,19 +123,20 @@ namespace BusinessLogicTest
         }
 
         [TestMethod]
-        [ExpectedException(typeof(Exception))]
+        [ExpectedException(typeof(InvalidDataObjException))]
         public void IsNotValidPassword()
         {
-            User invalidUser = new User("Hernán", "Reyes", "hreyes", "", "hreyes.condesa@gmail.com", roles[0]);
+            User invalidUser = new User("Hernán", "Reyes", "hreyes", "", 
+                "hreyes.condesa@gmail.com", roles[0]);
 
             mockUser.Setup(x => x.Create(invalidUser)).Returns(invalidUser);
 
             User userSaved = userLogic.Create(invalidUser);
             mockUser.VerifyAll();
         }
-
+        
         [TestMethod]
-        [ExpectedException(typeof(Exception))]
+        [ExpectedException(typeof(ExistingObjectException))]
         public void CreateExistingUser()
         {
             users.Add(oneUser);

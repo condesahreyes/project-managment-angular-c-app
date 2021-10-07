@@ -2,11 +2,10 @@ using System.Collections.Generic;
 using Microsoft.AspNetCore.Mvc;
 using BusinessLogicInterface;
 using OBLDA2.Controllers;
+using WebApi.Filters;
 using OBLDA2.Models;
 using System.Net;
 using Domain;
-using System;
-using WebApi.Filters;
 
 namespace WebApi.Controllers
 {
@@ -23,65 +22,48 @@ namespace WebApi.Controllers
 
         [HttpPost]
         [AuthorizationFilter(Autorization.AdministratorAndTester)]
-
         public IActionResult AddBug(BugEntryOutModel bugDTO)
         {
-            Bug bug = this.bugLogic.Create(bugDTO.ToEntity());
+            Bug bug = this.bugLogic.CreateByUser(bugDTO.ToEntity(), bugDTO.CreatedBy);
             BugEntryOutModel bugAdded = new BugEntryOutModel(bug);
+            bugAdded.CreatedBy = bugDTO.CreatedBy;
 
             return (StatusCode((int)HttpStatusCode.Created, bugAdded));
         }
 
         [HttpGet]
-        [AuthorizationFilter(Autorization.AllAutorization)]
-
+        [AuthorizationFilter(Autorization.Administrator)]
         public IActionResult GetAllBugs()
         {
             List<Bug> bugs = this.bugLogic.GetAll();
-            List<BugEntryOutModel> bugsOut = new List<BugEntryOutModel>();
-
-            foreach (var bug in bugs)
-            {
-                bugsOut.Add(new BugEntryOutModel(bug));
-            }
+            List<BugEntryOutModel> bugsOut = BugEntryOutModel.ListBugs(bugs);
 
             return Ok(bugsOut);
         }
 
-        [HttpGet("{id}")]
-        [AuthorizationFilter(Autorization.AllAutorization)]
-
-        public IActionResult GetById(int bugId)
+        [HttpGet("{bugId}")]
+        [AuthorizationFilter(Autorization.AdministratorAndTester)]
+        public IActionResult GetById(int bugId, UserIdModel user)
         {
-            Bug bugToReturn = this.bugLogic.Get(bugId);
+            Bug bugToReturn = this.bugLogic.Get(bugId, user.UserId);
             return Ok(new BugEntryOutModel(bugToReturn));
         }
 
-        [HttpDelete("{id}")]
+        [HttpDelete("{bugId}")]
         [AuthorizationFilter(Autorization.AdministratorAndTester)]
-        public IActionResult Delete(int id)
+        public IActionResult Delete(int bugId, UserIdModel user)
         {
-            bugLogic.Delete(id);
+            bugLogic.Delete(bugId, user.UserId);
             return NoContent();
         }
 
-        [HttpPut("{id}")]
+        [HttpPut("{bugId}")]
         [AuthorizationFilter(Autorization.AdministratorAndTester)]
-
-        public IActionResult UpdateABug(int id, BugUpdateModel bugDTO)
+        public IActionResult UpdateABug(int bugId, BugUpdateModel bugDTO)
         {
-            Bug bugUpdated = this.bugLogic.Update(id, bugDTO.ToEntity(id));
-            BugEntryOutModel bugUpdateOut = new BugEntryOutModel(bugUpdated);
-
+            this.bugLogic.Update(bugId, bugDTO.ToEntity(bugId), bugDTO.UserId);
             return NoContent();
         }
 
-        [HttpPut("{id}/UpdateState")]
-        [AuthorizationFilter(Autorization.AllAutorization)]
-        public IActionResult UpdateStateBug(int id, string state)
-        {
-            Bug bugReturn = this.bugLogic.UpdateState(id, state);
-            return NoContent();
-        }
     }
 }

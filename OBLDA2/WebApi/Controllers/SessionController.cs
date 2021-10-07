@@ -1,6 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
-using OBLDA2.Models;
 using BusinessLogicInterface;
+using OBLDA2.Models;
 
 namespace OBLDA2.Controllers
 {

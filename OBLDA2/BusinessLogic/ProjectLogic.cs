@@ -10,11 +10,12 @@ namespace BusinessLogic
     public class ProjectLogic : IProjectLogic
     {
         private const string notExistProject = "Project does not exist";
+        private const string existProject = "Project alraedy exist";
+        private const string userExistingProject = "This user alraedy exist in the project";
+        private const string notUserInProject = "This user is not asigned to this project";
 
         private IProjectRepository projectRepository;
         private IUserLogic userLogic;
-
-        public ProjectLogic() { }
 
         public ProjectLogic(IProjectRepository ProjectDa, IUserLogic userLogic)
         {
@@ -24,10 +25,19 @@ namespace BusinessLogic
 
         public Project Create(Project projectToCreate)
         {
+            NotExistProjectWithName(projectToCreate);
+
             Project.ValidateName(projectToCreate.Name);
+
             projectToCreate.Bugs = new List<Bug>();
             projectToCreate.Users = new List<User>();
+
             return projectRepository.Create(projectToCreate);
+        }
+
+        public List<Bug> GetAllBugByProject(Project project)
+        {
+            return Get(project.Id).Bugs;
         }
 
         public Project Get(Guid id)
@@ -39,75 +49,9 @@ namespace BusinessLogic
                 throw new NoObjectException(notExistProject);
             }
 
+            projcet.TotalBugs = projcet.Bugs.Count;
+
             return projcet;
-        }
-
-        public void ExistProject(Guid projectId)
-        {
-            Get(projectId);
-        }
-
-        public Project Update(Guid id, Project updatedProject)
-        {
-            ExistProject(id);
-            updatedProject.Id = id;
-            Project.ValidateName(updatedProject.Name);
-            return projectRepository.Update(id, updatedProject);
-        }
-
-        public void Delete(Guid id)
-        {
-            ExistProject(id);
-            projectRepository.Delete(id);
-        }
-
-        public void DeleteTester(Project oneProject, User tester)
-        {
-            Project project = Get(oneProject.Id);
-            userLogic.ExistUser(tester);
-
-            if (project.Users.Contains(tester))
-            {
-                project.Users.Remove(tester);
-            }
-        }
-
-        public void DeleteDeveloper(Project oneProject, User developer)
-        {
-            Project project = Get(oneProject.Id);
-            userLogic.ExistUser(developer);
-
-            if (project.Users.Contains(developer))
-            {
-                project.Users.Remove(developer);
-            }
-        }
-
-        public void AssignDeveloper(Project oneProject, User developer)
-        {
-            Project project = Get(oneProject.Id);
-            userLogic.ExistUser(developer);
-
-            if (!project.Users.Contains(developer))
-            {
-                project.Users.Add(developer);
-            }
-        }
-
-        public void AssignTester(Project oneProject, User tester)
-        {
-            Project project = Get(oneProject.Id);
-            userLogic.ExistUser(tester);
-
-            if (!project.Users.Contains(tester))
-            {
-                project.Users.Add(tester);
-            }
-        }
-
-        public List<Project> GetAll()
-        {
-            return projectRepository.GetAll();
         }
 
         public List<User> GetAllTesters(Project oneProject)
@@ -118,6 +62,119 @@ namespace BusinessLogic
         public List<User> GetAllDevelopers(Project oneProject)
         {
             return GetAllUserByRol(Rol.developer, oneProject);
+        }
+
+        public void AssignUser(Guid oneProjectId, ref User user)
+        {
+            AssignUserToProject(ref user, oneProjectId);
+        }
+
+        public void ExistProject(Guid projectId)
+        {
+            ExistProjectWithName(Get(projectId));
+        }
+
+        public Project ExistProjectWithName(Project project)
+        {
+            List<Project> projects = projectRepository.GetAll();
+
+            foreach (Project oneProject in projects)
+            {
+                if (oneProject.Name.ToLower() == project.Name.ToLower())
+                {
+                    return oneProject;
+                }
+            }
+
+            throw new InvalidDataObjException(notExistProject);
+        }
+
+        public void NotExistProjectWithName(Project project)
+        {
+            List<Project> projects = projectRepository.GetAll();
+
+            foreach (Project oneProject in projects)
+            {
+                if (oneProject.Name.ToLower() == project.Name.ToLower() && 
+                    project.Id != oneProject.Id)
+                {
+                    throw new InvalidDataObjException(existProject);
+                }
+            }
+        }
+
+        public Project Update(Guid id, Project updatedProject)
+        {
+            ExistProject(id);
+            updatedProject.Id = id;
+            NotExistProjectWithName(updatedProject);
+            Project.ValidateName(updatedProject.Name);
+
+            Project updateProject = projectRepository.Update(id, updatedProject);
+            updatedProject.TotalBugs = updatedProject.Bugs.Count;
+
+            return updateProject;
+        }
+
+        public void Delete(Guid id)
+        {
+            ExistProject(id);
+            projectRepository.Delete(id);
+        }
+
+        public void DeleteUser(Guid oneProjectId, ref User user)
+        {
+            User userToAsign = userLogic.Get(user.Id);
+
+            DeleteUserToProject(ref userToAsign, oneProjectId);
+        }
+
+        public List<Project> GetAll()
+        {
+            List<Project> projects = projectRepository.GetAll();
+
+            foreach (Project project in projects)
+            {
+                project.TotalBugs = project.Bugs.Count;
+            }
+
+            return projectRepository.GetAll();
+        }
+
+        public void IsUserAssignInProject(string projectName, Guid userId)
+        {
+            User user = userLogic.Get(userId);
+            Project project = ExistProjectWithName(new Project(projectName));
+
+            if (!project.Users.Contains(user) && user.Rol.Name.ToLower() != 
+                Rol.administrator.ToLower())
+            {
+                throw new ExistingObjectException(notUserInProject);
+            }
+        }
+
+        private void DeleteUserToProject(ref User user, Guid oneProjectId)
+        {
+            Project project = Get(oneProjectId);
+
+            IsUserAssignInProject(project.Name, user.Id);
+
+            project.Users.Remove(user);
+
+            projectRepository.Update(project.Id, project);
+        }
+
+        private void AssignUserToProject(ref User userToAsign, Guid oneProjectId)
+        {
+            Project project = Get(oneProjectId);
+
+            if (project.Users.Contains(userToAsign))
+            {
+                throw new ExistingObjectException(userExistingProject);
+            }
+
+            project.Users.Add(userToAsign);
+            projectRepository.Update(project.Id, project);
         }
 
         private List<User> GetAllUserByRol(string rol, Project oneProject)
@@ -134,11 +191,5 @@ namespace BusinessLogic
 
             return users;
         }
-
-        public List<Bug> GetAllBugByProject(Project project)
-        {
-            return Get(project.Id).Bugs; 
-        }
-
     }
 }

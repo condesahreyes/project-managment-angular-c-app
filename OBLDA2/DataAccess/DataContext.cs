@@ -25,7 +25,6 @@ namespace DataAccess
             base.OnModelCreating(modelBuilder);
 
             modelBuilder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());
-
         }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
@@ -40,5 +39,6 @@ namespace DataAccess
                 optionsBuilder.UseSqlServer(connection);
             }
         }
+
     }
 }

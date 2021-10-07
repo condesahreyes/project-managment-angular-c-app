@@ -9,7 +9,7 @@
       "Factory/1.0.0": {
         "dependencies": {
           "BusinessLogic": "1.0.0",
-          "BusinessLogicInterface": "1.0.0",
+          "DataAccess": "1.0.0",
           "Microsoft.Extensions.DependencyInjection.Abstractions": "5.0.0"
         },
         "runtime": {
@@ -1129,7 +1129,7 @@
       "BusinessLogic/1.0.0": {
         "dependencies": {
           "BusinessLogicInterface": "1.0.0",
-          "DataAccess": "1.0.0",
+          "DataAccessInterface": "1.0.0",
           "Exceptions": "1.0.0"
         },
         "runtime": {

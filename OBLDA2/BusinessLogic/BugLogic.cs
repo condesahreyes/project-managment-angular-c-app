@@ -11,38 +11,37 @@ namespace BusinessLogic
     {
         private const string notExistBug = "Bug does not exist whit this id";
         private const string existingBug = "The Bug whit that id alredy exist";
-        private const string invalidState = "It´s not a state bug";
+        private const string invalidState = "It´s not a valid state bug";
 
         private IBugRepository bugRepository;
         private IRepository<State, Guid> stateRepository;
+        private IProjectLogic projectLogic;
 
-        public BugLogic(IBugRepository bugRepository, IRepository<State, Guid> stateRepository)
+        public BugLogic(IBugRepository bugRepository, 
+            IRepository<State, Guid> stateRepository, IProjectLogic projectLogic)
         {
             this.bugRepository = bugRepository;
             this.stateRepository = stateRepository;
+            this.projectLogic = projectLogic;
         }
 
-        public BugLogic() { }
+        public Bug CreateByUser(Bug bug, Guid userId)
+        {
+            projectLogic.IsUserAssignInProject(bug.Project.Name, userId);
+            return Create(bug);
+        }
 
         public Bug Create(Bug bug)
         {
             NotExistBug(bug.Id);
             IsValidBug(ref bug);
+            
             bugRepository.Create(bug);
+
             return bug;
         }
 
-        private void NotExistBug(int id)
-        {
-            Bug bug = bugRepository.GetById(id);
-
-            if(bug != null)
-            {
-                throw new ExistingObjectException(existingBug);
-            }
-        }
-
-        public Bug Get(int id)
+        public Bug Get(int id, Guid userId)
         {
             Bug bug = bugRepository.GetById(id);
 
@@ -51,17 +50,14 @@ namespace BusinessLogic
                 throw new NoObjectException(notExistBug);
             }
 
+            projectLogic.IsUserAssignInProject(bug.Project.Name, userId);
+
             return bug;
         }
 
-        public void ExistBug(int id)
+        public void Delete(int id, Guid userId)
         {
-            Get(id);
-        }
-
-        public void Delete(int id)
-        {
-            ExistBug(id);
+            Get(id, userId);
             bugRepository.Delete(id);
         }
 
@@ -70,9 +66,9 @@ namespace BusinessLogic
             return bugRepository.GetAll();
         }
 
-        public Bug Update(int id, Bug bugUpdate)
+        public Bug Update(int id, Bug bugUpdate, Guid userId)
         {
-            ExistBug(id);
+            Get(id, userId);
             IsValidBug(ref bugUpdate);
 
             bugUpdate.Id = id;
@@ -80,43 +76,20 @@ namespace BusinessLogic
             return bugRepository.Update(id, bugUpdate);
         }
 
-        public Bug UpdateState(int id, string state)
+        private void NotExistBug(int id)
         {
-            ExistBug(id);
+            Bug bug = bugRepository.GetById(id);
 
-            if (state.ToLower() == State.active.ToLower())
-                return UpdateStateToActiveBug(id);
-            else if (state.ToLower() == State.done.ToLower())
-                return UpdateStateToDoneBug(id);
-
-            throw new InvalidDataObjException(invalidState);
-        }
-
-        public Bug UpdateStateToActiveBug(int id)
-        {
-            Bug activeBug = bugRepository.Get(id);
-
-            activeBug.State.Name = State.active;
-
-            bugRepository.Update(id, activeBug);
-
-            return activeBug;
-        }
-
-        public Bug UpdateStateToDoneBug(int id)
-        {
-            Bug doneBug = bugRepository.Get(id);
-
-            doneBug.State.Name = State.done;
-
-            bugRepository.Update(id, doneBug);
-
-            return doneBug;
+            if (bug != null)
+            {
+                throw new ExistingObjectException(existingBug);
+            }
         }
 
         private void IsValidBug(ref Bug bug)
         {
             bug.State = IsValidState(bug.State);
+            bug.Project = projectLogic.ExistProjectWithName(bug.Project);
             Bug.AreCorrectData(bug);
         }
 

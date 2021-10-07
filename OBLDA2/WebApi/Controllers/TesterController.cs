@@ -20,45 +20,30 @@ namespace WebApi.Controllers
             this.testerLogic = testerLogic;
         }
 
-        [HttpGet("{id}/GetAllBugsForTester")]
+        [HttpGet("{idTester}/bugs")]
         [AuthorizationFilter(Autorization.Tester)]
-        public IActionResult GetAllBugsTester(Guid id)
+        public IActionResult GetAllBugsTester(Guid idTester)
         {
-            User user = new User();
-            user.Id = id;
+            List<Bug> bugs = this.testerLogic.GetAllBugs(idTester);
 
-            IEnumerable<Bug> bugs = this.testerLogic.GetAllBugs(user);
+            IEnumerable<BugEntryOutModel> bugsModel = BugEntryOutModel.ListBugs(bugs);
 
-            return (StatusCode((int)HttpStatusCode.OK, bugs));
+            return (StatusCode((int)HttpStatusCode.OK, bugsModel));
         }
 
-        [HttpPost("{idTester}/AssignTesterToProject/{projectId}")]
+        [HttpPost("{idTester}/project/{idProject}")]
         [AuthorizationFilter(Autorization.Administrator)]
-
-        public IActionResult AssignTester(Guid projectId, Guid idTester)
+        public IActionResult AssignTester(Guid idProject, Guid idTester)
         {
-            User tester = new User();
-            tester.Id = idTester;
-
-            Project project = new Project();
-            project.Id = projectId;
-
-            testerLogic.AssignTesterToProject(project, tester);
+            testerLogic.AssignTesterToProject(idProject, idTester);
             return NoContent();
         }
 
-        [HttpDelete("{idTester}/DeleteTesterToProject/{projectId}")]
+        [HttpDelete("{idTester}/project/{idProject}")]
         [AuthorizationFilter(Autorization.Administrator)]
-
-        public IActionResult DeleteTester(Guid idTester, Guid projectId)
+        public IActionResult DeleteTester(Guid idTester, Guid idProject)
         {
-            User tester = new User();
-            tester.Id = idTester;
-
-            Project project = new Project();
-            project.Id = projectId;
-
-            testerLogic.DeleteTesterInProject(project, tester);
+            testerLogic.DeleteTesterInProject(idProject, idTester);
             return NoContent();
         }
 

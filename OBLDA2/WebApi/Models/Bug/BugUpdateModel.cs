@@ -1,4 +1,5 @@
 using Domain;
+using System;
 
 namespace OBLDA2.Models
 {
@@ -9,6 +10,7 @@ namespace OBLDA2.Models
         public string Domain { get; set; }
         public string Version { get; set; }
         public string State { get; set; }
+        public Guid UserId { get; set; }
 
         public BugUpdateModel() { }
 

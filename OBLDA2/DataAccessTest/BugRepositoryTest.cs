@@ -7,6 +7,7 @@ using DataAccessInterface;
 using System.Data.Common;
 using System.Linq;
 using DataAccess;
+using Exceptions;
 using Domain;
 using System;
 
@@ -60,7 +61,7 @@ namespace DataAccessTest
         }
 
         [TestMethod]
-        public void GetBug()
+        public void GetBugOk()
         {
             Bug bug = CreateBug(1, State.active);
 
@@ -70,6 +71,14 @@ namespace DataAccessTest
             Bug bugDB = _bugRepository.GetById(bug.Id);
 
             Assert.AreEqual(bug.Id, bugDB.Id);
+        }
+
+        [TestMethod]
+        public void GetBugFail()
+        {
+            Bug bugDB = _bugRepository.GetById(0);
+
+            Assert.IsNull(bugDB);
         }
 
         private Bug CreateBug(int id, string oneState)

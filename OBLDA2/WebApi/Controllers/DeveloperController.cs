@@ -2,11 +2,11 @@
 using Microsoft.AspNetCore.Mvc;
 using BusinessLogicInterface;
 using OBLDA2.Controllers;
+using WebApi.Filters;
 using OBLDA2.Models;
 using System.Net;
 using System;
 using Domain;
-using WebApi.Filters;
 
 namespace WebApi.Controllers
 {
@@ -20,59 +20,48 @@ namespace WebApi.Controllers
             this.developerLogic = developerLogic;
         }
 
-        [HttpGet("{id}/DeveloperGetAllBugs")]
+        [HttpGet("{idDeveloper}/bugs")]
         [AuthorizationFilter(Autorization.DeveloperAndAdmin)]
-        public IActionResult GetAllBugsDeveloper(Guid id)
+        public IActionResult GetAllBugsDeveloper(Guid idDeveloper)
         {
-            User developer = new User();
-            developer.Id = id;
+            List<Bug> bugs = this.developerLogic.GetAllBugs(idDeveloper);
+            IEnumerable<BugEntryOutModel> bugsModel = BugEntryOutModel.ListBugs(bugs);
 
-            IEnumerable<Bug> bugs = this.developerLogic.GetAllBugs(developer);
-
-            return (StatusCode((int)HttpStatusCode.OK, bugs));
+            return (StatusCode((int)HttpStatusCode.OK, bugsModel));
         }
         
-        [HttpPost("{idDeveloper}/AssignDeveloperToProject/{idProject}")]
+        [HttpPost("{idDeveloper}/project/{idProject}")]
         [AuthorizationFilter(Autorization.Administrator)]
-
         public IActionResult AssignDeveloperToProject(Guid idProject, Guid idDeveloper)
         {
-            User developer = new User();
-            developer.Id = idDeveloper;
-
-            Project project = new Project();
-            project.Id = idProject;
-
-            developerLogic.AssignDeveloperToProject(project, developer);
+            developerLogic.AssignDeveloperToProject(idProject, idDeveloper);
             return NoContent();
         }
 
-        [HttpDelete("{idDeveloper}/DeleteProject/{idProject}")]
+        [HttpDelete("{idDeveloper}/project/{idProject}")]
         [AuthorizationFilter(Autorization.Administrator)]
-
         public IActionResult DeleteDeveloperToProject(Guid idDeveloper, Guid idProject)
         {
-            User developer = new User();
-            developer.Id = idDeveloper;
-
-            Project project = new Project();
-            project.Id = idProject;
-
-            developerLogic.DeleteDeveloperInProject(project, developer);
+            developerLogic.DeleteDeveloperInProject(idProject, idDeveloper);
             return NoContent();
         }
 
-        [HttpGet("{id}/CountBugsResolved")]
+        [HttpGet("{idDeveloper}/countBugs")]
         [AuthorizationFilter(Autorization.Administrator)]
-
-        public IActionResult GetCountBugsResolvedByDeveloper(Guid id)
+        public IActionResult GetCountBugsResolvedByDeveloper(Guid idDeveloper)
         {
-            User developer = new User();
-            developer.Id = id;
-
-            int countBugsResolved = this.developerLogic.CountBugDoneByDeveloper(developer);
-
+            int countBugsResolved = this.developerLogic.CountBugDoneByDeveloper(idDeveloper);
             return (StatusCode((int)HttpStatusCode.OK, countBugsResolved));
+        }
+
+        [HttpPut("{developerId}/bugState")]
+        [AuthorizationFilter(Autorization.AllAutorization)]
+        public IActionResult UpdateStateBug(Guid developerId, BugUpdateStateModel updateState)
+        {
+            this.developerLogic.UpdateState(updateState.BugId, 
+                updateState.State, developerId);
+
+            return NoContent();
         }
 
     }

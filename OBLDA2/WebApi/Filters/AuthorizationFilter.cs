@@ -1,10 +1,10 @@
-using System;
-using System.Collections.Generic;
-using System.Net;
-using BusinessLogicInterface;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.Filters;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.AspNetCore.Mvc.Filters;
+using System.Collections.Generic;
+using Microsoft.AspNetCore.Mvc;
+using BusinessLogicInterface;
+using System.Net;
+using System;
 
 namespace WebApi.Filters
 {
@@ -30,7 +30,8 @@ namespace WebApi.Filters
 
         public void OnAuthorization(AuthorizationFilterContext context)
         {
-            this.sessionLogic = context.HttpContext.RequestServices.GetService<ISessionLogic>();
+            this.sessionLogic = context.HttpContext.RequestServices.
+                GetService<ISessionLogic>();
 
             string token = context.HttpContext.Request.Headers["Authorization"];
             if (string.IsNullOrEmpty(token))

@@ -10,7 +10,7 @@ namespace BusinessLogic
     public class SessionLogic : ISessionLogic
     {
         private const string invalidEmailOrPasswordMessage = "Invalid email or password.";
-        private const string invalidToken = "You dont have a valid token";
+        private const string invalidTokenMessage = "Invalid token.";
 
         private IUserLogic userLogic;
 
@@ -18,8 +18,6 @@ namespace BusinessLogic
         {
             userLogic = _userLogic;
         }
-
-        public SessionLogic(){}
 
         public List<string> GetAllTokens()
         {
@@ -75,6 +73,8 @@ namespace BusinessLogic
         public void Logout(string token)
         {
             var userToLogOut = userLogic.GetAll().Where(u => u.Token == token);
+            if (userToLogOut.Count() == 0)
+                throw new InvalidDataObjException(invalidTokenMessage);
             UpdateToken(userToLogOut.First(), null);
         }
 

@@ -1,18 +1,19 @@
+using System;
 using System.Collections.Generic;
-using System.Linq;
 using Domain;
 
 namespace OBLDA2.Models
 {
     public class UserOutModel
     {
+        public Guid Id { get; set; }
         public string Rol { get; set; }
         public string Name { get; set; }
         public string LastName { get; set; }
         public string UserName { get; set; }
         public string Password { get; set; }
         public string Email { get; set; }
-        public IEnumerable<ProjectOutModel> Projects { get; set; }
+        public List<string> Projects { get; set; }
 
         public UserOutModel() { }
 
@@ -24,9 +25,27 @@ namespace OBLDA2.Models
             this.UserName = user.UserName;
             this.Password = user.Password;
             this.Email = user.Email;
+            this.Id = user.Id;
 
-            this.Projects = new List<ProjectOutModel>();
-            this.Projects = user.Projects.Select(p => new ProjectOutModel(p));
+            this.Projects = new List<string>();
+
+            if (user.Projects != null)
+                foreach (Project project in user.Projects)
+                {
+                    this.Projects.Add(project.Name);
+                }
+        }
+
+        public static List<UserOutModel> ListUser(List<User> users)
+        {
+            List<UserOutModel> outModel = new List<UserOutModel>();
+
+            foreach (User user in users)
+            {
+                outModel.Add(new UserOutModel(user));
+            }
+
+            return outModel;
         }
 
     }

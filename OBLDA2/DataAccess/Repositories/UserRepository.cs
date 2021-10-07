@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using DataAccessInterface;
 using System.Linq;
+using Exceptions;
 using Domain;
 using System;
 
@@ -9,6 +10,7 @@ namespace DataAccess.Repositories
 {
     public class UserRepository : Repository<User, Guid>, IUserRepository
     {
+        private const string notExistUser = "Not exist user with this id";
         private readonly DbSet<User> _DbSet;
 
         public UserRepository(DbContext context) : base(context)
@@ -25,7 +27,14 @@ namespace DataAccess.Repositories
 
         public User GetById(Guid id)
         {
-            return _DbSet.Include(r => r.Rol).Include(p => p.Projects).First(p => p.Id == id);
+            try {
+                return _DbSet.Include(r => r.Rol).Include(p => p.Projects)
+                    .First(p => p.Id == id);
+            }
+            catch (Exception)
+            {
+                throw new NoObjectException(notExistUser);
+            }
         }
 
         public void UpdateUser(User user)

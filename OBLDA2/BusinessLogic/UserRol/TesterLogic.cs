@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using BusinessLogicInterface;
 using DataAccessInterface;
+using Exceptions;
 using Domain;
 using System;
 
@@ -8,28 +9,36 @@ namespace BusinessLogic.UserRol
 {
     public class TesterLogic : ITesterLogic
     {
-        private IUserRepository userRepository;
-        private IProjectRepository projectRepository;
-        private IRepository<Rol, Guid> rolRepository;
-        private IRepository<Bug, int> bugRepository;
+        private const string notUserTester = "This user rol is not Tester";
+
+        private IUserLogic userLogic;
         private IProjectLogic projcetLogic;
 
-        public TesterLogic(IUserRepository userRepository, IProjectRepository projectRepository,
-            IRepository<Rol, Guid> rolRepository, IRepository<Bug, int> bugRepository)
+        public TesterLogic(IUserLogic userLogic, 
+            IProjectLogic projcetLogic, IRepository<Rol, Guid> rolRepository)
         {
-            this.userRepository = userRepository;
-            this.projectRepository = projectRepository;
-            this.rolRepository = rolRepository;
-            this.bugRepository = bugRepository;
+            this.userLogic = userLogic;
+            this.projcetLogic = projcetLogic;
         }
 
-        public TesterLogic() { }
+        public User Get(Guid id)
+        {
+            return userLogic.Get(id);
+        }
+
+        public void AssignTesterToProject(Guid projectId, Guid testerId)
+        {
+            User tester = userLogic.Get(testerId);
+            IsTester(tester);
+            Project project = projcetLogic.Get(projectId);
+            projcetLogic.AssignUser(projectId, ref tester);
+        }
 
         public List<User> GetAll()
         {
-            List<User> users = userRepository.GetAll();
-
+            List<User> users = userLogic.GetAll();
             List<User> testers = new List<User>();
+
             foreach (User user in users)
             {
                 if (user.Rol.Name == Rol.tester)
@@ -39,57 +48,33 @@ namespace BusinessLogic.UserRol
             return testers;
         }
 
-        public User Get(Guid id)
+        public void DeleteTesterInProject(Guid projectId, Guid testerId)
         {
-            return userRepository.Get(id);
+            User tester = userLogic.Get(testerId);
+            IsTester(tester);
+            Project project = projcetLogic.Get(projectId);
+            projcetLogic.DeleteUser(projectId, ref tester);
         }
 
-        public User Create(User tester)
+        public List<Bug> GetAllBugs(Guid testerId)
         {
-            UserLogic userLogic = new UserLogic(userRepository, rolRepository);
-
-            User developerCreate = userLogic.Create(tester);
-
-            return developerCreate;
-        }
-
-        public void AssignTesterToProject(Project project, User tester)
-        {
-            projcetLogic.AssignTester(project, tester);
-        }
-
-        public void DeleteTesterInProject(Project project, User tester)
-        {
-            projcetLogic.DeleteTester(project, tester);
-        }
-
-        public List<Project> GetProjectsByTester(Guid id)
-        {
-            throw new NotImplementedException();
-        }
-
-        public Bug CreateBug(Bug bug)
-        {
-            return bugRepository.Create(bug);
-        }
-
-        public List<Bug> GetAllBugs(User tester)
-        {
-            List<Project> allProjects = projectRepository.GetAllGeneric();
-
+            User tester = Get(testerId);
+            List<Project> allProjects = projcetLogic.GetAll();
             List<Bug> bugs = new List<Bug>();
 
             foreach (var project in allProjects)
-                if (project.Users.Contains(tester))
+                if (project.Users.Find(u => u.Id == testerId) != null)
                     bugs.AddRange(project.Bugs);
 
             return bugs;
         }
 
-        public void DeleteBug(int id)
+        private void IsTester(User tester)
         {
-            bugRepository.Delete(id);
+            if (tester.Rol.Name.ToLower() != Rol.tester.ToLower())
+            {
+                throw new InvalidDataObjException(notUserTester);
+            }
         }
-
     }
 }

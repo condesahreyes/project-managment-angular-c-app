@@ -2,14 +2,14 @@
  <Proyecto>Proyecto en xml</Proyecto>
     <Bugs>
         <Bug>
-            <Id>1</Id>
+            <Id>4561</Id>
             <Nombre>Error en el envío de correo</Nombre>
             <Descripcion>El error se produce cuando el usuario no tiene un correo asignado</Descripcion>
             <Version>1.0</Version>
             <Estado>Activo</Estado>
         </Bug>
         <Bug>
-            <Id>2</Id>
+            <Id>9999</Id>
             <Nombre>Error en el envío de correo 2</Nombre>
             <Descripcion>El error se produce cuando el usuario no tiene un correo asignado 2</Descripcion>
             <Version>1.0</Version>

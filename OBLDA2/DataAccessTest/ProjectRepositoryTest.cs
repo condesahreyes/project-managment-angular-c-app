@@ -7,7 +7,9 @@ using DataAccessInterface;
 using System.Data.Common;
 using System.Linq;
 using DataAccess;
+using Exceptions;
 using Domain;
+using System;
 
 namespace DataAccessTest
 {
@@ -46,11 +48,9 @@ namespace DataAccessTest
         public void GetAllProject()
         {
             List<Project> projects = new List<Project>{
-                CreateProject("Proyecto 1"),
-                CreateProject("Proyecto 2")
+                CreateProject("Proyecto 1")
             };
 
-            _context.Add(projects.Last());
             _context.Add(projects.First());
             _context.SaveChanges();
 
@@ -60,7 +60,7 @@ namespace DataAccessTest
         }
 
         [TestMethod]
-        public void GetProject()
+        public void GetProjectOk()
         {
             Project project = CreateProject("Projecto 1");
 
@@ -70,6 +70,30 @@ namespace DataAccessTest
             Project projectDB = _projectRepository.GetById(project.Id);
 
             Assert.AreEqual(project.Id, projectDB.Id);
+        }
+
+        [TestMethod]
+        [ExpectedException(typeof(NoObjectException))]
+        public void GetProjectFail()
+        {
+            Project projectDB = _projectRepository.GetById(Guid.NewGuid());
+        }
+
+        [TestMethod]
+        public void UpdateProject()
+        {
+            Project project = CreateProject("Projecto 1");
+
+            _context.Add(project);
+            _context.SaveChanges();
+
+            project.Name = "Update";
+
+            _projectRepository.Update(project.Id, project);
+
+            Project projectDB = _projectRepository.GetById(project.Id);
+
+            Assert.IsTrue(projectDB.Name == "Update");
         }
 
         private Project CreateProject(string projectName)

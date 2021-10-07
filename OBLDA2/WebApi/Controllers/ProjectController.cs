@@ -2,12 +2,11 @@
 using Microsoft.AspNetCore.Mvc;
 using BusinessLogicInterface;
 using OBLDA2.Controllers;
+using WebApi.Filters;
 using OBLDA2.Models;
-using System.Linq;
 using System.Net;
 using Domain;
 using System;
-using WebApi.Filters;
 
 namespace WebApi.Controllers
 {
@@ -23,7 +22,6 @@ namespace WebApi.Controllers
 
         [HttpPost]
         [AuthorizationFilter(Autorization.Administrator)]
-
         public IActionResult AddProject(ProjectEntryModel projectDTO)
         {
             Project project = this.projectLogic.Create(projectDTO.ToEntity());
@@ -35,7 +33,6 @@ namespace WebApi.Controllers
 
         [HttpGet]
         [AuthorizationFilter(Autorization.Administrator)]
-
         public IActionResult GetAllProjects()
         {
             IEnumerable<Project> projects = this.projectLogic.GetAll();
@@ -50,9 +47,8 @@ namespace WebApi.Controllers
             return Ok(projectsOut);
         }
 
-        [HttpGet("TotalBugs")]
+        [HttpGet("bugs")]
         [AuthorizationFilter(Autorization.Administrator)]
-
         public IActionResult GetTotalBugsByProjects()
         {
             IEnumerable<Project> projects = this.projectLogic.GetAll();
@@ -69,7 +65,6 @@ namespace WebApi.Controllers
 
         [HttpGet("{projectId}")]
         [AuthorizationFilter(Autorization.Administrator)]
-
         public IActionResult GetById(Guid projectId)
         {
             Project projectToReturn = this.projectLogic.Get(projectId);
@@ -77,9 +72,8 @@ namespace WebApi.Controllers
              return Ok(new ProjectOutModel(projectToReturn));
         }
 
-        [HttpGet("{projectId}/GetAllBugs")]
+        [HttpGet("{projectId}/bugs")]
         [AuthorizationFilter(Autorization.Administrator)]
-
         public IActionResult GetAllBugsByProject(Guid projectId)
         {
             Project project = new Project();
@@ -91,7 +85,6 @@ namespace WebApi.Controllers
 
         [HttpDelete("{id}")]
         [AuthorizationFilter(Autorization.Administrator)]
-
         public IActionResult Delete(Guid id)
         {
             projectLogic.Delete(id);
@@ -100,12 +93,9 @@ namespace WebApi.Controllers
 
         [HttpPut("{id}")]
         [AuthorizationFilter(Autorization.Administrator)]
-
         public IActionResult UpdateProject(Guid id, ProjectEntryModel projectDTO)
         {
-            Project projectUpdated = this.projectLogic.Update(id, projectDTO.ToEntity());
-            ProjectOutModel projectAdded = new ProjectOutModel(projectUpdated);
-
+            this.projectLogic.Update(id, projectDTO.ToEntity());
             return NoContent();
         }
 

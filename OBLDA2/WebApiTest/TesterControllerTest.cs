@@ -28,10 +28,13 @@ namespace WebApiTest
         public void Setup()
         {
             rolTester = new Rol( Rol.tester);
-            tester = new User("Juan", "Gomez", "jgomez", "admin1234", "gomez@gmail.com", rolTester);
+            tester = new User("Juan", "Gomez", "jgomez", "admin1234", 
+                "gomez@gmail.com", rolTester);
 
-            bug = new Bug(project, 1, "Error de login", "Intento de sesión", "3.0", activeState);
             project = new Project("Project - GXC ");
+
+            bug = new Bug(project, 1, "Error de login", "Intento de sesión", 
+                "3.0", activeState);
 
             testerLogic = new Mock<ITesterLogic>(MockBehavior.Strict);
         }
@@ -41,22 +44,20 @@ namespace WebApiTest
         public void AssignTesterOk()
         {
             ProjectEntryModel projectEntryModel = new ProjectEntryModel(project);
-            UserEntryModel testerEntryModel = new UserEntryModel(tester);
 
-            testerLogic.Setup(x => x.AssignTesterToProject(project, tester));
+            testerLogic.Setup(x => x.AssignTesterToProject(It.IsAny<Guid>(), It.IsAny<Guid>()));
 
             var controller = new TesterController(testerLogic.Object);
-            var result = controller.AssignTester(Guid.NewGuid(), tester.Id);
+            var result = controller.AssignTester(project.Id, tester.Id);
             var status = result as NoContentResult;
 
             Assert.AreEqual(204, status.StatusCode);
-
         }
 
         [TestMethod]
         public void DeleteTesterTest()
         {
-            testerLogic.Setup(m => m.DeleteTesterInProject(project, tester));
+            testerLogic.Setup(m => m.DeleteTesterInProject(project.Id, tester.Id));
 
             var controller = new TesterController(testerLogic.Object);
 
@@ -73,16 +74,20 @@ namespace WebApiTest
             List<Bug> list = new List<Bug>();
             list.Add(bug);
 
-            testerLogic.Setup(m => m.GetAllBugs(tester)).Returns(list);
+            IEnumerable<BugEntryOutModel> bugsModel = new List<BugEntryOutModel>
+            {
+                new BugEntryOutModel(bug)
+            };
+
+            testerLogic.Setup(m => m.GetAllBugs(It.IsAny<Guid>())).Returns(list);
             TesterController controller = new TesterController(testerLogic.Object);
 
-            var result = controller.GetAllBugsTester(tester.Id);
-            var okResult = result as OkObjectResult;
-            var bugsResult = okResult.Value as List<Bug>;
+            var result = controller.GetAllBugsTester(It.IsAny<Guid>());
+            var okResult = result as ObjectResult;
+            var bugsResult = okResult.Value as IEnumerable<BugEntryOutModel>;
 
             testerLogic.VerifyAll();
-
-            Assert.IsTrue(list.SequenceEqual(bugsResult));
+            Assert.IsTrue(bugsModel.First().Id ==  bugsResult.First().Id);
         }
         
     }

@@ -50,21 +50,6 @@ namespace BusinessLogicTest
         }
 
         [TestMethod]
-        public void CreateDeveloper()
-        {
-            mockUser.Setup(x => x.Create(developer)).Returns(developer);
-            
-            var developerLogic = new DeveloperLogic(mockUser.Object, mockProject.Object, mockRol.Object, 
-                mockBug.Object);
-
-            User userSaved = developerLogic.Create(developer);
-
-            mockUser.VerifyAll();
-
-            Assert.AreEqual(developer, userSaved);
-        }
-
-        [TestMethod]
         public void GetAllBugs()
         {
             Project project = new Project("Montes Del Plata");
@@ -84,29 +69,13 @@ namespace BusinessLogicTest
             project.Bugs.AddRange(bugs);
 
             mockProject.Setup(r => r.GetAll()).Returns(projects);
+            mockUser.Setup(u => u.Get(It.IsAny<Guid>())).Returns(developer);
             var bugLogic = new DeveloperLogic(mockUser.Object, mockProject.Object, mockRol.Object, mockBug.Object);
 
-            List<Bug> bugsSaved = bugLogic.GetAllBugs(developer);
+            List<Bug> bugsSaved = bugLogic.GetAllBugs(developer.Id);
 
             mockUser.VerifyAll();
             Assert.IsTrue(bugsSaved.SequenceEqual(bugs));
-        }
-
-        [TestMethod]
-        public void GetDeveloperByName()
-        {
-            List<User> users = new List<User>();
-            users.Add(developer);
-
-            mockUser.Setup(r => r.GetAll()).Returns(users);
-            mockUser.Setup(r => r.Get(developer.Id)).Returns(developer);
-            
-            var developerLogic = new DeveloperLogic(mockUser.Object, mockProject.Object, mockRol.Object, 
-                mockBug.Object);
-
-            User developerSaved = developerLogic.GetByString("diegoAsa");
-
-            Assert.IsTrue(developerSaved.UserName == "diegoAsa");
         }
     }
 }

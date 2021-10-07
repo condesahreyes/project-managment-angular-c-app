@@ -11,10 +11,10 @@ namespace WebApi.Filters
             Rol.administrator;
 
         public const string Developer =
-            Rol.administrator;
+            Rol.developer;
 
         public const string Tester =
-            Rol.administrator;
+            Rol.tester;
 
         public const string DeveloperAndTester = Developer + ","+ Tester;
 
