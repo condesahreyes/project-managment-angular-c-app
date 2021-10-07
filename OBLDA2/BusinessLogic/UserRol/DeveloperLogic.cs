@@ -1,7 +1,6 @@
 ﻿using System.Collections.Generic;
 using BusinessLogicInterface;
 using DataAccessInterface;
-using System.Linq;
 using Exceptions;
 using Domain;
 using System;
@@ -12,6 +11,7 @@ namespace BusinessLogic.UserRol
     {
         private const string invalidState = "It´s not a valid state bug";
         private const string notUserDeveloper = "This user rol is not Developer";
+        private const string unassociatedBugDeveloper = "This bug is unassociated to developer";
 
         private IUserLogic userLogic;
         private IProjectLogic projectLogic;
@@ -79,6 +79,8 @@ namespace BusinessLogic.UserRol
 
         public Bug UpdateState(int id, string state, Guid userResolved)
         {
+            ItsBugDeveloper(id, userResolved);
+
             Bug bug = bugLogic.Get(id);
 
             if (state.ToLower() == State.active.ToLower())
@@ -97,6 +99,14 @@ namespace BusinessLogic.UserRol
             bugLogic.Update(id, bug);
 
             return bug;
+        }
+
+        private void ItsBugDeveloper(int id, Guid userResolved)
+        {
+            List<Bug> bugs = GetAllBugs(userResolved);
+
+            if (bugs.Find(b => b.Id == id) == null)
+                throw new InvalidDataObjException(unassociatedBugDeveloper);
         }
 
         private User GetDeveloper(Guid developerId)
