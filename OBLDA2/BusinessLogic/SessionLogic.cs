@@ -19,8 +19,6 @@ namespace BusinessLogic
             userLogic = _userLogic;
         }
 
-        public SessionLogic(){}
-
         public List<string> GetAllTokens()
         {
             return userLogic.GetAllTokens();

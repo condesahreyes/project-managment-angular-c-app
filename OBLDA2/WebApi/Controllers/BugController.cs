@@ -24,8 +24,9 @@ namespace WebApi.Controllers
         [AuthorizationFilter(Autorization.AdministratorAndTester)]
         public IActionResult AddBug(BugEntryOutModel bugDTO)
         {
-            Bug bug = this.bugLogic.Create(bugDTO.ToEntity());
+            Bug bug = this.bugLogic.CreateByUser(bugDTO.ToEntity(), bugDTO.CreatedBy);
             BugEntryOutModel bugAdded = new BugEntryOutModel(bug);
+            bugAdded.CreatedBy = bugDTO.CreatedBy;
 
             return (StatusCode((int)HttpStatusCode.Created, bugAdded));
         }
@@ -42,17 +43,17 @@ namespace WebApi.Controllers
 
         [HttpGet("{bugId}")]
         [AuthorizationFilter(Autorization.AllAutorization)]
-        public IActionResult GetById(int bugId)
+        public IActionResult GetById(int bugId, UserIdModel user)
         {
-            Bug bugToReturn = this.bugLogic.Get(bugId);
+            Bug bugToReturn = this.bugLogic.Get(bugId, user.Id);
             return Ok(new BugEntryOutModel(bugToReturn));
         }
 
         [HttpDelete("{bugId}")]
         [AuthorizationFilter(Autorization.AdministratorAndTester)]
-        public IActionResult Delete(int bugId)
+        public IActionResult Delete(int bugId, UserIdModel user)
         {
-            bugLogic.Delete(bugId);
+            bugLogic.Delete(bugId, user.Id);
             return NoContent();
         }
 
@@ -60,7 +61,7 @@ namespace WebApi.Controllers
         [AuthorizationFilter(Autorization.AdministratorAndTester)]
         public IActionResult UpdateABug(int bugId, BugUpdateModel bugDTO)
         {
-            this.bugLogic.Update(bugId, bugDTO.ToEntity(bugId));
+            this.bugLogic.Update(bugId, bugDTO.ToEntity(bugId), bugDTO.UserId);
             return NoContent();
         }
 

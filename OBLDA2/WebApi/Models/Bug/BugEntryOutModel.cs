@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using Domain;
 
@@ -11,6 +12,7 @@ namespace OBLDA2.Models
         public string Domain { get; set; }
         public string Version { get; set; }
         public string State { get; set; }
+        public Guid CreatedBy { get; set; }
 
         public BugEntryOutModel() { }
 

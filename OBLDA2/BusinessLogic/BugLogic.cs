@@ -25,17 +25,24 @@ namespace BusinessLogic
             this.projectLogic = projectLogic;
         }
 
-        public BugLogic() { }
+        public Bug CreateByUser(Bug bug, Guid userId)
+        {
+            projectLogic.IsUserAssignInProject(bug.Project.Name, userId);
+            return Create(bug);
+        }
 
         public Bug Create(Bug bug)
         {
             NotExistBug(bug.Id);
             IsValidBug(ref bug);
+            
+
             bugRepository.Create(bug);
+
             return bug;
         }
 
-        public Bug Get(int id)
+        public Bug Get(int id, Guid userId)
         {
             Bug bug = bugRepository.GetById(id);
 
@@ -44,17 +51,14 @@ namespace BusinessLogic
                 throw new NoObjectException(notExistBug);
             }
 
+            projectLogic.IsUserAssignInProject(bug.Project.Name, userId);
+
             return bug;
         }
 
-        public void ExistBug(int id)
+        public void Delete(int id, Guid userId)
         {
-            Get(id);
-        }
-
-        public void Delete(int id)
-        {
-            ExistBug(id);
+            Get(id, userId);
             bugRepository.Delete(id);
         }
 
@@ -63,9 +67,9 @@ namespace BusinessLogic
             return bugRepository.GetAll();
         }
 
-        public Bug Update(int id, Bug bugUpdate)
+        public Bug Update(int id, Bug bugUpdate, Guid userId)
         {
-            ExistBug(id);
+            Get(id, userId);
             IsValidBug(ref bugUpdate);
 
             bugUpdate.Id = id;

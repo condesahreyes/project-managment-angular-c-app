@@ -17,8 +17,6 @@ namespace BusinessLogic
         private IProjectRepository projectRepository;
         private IUserLogic userLogic;
 
-        public ProjectLogic() { }
-
         public ProjectLogic(IProjectRepository ProjectDa, IUserLogic userLogic)
         {
             this.projectRepository = ProjectDa;
@@ -115,18 +113,27 @@ namespace BusinessLogic
         {
             Project project = Get(oneProjectId);
 
-            if (!project.Users.Contains(user))
-            {
-                throw new InvalidDataObjException(notUserInProject);
-            }
+            IsUserAssignInProject(project.Name, user.Id);
 
             project.Users.Remove(user);
+
             projectRepository.Update(project.Id, project);
         }
 
         public void AssignUser(Guid oneProjectId, ref User user)
         {
             AssignUserToProject(ref user, oneProjectId);
+        }
+
+        public void IsUserAssignInProject(string projectName, Guid userId)
+        {
+            User user = userLogic.Get(userId);
+            Project project = ExistProjectWithName(new Project(projectName));
+
+            if (!project.Users.Contains(user) && user.Rol.Name.ToLower() != Rol.administrator.ToLower())
+            {
+                throw new ExistingObjectException(notUserInProject);
+            }
         }
 
         private void AssignUserToProject(ref User userToAsign, Guid oneProjectId)
@@ -164,6 +171,11 @@ namespace BusinessLogic
             return GetAllUserByRol(Rol.developer, oneProject);
         }
 
+        public List<Bug> GetAllBugByProject(Project project)
+        {
+            return Get(project.Id).Bugs;
+        }
+
         private List<User> GetAllUserByRol(string rol, Project oneProject)
         {
             List<User> users = new List<User>();
@@ -178,11 +190,5 @@ namespace BusinessLogic
 
             return users;
         }
-
-        public List<Bug> GetAllBugByProject(Project project)
-        {
-            return Get(project.Id).Bugs; 
-        }
-
     }
 }

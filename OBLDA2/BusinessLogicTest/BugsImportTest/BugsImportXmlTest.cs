@@ -1,9 +1,7 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.Collections.Generic;
-using BusinessLogicInterface;
 using BusinessLogic.Imports;
 using Domain;
-using Moq;
 
 namespace BusinessLogicTest.BugsImportTest
 {
@@ -22,23 +20,18 @@ namespace BusinessLogicTest.BugsImportTest
                 " usuario no tiene un correo asignado 2", "1.0", activeState)
         };
 
-        private Mock<IBugLogic> bugLogic;
         private BugsImportXml bugsImport;
 
         [TestInitialize]
         public void Setup()
         {
-            bugLogic = new Mock<IBugLogic>(MockBehavior.Strict);
-            bugsImport = new BugsImportXml(bugLogic.Object);
+            bugsImport = new BugsImportXml();
         }
 
         [TestMethod]
         public void ImportBugsXml()
         {
-            bugLogic.Setup(x => x.Create(bugsInXml[0])).Returns(bugsInXml[0]);
-            bugLogic.Setup(x => x.Create(bugsInXml[1])).Returns(bugsInXml[1]);
-
-            List<Bug> bugs = bugsImport.ImportBugs(fileAddress);
+            List<Bug> bugs = bugsImport.ImportBugsXml(fileAddress);
 
             CollectionAssert.AreEqual(bugs, bugsInXml);
         }

@@ -11,7 +11,6 @@ namespace BusinessLogic.Imports
     {
         private const string txtExtension = ".txt";
         private const string xmlExtension = ".xml";
-        private const string invalidRoute = "Error, it´s not a valid route";
         private const string invalidFormat = "Error, it´s not a valid format";
 
         private IBugLogic bugLogic;

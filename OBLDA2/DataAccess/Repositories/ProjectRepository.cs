@@ -10,7 +10,7 @@ namespace DataAccess.Repositories
 {
     public class ProjectRepository : Repository<Project, Guid>, IProjectRepository
     {
-        private const string notExistProject = "Not exist project with this id";
+        private const string notExistProject = "Not exist project with this name or id";
 
         private readonly DbSet<Project> _DbSet;
         private readonly DbContext _context;

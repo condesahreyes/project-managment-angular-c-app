@@ -1,9 +1,4 @@
 C:\Users\hreye\Desktop\OBL-Asadurian-Reyes\OBLDA2\BusinessLogicTest\bin\Debug\net5.0\CoverletSourceRootsMapping
-C:\Users\hreye\Desktop\OBL-Asadurian-Reyes\OBLDA2\BusinessLogicTest\obj\Debug\net5.0\BusinessLogicTest.csproj.AssemblyReference.cache
-C:\Users\hreye\Desktop\OBL-Asadurian-Reyes\OBLDA2\BusinessLogicTest\obj\Debug\net5.0\BusinessLogicTest.GeneratedMSBuildEditorConfig.editorconfig
-C:\Users\hreye\Desktop\OBL-Asadurian-Reyes\OBLDA2\BusinessLogicTest\obj\Debug\net5.0\BusinessLogicTest.AssemblyInfoInputs.cache
-C:\Users\hreye\Desktop\OBL-Asadurian-Reyes\OBLDA2\BusinessLogicTest\obj\Debug\net5.0\BusinessLogicTest.AssemblyInfo.cs
-C:\Users\hreye\Desktop\OBL-Asadurian-Reyes\OBLDA2\BusinessLogicTest\obj\Debug\net5.0\BusinessLogicTest.csproj.CoreCompileInputs.cache
 C:\Users\hreye\Desktop\OBL-Asadurian-Reyes\OBLDA2\BusinessLogicTest\bin\Debug\net5.0\testhost.dll
 C:\Users\hreye\Desktop\OBL-Asadurian-Reyes\OBLDA2\BusinessLogicTest\bin\Debug\net5.0\testhost.exe
 C:\Users\hreye\Desktop\OBL-Asadurian-Reyes\OBLDA2\BusinessLogicTest\bin\Debug\net5.0\Microsoft.TestPlatform.PlatformAbstractions.dll
@@ -105,6 +100,11 @@ C:\Users\hreye\Desktop\OBL-Asadurian-Reyes\OBLDA2\BusinessLogicTest\bin\Debug\ne
 C:\Users\hreye\Desktop\OBL-Asadurian-Reyes\OBLDA2\BusinessLogicTest\bin\Debug\net5.0\Domain.pdb
 C:\Users\hreye\Desktop\OBL-Asadurian-Reyes\OBLDA2\BusinessLogicTest\bin\Debug\net5.0\DataAccessInterface.pdb
 C:\Users\hreye\Desktop\OBL-Asadurian-Reyes\OBLDA2\BusinessLogicTest\bin\Debug\net5.0\Exceptions.pdb
+C:\Users\hreye\Desktop\OBL-Asadurian-Reyes\OBLDA2\BusinessLogicTest\obj\Debug\net5.0\BusinessLogicTest.csproj.AssemblyReference.cache
+C:\Users\hreye\Desktop\OBL-Asadurian-Reyes\OBLDA2\BusinessLogicTest\obj\Debug\net5.0\BusinessLogicTest.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\hreye\Desktop\OBL-Asadurian-Reyes\OBLDA2\BusinessLogicTest\obj\Debug\net5.0\BusinessLogicTest.AssemblyInfoInputs.cache
+C:\Users\hreye\Desktop\OBL-Asadurian-Reyes\OBLDA2\BusinessLogicTest\obj\Debug\net5.0\BusinessLogicTest.AssemblyInfo.cs
+C:\Users\hreye\Desktop\OBL-Asadurian-Reyes\OBLDA2\BusinessLogicTest\obj\Debug\net5.0\BusinessLogicTest.csproj.CoreCompileInputs.cache
 C:\Users\hreye\Desktop\OBL-Asadurian-Reyes\OBLDA2\BusinessLogicTest\obj\Debug\net5.0\BusinessLogicTest.csproj.CopyComplete
 C:\Users\hreye\Desktop\OBL-Asadurian-Reyes\OBLDA2\BusinessLogicTest\obj\Debug\net5.0\BusinessLogicTest.dll
 C:\Users\hreye\Desktop\OBL-Asadurian-Reyes\OBLDA2\BusinessLogicTest\obj\Debug\net5.0\ref\BusinessLogicTest.dll

@@ -7,6 +7,7 @@ using OBLDA2.Models;
 using System.Linq;
 using Domain;
 using Moq;
+using System;
 
 namespace WebApiTest
 {
@@ -34,7 +35,7 @@ namespace WebApiTest
         public void AddBugTest()
         {
             BugEntryOutModel bugModelEntry = new BugEntryOutModel(bug);
-            bugLogic.Setup(m => m.Create(bug)).Returns(bug);
+            bugLogic.Setup(m => m.CreateByUser(bug, It.IsAny<Guid>())).Returns(bug);
             var controller = new BugController(bugLogic.Object);
 
             IActionResult result = controller.AddBug(bugModelEntry);
@@ -72,10 +73,11 @@ namespace WebApiTest
         [TestMethod]
         public void GetBugIdTest()
         {
-            bugLogic.Setup(m => m.Get(bug.Id)).Returns(bug);
+            UserIdModel user = new UserIdModel(Guid.NewGuid());
+            bugLogic.Setup(m => m.Get(bug.Id, user.Id)).Returns(bug);
             BugController controller = new BugController(bugLogic.Object);
 
-            IActionResult result = controller.GetById(bug.Id);
+            IActionResult result = controller.GetById(bug.Id, user);
             var okResult = result as OkObjectResult;
             var bugResult = okResult.Value as BugEntryOutModel;
 
@@ -91,7 +93,7 @@ namespace WebApiTest
                 "3.5", activeState);
             BugUpdateModel bugUpdateDTO = new BugUpdateModel(updatedBug);
 
-            bugLogic.Setup(m => m.Update(bug.Id, updatedBug)).Returns(updatedBug);
+            bugLogic.Setup(m => m.Update(bug.Id, updatedBug, It.IsAny<Guid>())).Returns(updatedBug);
             var controller = new BugController(bugLogic.Object);
 
             IActionResult result = controller.UpdateABug(bug.Id, bugUpdateDTO);
@@ -105,10 +107,11 @@ namespace WebApiTest
         [TestMethod]
         public void DeleteBugTest()
         {
-            bugLogic.Setup(m => m.Delete(bug.Id));
+            UserIdModel user = new UserIdModel(Guid.NewGuid());
+            bugLogic.Setup(m => m.Delete(bug.Id, user.Id));
             BugController controller = new BugController(bugLogic.Object);
 
-            IActionResult result = controller.Delete(bug.Id);
+            IActionResult result = controller.Delete(bug.Id, user);
             var status = result as NoContentResult;
 
             bugLogic.VerifyAll();

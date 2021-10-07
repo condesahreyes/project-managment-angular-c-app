@@ -25,8 +25,6 @@ namespace BusinessLogic.UserRol
             this.bugLogic = bugLogic;
         }
 
-        public DeveloperLogic() { }
-
         public void AssignDeveloperToProject(Guid projectId, Guid developerId)
         {
             User developer = GetDeveloper(developerId);
@@ -71,8 +69,12 @@ namespace BusinessLogic.UserRol
             List<Bug> bugs = new List<Bug>();
 
             foreach (var project in allProjects)
+            {
                 if (project.Users.Contains(developer))
+                {
                     bugs.AddRange(project.Bugs);
+                }
+            }
 
             return bugs;
         }
@@ -81,7 +83,7 @@ namespace BusinessLogic.UserRol
         {
             ItsBugDeveloper(id, userResolved);
 
-            Bug bug = bugLogic.Get(id);
+            Bug bug = bugLogic.Get(id, userResolved);
 
             if (state.ToLower() == State.active.ToLower())
             {
@@ -96,7 +98,7 @@ namespace BusinessLogic.UserRol
                 throw new InvalidDataObjException(invalidState);
             }
 
-            bugLogic.Update(id, bug);
+            bugLogic.Update(id, bug, userResolved);
 
             return bug;
         }

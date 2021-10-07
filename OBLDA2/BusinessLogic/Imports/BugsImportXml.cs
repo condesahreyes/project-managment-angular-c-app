@@ -1,6 +1,4 @@
-﻿using BusinessLogicInterface.Imports;
-using System.Collections.Generic;
-using BusinessLogicInterface;
+﻿using System.Collections.Generic;
 using Exceptions;
 using System.Xml;
 using System.IO;
@@ -9,13 +7,11 @@ using System;
 
 namespace BusinessLogic.Imports
 {
-    public class BugsImportXml : BugsImport
+    public class BugsImportXml
     {
         private const string invalidRoute = "Error, it´s not a valid route";
 
-        public BugsImportXml(IBugLogic bugLogic) : base(bugLogic) { }
-
-        public BugsImportXml() : base() { }
+        public BugsImportXml() { }
 
         public List<Bug> ImportBugsXml(string fileAddress)
         {

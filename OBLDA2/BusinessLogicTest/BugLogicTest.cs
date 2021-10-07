@@ -209,10 +209,11 @@ namespace BusinessLogicTest
             mock.Setup(r => r.GetAll()).Returns(bugs);
             mock.Setup(r => r.Delete(bug.Id));
             mock.Setup(x => x.GetById(bug.Id)).Returns(bug);
+            projectMock.Setup(p => p.IsUserAssignInProject(It.IsAny<string>(), It.IsAny<Guid>()));
 
             BugLogic bugLogic = new BugLogic(mock.Object, stateMock.Object, projectMock.Object);
 
-            bugLogic.Delete(bug.Id);
+            bugLogic.Delete(bug.Id, It.IsAny<Guid>());
 
             List<Bug> bugSaved = bugLogic.GetAll();
 
@@ -227,13 +228,13 @@ namespace BusinessLogicTest
             Project newProject = new Project("Nuevo proyecto");
             Bug oneBugUpdate = new Bug(newProject, id, name, domain, version, stateActive);
 
+            projectMock.Setup(p => p.IsUserAssignInProject(It.IsAny<string>(), It.IsAny<Guid>()));
             mock.Setup(x => x.GetById(bug.Id)).Returns(bug);
-
             mock.Setup(r => r.Update(bug.Id, oneBugUpdate)).Returns(oneBugUpdate);
             projectMock.Setup(x => x.ExistProjectWithName(It.IsAny<Project>())).Returns(newProject);
 
             BugLogic bugLogic = new BugLogic(mock.Object, stateMock.Object, projectMock.Object);
-            var bugNew = bugLogic.Update(bug.Id, oneBugUpdate);
+            var bugNew = bugLogic.Update(bug.Id, oneBugUpdate, It.IsAny<Guid>());
 
             mock.VerifyAll();
             string nombre = bugNew.Project.Name;
@@ -243,6 +244,7 @@ namespace BusinessLogicTest
         [TestMethod]
         public void UpdateBugName()
         {
+            projectMock.Setup(p => p.IsUserAssignInProject(It.IsAny<string>(), It.IsAny<Guid>()));
             var bugUpdate = new Bug(project, id, otherName, domain, version, stateActive);
 
             mock.Setup(x => x.GetById(bug.Id)).Returns(bug);
@@ -250,7 +252,7 @@ namespace BusinessLogicTest
             projectMock.Setup(x => x.ExistProjectWithName(It.IsAny<Project>())).Returns(project);
 
             BugLogic bugLogic = new BugLogic(mock.Object, stateMock.Object, projectMock.Object);
-            var bugNew = bugLogic.Update(bug.Id, bugUpdate);
+            var bugNew = bugLogic.Update(bug.Id, bugUpdate, It.IsAny<Guid>());
 
             mock.VerifyAll();
 
@@ -260,13 +262,14 @@ namespace BusinessLogicTest
         [TestMethod]
         public void UpdateBugDomain()
         {
+            projectMock.Setup(p => p.IsUserAssignInProject(It.IsAny<string>(), It.IsAny<Guid>()));
             var bugUpdate = new Bug(project, id, otherName, "Otro dominio", version, stateActive);
             mock.Setup(r => r.Update(bug.Id, bugUpdate)).Returns(bugUpdate);
 
             mock.Setup(x => x.GetById(bug.Id)).Returns(bug);
             projectMock.Setup(x => x.ExistProjectWithName(It.IsAny<Project>())).Returns(project);
             BugLogic bugLogic = new BugLogic(mock.Object, stateMock.Object, projectMock.Object);
-            var bugNew = bugLogic.Update(bug.Id, bugUpdate);
+            var bugNew = bugLogic.Update(bug.Id, bugUpdate, It.IsAny<Guid>());
 
             mock.VerifyAll();
 
@@ -279,11 +282,11 @@ namespace BusinessLogicTest
             var bugUpdate = new Bug(project, id, otherName, domain, "3.5", stateActive);
 
             mock.Setup(r => r.Update(bug.Id, bugUpdate)).Returns(bugUpdate);
-
+            projectMock.Setup(p => p.IsUserAssignInProject(It.IsAny<string>(), It.IsAny<Guid>()));
             mock.Setup(x => x.GetById(bug.Id)).Returns(bug);
             projectMock.Setup(x => x.ExistProjectWithName(It.IsAny<Project>())).Returns(project);
             BugLogic bugLogic = new BugLogic(mock.Object, stateMock.Object, projectMock.Object);
-            var bugNew = bugLogic.Update(bug.Id, bugUpdate);
+            var bugNew = bugLogic.Update(bug.Id, bugUpdate, It.IsAny<Guid>());
 
             mock.VerifyAll();
 
@@ -296,12 +299,12 @@ namespace BusinessLogicTest
             var bugUpdate = new Bug(project, id, otherName, domain, "3.5", stateResolved);
 
             mock.Setup(r => r.Update(bug.Id, bugUpdate)).Returns(bugUpdate);
-
+            projectMock.Setup(p => p.IsUserAssignInProject(It.IsAny<string>(), It.IsAny<Guid>()));
             mock.Setup(x => x.GetById(bug.Id)).Returns(bug);
             projectMock.Setup(x => x.ExistProjectWithName(It.IsAny<Project>())).Returns(project);
 
             BugLogic bugLogic = new BugLogic(mock.Object, stateMock.Object, projectMock.Object);
-            var bugNew = bugLogic.Update(bug.Id, bugUpdate);
+            var bugNew = bugLogic.Update(bug.Id, bugUpdate, It.IsAny<Guid>());
 
             mock.VerifyAll();
             Assert.IsTrue(bugNew.State == stateResolved);
@@ -310,11 +313,12 @@ namespace BusinessLogicTest
         [TestMethod]
         public void GetBug()
         {
+            projectMock.Setup(p => p.IsUserAssignInProject(It.IsAny<string>(), It.IsAny<Guid>()));
             mock.Setup(r => r.GetById(bug.Id)).Returns(bug);
 
             BugLogic bugLogic = new BugLogic(mock.Object, stateMock.Object, projectMock.Object);
 
-            Bug bugGet = bugLogic.Get(bug.Id);
+            Bug bugGet = bugLogic.Get(bug.Id, It.IsAny<Guid>());
 
             mock.VerifyAll();
             Assert.AreEqual(bugGet, bug);

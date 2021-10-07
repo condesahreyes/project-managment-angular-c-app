@@ -12,6 +12,7 @@ namespace BusinessLogicInterface
         void Delete(Guid id);
         void DeleteUser(Guid oneProjectId, ref User user);
         void AssignUser(Guid oneProjectId, ref User user);
+        void IsUserAssignInProject(string projectName, Guid userId);
 
         Project Get(Guid id);
         Project ExistProjectWithName(Project project);

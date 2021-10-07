@@ -1,9 +1,7 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.Collections.Generic;
-using BusinessLogicInterface;
 using BusinessLogic.Imports;
 using Domain;
-using Moq;
 
 namespace BusinessLogicTest.BugsImportTest
 {
@@ -21,25 +19,18 @@ namespace BusinessLogicTest.BugsImportTest
             new Bug(project, 2, "nombre2", "dominio2", "V 2.0", stateDone)
         };
 
-        private Mock<IBugLogic> bugLogic;
         private BugsImportTxt bugsImport;
 
         [TestInitialize]
         public void Setup()
         {
-            bugLogic = new Mock<IBugLogic>(MockBehavior.Strict);
-            bugsImport = new BugsImportTxt(bugLogic.Object);
+            bugsImport = new BugsImportTxt();
         }
 
         [TestMethod]
         public void ImportBugsTxt()
         {
-            bugLogic.Setup(x => x.Create(bugsInTxt[0])).Returns(bugsInTxt[0]);
-            bugLogic.Setup(x => x.Create(bugsInTxt[1])).Returns(bugsInTxt[1]);
-
-            List<Bug> bugsDesdeTxt = bugsImport.ImportBugs(fileAddress);
-
-            bugLogic.VerifyAll();
+            List<Bug> bugsDesdeTxt = bugsImport.ImportBugsTxt(fileAddress);
 
             CollectionAssert.AreEqual(bugsDesdeTxt, bugsInTxt);
         }

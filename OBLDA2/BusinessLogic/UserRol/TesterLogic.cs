@@ -21,13 +21,11 @@ namespace BusinessLogic.UserRol
             this.projcetLogic = projcetLogic;
         }
 
-        public TesterLogic() { }
-
         public List<User> GetAll()
         {
             List<User> users = userLogic.GetAll();
-
             List<User> testers = new List<User>();
+
             foreach (User user in users)
             {
                 if (user.Rol.Name == Rol.tester)
