@@ -46,6 +46,8 @@ namespace BusinessLogic
                 throw new NoObjectException(notExistProject);
             }
 
+            projcet.TotalBugs = projcet.Bugs.Count;
+
             return projcet;
         }
 
@@ -89,7 +91,11 @@ namespace BusinessLogic
             updatedProject.Id = id;
             NotExistProjectWithName(updatedProject);
             Project.ValidateName(updatedProject.Name);
-            return projectRepository.Update(id, updatedProject);
+
+            Project updateProject = projectRepository.Update(id, updatedProject);
+            updatedProject.TotalBugs = updatedProject.Bugs.Count;
+
+            return updateProject;
         }
 
         public void Delete(Guid id)
@@ -138,6 +144,13 @@ namespace BusinessLogic
 
         public List<Project> GetAll()
         {
+            List<Project> projects = projectRepository.GetAll();
+
+            foreach (Project project in projects)
+            {
+                project.TotalBugs = project.Bugs.Count;
+            }
+
             return projectRepository.GetAll();
         }
 
