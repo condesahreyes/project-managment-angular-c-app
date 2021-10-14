@@ -20,7 +20,8 @@ namespace WebApi.Controllers
         [HttpPost]
         public IActionResult CreateTask(TaskEntryOutModel taskModel)
         {
-            throw new NotImplementedException();
+            Task task = taskLogic.Create(taskModel.ToEntity());
+            return Ok(TaskEntryOutModel.ToModel(task));
         }
     }
 }
