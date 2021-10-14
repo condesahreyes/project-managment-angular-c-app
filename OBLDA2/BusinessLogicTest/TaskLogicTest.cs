@@ -13,6 +13,7 @@ namespace BusinessLogicTest
     {
         private ITaskLogic taskLogic;
         private Mock<ITaskRepository> taskRepositoryMock;
+        private Mock<IProjectLogic> projectLogicMock;
 
         private Task task;
 
@@ -30,7 +31,7 @@ namespace BusinessLogicTest
             this.taskName = "One Task";
             this.invalidTaskName = "";
             this.taskCost = 2000;
-            this.invalidTaskCost = 0;
+            this.invalidTaskCost = -10;
             this.taskDuration = 0.5;
             this.invalidTaskDuration = -0.1;
 
@@ -38,17 +39,22 @@ namespace BusinessLogicTest
             {
                 Name = taskName,
                 Cost = taskCost,
-                Duration = taskDuration
+                Duration = taskDuration,
+                Project = new Project()
             };
 
             taskRepositoryMock = new Mock<ITaskRepository>(MockBehavior.Strict);
-            taskLogic = new TaskLogic(taskRepositoryMock.Object);
+            projectLogicMock = new Mock<IProjectLogic>(MockBehavior.Strict);
+            taskLogic = new TaskLogic(taskRepositoryMock.Object, projectLogicMock.Object);
         }
 
         [TestMethod]
         public void CreateTaskOk()
         {
             taskRepositoryMock.Setup(x => x.Create(task)).Returns(task);
+            projectLogicMock.Setup(x => x.ExistProjectWithName(It.IsAny<Project>()))
+                .Returns(It.IsAny<Project>());
+
             Task taskCreated = taskLogic.CreateTask(task);
 
             Mock.VerifyAll();
@@ -60,7 +66,7 @@ namespace BusinessLogicTest
         public void CreateTaskInvalidName()
         {
             task.Name = invalidTaskName;
-            taskRepositoryMock.Setup(x => x.Create(task)).Returns(task);
+
             Task taskCreated = taskLogic.CreateTask(task);
         }
 
@@ -69,7 +75,7 @@ namespace BusinessLogicTest
         public void CreateTaskInvalidCost()
         {
             task.Cost = invalidTaskCost;
-            taskRepositoryMock.Setup(x => x.Create(task)).Returns(task);
+
             Task taskCreated = taskLogic.CreateTask(task);
         }
 
@@ -78,7 +84,7 @@ namespace BusinessLogicTest
         public void CreateTaskInvalidDuration()
         {
             task.Duration = invalidTaskDuration;
-            taskRepositoryMock.Setup(x => x.Create(task)).Returns(task);
+
             Task taskCreated = taskLogic.CreateTask(task);
         }
     }
