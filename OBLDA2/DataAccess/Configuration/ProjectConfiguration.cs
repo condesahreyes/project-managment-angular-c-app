@@ -10,6 +10,7 @@ namespace DataAccess.Configuration
         {
             builder.HasKey(a => a.Id);
             builder.HasMany(p => p.Bugs).WithOne(b => b.Project).OnDelete(DeleteBehavior.Cascade);
+            builder.HasMany(t => t.Tasks).WithOne(b => b.Project).OnDelete(DeleteBehavior.Cascade);
 
             builder.HasMany(s => s.Users)
             .WithMany(c => c.Projects).UsingEntity(j => j.ToTable("UsersProject"));

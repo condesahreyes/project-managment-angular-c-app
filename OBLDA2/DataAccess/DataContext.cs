@@ -15,6 +15,7 @@ namespace DataAccess
         public DbSet<Project> Projects { get; set; }
         public DbSet<Bug> Bugs { get; set; }
         public DbSet<User> Users { get; set; }
+        public DbSet<Task> Tasks { get; set; }
 
         public DataContext() { }
 
