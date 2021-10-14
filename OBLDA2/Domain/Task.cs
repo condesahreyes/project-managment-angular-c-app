@@ -50,8 +50,8 @@ namespace Domain
         {
             if(obj is Task task)
             {
-                return this.Id == task.Id && this.Name == task.Name 
-                    && this.Cost == task.Cost && this.Duration == task.Duration;
+                return this.Name == task.Name && this.Cost == task.Cost 
+                    && this.Duration == task.Duration;
             }
 
             return false;

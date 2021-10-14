@@ -55,9 +55,9 @@ namespace BusinessLogicTest
             projectLogicMock.Setup(x => x.ExistProjectWithName(It.IsAny<Project>()))
                 .Returns(It.IsAny<Project>());
 
-            Task taskCreated = taskLogic.CreateTask(task);
+            Task taskCreated = taskLogic.Create(task);
 
-            Mock.VerifyAll();
+            taskRepositoryMock.VerifyAll();
             Assert.AreEqual(task, taskCreated);
         }
 
@@ -67,7 +67,7 @@ namespace BusinessLogicTest
         {
             task.Name = invalidTaskName;
 
-            Task taskCreated = taskLogic.CreateTask(task);
+            Task taskCreated = taskLogic.Create(task);
         }
 
         [TestMethod]
@@ -76,7 +76,7 @@ namespace BusinessLogicTest
         {
             task.Cost = invalidTaskCost;
 
-            Task taskCreated = taskLogic.CreateTask(task);
+            Task taskCreated = taskLogic.Create(task);
         }
 
         [TestMethod]
@@ -85,7 +85,7 @@ namespace BusinessLogicTest
         {
             task.Duration = invalidTaskDuration;
 
-            Task taskCreated = taskLogic.CreateTask(task);
+            Task taskCreated = taskLogic.Create(task);
         }
     }
 }

@@ -6,6 +6,6 @@ namespace BusinessLogicInterface
 {
     public interface ITaskLogic
     {
-        Task CreateTask(Task task);
+        Task Create(Task task);
     }
 }
