@@ -15,7 +15,7 @@ namespace BusinessLogic
             this.projectLogic = projectLogic;
         }
 
-        public Task CreateTask(Task task)
+        public Task Create(Task task)
         {
             IsValidTask(ref task);
 
