@@ -11,6 +11,7 @@ namespace Domain
         public Guid Id { get; set; }
         public List<User> Users { get; set; }
         public List<Bug> Bugs { get; set; }
+        public List<Task> Tasks { get; set; }
         public int TotalBugs { get; set; }
 
         public string Name { get; set; }
@@ -21,6 +22,7 @@ namespace Domain
             this.Name = name;
             this.Users = new List<User>();
             this.Bugs = new List<Bug>();
+            this.Tasks = new List<Task>();
             this.TotalBugs = 0;
         }
 
