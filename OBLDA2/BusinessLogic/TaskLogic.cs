@@ -17,18 +17,18 @@ namespace BusinessLogic
 
         public Task CreateTask(Task task)
         {
-            IsValidTask(task);
+            IsValidTask(ref task);
 
             return taskRepository.Create(task);
         }
 
-        private void IsValidTask(Task task)
+        private void IsValidTask(ref Task task)
         {
             Task.ValidateName(task.Name);
             Task.ValidateDuration(task.Duration);
             Task.ValidateCost(task.Cost);
 
-            projectLogic.ExistProjectWithName(task.Project);
+            task.Project = projectLogic.ExistProjectWithName(task.Project);
         }
     }
 }
