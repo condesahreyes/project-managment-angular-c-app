@@ -4,10 +4,10 @@ using BusinessLogicInterface;
 using DataAccessInterface;
 using BusinessLogic;
 using System.Linq;
+using Exceptions;
 using Domain;
 using System;
 using Moq;
-using Exceptions;
 
 namespace BusinessLogicTest
 {
