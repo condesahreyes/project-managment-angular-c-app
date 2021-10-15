@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using BusinessLogicInterface;
 using DataAccessInterface;
+using System.Linq;
 using Exceptions;
 using Domain;
 using System;
@@ -55,6 +56,27 @@ namespace BusinessLogic
             return bug;
         }
 
+        public List<Bug> GetBugsByName(string name)
+        {
+            List<Bug> bugs = GetAll();
+
+            return bugs.Where(x => x.Name.ToLower() == name.ToLower()).ToList();
+        }
+
+        public List<Bug> GetBugsByState(string state)
+        {
+            List<Bug> bugs = GetAll();
+
+            return bugs.Where(x => x.State.Name.ToLower() == state.ToLower()).ToList();
+        }
+
+        public List<Bug> GetBugsByProject(string project)
+        {
+            List<Bug> bugs = GetAll();
+
+            return bugs.Where(x => x.Project.Name.ToLower() == project.ToLower()).ToList();
+        }
+
         public void Delete(int id, Guid userId)
         {
             Get(id, userId);
@@ -97,15 +119,14 @@ namespace BusinessLogic
         {
             List<State> states = stateRepository.GetAllGeneric();
 
-            foreach (State oneState in states)
+            try
             {
-                if (oneState.Name.ToLower() == state.Name.ToLower())
-                {
-                    return oneState;
-                }
+                return states.Where(s => s.Name.ToLower() == state.Name.ToLower()).First();
             }
-
-            throw new InvalidDataObjException(invalidState);
+            catch (InvalidOperationException)
+            {
+                throw new InvalidDataObjException(invalidState);
+            }
         }
 
     }

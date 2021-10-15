@@ -4,10 +4,10 @@ using BusinessLogicInterface;
 using DataAccessInterface;
 using BusinessLogic;
 using System.Linq;
+using Exceptions;
 using Domain;
 using System;
 using Moq;
-using Exceptions;
 
 namespace BusinessLogicTest
 {
@@ -324,5 +324,47 @@ namespace BusinessLogicTest
             Assert.AreEqual(bugGet, bug);
         }
 
+        [TestMethod]
+        public void GetBugsByName()
+        {
+            bug.Name = otherBug.Name;
+            List<Bug> bugs = new List<Bug> { bug, otherBug };
+
+            mock.Setup(r => r.GetAll()).Returns(bugs);
+            BugLogic bugLogic = new BugLogic(mock.Object, stateMock.Object, projectMock.Object);
+
+            List<Bug> bugsSaved = bugLogic.GetBugsByName(bug.Name);
+
+            mock.VerifyAll();
+            Assert.IsTrue(bugsSaved.SequenceEqual(bugs));
+        }
+
+        [TestMethod]
+        public void GetBugsByState()
+        {
+            List<Bug> bugs = new List<Bug> { bug, otherBug };
+
+            mock.Setup(r => r.GetAll()).Returns(bugs);
+            BugLogic bugLogic = new BugLogic(mock.Object, stateMock.Object, projectMock.Object);
+
+            List<Bug> bugsSaved = bugLogic.GetBugsByState(bug.State.Name);
+
+            mock.VerifyAll();
+            Assert.IsTrue(bugsSaved.SequenceEqual(bugs));
+        }
+
+        [TestMethod]
+        public void GetBugsByProject()
+        {
+            List<Bug> bugs = new List<Bug> { bug, otherBug };
+
+            mock.Setup(r => r.GetAll()).Returns(bugs);
+            BugLogic bugLogic = new BugLogic(mock.Object, stateMock.Object, projectMock.Object);
+
+            List<Bug> bugsSaved = bugLogic.GetBugsByProject(bug.Project.Name);
+
+            mock.VerifyAll();
+            Assert.IsTrue(bugsSaved.SequenceEqual(bugs));
+        }
     }
 }
