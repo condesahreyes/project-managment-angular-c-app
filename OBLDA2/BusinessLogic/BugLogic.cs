@@ -4,6 +4,7 @@ using DataAccessInterface;
 using Exceptions;
 using Domain;
 using System;
+using System.Linq;
 
 namespace BusinessLogic
 {
