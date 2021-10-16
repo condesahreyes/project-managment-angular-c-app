@@ -50,8 +50,6 @@ namespace OBLDA2
                 options.SerializerSettings.ReferenceLoopHandling
                 = Newtonsoft.Json.ReferenceLoopHandling.Ignore
             );
-
-
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)

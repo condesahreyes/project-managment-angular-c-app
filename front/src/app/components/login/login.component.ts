@@ -20,11 +20,18 @@ export class LoginComponent implements OnInit {
   }
 
   onLogin() {
-    return this.sessionService.postLogin(this.login).subscribe(data => {
+     return this.sessionService.postLogin(this.login).subscribe(data => {
+      this.sessionService.saveToken(data.token);
       this.router.navigate(['/home']);
     }, error => {
       console.error(error)
     });
   }
 
+  onLogout(){
+    return this.sessionService.postLogout().subscribe(() => {
+    this.router.navigate(['/login'])
+    this.sessionService.removeToken();
+    });
+  }
 }

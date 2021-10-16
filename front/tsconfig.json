@@ -26,5 +26,13 @@
     "strictInjectionParameters": true,
     "strictInputAccessModifiers": true,
     "strictTemplates": true
-  }
+  },
+  "no-console": [
+    false,
+    "debug",
+    "info",
+    "time",
+    "timeEnd",
+    "trace"
+  ],
 }
