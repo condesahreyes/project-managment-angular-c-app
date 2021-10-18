@@ -1,7 +1,8 @@
 /**Componentes */
-import { SidenavComponent } from './components/sidenav/sidenav.component';
 import {HomeComponent} from './components/home/home.component';
 import { AppComponent } from './app.component';
+import {HTTP_INTERCEPTORS} from '@angular/common/http';
+import {AuthInterceptor} from "./services/auth-interceptor";
 
 /**Modules */
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -13,12 +14,12 @@ import { SessionService } from './services/session.service';
 
  //Sacar esto en un modulo de servicios
  import { HttpClientModule } from '@angular/common/http'; 
+import { ProjectService } from './services/project.service';
 
 @NgModule({
   declarations: [
     AppComponent,
-    HomeComponent,
-    SidenavComponent
+    HomeComponent
   ],
   imports: [
     BrowserModule,
@@ -27,7 +28,12 @@ import { SessionService } from './services/session.service';
     AngularMaterialModule,
     HttpClientModule
   ],
-  providers: [SessionService
+  providers: [SessionService, ProjectService,
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: AuthInterceptor,
+      multi: true
+    }
   ],
   bootstrap: [AppComponent]
 })

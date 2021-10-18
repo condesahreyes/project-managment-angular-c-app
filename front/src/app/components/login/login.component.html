@@ -10,3 +10,28 @@
 <section id="logout">
     <button (click)="onLogout()">Logout</button>
 </section>
+
+<section id="createProject">
+    <form (ngSubmit)="onProject()">
+        <h1> Create project </h1>
+        <input type="name" id="nameProject" name="name" class="form-control" placeholder="name" [(ngModel)]="project.Name" required>
+        <button type="submit"> CreateProjct </button>
+    </form>
+</section>
+
+<section id="getProject">
+    <form (ngSubmit)="getProject()">
+        <h1> Get project </h1>
+        <input type="idProject" id="idProject" name="idProject" class="form-control" placeholder="idProject" [(ngModel)]="projectGet" required>
+        <button type="submit"> getProject </button>
+    </form>
+</section>
+
+
+<section id="deleteProject">
+    <form (ngSubmit)="deleteProject()">
+        <h1> Delete project </h1>
+        <input type="idProject" id="idProject" name="idProject" class="form-control" placeholder="idProject" [(ngModel)]="idProject" required>
+        <button type="submit"> deleteProject </button>
+    </form>
+</section>
