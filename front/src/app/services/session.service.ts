@@ -1,11 +1,13 @@
-import {environment} from "../../environments/environment";
-import {HttpClient} from "@angular/common/http";
-import {Token} from "../models/session/Token";
-import {Login} from "../models/session/Login";
 import { Injectable } from '@angular/core';
-import {Observable} from "rxjs";
+import {HttpClient} from '@angular/common/http';
+import { environment } from 'src/environments/environment';
+import { Login } from 'src/models/session/login';
+import { Token } from 'src/models/session/Token';
+import { Observable } from 'rxjs';
 
-@Injectable()
+@Injectable({
+  providedIn: 'root'
+})
 export class SessionService {
 
   constructor(private http: HttpClient) { }

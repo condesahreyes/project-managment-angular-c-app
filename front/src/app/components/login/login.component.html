@@ -1,37 +1,21 @@
-<section id="login">
-    <form (ngSubmit)="onLogin()">
-        <h1> Login </h1>
-        <input type="email" id="email" name="email" class="form-control" placeholder="Email" [(ngModel)]="login.Email" required>
-        <input type="password" id="password" name="password" class="form-control" placeholder="Password" [(ngModel)]="login.Password" required>
-        <button type="submit"> Login </button>
-    </form>
-</section>
+<div class="body">
 
-<section id="logout">
-    <button (click)="onLogout()">Logout</button>
-</section>
-
-<section id="createProject">
-    <form (ngSubmit)="onProject()">
-        <h1> Create project </h1>
-        <input type="name" id="nameProject" name="name" class="form-control" placeholder="name" [(ngModel)]="project.Name" required>
-        <button type="submit"> CreateProjct </button>
-    </form>
-</section>
-
-<section id="getProject">
-    <form (ngSubmit)="getProject()">
-        <h1> Get project </h1>
-        <input type="idProject" id="idProject" name="idProject" class="form-control" placeholder="idProject" [(ngModel)]="projectGet" required>
-        <button type="submit"> getProject </button>
-    </form>
-</section>
-
-
-<section id="deleteProject">
-    <form (ngSubmit)="deleteProject()">
-        <h1> Delete project </h1>
-        <input type="idProject" id="idProject" name="idProject" class="form-control" placeholder="idProject" [(ngModel)]="idProject" required>
-        <button type="submit"> deleteProject </button>
-    </form>
-</section>
+    <mat-spinner *ngIf="loading" class="spinner" diameter="50"></mat-spinner>
+    <div class="login">
+        <form *ngIf="!loading" [formGroup]="form" (ngSubmit)="onLogin()">
+            <img src="../../../assets/img/programmer.png" width="50%">
+            <h1>Login</h1>
+            <mat-form-field class="ancho" appearance="fill">
+                <mat-label>Email</mat-label>
+                <input type="text" matInput autocomplete="off" formControlName="email">
+            </mat-form-field>
+            <mat-form-field class="ancho" appearance="fill">
+                <mat-label>Password</mat-label>
+                <input type="password" matInput autocomplete="off" formControlName="password" >
+            </mat-form-field>
+            <br>
+            <button type="submit" class="ancho button" mat-raised-button color="primary"
+                [disabled]="form.invalid">Entry</button>
+        </form>
+    </div>
+</div>

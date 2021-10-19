@@ -14,7 +14,7 @@
     "experimentalDecorators": true,
     "moduleResolution": "node",
     "importHelpers": true,
-    "target": "es2017",
+    "target": "es2015",
     "module": "es2020",
     "lib": [
       "es2018",
@@ -26,13 +26,5 @@
     "strictInjectionParameters": true,
     "strictInputAccessModifiers": true,
     "strictTemplates": true
-  },
-  "no-console": [
-    false,
-    "debug",
-    "info",
-    "time",
-    "timeEnd",
-    "trace"
-  ],
+  }
 }

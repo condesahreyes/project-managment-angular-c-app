@@ -1,98 +1,89 @@
 import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
-import {Login} from "../../models/session/Login";
-import { SessionService } from '../../services/session.service';
-import { ProjectService } from '../../services/project.service';
-import { Project } from 'src/app/models/project/Project';
-import { ProjectOut } from 'src/app/models/project/ProjectOut';
-import { User } from 'src/app/models/users/User';
-import { Bug } from 'src/app/models/bug/Bug';
+import { SessionService } from 'src/app/services/session.service';
+import { Login } from 'src/models/session/login';
 
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
-  styleUrls: ['./login.component.scss']
+  styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
-  constructor(private sessionService: SessionService,private projectService: ProjectService,
-     private router: Router) { }
+
+  form: FormGroup;
+  loading = false;
+
+
+  constructor(
+    private fb: FormBuilder,
+    private snackBar: MatSnackBar,
+    private sessionService: SessionService,
+    private router: Router) {
+
+    this.form = this.fb.group({
+      email: ["", Validators.required],
+      password: ["", Validators.required]
+    })
+
+  }
 
   login: Login = {
     Email: "",
     Password: ""
   }
 
-  idProject = "";
-
-  project: Project = {
-    Name: ""
-  }
-
-   user: User={
-    Rol :"",
-    Name : "",
-    LastName : "",
-    UserName : "",
-    Password : "",
-    Email : ""
-   }
-
-
-  projectGets: ProjectOut[] = []
-
-  projectGet : ProjectOut ={
-    Id: 0,
-    Users : [],
-    Bugs : [],
-    TotalBugs : 0,
-    Name : ""
-  }
-
   ngOnInit(): void {
-   this.getProjects() 
+
   }
 
   onLogin() {
-     return this.sessionService.postLogin(this.login).subscribe(data => {
+    this.login.Email = this.form.value.email;
+    this.login.Password = this.form.value.password;
+
+    return this.sessionService.postLogin(this.login).subscribe(data => {
       this.sessionService.saveToken(data.token);
-      this.router.navigate(['/home']);
+      this.loadUser();
+      //this.router.navigate(['dashboard']);
     }, error => {
-      console.error(error)
+      this.error();
+      this.form.reset();
     });
   }
-
-  onLogout(){
+  
+  onLogout() {
     return this.sessionService.postLogout().subscribe(() => {
-    this.router.navigate(['/login'])
-    this.sessionService.removeToken();
+      this.router.navigate(['login'])
+      this.sessionService.removeToken();
     });
   }
 
-  onProject(){
-    return this.projectService.createProject(this.project).subscribe();
-  }
-
-  getProject(){
-    return this.projectService.getProject(this.idProject).subscribe(m => {
-      this.projectGet = m;
-      console.log(m.Name + " PEPEeJEJEJE");
+  error() {
+    this.snackBar.open('User or Password are invalid', '', {
+      duration: 5000,
+      horizontalPosition: 'center',
+      verticalPosition: 'bottom'
     });
   }
 
-  deleteProject(){
-    return this.projectService.deleteProject(this.idProject).subscribe(() => {
-      console.log(this.projectGet.Name + "JEJEJE");
-    });
+  loadUser() {
+    this.loading = true;
+    setTimeout(() => {
+      this.router.navigate(['dashboard']);
+    }, 1500);
   }
+  // loginTo() {
+  //   const email = this.form.value.user;
+  //   const password = this.form.value.password;
+
+  //   if (email == "diegoasa" && password == "123456") {
+  //     this.loadUser();
+  //   } else {
+  //     this.error();
+  //     this.form.reset();
+  //   }
+  // }
 
 
-  getProjects() {
-    this.projectService.getProjects().subscribe(m => {
-      this.projectGets = m
-      console.log("Esooo " + m[0].Name)
-    }, error => {
-      console.error(error);
-      alert(error);
-    });
-  }
 }
