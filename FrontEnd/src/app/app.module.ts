@@ -10,6 +10,12 @@ import { DashboardModule } from './components/dashboard/dashboard.module';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 
+import {HTTP_INTERCEPTORS} from '@angular/common/http';
+import {AuthInterceptor} from "./services/session/auth-interceptor";
+
+import { SessionService } from 'src/app/services/session/session.service';
+import { UserService } from 'src/app/services/user/user.service';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -25,7 +31,13 @@ import { HttpClientModule } from '@angular/common/http';
     HttpClientModule
 
   ],
-  providers: [],
+  providers: [SessionService, UserService,
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: AuthInterceptor,
+      multi: true
+    }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
