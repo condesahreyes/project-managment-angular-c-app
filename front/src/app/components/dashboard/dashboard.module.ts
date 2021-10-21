@@ -8,6 +8,8 @@ import { StartComponent } from './start/start.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { UsersComponent } from './users/users.component';
 import { ProjectsComponent } from './projects/projects.component';
+import { BugsComponent } from './bugs/bugs.component';
+import { UserFormComponent } from './users/user-form/user-form.component';
 
 
 @NgModule({
@@ -16,7 +18,9 @@ import { ProjectsComponent } from './projects/projects.component';
     StartComponent,
     NavbarComponent,
     UsersComponent,
-    ProjectsComponent
+    ProjectsComponent,
+    BugsComponent,
+    UserFormComponent
   ],
   imports: [
     CommonModule,

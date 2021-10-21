@@ -2,8 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
-import { SessionService } from 'src/app/services/session.service';
-import { Login } from 'src/models/session/login';
+import { SessionService } from 'src/app/services/session/session.service';
+import { Login } from '../../models/session/Login';
 
 @Component({
   selector: 'app-login',
@@ -45,7 +45,6 @@ export class LoginComponent implements OnInit {
     return this.sessionService.postLogin(this.login).subscribe(data => {
       this.sessionService.saveToken(data.token);
       this.loadUser();
-      //this.router.navigate(['dashboard']);
     }, error => {
       this.error();
       this.form.reset();
@@ -54,13 +53,13 @@ export class LoginComponent implements OnInit {
   
   onLogout() {
     return this.sessionService.postLogout().subscribe(() => {
-      this.router.navigate(['login'])
+      this.router.navigateByUrl('login');
       this.sessionService.removeToken();
     });
   }
 
   error() {
-    this.snackBar.open('User or Password are invalid', '', {
+    this.snackBar.open('Email or Password are invalid', '', {
       duration: 5000,
       horizontalPosition: 'center',
       verticalPosition: 'bottom'
@@ -70,20 +69,7 @@ export class LoginComponent implements OnInit {
   loadUser() {
     this.loading = true;
     setTimeout(() => {
-      this.router.navigate(['dashboard']);
+      this.router.navigateByUrl('dashboard');
     }, 1500);
   }
-  // loginTo() {
-  //   const email = this.form.value.user;
-  //   const password = this.form.value.password;
-
-  //   if (email == "diegoasa" && password == "123456") {
-  //     this.loadUser();
-  //   } else {
-  //     this.error();
-  //     this.form.reset();
-  //   }
-  // }
-
-
 }

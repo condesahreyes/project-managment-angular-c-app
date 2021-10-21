@@ -7,6 +7,14 @@ import {MatInputModule} from '@angular/material/input';
 import {MatButtonModule} from '@angular/material/button';
 import {  ReactiveFormsModule } from '@angular/forms';
 import {MatSlideToggleModule} from '@angular/material/slide-toggle';
+import {MatToolbarModule} from '@angular/material/toolbar';
+import {MatIconModule} from '@angular/material/icon';
+import {MatTableModule} from '@angular/material/table';
+import {MatTooltipModule} from '@angular/material/tooltip';
+import {MatPaginatorModule} from '@angular/material/paginator';
+import {MatSortModule} from '@angular/material/sort';
+import {MatDialogModule} from '@angular/material/dialog';
+import { FlexLayoutModule } from '@angular/flex-layout';
 
 
 
@@ -22,8 +30,14 @@ import {MatSlideToggleModule} from '@angular/material/slide-toggle';
     MatButtonModule,
     ReactiveFormsModule,
     MatSlideToggleModule,
-    
-    
+    MatToolbarModule,
+    MatIconModule,
+    MatTableModule,
+    MatTooltipModule,
+    MatPaginatorModule,
+    MatSortModule,
+    MatDialogModule,
+    FlexLayoutModule
   ] ,
   exports: [
     CommonModule,
@@ -34,6 +48,15 @@ import {MatSlideToggleModule} from '@angular/material/slide-toggle';
     MatButtonModule,
     ReactiveFormsModule,
     MatSlideToggleModule,
+    MatToolbarModule,
+    MatIconModule,
+    MatTableModule,
+    MatTooltipModule,
+    MatPaginatorModule,
+    MatSortModule,
+    MatDialogModule,
+    FlexLayoutModule
+
   ],
 })
 export class SharedModule { }

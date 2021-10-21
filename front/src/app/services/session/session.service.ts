@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import { environment } from 'src/environments/environment';
-import { Login } from 'src/models/session/login';
-import { Token } from 'src/models/session/Token';
+import { Login } from '../../models/session/Login';
+import { Token } from '../../models/session/Token';
 import { Observable } from 'rxjs';
 
 @Injectable({

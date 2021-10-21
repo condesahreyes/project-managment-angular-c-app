@@ -1,0 +1,41 @@
+<form (ngSubmit)="create()">
+    <div fxLayout="column" fxLayoutAlign="space-around center">
+        <h1>Nuevo Usuario</h1>
+
+        <mat-form-field  appearance="fill">
+            <mat-label>Name</mat-label>
+            <input type="text" matInput autocomplete="off" width="auto" formControlName="name">
+        </mat-form-field>
+
+        <mat-form-field  appearance="fill">
+            <mat-label>Last Name</mat-label>
+            <input type="text" matInput autocomplete="off" formControlName="lastName">
+        </mat-form-field>
+
+        <mat-form-field  appearance="fill">
+            <mat-label>User Name</mat-label>
+            <input type="text" matInput autocomplete="off" formControlName="userName">
+        </mat-form-field>
+
+        <mat-form-field appearance="fill">
+            <mat-label>Password</mat-label>
+            <input type="password" matInput autocomplete="off" formControlName="password">
+        </mat-form-field>
+
+        <mat-form-field  appearance="fill">
+            <mat-label>Email</mat-label>
+            <input type="text" matInput autocomplete="off" formControlName="email">
+        </mat-form-field>
+
+        <mat-form-field  appearance="fill">
+            <mat-label>Rol</mat-label>
+            <input type="text" matInput autocomplete="off" formControlName="rol">
+        </mat-form-field>
+
+        <div fxLayout="row" fxLayoutAlign="space-between center" fxLayoutGap=10px>
+            <button type="submit" class="ancho button" mat-raised-button color="primary">Create</button>
+
+            <button class="ancho button" mat-raised-button color="primary">Cancel</button>
+        </div>
+    </div>
+</form>

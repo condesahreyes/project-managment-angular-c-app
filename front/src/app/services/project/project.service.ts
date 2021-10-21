@@ -1,11 +1,13 @@
-import {environment} from "../../environments/environment";
+import {environment} from "../../../environments/environment";
 import {HttpClient} from "@angular/common/http";
 import { Injectable } from '@angular/core';
-import {Project} from "../models/project/Project";
+import {Project} from "../../models/project/Project";
 import {Observable} from "rxjs";
-import {ProjectOut} from "../models/project/ProjectOut";
+import {ProjectOut} from "../../models/project/ProjectOut";
 
-@Injectable()
+@Injectable({
+  providedIn: 'root'
+})
 export class ProjectService {
 
   constructor(private http: HttpClient) { }
