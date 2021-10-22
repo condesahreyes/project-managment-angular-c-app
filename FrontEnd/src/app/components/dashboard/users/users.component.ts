@@ -46,11 +46,6 @@ export class UsersComponent implements OnInit, AfterViewInit {
     this.dataSource = new MatTableDataSource(this.users);
   }
 
-  // applyFilter(event: Event) {
-  //   const filterValue = (event.target as HTMLInputElement).value;
-  //   this.dataSource.filter = filterValue.trim().toLowerCase();
-  // }
-
   applyFilter(event: Event) {
     const filterValue = (event.target as HTMLInputElement).value;
     this.dataSource.filter = filterValue.trim().toLowerCase();
@@ -63,7 +58,7 @@ export class UsersComponent implements OnInit, AfterViewInit {
 
   openForm() {
     const dialogRef = this.dialog.open(UserFormComponent, {
-      width: '500px',
+      width: '50%',
     });
     dialogRef.afterClosed().subscribe(result => {
     });

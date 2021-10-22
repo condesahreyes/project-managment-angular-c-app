@@ -11,11 +11,23 @@ export class UserService {
 
   constructor(
     private http: HttpClient) { }
-  
+
   private uri: string = `${environment.URI_BASE}/users`;
 
-  getUsers(): Observable<User[]>{
+  getUsers(): Observable<User[]> {
     return this.http.get<User[]>(this.uri).pipe();
   }
 
+  createUser(user: User)/*: Observable<User> */{
+    return this.http.post<User>(this.uri, {
+      Name: user.Name,
+      LastName: user.LastName,
+      UserName: user.UserName,
+      Password: user.Password,
+      Email: user.Email,
+      Rol: user.Rol
+    });
+  }
 }
+
+
