@@ -16,7 +16,7 @@ import { UserFormComponent } from './user-form/user-form.component';
 export class UsersComponent implements OnInit, AfterViewInit {
 
 
-  displayedColumns = ['name', 'lastName', 'email', 'rol'];
+  displayedColumns = ['name', 'lastName', 'email', 'rol', 'actions'];
   users: User[] = [];
   dataSource!: MatTableDataSource<User>;
 
@@ -35,7 +35,6 @@ export class UsersComponent implements OnInit, AfterViewInit {
 
   ngOnInit(): void {
     this.getUsersCreated();
-    console.log(this.dataSource);
 
   }
 
@@ -44,6 +43,8 @@ export class UsersComponent implements OnInit, AfterViewInit {
       this.users = u
     });
     this.dataSource = new MatTableDataSource(this.users);
+    console.log(this.dataSource)
+
   }
 
   applyFilter(event: Event) {

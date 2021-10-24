@@ -1,6 +1,6 @@
 <form [formGroup]="form" (ngSubmit)="create()">
     <div fxLayout="column" fxLayoutAlign="space-around center">
-        <h1>New User</h1>
+        <h1>New Bug</h1>
 
         <mat-form-field class="example-full-width" appearance="fill">
             <mat-label>Name</mat-label>
@@ -8,28 +8,18 @@
         </mat-form-field>
 
         <mat-form-field class="example-full-width" appearance="fill">
-            <mat-label>Last Name</mat-label>
-            <input type="text" matInput autocomplete="off" formControlName="lastName" required >
+            <mat-label>Domain</mat-label>
+            <input type="text" matInput autocomplete="off" formControlName="domain" required >
         </mat-form-field>
 
         <mat-form-field class="example-full-width" appearance="fill">
-            <mat-label>User Name</mat-label>
-            <input type="text" matInput autocomplete="off" formControlName="userName" required>
+            <mat-label>Version</mat-label>
+            <input type="text" matInput autocomplete="off" formControlName="version" required>
         </mat-form-field>
 
         <mat-form-field class="example-full-width" appearance="fill">
-            <mat-label>Password</mat-label>
-            <input type="password" matInput autocomplete="off" formControlName="password" required> 
-        </mat-form-field>
-
-        <mat-form-field class="example-full-width" appearance="fill">
-            <mat-label>Email</mat-label>
-            <input type="text" matInput autocomplete="off" formControlName="email" required>
-        </mat-form-field>
-
-        <mat-form-field class="example-full-width" appearance="fill">
-            <mat-label>Rol</mat-label>
-            <input type="text" matInput autocomplete="off" formControlName="rol" required >
+            <mat-label>State</mat-label>
+            <input type="text" matInput autocomplete="off" formControlName="state" required> 
         </mat-form-field>
 
         <div fxLayout="row" fxLayoutAlign="space-between center" fxLayoutGap=10px>

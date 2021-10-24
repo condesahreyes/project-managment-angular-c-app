@@ -10,6 +10,9 @@ import { UsersComponent } from './users/users.component';
 import { ProjectsComponent } from './projects/projects.component';
 import { BugsComponent } from './bugs/bugs.component';
 import { UserFormComponent } from './users/user-form/user-form.component';
+import { ProjectFormComponent } from './projects/project-form/project-form.component';
+import { ProjectAssignFormComponent } from './projects/project-assign-form/project-assign-form.component';
+import { BugFormComponent } from './bugs/bug-form/bug-form.component';
 
 
 @NgModule({
@@ -20,7 +23,10 @@ import { UserFormComponent } from './users/user-form/user-form.component';
     UsersComponent,
     ProjectsComponent,
     BugsComponent,
-    UserFormComponent
+    UserFormComponent,
+    ProjectFormComponent,
+    ProjectAssignFormComponent,
+    BugFormComponent
   ],
   imports: [
     CommonModule,
