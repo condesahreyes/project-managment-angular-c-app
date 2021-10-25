@@ -26,7 +26,7 @@ export class BugsComponent implements OnInit {
     public dialog: MatDialog
   ) { }
 
-  ngAfterViewInit() {
+  setPaginatorAndSort() {
     this.dataSource.paginator = this.paginator;
     this.dataSource.sort = this.sort;
   }
@@ -39,8 +39,10 @@ export class BugsComponent implements OnInit {
   getProjectsCreated() {
     this.bugService.getBugs().subscribe(b => {
       this.bugs = b
+      this.dataSource = new MatTableDataSource(this.bugs);
+      this.setPaginatorAndSort();
+
     });
-    this.dataSource = new MatTableDataSource(this.bugs);
   }
 
   applyFilter(event: Event) {

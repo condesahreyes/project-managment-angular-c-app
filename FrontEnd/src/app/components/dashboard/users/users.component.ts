@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
+import {  Component, OnInit, ViewChild } from '@angular/core';
 import { User } from '../../../models/users/User';
 import { UserService } from 'src/app/services/user/user.service';
 import { MatTableDataSource } from '@angular/material/table';
@@ -13,7 +13,7 @@ import { UserFormComponent } from './user-form/user-form.component';
   styleUrls: ['./users.component.css']
 })
 
-export class UsersComponent implements OnInit, AfterViewInit {
+export class UsersComponent implements OnInit {
 
 
   displayedColumns = ['name', 'lastName', 'email', 'rol', 'actions'];
@@ -28,7 +28,7 @@ export class UsersComponent implements OnInit, AfterViewInit {
     public dialog: MatDialog
   ) { }
 
-  ngAfterViewInit() {
+  setPaginatorAndSort() {
     this.dataSource.paginator = this.paginator;
     this.dataSource.sort = this.sort;
   }
@@ -41,10 +41,10 @@ export class UsersComponent implements OnInit, AfterViewInit {
   getUsersCreated() {
     this.userService.getUsers().subscribe(u => {
       this.users = u
-    });
-    this.dataSource = new MatTableDataSource(this.users);
-    console.log(this.dataSource)
+      this.dataSource = new MatTableDataSource(this.users);
+      this.setPaginatorAndSort();
 
+    });
   }
 
   applyFilter(event: Event) {

@@ -27,7 +27,7 @@ export class ProjectsComponent implements OnInit {
     public dialog: MatDialog
   ) { }
 
-  ngAfterViewInit() {
+  setPaginatorAndSort() {
     this.dataSource.paginator = this.paginator;
     this.dataSource.sort = this.sort;
   }
@@ -40,8 +40,10 @@ export class ProjectsComponent implements OnInit {
   getProjectsCreated() {
     this.projectService.getProjects().subscribe(p => {
       this.projects = p
+      this.dataSource = new MatTableDataSource(this.projects);
+      this.setPaginatorAndSort();
+
     });
-    this.dataSource = new MatTableDataSource(this.projects);
   }
 
   applyFilter(event: Event) {
@@ -73,7 +75,7 @@ export class ProjectsComponent implements OnInit {
     }
   }
 
-  update(project: any){
+  update(project: any) {
     const dialogRef = this.dialog.open(ProjectFormComponent, {
       width: '50%',
       data: project
@@ -82,7 +84,7 @@ export class ProjectsComponent implements OnInit {
     });
   }
 
-  assignUser(project: any){
+  assignUser(project: any) {
     const dialogRef = this.dialog.open(ProjectAssignFormComponent, {
       width: '50%',
       data: project
