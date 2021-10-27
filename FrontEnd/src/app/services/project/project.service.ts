@@ -39,7 +39,8 @@ export class ProjectService {
   }
 
   updateProject(idProject: string, project: Project): Observable<Project> {
-    return this.http.put<Project>(`${this.uri}/${idProject}`, {
+    console.log("el id es " + idProject)
+    return this.http.put<Project>( this.uri + "/" + idProject, {
       Name: project.Name
     });//.pipe(catchError(this.handlerError.handleError));
   }
