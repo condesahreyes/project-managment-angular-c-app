@@ -15,6 +15,7 @@ import {MatPaginatorModule} from '@angular/material/paginator';
 import {MatSortModule} from '@angular/material/sort';
 import {MatDialogModule} from '@angular/material/dialog';
 import { FlexLayoutModule } from '@angular/flex-layout';
+import {MatSelectModule} from '@angular/material/select';
 
 
 
@@ -37,7 +38,8 @@ import { FlexLayoutModule } from '@angular/flex-layout';
     MatPaginatorModule,
     MatSortModule,
     MatDialogModule,
-    FlexLayoutModule
+    FlexLayoutModule,
+    MatSelectModule
   ] ,
   exports: [
     CommonModule,
@@ -55,7 +57,8 @@ import { FlexLayoutModule } from '@angular/flex-layout';
     MatPaginatorModule,
     MatSortModule,
     MatDialogModule,
-    FlexLayoutModule
+    FlexLayoutModule,
+    MatSelectModule
 
   ],
 })

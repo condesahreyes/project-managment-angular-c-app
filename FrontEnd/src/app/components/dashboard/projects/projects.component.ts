@@ -34,7 +34,6 @@ export class ProjectsComponent implements OnInit {
 
   ngOnInit(): void {
     this.getProjectsCreated();
-
   }
 
   getProjectsCreated() {

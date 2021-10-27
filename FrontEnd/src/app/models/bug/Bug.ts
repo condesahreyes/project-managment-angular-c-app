@@ -1,7 +1,7 @@
 ﻿import { Guid } from 'guid-typescript';
 export interface Bug {
   "Project": string;
-  //"Id": number;
+  "Id": number;
   "Name": string;
   "Domain": string;
   "Version": string;

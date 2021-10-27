@@ -8,8 +8,13 @@
         </mat-form-field>
 
         <mat-form-field class="example-full-width" appearance="fill">
+            <mat-label>Id</mat-label>
+            <input type="number" matInput autocomplete="off" width="auto" formControlName="id" required>
+        </mat-form-field>
+
+        <mat-form-field class="example-full-width" appearance="fill">
             <mat-label>Domain</mat-label>
-            <input type="text" matInput autocomplete="off" formControlName="domain" required >
+            <input type="text" matInput autocomplete="off" formControlName="domain" required>
         </mat-form-field>
 
         <mat-form-field class="example-full-width" appearance="fill">
@@ -19,12 +24,23 @@
 
         <mat-form-field class="example-full-width" appearance="fill">
             <mat-label>State</mat-label>
-            <input type="text" matInput autocomplete="off" formControlName="state" required> 
+            <input type="text" matInput autocomplete="off" formControlName="state" required>
+        </mat-form-field>
+
+        <mat-form-field appearance="fill">
+            <mat-label>Project</mat-label>
+            <!-- <mat-select ([ngModel])="projectToAsign" name="project">  porque asi no me pate yu si con [()] -->
+            <mat-select ([ngModel])="projectToAsign" name="project"> 
+                <mat-option *ngFor="let project of projects" [value]="project.Name">
+                    {{project.Name}}
+                </mat-option>
+            </mat-select>
         </mat-form-field>
 
         <div fxLayout="row" fxLayoutAlign="space-between center" fxLayoutGap=10px>
 
-            <button type="submit" [disabled]="form.invalid" class="ancho button" mat-raised-button color="primary" >Create</button>
+            <button type="submit" [disabled]="form.invalid" class="ancho button" mat-raised-button
+                color="primary">Create</button>
 
             <button class="ancho button" mat-raised-button color="primary" (click)="close()">Cancel</button>
         </div>
