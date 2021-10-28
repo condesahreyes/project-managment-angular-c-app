@@ -14,6 +14,7 @@ import { BugFormComponent } from './bug-form/bug-form.component';
 })
 export class BugsComponent implements OnInit {
 
+  bugToDelete: any;
   displayedColumns = ['name', 'domain', 'version', 'state', 'actions']; //'project', 'solved by',
   bugs: Bug[] = [];
   dataSource!: MatTableDataSource<Bug>;
@@ -32,11 +33,11 @@ export class BugsComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.getProjectsCreated();
+    this.getBugsCreated();
 
   }
 
-  getProjectsCreated() {
+  getBugsCreated() {
     this.bugService.getBugs().subscribe(b => {
       this.bugs = b
       this.dataSource = new MatTableDataSource(this.bugs);
@@ -63,23 +64,31 @@ export class BugsComponent implements OnInit {
     });
   }
 
-  // delete(idProject: any) {
-  //   if (confirm("Are you sure to delete?")) {
-  //     this.projectService.deleteProject(idProject).subscribe(data => {
-  //     });
-  //     this.projectService.getProjects().subscribe((response) => {
-  //       this.projects = response;
-  //     })
-  //   }
-  // }
+  update(bug: any) {
+    const dialogRef = this.dialog.open(BugFormComponent, {
+      width: '50%',
+      data: bug
+    });
+    dialogRef.afterClosed().subscribe(result => {
+      this.getBugsCreated();
+    });
+  }
 
-  // update(project: any){
-  //   const dialogRef = this.dialog.open(ProjectFormComponent, {
-  //     width: '50%',
-  //     data: project
-  //   });
-  //   dialogRef.afterClosed().subscribe(result => {
-  //   });
-  // }
+  delete(idBug: any) {
+    this.bugService.getBug(idBug).subscribe(b => {
+      this.bugToDelete = b
+    });
+    console.log(this.bugToDelete)
+    
+
+    let user = this.bugToDelete.CreatedBy;
+    if (confirm("Are you sure to delete?")) {
+      this.bugService.deleteBug(idBug, user).subscribe(data => {
+      });
+      this.bugService.getBugs().subscribe((response) => {
+        this.bugs = response;
+      })
+    }
+  }
 
 }

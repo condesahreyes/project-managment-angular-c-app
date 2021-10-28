@@ -51,10 +51,10 @@
                     <a class="pointer" style="color: #1878b0;" matTooltip="Assign Users" > <!--(click)="assignUser(element)"-->
                         <mat-icon>search</mat-icon>
                     </a>
-                    <a class="pointer" style="color: #1878b0;" matTooltip="Edit Bug" > <!--(click)="update(element)"-->
+                    <a class="pointer" style="color: #1878b0;" matTooltip="Edit Bug" (click)="update(element)"> 
                         <mat-icon>edit</mat-icon>
                     </a>
-                    <a class="pointer" style="color: #e15639;" matTooltip="Delete Bug" > <!--(click)="delete(element.id)"-->
+                    <a class="pointer" style="color: #e15639;" matTooltip="Delete Bug" (click)="delete(element.id)"> 
                         <mat-icon>delete</mat-icon>
                     </a>
                 </td>

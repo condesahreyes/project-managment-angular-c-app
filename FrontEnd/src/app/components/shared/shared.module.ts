@@ -5,7 +5,7 @@ import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatInputModule} from '@angular/material/input';
 import {MatButtonModule} from '@angular/material/button';
-import {  ReactiveFormsModule } from '@angular/forms';
+import {  FormsModule, ReactiveFormsModule } from '@angular/forms';
 import {MatSlideToggleModule} from '@angular/material/slide-toggle';
 import {MatToolbarModule} from '@angular/material/toolbar';
 import {MatIconModule} from '@angular/material/icon';
@@ -39,7 +39,8 @@ import {MatSelectModule} from '@angular/material/select';
     MatSortModule,
     MatDialogModule,
     FlexLayoutModule,
-    MatSelectModule
+    MatSelectModule,
+    FormsModule
   ] ,
   exports: [
     CommonModule,
@@ -58,7 +59,8 @@ import {MatSelectModule} from '@angular/material/select';
     MatSortModule,
     MatDialogModule,
     FlexLayoutModule,
-    MatSelectModule
+    MatSelectModule,
+    FormsModule
 
   ],
 })

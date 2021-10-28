@@ -14,7 +14,6 @@ export class BugService {
   private uri: string = `${environment.URI_BASE}/bugs`;
 
   createBug(bug: Bug) {
-    console.log("Entraa ");
     return this.http.post<Bug>(this.uri, {
       Project: bug.Project,
       Id: bug.Id,
@@ -32,9 +31,21 @@ export class BugService {
   //   });
   // }
 
+  getBug(idBug : string): Observable<Bug> {
+    return this.http.get<Bug>(this.uri + '/' + idBug, {
+
+    });
+  }
+
   getBugs(): Observable<Bug[]> {
     return this.http.get<Bug[]>(this.uri, {
 
+    });
+  }
+
+  deleteBug(idBug : string, idUser: string): Observable<Bug> {
+    return this.http.delete<Bug>(this.uri + '/' + idBug, {
+      
     });
   }
 }

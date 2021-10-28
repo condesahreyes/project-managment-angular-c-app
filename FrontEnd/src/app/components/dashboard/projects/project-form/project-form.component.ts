@@ -32,7 +32,6 @@ export class ProjectFormComponent implements OnInit {
 
   ngOnInit(): void {
     if(this.data !== ""){
-      //this.project = this.data;
       this.edit = true;
     }
   }
