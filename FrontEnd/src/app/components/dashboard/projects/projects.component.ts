@@ -4,6 +4,7 @@ import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { Project } from 'src/app/models/project/Project';
+import { ProjectOut } from 'src/app/models/project/ProjectOut';
 import { ProjectService } from 'src/app/services/project/project.service';
 import { ProjectAssignFormComponent } from './project-assign-form/project-assign-form.component';
 import { ProjectFormComponent } from './project-form/project-form.component';
@@ -16,8 +17,8 @@ import { ProjectFormComponent } from './project-form/project-form.component';
 export class ProjectsComponent implements OnInit {
 
   displayedColumns = ['name', 'TotalBugs', 'actions'];
-  projects: Project[] = [];
-  dataSource!: MatTableDataSource<Project>;
+  projects: ProjectOut[] = [];
+  dataSource!: MatTableDataSource<ProjectOut>;
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
@@ -41,7 +42,6 @@ export class ProjectsComponent implements OnInit {
       this.projects = p
       this.dataSource = new MatTableDataSource(this.projects);
       this.setPaginatorAndSort();
-
     });
   }
 
@@ -61,6 +61,7 @@ export class ProjectsComponent implements OnInit {
       data: ""
     });
     dialogRef.afterClosed().subscribe(result => {
+      this.getProjectsCreated();
     });
   }
 
@@ -70,6 +71,7 @@ export class ProjectsComponent implements OnInit {
       });
       this.projectService.getProjects().subscribe((response) => {
         this.projects = response;
+        this.getProjectsCreated();
       })
     }
   }
@@ -80,6 +82,7 @@ export class ProjectsComponent implements OnInit {
       data: project
     });
     dialogRef.afterClosed().subscribe(result => {
+      this.getProjectsCreated();
     });
   }
 

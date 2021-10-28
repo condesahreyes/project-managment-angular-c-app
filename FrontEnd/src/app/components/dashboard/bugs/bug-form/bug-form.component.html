@@ -26,13 +26,12 @@
             <mat-label>State</mat-label>
             <input type="text" matInput autocomplete="off" formControlName="state" required>
         </mat-form-field>
-
-        <mat-form-field appearance="fill">
+        
+        <mat-form-field appearance="fill"> 
             <mat-label>Project</mat-label>
-            <!-- <mat-select ([ngModel])="projectToAsign" name="project">  porque asi no me pate yu si con [()] -->
-            <mat-select ([ngModel])="projectToAsign" name="project"> 
-                <mat-option *ngFor="let project of projects" [value]="project.Name">
-                    {{project.Name}}
+            <mat-select name="project" formControlName="pro" ([ngModel])="projectToAsign"> 
+                <mat-option *ngFor="let project of projects" [value]="project.name">
+                    {{project.name}}
                 </mat-option>
             </mat-select>
         </mat-form-field>

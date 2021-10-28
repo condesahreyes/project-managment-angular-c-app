@@ -14,14 +14,15 @@ export class BugService {
   private uri: string = `${environment.URI_BASE}/bugs`;
 
   createBug(bug: Bug) {
+    console.log("Entraa ");
     return this.http.post<Bug>(this.uri, {
+      Project: bug.Project,
+      Id: bug.Id,
       Name: bug.Name,
-      State: bug.State,
       Domain: bug.Domain,
       Version: bug.Version,
-      //Id: bug.Id,
-      Project: bug.Project
-      //CreatedBy: bug.CreatedBy
+      State: bug.State,
+      CreatedBy: bug.CreatedBy
     });
   }
 

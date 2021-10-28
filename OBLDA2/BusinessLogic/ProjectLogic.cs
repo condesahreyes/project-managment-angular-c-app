@@ -111,7 +111,11 @@ namespace BusinessLogic
             Project.ValidateName(updatedProject.Name);
 
             Project updateProject = projectRepository.Update(id, updatedProject);
-            updatedProject.TotalBugs = updatedProject.Bugs.Count;
+
+            if (updatedProject.Bugs == null)
+                updatedProject.TotalBugs = 0;
+            else
+                updatedProject.TotalBugs = updatedProject.Bugs.Count;
 
             return updateProject;
         }

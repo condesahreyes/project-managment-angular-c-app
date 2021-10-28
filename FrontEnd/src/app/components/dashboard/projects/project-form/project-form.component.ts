@@ -39,15 +39,19 @@ export class ProjectFormComponent implements OnInit {
 
   create() {
     this.project.Name = this.form.value.name;
-    return this.projectService.createProject(this.project).subscribe();
+    return this.projectService.createProject(this.project).subscribe(() => {
+      this.close();
+    });
   }
 
   close() {
-    this.dialogRef.close
+    this.dialogRef.close(true);
   }
 
   update(){
     this.project.Name = this.form.value.name;
-    return this.projectService.updateProject(this.data.id, this.project);
+    return this.projectService.updateProject(this.data.id, this.project).subscribe(() => {
+      this.close();
+    });
   }
 }
