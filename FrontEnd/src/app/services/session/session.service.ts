@@ -1,9 +1,10 @@
 import { Injectable } from '@angular/core';
-import {HttpClient} from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
 import { Login } from '../../models/session/Login';
 import { Token } from '../../models/session/Token';
 import { Observable } from 'rxjs';
+import { UserIdModel } from 'src/app/models/users/UserIdModel';
 
 @Injectable({
   providedIn: 'root'
@@ -14,14 +15,14 @@ export class SessionService {
 
   private uri: string = `${environment.URI_BASE}/sessions`;
 
-  postLogin(login: Login): Observable<Token>{
+  postLogin(login: Login): Observable<Token> {
     return this.http.post<Token>(this.uri + '/login', {
       email: login.Email,
       password: login.Password
     });
   }
 
-  postLogout(){
+  postLogout() {
     return this.http.post(this.uri + '/logout', {
       token: this.getToken()
     });
@@ -42,5 +43,11 @@ export class SessionService {
   isUserLogged(): boolean {
     return this.getToken() != null;
   }
-  
+
+  getUserIdLogged(): Observable<UserIdModel> {
+    const tokenUser = this.getToken();
+    return this.http.get<UserIdModel>(this.uri + '/' + tokenUser);
+
+  }
+
 }

@@ -49,12 +49,12 @@ namespace BusinessLogic
 
         public string GenerateAndInsertToken(User user)
         {
-            User userDataAcces = userLogic.Get(user.Id); 
+            User userDataAcces = userLogic.Get(user.Id);
 
             string token = GenerateToken(userDataAcces);
 
             UpdateToken(user, token);
-           
+
             return token;
         }
 
@@ -78,5 +78,22 @@ namespace BusinessLogic
             UpdateToken(userToLogOut.First(), null);
         }
 
+        public string GetUserIdWithToekn(string token)
+        {
+            var userId = "";
+            if (IsCorrectToken(token))
+            {
+                List<User> users = userLogic.GetAll();
+                foreach (var user in users)
+                {
+                    if (user.Token != null && user.Token.Equals(token))
+                    {
+                        userId = user.Id.ToString();
+                    }
+                }
+            }
+            return userId;
+        }
     }
 }
+
