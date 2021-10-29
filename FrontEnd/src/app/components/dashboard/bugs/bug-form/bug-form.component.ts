@@ -65,6 +65,7 @@ export class BugFormComponent implements OnInit {
 
   create() {
      this.sessionService.getUserIdLogged().subscribe(u => {
+       console.log(u.id)
       this.userId = u.id;
     });
     this.bug.Name = this.form.value.name;
