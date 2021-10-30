@@ -1,6 +1,8 @@
 using Microsoft.AspNetCore.Mvc;
 using BusinessLogicInterface;
 using OBLDA2.Models;
+using Domain;
+using System.Collections.Generic;
 
 namespace OBLDA2.Controllers
 {
@@ -8,10 +10,12 @@ namespace OBLDA2.Controllers
     public class SessionController : ApiBaseController
     {
         private ISessionLogic sessionsLogic;
+        private IUserLogic userLogic;
 
-        public SessionController(ISessionLogic sessions) : base()
+        public SessionController(ISessionLogic sessions, IUserLogic usuLogic) : base()
         {
             sessionsLogic = sessions;
+            userLogic = usuLogic;
         }
 
         [HttpPost("login")]
@@ -26,6 +30,13 @@ namespace OBLDA2.Controllers
         {
             sessionsLogic.Logout(model.Token);
             return Ok(new LogoutOutModel());
+        }
+
+        [HttpGet("{userToken}")]
+        public IActionResult GetUserLogged(string userToken)
+        {
+            var userId = sessionsLogic.GetUserIdWithToekn(userToken);
+            return Ok(userId);
         }
 
     }

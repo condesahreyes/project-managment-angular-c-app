@@ -1,0 +1,20 @@
+<form [formGroup]="form" (submit)="create()">
+    <div fxLayout="column" fxLayoutAlign="space-around center">
+
+        <h1 *ngIf="!edit">New Project</h1>
+        <h1 *ngIf="edit">Edit Project</h1>
+
+        <mat-form-field class="example-full-width" appearance="fill">
+            <mat-label>Name</mat-label>
+            <input type="text" matInput autocomplete="off" width="auto" formControlName="name" required>
+        </mat-form-field>
+
+        <div fxLayout="row" fxLayoutAlign="space-between center" fxLayoutGap=10px>
+
+            <button *ngIf="!edit" [disabled]="form.invalid" type="submit" class="ancho button" mat-raised-button color="primary" >Create</button>
+            <button *ngIf="edit" [disabled]="form.invalid" class="ancho button" mat-raised-button color="primary" (click)="update()" >Save</button>
+
+            <button class="ancho button" mat-raised-button color="primary" (click)="close()">Cancel</button>
+        </div>
+    </div>
+</form>
