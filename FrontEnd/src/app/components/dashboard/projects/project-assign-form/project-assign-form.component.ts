@@ -5,6 +5,8 @@ import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { User } from 'src/app/models/users/User';
+import { DeveloperService } from 'src/app/services/developer/developer.service';
+import { TesterService } from 'src/app/services/tester/tester.service';
 import { UserService } from 'src/app/services/user/user.service';
 
 @Component({
@@ -14,20 +16,23 @@ import { UserService } from 'src/app/services/user/user.service';
 })
 export class ProjectAssignFormComponent implements OnInit {
 
-  
-  displayedColumns = ['name', 'lastName', 'email', 'rol'];
+
+  displayedColumns = ['select', 'name', 'lastName', 'email', 'rol'];
   users: User[] = [];
   dataSource!: MatTableDataSource<User>;
   selection = new SelectionModel<User>(true, []);
   projectToAsign = this.data;
+  userSelected: any;
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
 
   constructor(
     private userService: UserService,
+    private developerService: DeveloperService,
+    private testerService: TesterService,
     public dialogRef: MatDialogRef<ProjectAssignFormComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: any 
+    @Inject(MAT_DIALOG_DATA) public data: any
   ) { }
 
   setPaginatorAndSort() {
@@ -37,8 +42,6 @@ export class ProjectAssignFormComponent implements OnInit {
 
   ngOnInit(): void {
     this.getUsersCreated();
-    console.log(this.projectToAsign)
-
   }
 
   getUsersCreated() {
@@ -63,6 +66,18 @@ export class ProjectAssignFormComponent implements OnInit {
     this.dialogRef.close(true);
   }
 
+  isSelected(row: any) {
+    this.userSelected = row;
+  }
 
+  assignUser() {
+    if (this.userSelected.rol === 'Desarrollador') {
+      this.developerService.assignDeveloperToProject(this.projectToAsign.id, this.userSelected.id).subscribe();
+    }
+    if (this.userSelected.rol === 'Tester') {
+      this.testerService.assignTesterToProject(this.projectToAsign.id, this.userSelected.id).subscribe();
+    }
+    this.close();
+  }
 
 }

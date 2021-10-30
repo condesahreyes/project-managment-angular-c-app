@@ -16,6 +16,7 @@ import {MatSortModule} from '@angular/material/sort';
 import {MatDialogModule} from '@angular/material/dialog';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import {MatSelectModule} from '@angular/material/select';
+import {MatCheckboxModule} from '@angular/material/checkbox';
 
 
 
@@ -40,7 +41,8 @@ import {MatSelectModule} from '@angular/material/select';
     MatDialogModule,
     FlexLayoutModule,
     MatSelectModule,
-    FormsModule
+    FormsModule,
+    MatCheckboxModule
   ] ,
   exports: [
     CommonModule,
@@ -60,7 +62,8 @@ import {MatSelectModule} from '@angular/material/select';
     MatDialogModule,
     FlexLayoutModule,
     MatSelectModule,
-    FormsModule
+    FormsModule,
+    MatCheckboxModule
 
   ],
 })
