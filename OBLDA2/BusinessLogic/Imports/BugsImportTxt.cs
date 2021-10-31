@@ -58,14 +58,16 @@ namespace BusinessLogic.Imports
             string name = bugString.Substring(34, 60);
             string domain = bugString.Substring(94, 150);
             string version = bugString.Substring(244, 10);
-            string stateString = bugString.Substring(254);
+            string stateString = bugString.Substring(254, 8);
+            string durationString = bugString.Substring(262);
 
             int id = Convert.ToInt32(idString);
+            int duration = Convert.ToInt32(durationString);
 
             Project project = new Project(projectName);
             State state = new State(stateString);
 
-            return new Bug(project, id, name, domain, version, state);
+            return new Bug(project, id, name, domain, version, state, duration);
         }
 
     }

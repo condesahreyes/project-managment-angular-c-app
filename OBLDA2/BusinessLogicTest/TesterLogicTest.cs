@@ -33,7 +33,7 @@ namespace BusinessLogicTest
             CofnigurationMockRol();
 
             tester = new User("Diego", "Asadurian", "diegoAsa", "admin1234",
-                "diegoasadurian@gmail.com", roles[0]);
+                "diegoasadurian@gmail.com", roles[0], 0);
 
             testerLogic = new TesterLogic(userLogic.Object, mockProject.Object,
                 mockRol.Object);
@@ -64,9 +64,9 @@ namespace BusinessLogicTest
             List<Bug> bugs = new List<Bug>
             {
                 new Bug(project, 1234, "Error de login", 
-                "Intento inicio de sesion", "2.0", stateActive),
+                "Intento inicio de sesion", "2.0", stateActive, 0),
                 new Bug(project, 4321, "Error de UI", 
-                "Intento inicio de sesion", "2.1", stateActive),
+                "Intento inicio de sesion", "2.1", stateActive, 0),
             };
 
             List<Project> projects = new List<Project>();

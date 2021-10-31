@@ -28,7 +28,7 @@ namespace WebApiTest
 
             project = new Project("Project - GXC ");
             bug = new Bug(project, 1, "Error de login", 
-                "Intento de sesión", "3.0", activeState);
+                "Intento de sesión", "3.0", activeState, 0);
         }
 
         [TestMethod]
@@ -162,7 +162,7 @@ namespace WebApiTest
         public void UpdateBugTest()
         {
             Bug updatedBug = new Bug(project, 1, "Error cierre de sesion", "Intento", 
-                "3.5", activeState);
+                "3.5", activeState, 0);
             BugUpdateModel bugUpdateDTO = new BugUpdateModel(updatedBug);
 
             bugLogic.Setup(m => m.Update(bug.Id, updatedBug, It.IsAny<Guid>())).Returns(updatedBug);

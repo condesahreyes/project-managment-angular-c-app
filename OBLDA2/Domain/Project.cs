@@ -13,7 +13,8 @@ namespace Domain
         public List<Bug> Bugs { get; set; }
         public List<Task> Tasks { get; set; }
         public int TotalBugs { get; set; }
-
+        public int Duration { get; set; }
+        public int Price  { get; set; }
         public string Name { get; set; }
 
         public Project(string name)
@@ -24,6 +25,8 @@ namespace Domain
             this.Bugs = new List<Bug>();
             this.Tasks = new List<Task>();
             this.TotalBugs = 0;
+            this.Duration = 0;
+            this.Price = 0;
         }
 
         public Project() { }

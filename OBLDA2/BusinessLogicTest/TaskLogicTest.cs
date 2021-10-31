@@ -22,8 +22,8 @@ namespace BusinessLogicTest
         private int taskCost;
         private int invalidTaskCost;
 
-        private double taskDuration;
-        private double invalidTaskDuration;
+        private int taskDuration;
+        private int invalidTaskDuration;
 
         [TestInitialize]
         public void Setup()
@@ -32,13 +32,13 @@ namespace BusinessLogicTest
             this.invalidTaskName = "";
             this.taskCost = 2000;
             this.invalidTaskCost = -10;
-            this.taskDuration = 0.5;
-            this.invalidTaskDuration = -0.1;
+            this.taskDuration = 5;
+            this.invalidTaskDuration = -1;
 
             task = new Task()
             {
                 Name = taskName,
-                Cost = taskCost,
+                Price = taskCost,
                 Duration = taskDuration,
                 Project = new Project()
             };
@@ -74,7 +74,7 @@ namespace BusinessLogicTest
         [ExpectedException(typeof(InvalidDataObjException))]
         public void CreateTaskInvalidCost()
         {
-            task.Cost = invalidTaskCost;
+            task.Price = invalidTaskCost;
 
             Task taskCreated = taskLogic.Create(task);
         }

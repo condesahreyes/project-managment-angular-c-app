@@ -16,8 +16,8 @@ namespace BusinessLogicTest.BugsImportTest
         private static Project project = new Project("Proyecto en xml");
 
         private List<Bug> bugs = new List<Bug>{
-            new Bug(project, 1, "nombre1", "dominio1", "V 1.0", activeStatus),
-            new Bug(project, 2, "nombre2", "dominio2", "V 2.0", doneStatus)
+            new Bug(project, 1, "nombre1", "dominio1", "V 1.0", activeStatus, 0),
+            new Bug(project, 2, "nombre2", "dominio2", "V 2.0", doneStatus, 0)
         };
 
         private Mock<IBugLogic> bugLogic;

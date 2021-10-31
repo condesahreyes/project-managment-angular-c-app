@@ -20,19 +20,19 @@ namespace WebApiTest
         private string taskName;
         private int taskCost;
 
-        private double taskDuration;
+        private int taskDuration;
 
         [TestInitialize]
         public void Setup()
         {
             this.taskName = "One Task";
             this.taskCost = 2000;
-            this.taskDuration = 0.5;
+            this.taskDuration = 1;
 
             task = new Task()
             {
                 Name = taskName,
-                Cost = taskCost,
+                Price = taskCost,
                 Duration = taskDuration,
                 Project = new Project("project")
             };
@@ -40,7 +40,7 @@ namespace WebApiTest
             taskModel = new TaskEntryOutModel()
             {
                 Name = task.Name,
-                Cost = task.Cost,
+                Cost = task.Price,
                 Duration = task.Duration,
                 Project = task.Project.Name
             };

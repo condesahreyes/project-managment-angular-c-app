@@ -27,6 +27,9 @@ namespace DataAccess.Migrations
                     b.Property<string>("Domain")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<int>("Duration")
+                        .HasColumnType("int");
+
                     b.Property<string>("Name")
                         .HasColumnType("nvarchar(max)");
 
@@ -59,8 +62,14 @@ namespace DataAccess.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
+                    b.Property<int>("Duration")
+                        .HasColumnType("int");
+
                     b.Property<string>("Name")
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("Price")
+                        .HasColumnType("int");
 
                     b.Property<int>("TotalBugs")
                         .HasColumnType("int");
@@ -103,14 +112,14 @@ namespace DataAccess.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<int>("Cost")
+                    b.Property<int>("Duration")
                         .HasColumnType("int");
-
-                    b.Property<double>("Duration")
-                        .HasColumnType("float");
 
                     b.Property<string>("Name")
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("Price")
+                        .HasColumnType("int");
 
                     b.Property<Guid?>("ProjectId")
                         .HasColumnType("uniqueidentifier");
@@ -139,6 +148,9 @@ namespace DataAccess.Migrations
 
                     b.Property<string>("Password")
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("Price")
+                        .HasColumnType("int");
 
                     b.Property<Guid?>("RolId")
                         .HasColumnType("uniqueidentifier");

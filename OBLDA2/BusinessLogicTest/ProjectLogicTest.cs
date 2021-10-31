@@ -45,9 +45,9 @@ namespace BusinessLogicTest
             rolDeveloper = new Rol(Rol.developer);
 
             tester = new User("Fiorella", "Petrone", "fioPetro", "fio1245",
-                "fiore@gmail.com", rolTester);
-            developer = new User("Juan", "Gomez", "juanG", "juann245", 
-                "juan@gmail.com", rolDeveloper);
+                "fiore@gmail.com", rolTester, 0);
+            developer = new User("Juan", "Gomez", "juanG", "juann245",
+                "juan@gmail.com", rolDeveloper, 10);
         }
 
         [TestMethod]
@@ -61,7 +61,7 @@ namespace BusinessLogicTest
             mockProjectRepository.VerifyAll();
             Assert.AreEqual(project, projectCreated);
         }
-        
+
         [TestMethod]
         public void GetAllProjects()
         {
@@ -139,11 +139,11 @@ namespace BusinessLogicTest
         {
             project.Users.Add(tester);
             Project projectNoTesters = new Project("Proyecto sin usuarios");
-            
+
             userMock.Setup(m => m.Get(tester.Id)).Returns(tester);
             mockProjectRepository.Setup(x => x.GetById(project.Id)).Returns(project);
             mockProjectRepository.Setup(x => x.Update(It.IsAny<Guid>(), project)).Returns(projectNoTesters);
-            mockProjectRepository.Setup(x => x.GetAll()).Returns(new List<Project> { project});
+            mockProjectRepository.Setup(x => x.GetAll()).Returns(new List<Project> { project });
             projectLogic.DeleteUser(project.Id, ref tester);
 
             List<User> list = new List<User>();
@@ -203,5 +203,45 @@ namespace BusinessLogicTest
             Assert.IsTrue(usersGeted.SequenceEqual(users));
         }
 
+        [TestMethod]
+        public void CalculateTotalDuration()
+        {
+            Bug oneBug = new Bug(project, 1234, "Error de login",
+                "Intento inicio de sesion", "2.0", new State(State.active), 10);
+            Task oneTask = new Task(project, "One Task", 2000, 15);
+
+            project.Bugs.Add(oneBug);
+            project.Tasks.Add(oneTask);
+
+            mockProjectRepository.Setup(x => x.GetById(project.Id)).Returns(project);
+
+            project = projectLogic.Get(project.Id);
+
+            int projectDuration = oneBug.Duration + oneTask.Duration;
+
+            mockProjectRepository.VerifyAll();
+            Assert.IsTrue(projectDuration == project.Duration);
+        }
+
+        [TestMethod]
+        public void CalculateTotalPrice()
+        {
+            Bug oneBug = new Bug(project, 1234, "Error de login",
+                "Intento inicio de sesion", "2.0", new State(State.done), 10);
+            Task oneTask = new Task(project, "One Task", 2000, 15);
+
+            oneBug.SolvedBy = developer;
+            project.Bugs.Add(oneBug);
+            project.Tasks.Add(oneTask);
+
+            mockProjectRepository.Setup(x => x.GetById(project.Id)).Returns(project);
+
+            project = projectLogic.Get(project.Id);
+
+            int projectPrice = (oneBug.Duration * oneBug.SolvedBy.Price) + (oneTask.Price * oneTask.Duration);
+
+            mockProjectRepository.VerifyAll();
+            Assert.IsTrue(projectPrice == project.Price);
+        }
     }
 }
