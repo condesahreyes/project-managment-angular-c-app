@@ -26,7 +26,7 @@ namespace BusinessLogic
         {
             Task.ValidateName(task.Name);
             Task.ValidateDuration(task.Duration);
-            Task.ValidateCost(task.Cost);
+            Task.ValidateCost(task.Price);
 
             task.Project = projectLogic.ExistProjectWithName(task.Project);
         }

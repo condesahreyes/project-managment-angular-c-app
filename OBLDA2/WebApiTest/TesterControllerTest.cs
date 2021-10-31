@@ -34,7 +34,7 @@ namespace WebApiTest
             project = new Project("Project - GXC ");
 
             bug = new Bug(project, 1, "Error de login", "Intento de sesión", 
-                "3.0", activeState);
+                "3.0", activeState, 0);
 
             testerLogic = new Mock<ITesterLogic>(MockBehavior.Strict);
         }

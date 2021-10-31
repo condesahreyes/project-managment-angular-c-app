@@ -13,7 +13,7 @@ namespace Domain
         public List<Bug> Bugs { get; set; }
         public List<Task> Tasks { get; set; }
         public int TotalBugs { get; set; }
-        public double Duration { get; set; }
+        public int Duration { get; set; }
         public int Price  { get; set; }
         public string Name { get; set; }
 

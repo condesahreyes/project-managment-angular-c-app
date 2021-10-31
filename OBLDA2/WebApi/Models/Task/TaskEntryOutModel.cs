@@ -7,7 +7,7 @@ namespace OBLDA2.Models
     {
         public string Name { get; set; }
         public int Cost { get; set; }
-        public double Duration { get; set; }
+        public int Duration { get; set; }
         public string Project { get; set; }
 
         public TaskEntryOutModel() { }
@@ -16,7 +16,7 @@ namespace OBLDA2.Models
         {
             Id = Guid.NewGuid(),
             Name = this.Name,
-            Cost = this.Cost,
+            Price = this.Cost,
             Duration = this.Duration,
             Project = new Project(this.Project)
         };
@@ -24,7 +24,7 @@ namespace OBLDA2.Models
         public static TaskEntryOutModel ToModel(Task task) => new TaskEntryOutModel
         {
             Name = task.Name,
-            Cost = task.Cost,
+            Cost = task.Price,
             Duration = task.Duration,
             Project = task.Project.Name
         };

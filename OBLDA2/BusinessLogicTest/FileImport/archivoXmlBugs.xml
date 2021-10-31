@@ -7,6 +7,7 @@
             <Descripcion>El error se produce cuando el usuario no tiene un correo asignado</Descripcion>
             <Version>1.0</Version>
             <Estado>Activo</Estado>
+            <Horas>50</Horas>
         </Bug>
         <Bug>
             <Id>9999</Id>
@@ -14,6 +15,7 @@
             <Descripcion>El error se produce cuando el usuario no tiene un correo asignado 2</Descripcion>
             <Version>1.0</Version>
             <Estado>Activo</Estado>
+            <Horas>90</Horas>
         </Bug>
     </Bugs>
 </Empresa1>

@@ -32,7 +32,7 @@ namespace WebApiTest
             developer = new User("Juan", "Gomez", "jgomez", "admin1234", "gomez@gmail.com", rolDeveloper, 0);
             
             project = new Project("Project - GXC ");
-            bug = new Bug(project, 1, "Error de login", "Intento de sesión", "3.0", activeState);
+            bug = new Bug(project, 1, "Error de login", "Intento de sesión", "3.0", activeState, 0);
         }
 
         [TestMethod]
@@ -110,7 +110,7 @@ namespace WebApiTest
         public void UpdateBugTest()
         {
             Bug updatedBug = new Bug(project, 1, "Error cierre de sesion", "Intento",
-                "3.5", activeState);
+                "3.5", activeState, 0);
             BugUpdateStateModel bugUpdateDTO = new BugUpdateStateModel(activeState.Name, updatedBug.Id);
 
             developerLogic.Setup(m => m.UpdateState(bugUpdateDTO.BugId, It.IsAny<string>(), developer.Id))

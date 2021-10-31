@@ -12,16 +12,16 @@ namespace Domain
         public Guid Id { get; set; }
 
         public string Name { get; set; }
-        public int Cost { get; set; }
-        public double Duration { get; set; }
+        public int Price { get; set; }
+        public int Duration { get; set; }
 
         public Project Project { get; set; }
 
-        public Task(Project project, string name, int cost, double duration)
+        public Task(Project project, string name, int price, int duration)
         {
             this.Id = Guid.NewGuid();
             this.Name = name;
-            this.Cost = cost;
+            this.Price = price;
             this.Duration = duration;
             this.Project = project;
         }
@@ -42,7 +42,7 @@ namespace Domain
 
         public static void ValidateDuration(double duration)
         {
-            if (duration < 0.0 || duration > 100)
+            if (duration < 0 || duration > 9999)
                 throw new InvalidDataObjException(invalidDuration);
         }
 
@@ -50,7 +50,7 @@ namespace Domain
         {
             if(obj is Task task)
             {
-                return this.Name == task.Name && this.Cost == task.Cost 
+                return this.Name == task.Name && this.Price == task.Price 
                     && this.Duration == task.Duration;
             }
 

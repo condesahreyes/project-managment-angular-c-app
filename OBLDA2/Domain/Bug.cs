@@ -17,13 +17,13 @@ namespace Domain
         public string Domain { get; set; }
         public string Version { get; set; }
 
-        public double Duration { get; set; }
+        public int Duration { get; set; }
         public Project Project { get; set; }
         public User SolvedBy { get; set; }
         public State State { get; set; }
 
         public Bug(Project project, int id, string name, 
-            string domain, string version, State state)
+            string domain, string version, State state, int duration)
         {
             this.Project = project;
             this.Id = id;
@@ -31,7 +31,7 @@ namespace Domain
             this.Domain = domain;
             this.Version = version;
             this.State = state;
-            this.Duration = 0;
+            this.Duration = duration;
         }
 
         public Bug() { }
@@ -42,6 +42,7 @@ namespace Domain
             IsValidName(oneBug.Name);
             IsValidDomain(oneBug.Domain);
             IsValidVersion(oneBug.Version);
+            ValidateDuration(oneBug.Duration);
         }
 
         private static void IsValidId(int oneId)
@@ -76,7 +77,7 @@ namespace Domain
 
         public static void ValidateDuration(double duration)
         {
-            if (duration < 0.0 || duration > 100)
+            if (duration < 0 || duration > 9999)
                 throw new InvalidDataObjException(invalidDuration);
         }
 

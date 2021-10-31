@@ -85,7 +85,7 @@ namespace DataAccessTest
         {
             State state = new State(oneState);
             state.Id = Guid.NewGuid();
-            return new Bug(CreateProject("OneProject"), id, "", "", "", state);
+            return new Bug(CreateProject("OneProject"), id, "", "", "", state, 0);
         }
 
         private Project CreateProject(string projectName)
