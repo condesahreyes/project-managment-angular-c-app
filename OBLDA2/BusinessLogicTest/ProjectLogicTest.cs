@@ -45,9 +45,9 @@ namespace BusinessLogicTest
             rolDeveloper = new Rol(Rol.developer);
 
             tester = new User("Fiorella", "Petrone", "fioPetro", "fio1245",
-                "fiore@gmail.com", rolTester);
+                "fiore@gmail.com", rolTester, 0);
             developer = new User("Juan", "Gomez", "juanG", "juann245", 
-                "juan@gmail.com", rolDeveloper);
+                "juan@gmail.com", rolDeveloper, 0);
         }
 
         [TestMethod]

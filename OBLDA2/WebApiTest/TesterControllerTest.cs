@@ -29,7 +29,7 @@ namespace WebApiTest
         {
             rolTester = new Rol( Rol.tester);
             tester = new User("Juan", "Gomez", "jgomez", "admin1234", 
-                "gomez@gmail.com", rolTester);
+                "gomez@gmail.com", rolTester, 0);
 
             project = new Project("Project - GXC ");
 

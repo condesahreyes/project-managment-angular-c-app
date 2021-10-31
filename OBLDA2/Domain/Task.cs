@@ -43,7 +43,7 @@ namespace Domain
         public static void ValidateDuration(double duration)
         {
             if (duration < 0.0 || duration > 100)
-                throw new InvalidDataObjException(invalidCost);
+                throw new InvalidDataObjException(invalidDuration);
         }
 
         public override bool Equals(Object obj)

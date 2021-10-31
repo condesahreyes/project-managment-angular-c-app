@@ -32,7 +32,7 @@ namespace BusinessLogicTest
             CofnigurationMockRol();
 
             developer = new User("Diego", "Asadurian", "diegoAsa", "admin1234",
-                "diegoasadurian@gmail.com", roles[2]);
+                "diegoasadurian@gmail.com", roles[2], 0);
         }
 
         private void CofnigurationMockRol()

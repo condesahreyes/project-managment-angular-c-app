@@ -23,7 +23,7 @@ namespace WebApiTest
             rolAdministrator = new Rol(Rol.administrator);
 
             admin = new User("Hernan", "reyes", "hernanReyes", 
-                "admin1234", "reyesH@gmail.com", rolAdministrator);
+                "admin1234", "reyesH@gmail.com", rolAdministrator, 0);
             adminDTO = new UserEntryModel(admin);
         }
 

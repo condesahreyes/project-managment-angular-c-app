@@ -9,6 +9,7 @@ namespace Domain
         private const string invalidName = "You must entry a valid name";
         private const string invalidDomain = "You must entry a valid domain";
         private const string invalidVersion = "You must entry a valid version";
+        private const string invalidDuration = "You must entry a valid duration. Beetween 0 and 100";
 
         public int Id { get; set; }
 
@@ -16,6 +17,7 @@ namespace Domain
         public string Domain { get; set; }
         public string Version { get; set; }
 
+        public double Duration { get; set; }
         public Project Project { get; set; }
         public User SolvedBy { get; set; }
         public State State { get; set; }
@@ -29,6 +31,7 @@ namespace Domain
             this.Domain = domain;
             this.Version = version;
             this.State = state;
+            this.Duration = 0;
         }
 
         public Bug() { }
@@ -69,6 +72,12 @@ namespace Domain
 
             if (!(versionLength <= 10 && versionLength > 0))
                 throw new InvalidDataObjException(invalidVersion);
+        }
+
+        public static void ValidateDuration(double duration)
+        {
+            if (duration < 0.0 || duration > 100)
+                throw new InvalidDataObjException(invalidDuration);
         }
 
         public override bool Equals(Object obj)

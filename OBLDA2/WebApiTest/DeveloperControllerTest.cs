@@ -29,7 +29,7 @@ namespace WebApiTest
             developerLogic = new Mock<IDeveloperLogic>(MockBehavior.Strict);
 
             rolDeveloper = new Rol(Rol.developer);
-            developer = new User("Juan", "Gomez", "jgomez", "admin1234", "gomez@gmail.com", rolDeveloper);
+            developer = new User("Juan", "Gomez", "jgomez", "admin1234", "gomez@gmail.com", rolDeveloper, 0);
             
             project = new Project("Project - GXC ");
             bug = new Bug(project, 1, "Error de login", "Intento de sesión", "3.0", activeState);
