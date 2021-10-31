@@ -47,7 +47,7 @@ namespace BusinessLogicTest
             tester = new User("Fiorella", "Petrone", "fioPetro", "fio1245",
                 "fiore@gmail.com", rolTester, 0);
             developer = new User("Juan", "Gomez", "juanG", "juann245",
-                "juan@gmail.com", rolDeveloper, 0);
+                "juan@gmail.com", rolDeveloper, 10);
         }
 
         [TestMethod]
@@ -213,7 +213,7 @@ namespace BusinessLogicTest
             project.Bugs.Add(oneBug);
             project.Tasks.Add(oneTask);
 
-            mockProjectRepository.Setup(x => x.Get(project.Id)).Returns(project);
+            mockProjectRepository.Setup(x => x.GetById(project.Id)).Returns(project);
 
             project = projectLogic.Get(project.Id);
 
@@ -227,17 +227,18 @@ namespace BusinessLogicTest
         public void CalculateTotalPrice()
         {
             Bug oneBug = new Bug(project, 1234, "Error de login",
-                "Intento inicio de sesion", "2.0", new State(State.active), 10);
+                "Intento inicio de sesion", "2.0", new State(State.done), 10);
             Task oneTask = new Task(project, "One Task", 2000, 15);
 
+            oneBug.SolvedBy = developer;
             project.Bugs.Add(oneBug);
             project.Tasks.Add(oneTask);
 
-            mockProjectRepository.Setup(x => x.Get(project.Id)).Returns(project);
+            mockProjectRepository.Setup(x => x.GetById(project.Id)).Returns(project);
 
             project = projectLogic.Get(project.Id);
 
-            int projectPrice = (oneBug.Duration * oneBug.SolvedBy.Price) + oneTask.Price;
+            int projectPrice = (oneBug.Duration * oneBug.SolvedBy.Price) + (oneTask.Price * oneTask.Duration);
 
             mockProjectRepository.VerifyAll();
             Assert.IsTrue(projectPrice == project.Price);
