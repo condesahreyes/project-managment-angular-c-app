@@ -90,13 +90,8 @@ export class ProjectAssignFormComponent implements OnInit {
   usersInProject() {
     this.projectService.getUsersInOneProject(this.projectToAsign.id).subscribe(u => {
       this.usersProject = u
-      console.log(this.usersProject)
-    //   this.usersProject.map(u => {
-    //     this.selection.selected.map(
-    //       row => { row.Email === u.Email ? this.selection.select()
-    //         )
-    //   })
-    // })
+      // this.usersProject.map(u => 
+      //   this.selection.select());
   });
 }
 

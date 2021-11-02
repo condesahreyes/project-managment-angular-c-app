@@ -1,0 +1,40 @@
+<form [formGroup]="form">
+    <div fxLayout="column" fxLayoutAlign="space-around center">
+       
+        <h1 *ngIf="!edit">New Task</h1>
+        <h1 *ngIf="edit">Edit Task</h1>
+
+        <mat-form-field class="example-full-width" appearance="fill">
+            <mat-label>Name</mat-label>
+            <input type="text" matInput autocomplete="off" width="auto" formControlName="name" required>
+        </mat-form-field>
+
+        <mat-form-field class="example-full-width" appearance="fill">
+            <mat-label>Duration</mat-label>
+            <input type="number" matInput autocomplete="off" width="auto" formControlName="duration" required>
+        </mat-form-field>
+
+        <mat-form-field class="example-full-width" appearance="fill">
+            <mat-label>Cost</mat-label>
+            <input type="number" matInput autocomplete="off" formControlName="cost" required >
+            <span matPrefix>U$S&nbsp;</span>
+        </mat-form-field>
+
+        <mat-form-field appearance="fill">
+            <mat-label>Project</mat-label>
+            <mat-select name="project" formControlName="project" #project>
+                <mat-option *ngFor="let project of projects" [value]="project.name">
+                    {{project.name}}
+                </mat-option>
+            </mat-select>
+        </mat-form-field>
+
+        <div fxLayout="row" fxLayoutAlign="space-between center" fxLayoutGap=10px>
+
+            <button *ngIf="!edit" [disabled]="form.invalid" class="ancho button" mat-raised-button color="primary" (click)="create()">Create</button>
+            <button *ngIf="edit" [disabled]="form.invalid" class="ancho button" mat-raised-button color="primary" (click)="update()" >Save</button>
+
+            <button class="ancho button" mat-raised-button color="primary" (click)="close()">Cancel</button>
+        </div>
+    </div>
+</form>

@@ -7,7 +7,7 @@ using System;
 
 namespace WebApi.Controllers
 {
-    [Route("penguin/task")]
+    [Route("penguin/tasks")]
     public class TaskController : ApiBaseController
     {
         private readonly ITaskLogic taskLogic;
