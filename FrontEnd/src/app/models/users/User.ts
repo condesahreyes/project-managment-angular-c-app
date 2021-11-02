@@ -5,4 +5,5 @@
   "UserName" : string;
   "Password" : string;
   "Email" : string;
+  "Price" : number;
 }

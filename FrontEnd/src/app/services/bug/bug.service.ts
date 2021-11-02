@@ -21,19 +21,13 @@ export class BugService {
       Domain: bug.Domain,
       Version: bug.Version,
       State: bug.State,
-      CreatedBy: bug.CreatedBy
+      CreatedBy: bug.CreatedBy,
+      Duration: bug.Duration
     });
   }
 
-  // getProject(idProject : string): Observable<ProjectOut> {
-  //   return this.http.get<ProjectOut>(this.uri + '/' + idProject, {
-
-  //   });
-  // }
-
   getBug(idBug : string): Observable<Bug> {
     return this.http.get<Bug>(this.uri + '/' + idBug, {
-
     });
   }
 

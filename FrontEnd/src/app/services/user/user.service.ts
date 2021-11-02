@@ -18,14 +18,15 @@ export class UserService {
     return this.http.get<User[]>(this.uri).pipe();
   }
 
-  createUser(user: User)/*: Observable<User> */{
+  createUser(user: User){
     return this.http.post<User>(this.uri, {
       Name: user.Name,
       LastName: user.LastName,
       UserName: user.UserName,
       Password: user.Password,
       Email: user.Email,
-      Rol: user.Rol
+      Rol: user.Rol,
+      Price: user.Price
     });
   }
   

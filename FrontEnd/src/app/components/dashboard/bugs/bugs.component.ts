@@ -15,7 +15,7 @@ import { BugFormComponent } from './bug-form/bug-form.component';
 export class BugsComponent implements OnInit {
 
   bugToDelete: any;
-  displayedColumns = ['name', 'domain', 'version', 'state', 'actions']; //'project', 'solved by',
+  displayedColumns = ['name', 'domain', 'version', 'state', 'duration', 'actions']; //'project', 'solved by',
   bugs: Bug[] = [];
   dataSource!: MatTableDataSource<Bug>;
 
@@ -34,7 +34,6 @@ export class BugsComponent implements OnInit {
 
   ngOnInit(): void {
     this.getBugsCreated();
-
   }
 
   getBugsCreated() {
@@ -60,7 +59,8 @@ export class BugsComponent implements OnInit {
       width: '50%',
       data: ""
     });
-    dialogRef.afterClosed().subscribe(result => {
+    dialogRef.afterClosed().subscribe(() => {
+      this.getBugsCreated();
     });
   }
 
@@ -69,7 +69,7 @@ export class BugsComponent implements OnInit {
       width: '50%',
       data: bug
     });
-    dialogRef.afterClosed().subscribe(result => {
+    dialogRef.afterClosed().subscribe((result) => {
       this.getBugsCreated();
     });
   }

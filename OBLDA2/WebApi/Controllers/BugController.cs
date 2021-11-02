@@ -6,6 +6,7 @@ using WebApi.Filters;
 using OBLDA2.Models;
 using System.Net;
 using Domain;
+using System;
 
 namespace WebApi.Controllers
 {
@@ -24,7 +25,7 @@ namespace WebApi.Controllers
         [AuthorizationFilter(Autorization.AdministratorAndTester)]
         public IActionResult AddBug(BugEntryOutModel bugDTO)
         {
-            Bug bug = this.bugLogic.CreateByUser(bugDTO.ToEntity(), bugDTO.CreatedBy);
+            Bug bug = this.bugLogic.CreateByUser(bugDTO.ToEntity(), Guid.Parse(bugDTO.CreatedBy));
             BugEntryOutModel bugAdded = new BugEntryOutModel(bug);
             bugAdded.CreatedBy = bugDTO.CreatedBy;
 

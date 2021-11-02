@@ -3,6 +3,7 @@ using BusinessLogicInterface;
 using OBLDA2.Models;
 using Domain;
 using System.Collections.Generic;
+using System;
 
 namespace OBLDA2.Controllers
 {
@@ -35,8 +36,8 @@ namespace OBLDA2.Controllers
         [HttpGet("{userToken}")]
         public IActionResult GetUserLogged(string userToken)
         {
-            var userId = sessionsLogic.GetUserIdWithToekn(userToken);
-            return Ok(userId);
+            string userId = sessionsLogic.GetUserIdWithToekn(userToken);
+            return Ok(new UserIdModel(Guid.Parse(userId)));
         }
 
     }

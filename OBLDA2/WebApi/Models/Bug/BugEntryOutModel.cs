@@ -6,13 +6,14 @@ namespace OBLDA2.Models
 {
     public class BugEntryOutModel
     {
-        public string Project { get; set; }
         public int Id { get; set; }
+        public int Duration { get; set; }
+        public string Project { get; set; }
         public string Name { get; set; }
         public string Domain { get; set; }
         public string Version { get; set; }
         public string State { get; set; }
-        public Guid CreatedBy { get; set; }
+        public string CreatedBy { get; set; }
 
         public BugEntryOutModel() { }
 
@@ -24,6 +25,7 @@ namespace OBLDA2.Models
             this.Domain = bug.Domain;
             this.Version = bug.Version;
             this.State = bug.State.Name;
+            this.Duration = bug.Duration;
         }
 
         public Bug ToEntity() => new Bug
@@ -33,7 +35,8 @@ namespace OBLDA2.Models
             Name = this.Name,
             Domain = this.Domain,
             Version = this.Version,
-            State = new State(this.State)
+            State = new State(this.State),
+            Duration = this.Duration
         };
 
         public static List<BugEntryOutModel> ListBugs(List<Bug> bugs)

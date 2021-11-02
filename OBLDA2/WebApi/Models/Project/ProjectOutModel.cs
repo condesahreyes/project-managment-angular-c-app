@@ -14,14 +14,16 @@ namespace OBLDA2.Models
         public int TotalBugs { get; set; }
 
         public string Name { get; set; }
+        public int Price { get; set; }
+        public int Duration { get; set; }
 
         public ProjectOutModel() { }
 
         public ProjectOutModel(Project project)
         {
             this.Id = project.Id;
-
-
+            this.Price = project.Price;
+            this.Duration = project.Duration;
             this.TotalBugs = project.TotalBugs;
             this.Name = project.Name;
 

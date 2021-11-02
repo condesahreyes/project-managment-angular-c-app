@@ -26,7 +26,8 @@ export class UserFormComponent implements OnInit {
       userName: ["", Validators.required],
       rol: ["", Validators.required],
       email: ["", Validators.required],
-      password: ["", Validators.required]
+      password: ["", Validators.required],
+      price: ["", Validators.required]
     })
   }
 
@@ -37,6 +38,7 @@ export class UserFormComponent implements OnInit {
     UserName: "",
     Password: "",
     Email: "",
+    Price: 0
   }
 
 
@@ -50,6 +52,7 @@ export class UserFormComponent implements OnInit {
     this.user.Email = this.form.value.email;
     this.user.Password = this.form.value.password;
     this.user.Rol = this.form.value.rol;
+    this.user.Price = this.form.value.price;
 
     return this.userService.createUser(this.user).subscribe();
   }

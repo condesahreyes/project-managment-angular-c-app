@@ -11,15 +11,17 @@ namespace OBLDA2.Models
         public string Version { get; set; }
         public string State { get; set; }
         public Guid UserId { get; set; }
+        public int Duration { get; set; }
 
         public BugUpdateModel() { }
 
         public BugUpdateModel(Bug bug) { 
-        this.Project = bug.Project.Name;
-        this.Name = bug.Name;
-        this.Domain = bug.Domain;
-        this.Version = bug.Version;
-        this.State = bug.State.Name;
+            this.Project = bug.Project.Name;
+            this.Name = bug.Name;
+            this.Domain = bug.Domain;
+            this.Version = bug.Version;
+            this.State = bug.State.Name;
+            this.Duration = bug.Duration;
         }
 
         public Bug ToEntity(int id) => new Bug
@@ -29,7 +31,8 @@ namespace OBLDA2.Models
             Project = new Project(this.Project),
             Version = this.Version,
             Domain = this.Domain,
-            Name = this.Name
+            Name = this.Name,
+            Duration = this.Duration
         };
 
     }

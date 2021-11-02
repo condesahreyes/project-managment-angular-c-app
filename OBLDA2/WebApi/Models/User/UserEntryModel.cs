@@ -10,6 +10,7 @@ namespace OBLDA2.Models
         public string UserName { get; set; }
         public string Password { get; set; }
         public string Email { get; set; }
+        public int Price { get; set; }
 
         public UserEntryModel(User user)
         {
@@ -19,7 +20,7 @@ namespace OBLDA2.Models
             this.Password = user.Password;
             this.Email = user.Email;
             this.Rol = user.Rol.Name;
-
+            this.Price = user.Price;
         }
         public UserEntryModel() { }
 
@@ -32,7 +33,8 @@ namespace OBLDA2.Models
                 UserName = this.UserName,
                 Password = this.Password,
                 Email = this.Email,
-                Rol = new Rol(this.Rol)
+                Rol = new Rol(this.Rol),
+                Price = this.Price
             };
         }
 

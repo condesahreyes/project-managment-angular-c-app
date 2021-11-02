@@ -1,3 +1,5 @@
+import { Guid } from "guid-typescript";
+
 export interface UserIdModel {
-    "id": string;
+    "userId": Guid;
   }
