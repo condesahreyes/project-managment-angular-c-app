@@ -34,6 +34,11 @@ namespace BusinessLogic
 
             return projectRepository.Create(projectToCreate);
         }
+        public List<User> GetAllUsersInOneProject(Guid projectId)
+        {
+            Project proj = this.Get(projectId);
+            return proj.Users;
+        }
 
         public List<Bug> GetAllBugByProject(Project project)
         {

@@ -13,9 +13,9 @@ export class DeveloperService {
   private uri: string = `${environment.URI_BASE}/developers`;
 
 
-assignDeveloperToProject(projectId: string, developerId: string){
-  return this.http.post((this.uri + '/' + developerId + '/' + 'project' + '/' +  projectId), {
-  });
-}
+  assignDeveloperToProject(projectId: string, developerId: string){
+    return this.http.post((this.uri + '/' + developerId + '/' + 'project' + '/' +  projectId), {
+    });
+  }
 
 }

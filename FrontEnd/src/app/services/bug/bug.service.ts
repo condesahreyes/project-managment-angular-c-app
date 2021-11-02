@@ -28,6 +28,8 @@ export class BugService {
     });
   }
 
+
+  
   getBug(idBug : string): Observable<Bug> {
     return this.http.get<Bug>(this.uri + '/' + idBug, {
     });

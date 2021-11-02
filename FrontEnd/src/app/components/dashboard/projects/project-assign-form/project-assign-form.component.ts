@@ -2,10 +2,12 @@ import { SelectionModel } from '@angular/cdk/collections';
 import { Component, Inject, OnInit, ViewChild } from '@angular/core';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { MatPaginator } from '@angular/material/paginator';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { User } from 'src/app/models/users/User';
 import { DeveloperService } from 'src/app/services/developer/developer.service';
+import { ProjectService } from 'src/app/services/project/project.service';
 import { TesterService } from 'src/app/services/tester/tester.service';
 import { UserService } from 'src/app/services/user/user.service';
 
@@ -19,8 +21,9 @@ export class ProjectAssignFormComponent implements OnInit {
 
   displayedColumns = ['select', 'name', 'lastName', 'email', 'rol'];
   users: User[] = [];
+  usersProject: User[] = [];
   dataSource!: MatTableDataSource<User>;
-  selection = new SelectionModel<User>(true, []);
+  selection = new SelectionModel<User>(false, []);
   projectToAsign = this.data;
   userSelected: any;
 
@@ -29,6 +32,8 @@ export class ProjectAssignFormComponent implements OnInit {
 
   constructor(
     private userService: UserService,
+    private snackBar: MatSnackBar,
+    private projectService: ProjectService,
     private developerService: DeveloperService,
     private testerService: TesterService,
     public dialogRef: MatDialogRef<ProjectAssignFormComponent>,
@@ -42,6 +47,8 @@ export class ProjectAssignFormComponent implements OnInit {
 
   ngOnInit(): void {
     this.getUsersCreated();
+    this.usersInProject();
+
   }
 
   getUsersCreated() {
@@ -66,18 +73,39 @@ export class ProjectAssignFormComponent implements OnInit {
     this.dialogRef.close(true);
   }
 
-  isSelected(row: any) {
-    this.userSelected = row;
-  }
-
   assignUser() {
+    this.userSelected = this.selection.selected[0];
     if (this.userSelected.rol === 'Desarrollador') {
       this.developerService.assignDeveloperToProject(this.projectToAsign.id, this.userSelected.id).subscribe();
     }
     if (this.userSelected.rol === 'Tester') {
       this.testerService.assignTesterToProject(this.projectToAsign.id, this.userSelected.id).subscribe();
     }
+    if (this.userSelected.rol === "Administrador") {
+      this.error();
+    }
     this.close();
   }
+
+  usersInProject() {
+    this.projectService.getUsersInOneProject(this.projectToAsign.id).subscribe(u => {
+      this.usersProject = u
+      console.log(this.usersProject)
+    //   this.usersProject.map(u => {
+    //     this.selection.selected.map(
+    //       row => { row.Email === u.Email ? this.selection.select()
+    //         )
+    //   })
+    // })
+  });
+}
+
+error() {
+  this.snackBar.open('You can not assign administrator to one project', '', {
+    duration: 5000,
+    horizontalPosition: 'center',
+    verticalPosition: 'bottom'
+  });
+}
 
 }

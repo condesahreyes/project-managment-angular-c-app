@@ -46,9 +46,8 @@ export class SessionService {
 
   getUserIdLogged(): Observable<UserIdModel> {
     const tokenUser = this.getToken();
-    return this.http.get<UserIdModel>(this.uri + '/' + tokenUser, {
+    return this.http.get<UserIdModel>(this.uri + '/' + tokenUser);
 
-    });
   }
 
 }

@@ -17,5 +17,4 @@ export class TesterService {
     return this.http.post((this.uri + '/' + testerId + '/' + 'project' + '/' +  projectId), {
     });
   }
-
 }

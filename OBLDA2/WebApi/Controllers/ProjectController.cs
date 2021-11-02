@@ -99,5 +99,13 @@ namespace WebApi.Controllers
             return NoContent();
         }
 
+        [HttpGet("{projectId}/users")]
+        [AuthorizationFilter(Autorization.Administrator)]
+        public IActionResult GetAllUsersByProject(Guid projectId)
+        {
+            IEnumerable<User> users = this.projectLogic.GetAllUsersInOneProject(projectId);
+            return Ok(users);
+        }
+
     }
 }
