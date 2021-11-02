@@ -81,11 +81,11 @@ namespace WebApi.Controllers
             return Ok(new BugEntryOutModel(bugToReturn));
         }
 
-        [HttpDelete("{bugId}")]
+        [HttpDelete("{bugId}/byUser/{userId}")]
         [AuthorizationFilter(Autorization.AdministratorAndTester)]
-        public IActionResult Delete(int bugId, UserIdModel user)
+        public IActionResult Delete(int bugId, Guid userId)
         {
-            bugLogic.Delete(bugId, user.UserId);
+            bugLogic.Delete(bugId, userId);
             return NoContent();
         }
 
@@ -93,7 +93,7 @@ namespace WebApi.Controllers
         [AuthorizationFilter(Autorization.AdministratorAndTester)]
         public IActionResult UpdateABug(int bugId, BugUpdateModel bugDTO)
         {
-            this.bugLogic.Update(bugId, bugDTO.ToEntity(bugId), bugDTO.UserId);
+            this.bugLogic.Update(bugId, bugDTO.ToEntity(bugId), Guid.Parse(bugDTO.UserId));
             return NoContent();
         }
 

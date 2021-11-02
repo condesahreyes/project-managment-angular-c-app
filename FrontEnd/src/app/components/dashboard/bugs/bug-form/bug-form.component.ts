@@ -1,7 +1,9 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { Guid } from 'guid-typescript';
 import { Bug } from 'src/app/models/bug/Bug';
+import { BugUpdate } from 'src/app/models/bug/BugUpdate';
 import { ProjectOut } from 'src/app/models/project/ProjectOut';
 import { BugService } from 'src/app/services/bug/bug.service';
 import { ProjectService } from 'src/app/services/project/project.service';
@@ -37,6 +39,16 @@ export class BugFormComponent implements OnInit {
       project: [this.data.project, Validators.required],
       duration: [this.data.duration, Validators.required]
     })
+  }
+
+  bugUpdate: BugUpdate = {
+    Project: "",
+    Name: "",
+    Domain: "",
+    Version: "",
+    State: "",
+    UserId: "",
+    Duration: 0
   }
 
   bug: Bug = {
@@ -83,10 +95,15 @@ export class BugFormComponent implements OnInit {
   }
 
   update(){
-    // this.project.Name = this.form.value.name;
-    // return this.projectService.updateProject(this.data.id, this.project).subscribe(() => {
-    //   this.close();
-    // });
+    this.bugUpdate.Project = this.form.value.project;
+    this.bugUpdate.Name = this.form.value.name;
+    this.bugUpdate.Domain = this.form.value.domain;
+    this.bugUpdate.Version = this.form.value.version;
+    this.bugUpdate.State = this.form.value.state;
+    this.bugUpdate.UserId = this.userId;
+    this.bugUpdate.Duration = this.form.value.duration;
+
+    return this.bugService.updateBug(this.data.id, this.bugUpdate).subscribe(() => this.close());
   }
 
   close() {

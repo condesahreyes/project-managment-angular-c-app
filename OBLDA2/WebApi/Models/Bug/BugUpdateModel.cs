@@ -10,7 +10,7 @@ namespace OBLDA2.Models
         public string Domain { get; set; }
         public string Version { get; set; }
         public string State { get; set; }
-        public Guid UserId { get; set; }
+        public string UserId { get; set; }
         public int Duration { get; set; }
 
         public BugUpdateModel() { }
