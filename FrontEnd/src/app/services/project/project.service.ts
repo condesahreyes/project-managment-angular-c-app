@@ -28,7 +28,7 @@ export class ProjectService {
   }
 
   getProjects(): Observable<ProjectOut[]> {
-    return this.http.get<ProjectOut[]>(this.uri);
+    return this.http.get<ProjectOut[]>(this.uri).pipe();
   }
 
   deleteProject(idProject : string): Observable<ProjectOut> {

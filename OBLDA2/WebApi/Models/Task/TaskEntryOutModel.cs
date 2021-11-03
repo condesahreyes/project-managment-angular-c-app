@@ -1,5 +1,6 @@
 ﻿using Domain;
 using System;
+using System.Collections.Generic;
 
 namespace OBLDA2.Models
 {
@@ -28,5 +29,17 @@ namespace OBLDA2.Models
             Duration = task.Duration,
             Project = task.Project.Name
         };
+
+        public static List<TaskEntryOutModel> ToListModel(List<Task> tasks) 
+        {
+            List<TaskEntryOutModel> tasksModel = new List<TaskEntryOutModel>();
+
+            foreach (Task task in tasks)
+            {
+                tasksModel.Add(TaskEntryOutModel.ToModel(task));
+            }
+
+            return tasksModel;
+        }
     }
 }

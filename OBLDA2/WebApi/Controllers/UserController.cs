@@ -43,7 +43,6 @@ namespace OBLDA2.Controllers
         public IActionResult GetById(Guid userID)
         {
             User userToReturn = this.userLogic.Get(userID);
-
             return Ok(new UserOutModel(userToReturn));
         }
 

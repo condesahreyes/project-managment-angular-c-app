@@ -25,6 +25,20 @@ namespace BusinessLogic.UserRol
             this.bugLogic = bugLogic;
         }
 
+        public List<User> GetAll()
+        {
+            List<User> users = userLogic.GetAll();
+            List<User> developers = new List<User>();
+
+            foreach (User user in users)
+            {
+                if (user.Rol.Name.ToLower() == Rol.developer.ToLower())
+                    developers.Add(user);
+            }
+
+            return developers;
+        }
+
         public void AssignDeveloperToProject(Guid projectId, Guid developerId)
         {
             User developer = GetDeveloper(developerId);

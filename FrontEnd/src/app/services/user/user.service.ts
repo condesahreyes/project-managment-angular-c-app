@@ -20,13 +20,13 @@ export class UserService {
 
   createUser(user: User){
     return this.http.post<User>(this.uri, {
-      Name: user.Name,
-      LastName: user.LastName,
-      UserName: user.UserName,
-      Password: user.Password,
-      Email: user.Email,
-      Rol: user.Rol,
-      Price: user.Price
+      Name: user.name,
+      LastName: user.lastName,
+      UserName: user.userName,
+      Password: user.password,
+      Email: user.email,
+      Rol: user.rol,
+      Price: user.price
     });
   }
   

@@ -25,6 +25,7 @@ namespace Factory
             this._serviceCollection.AddScoped<IBugLogic, BugLogic>();
             this._serviceCollection.AddScoped<IBugsImport, BugsImport>();
             this._serviceCollection.AddScoped<ITesterLogic, TesterLogic>();
+            this._serviceCollection.AddScoped<ITaskLogic, TaskLogic>();
         }
 
     }

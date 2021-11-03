@@ -7,5 +7,6 @@ namespace BusinessLogicInterface
     public interface ITaskLogic
     {
         Task Create(Task task);
+        List<Task> GetAll();
     }
 }

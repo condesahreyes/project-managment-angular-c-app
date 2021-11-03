@@ -103,8 +103,8 @@ namespace WebApi.Controllers
         [AuthorizationFilter(Autorization.Administrator)]
         public IActionResult GetAllUsersByProject(Guid projectId)
         {
-            IEnumerable<User> users = this.projectLogic.GetAllUsersInOneProject(projectId);
-            return Ok(users);
+            List<User> users = this.projectLogic.GetAllUsersInOneProject(projectId);
+            return Ok(UserOutModel.ListUser(users));
         }
 
     }

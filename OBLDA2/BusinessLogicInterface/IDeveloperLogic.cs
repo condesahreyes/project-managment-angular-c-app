@@ -1,11 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using Domain;
+using System;
 
 namespace BusinessLogicInterface
 {
     public interface IDeveloperLogic
     {
+        List<User> GetAll();
         List<Bug> GetAllBugs(Guid developer);
         void AssignDeveloperToProject(Guid projectId, Guid developerId);
         void DeleteDeveloperInProject(Guid projectId, Guid developerId);

@@ -36,6 +36,7 @@ namespace OBLDA2.Models
                 }
 
             this.Bugs = new List<BugEntryOutModel>();
+            this.Task = new List<TaskEntryOutModel>();
 
             if(project.Bugs != null)
                 foreach (Bug bug in project.Bugs)

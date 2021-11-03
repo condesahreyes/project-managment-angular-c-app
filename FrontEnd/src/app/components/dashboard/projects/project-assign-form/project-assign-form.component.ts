@@ -23,7 +23,7 @@ export class ProjectAssignFormComponent implements OnInit {
   users: User[] = [];
   usersProject: User[] = [];
   dataSource!: MatTableDataSource<User>;
-  selection = new SelectionModel<User>(false, []);
+  selection = new SelectionModel<User>(true, []);
   projectToAsign = this.data;
   userSelected: any;
 
@@ -48,15 +48,25 @@ export class ProjectAssignFormComponent implements OnInit {
   ngOnInit(): void {
     this.getUsersCreated();
     this.usersInProject();
+  }
 
+  initialSelect(){
+    this.dataSource.data.forEach(row => {
+      this.usersProject.forEach(u => {
+        if(u.email == row.email)
+        this.selection.select(row);
+        })
+      }
+    );
   }
 
   getUsersCreated() {
-    this.userService.getUsers().subscribe(u => {
-      this.users = u
-      this.dataSource = new MatTableDataSource(this.users);
-      this.setPaginatorAndSort();
-
+    this.testerService.getAll().subscribe(t => {
+      this.developerService.getAll().subscribe(d => {
+        this.users = t.concat(d);
+        this.dataSource = new MatTableDataSource<User>(this.users);
+        this.setPaginatorAndSort();
+      })
     });
   }
 
@@ -73,25 +83,39 @@ export class ProjectAssignFormComponent implements OnInit {
     this.dialogRef.close(true);
   }
 
-  assignUser() {
-    this.userSelected = this.selection.selected[0];
+  selectUser(user : any) {
+    if(this.selection.isSelected(user))
+      this.deassignUser(user);
+    else
+      this.assignUser(user);
+  }
+
+  assignUser(user:any){
+    this.selection.select(user);
+    let lastSelected = this.selection.selected.length -1;
+    this.userSelected = this.selection.selected[lastSelected];
     if (this.userSelected.rol === 'Desarrollador') {
       this.developerService.assignDeveloperToProject(this.projectToAsign.id, this.userSelected.id).subscribe();
     }
     if (this.userSelected.rol === 'Tester') {
       this.testerService.assignTesterToProject(this.projectToAsign.id, this.userSelected.id).subscribe();
     }
-    if (this.userSelected.rol === "Administrador") {
-      this.error();
+  }
+
+  deassignUser(user: any){
+    this.selection.deselect(user);
+    if (user.rol === 'Desarrollador') {
+      this.developerService.deassignDeveloperToProject(this.projectToAsign.id, user.id).subscribe();
     }
-    this.close();
+    if (user.rol === 'Tester') {
+      this.testerService.deassignTesterToProject(this.projectToAsign.id, user.id).subscribe();
+    }
   }
 
   usersInProject() {
     this.projectService.getUsersInOneProject(this.projectToAsign.id).subscribe(u => {
-      this.usersProject = u
-      // this.usersProject.map(u => 
-      //   this.selection.select());
+      this.usersProject = u;
+      this.initialSelect();
   });
 }
 
