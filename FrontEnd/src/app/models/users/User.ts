@@ -1,8 +1,9 @@
 ﻿export interface User {
-  "Rol" : string;
-  "Name" : string;
-  "LastName" : string;
-  "UserName" : string;
-  "Password" : string;
-  "Email" : string;
+  "rol" : string;
+  "name" : string;
+  "lastName" : string;
+  "userName" : string;
+  "password" : string;
+  "email" : string;
+  "price" : number;
 }

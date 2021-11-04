@@ -4,6 +4,7 @@ import { BugsComponent } from './bugs/bugs.component';
 import { DashboardComponent } from './dashboard.component';
 import { ProjectsComponent } from './projects/projects.component';
 import { StartComponent } from './start/start.component';
+import { TasksComponent } from './tasks/tasks.component';
 import { UsersComponent } from './users/users.component';
 
 const routes: Routes = [
@@ -13,8 +14,7 @@ const routes: Routes = [
       { path: 'users', component: UsersComponent },
       { path: 'projects', component: ProjectsComponent },
       { path: 'bugs', component: BugsComponent },
-
-
+      { path: 'tasks', component: TasksComponent },
     ]
   },
 ];

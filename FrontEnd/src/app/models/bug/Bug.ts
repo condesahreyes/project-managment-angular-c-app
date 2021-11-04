@@ -6,4 +6,5 @@
   "Version": string;
   "State": string;
   "CreatedBy": string;
+  "Duration": number;
 }

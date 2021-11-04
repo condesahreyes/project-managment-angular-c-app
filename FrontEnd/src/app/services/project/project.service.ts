@@ -4,6 +4,7 @@ import { Injectable } from '@angular/core';
 import {Project} from "../../models/project/Project";
 import {Observable} from "rxjs";
 import {ProjectOut} from "../../models/project/ProjectOut";
+import { User } from "src/app/models/users/User";
 
 @Injectable({
   providedIn: 'root'
@@ -27,7 +28,7 @@ export class ProjectService {
   }
 
   getProjects(): Observable<ProjectOut[]> {
-    return this.http.get<ProjectOut[]>(this.uri);
+    return this.http.get<ProjectOut[]>(this.uri).pipe();
   }
 
   deleteProject(idProject : string): Observable<ProjectOut> {
@@ -41,5 +42,11 @@ export class ProjectService {
     return this.http.put<Project>( this.uri + "/" + idProject, {
       Name: project.Name
     });//.pipe(catchError(this.handlerError.handleError));
+  }
+
+  getUsersInOneProject(idProject : string): Observable<User[]> {
+    return this.http.get<User[]>(this.uri + '/' + idProject + '/' + 'users', {
+    });
+
   }
 }

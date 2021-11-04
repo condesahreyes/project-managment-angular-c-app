@@ -2,10 +2,12 @@ import { SelectionModel } from '@angular/cdk/collections';
 import { Component, Inject, OnInit, ViewChild } from '@angular/core';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { MatPaginator } from '@angular/material/paginator';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { User } from 'src/app/models/users/User';
 import { DeveloperService } from 'src/app/services/developer/developer.service';
+import { ProjectService } from 'src/app/services/project/project.service';
 import { TesterService } from 'src/app/services/tester/tester.service';
 import { UserService } from 'src/app/services/user/user.service';
 
@@ -19,6 +21,7 @@ export class ProjectAssignFormComponent implements OnInit {
 
   displayedColumns = ['select', 'name', 'lastName', 'email', 'rol'];
   users: User[] = [];
+  usersProject: User[] = [];
   dataSource!: MatTableDataSource<User>;
   selection = new SelectionModel<User>(true, []);
   projectToAsign = this.data;
@@ -29,6 +32,8 @@ export class ProjectAssignFormComponent implements OnInit {
 
   constructor(
     private userService: UserService,
+    private snackBar: MatSnackBar,
+    private projectService: ProjectService,
     private developerService: DeveloperService,
     private testerService: TesterService,
     public dialogRef: MatDialogRef<ProjectAssignFormComponent>,
@@ -44,12 +49,24 @@ export class ProjectAssignFormComponent implements OnInit {
     this.getUsersCreated();
   }
 
-  getUsersCreated() {
-    this.userService.getUsers().subscribe(u => {
-      this.users = u
-      this.dataSource = new MatTableDataSource(this.users);
-      this.setPaginatorAndSort();
+  initialSelect(){
+    this.dataSource.data.forEach(row => {
+      this.usersProject.forEach(u => {
+        if(u.email == row.email)
+        this.selection.select(row);
+        })
+      }
+    );
+  }
 
+  getUsersCreated() {
+    this.testerService.getAll().subscribe(t => {
+      this.developerService.getAll().subscribe(d => {
+        this.users = t.concat(d);
+        this.dataSource = new MatTableDataSource<User>(this.users);
+        this.setPaginatorAndSort();
+        this.usersInProject();
+      })
     });
   }
 
@@ -66,18 +83,50 @@ export class ProjectAssignFormComponent implements OnInit {
     this.dialogRef.close(true);
   }
 
-  isSelected(row: any) {
-    this.userSelected = row;
+  selectUser(user : any) {
+    if(this.selection.isSelected(user))
+      this.deassignUser(user);
+    else
+      this.assignUser(user);
+
+    this.selection.toggle(user);
   }
 
-  assignUser() {
+  assignUser(user:any){
+    this.selection.select(user);
+    let lastSelected = this.selection.selected.length -1;
+    this.userSelected = this.selection.selected[lastSelected];
     if (this.userSelected.rol === 'Desarrollador') {
       this.developerService.assignDeveloperToProject(this.projectToAsign.id, this.userSelected.id).subscribe();
     }
     if (this.userSelected.rol === 'Tester') {
       this.testerService.assignTesterToProject(this.projectToAsign.id, this.userSelected.id).subscribe();
     }
-    this.close();
   }
+
+  deassignUser(user: any){
+    this.selection.deselect(user);
+    if (user.rol === 'Desarrollador') {
+      this.developerService.deassignDeveloperToProject(this.projectToAsign.id, user.id).subscribe();
+    }
+    if (user.rol === 'Tester') {
+      this.testerService.deassignTesterToProject(this.projectToAsign.id, user.id).subscribe();
+    }
+  }
+
+  usersInProject() {
+    this.projectService.getUsersInOneProject(this.projectToAsign.id).subscribe(u => {
+      this.usersProject = u;
+      this.initialSelect();
+  });
+}
+
+error() {
+  this.snackBar.open('You can not assign administrator to one project', '', {
+    duration: 5000,
+    horizontalPosition: 'center',
+    verticalPosition: 'bottom'
+  });
+}
 
 }

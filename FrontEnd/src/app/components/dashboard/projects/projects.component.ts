@@ -3,7 +3,6 @@ import { MatDialog } from '@angular/material/dialog';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
-import { Project } from 'src/app/models/project/Project';
 import { ProjectOut } from 'src/app/models/project/ProjectOut';
 import { ProjectService } from 'src/app/services/project/project.service';
 import { ProjectAssignFormComponent } from './project-assign-form/project-assign-form.component';
@@ -16,7 +15,7 @@ import { ProjectFormComponent } from './project-form/project-form.component';
 })
 export class ProjectsComponent implements OnInit {
 
-  displayedColumns = ['name', 'TotalBugs', 'actions'];
+  displayedColumns = ['name', 'TotalBugs', 'duration', 'price', 'actions'];
   projects: ProjectOut[] = [];
   dataSource!: MatTableDataSource<ProjectOut>;
 
@@ -54,7 +53,6 @@ export class ProjectsComponent implements OnInit {
     }
   }
 
-
   openForm() {
     const dialogRef = this.dialog.open(ProjectFormComponent, {
       width: '50%',
@@ -68,6 +66,7 @@ export class ProjectsComponent implements OnInit {
   delete(idProject: any) {
     if (confirm("Are you sure to delete?")) {
       this.projectService.deleteProject(idProject).subscribe(data => {
+        this.getProjectsCreated();
       });
       this.projectService.getProjects().subscribe((response) => {
         this.projects = response;

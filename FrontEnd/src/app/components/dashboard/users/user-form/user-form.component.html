@@ -32,6 +32,11 @@
             <input type="text" matInput autocomplete="off" formControlName="rol" required >
         </mat-form-field>
 
+        <mat-form-field class="example-full-width" appearance="fill">
+            <mat-label>Price</mat-label>
+            <input type="text" matInput autocomplete="off" formControlName="price" required >
+        </mat-form-field>
+
         <div fxLayout="row" fxLayoutAlign="space-between center" fxLayoutGap=10px>
 
             <button type="submit" [disabled]="form.invalid" class="ancho button" mat-raised-button color="primary" >Create</button>

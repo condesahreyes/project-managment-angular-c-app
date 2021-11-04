@@ -47,5 +47,15 @@ namespace WebApi.Controllers
             return NoContent();
         }
 
+        [HttpGet]
+        [AuthorizationFilter(Autorization.Administrator)]
+        public IActionResult GetAll()
+        {
+            List<User> users = this.testerLogic.GetAll();
+            IEnumerable<UserOutModel> usersOut = UserOutModel.ListUser(users);
+
+            return Ok(usersOut);
+        }
+
     }
 }

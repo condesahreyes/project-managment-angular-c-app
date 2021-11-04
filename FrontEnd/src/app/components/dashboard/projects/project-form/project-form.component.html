@@ -12,9 +12,9 @@
         <div fxLayout="row" fxLayoutAlign="space-between center" fxLayoutGap=10px>
 
             <button *ngIf="!edit" [disabled]="form.invalid" type="submit" class="ancho button" mat-raised-button color="primary" >Create</button>
-            <button *ngIf="edit" [disabled]="form.invalid" class="ancho button" mat-raised-button color="primary" (click)="update()" >Save</button>
+            <button *ngIf="edit" [disabled]="form.invalid" type="button" class="ancho button" mat-raised-button color="primary" (click)="update()" >Save</button>
 
-            <button class="ancho button" mat-raised-button color="primary" (click)="close()">Cancel</button>
+            <button class="ancho button" mat-raised-button type="button" color="primary" (click)="close()">Cancel</button>
         </div>
     </div>
 </form>

@@ -1,6 +1,7 @@
 ﻿using BusinessLogicInterface;
 using DataAccessInterface;
 using Domain;
+using System.Collections.Generic;
 
 namespace BusinessLogic
 {
@@ -20,6 +21,11 @@ namespace BusinessLogic
             IsValidTask(ref task);
 
             return taskRepository.Create(task);
+        }
+
+        public List<Task> GetAll()
+        {
+            return taskRepository.GetAll();
         }
 
         private void IsValidTask(ref Task task)

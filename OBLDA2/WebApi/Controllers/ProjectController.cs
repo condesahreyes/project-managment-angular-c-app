@@ -35,7 +35,7 @@ namespace WebApi.Controllers
         [AuthorizationFilter(Autorization.Administrator)]
         public IActionResult GetAllProjects()
         {
-            IEnumerable<Project> projects = this.projectLogic.GetAll();
+            List<Project> projects = this.projectLogic.GetAll();
 
             List<ProjectOutModel> projectsOut = new List<ProjectOutModel>();
 
@@ -97,6 +97,14 @@ namespace WebApi.Controllers
         {
             this.projectLogic.Update(id, projectDTO.ToEntity());
             return NoContent();
+        }
+
+        [HttpGet("{projectId}/users")]
+        [AuthorizationFilter(Autorization.Administrator)]
+        public IActionResult GetAllUsersByProject(Guid projectId)
+        {
+            List<User> users = this.projectLogic.GetAllUsersInOneProject(projectId);
+            return Ok(UserOutModel.ListUser(users));
         }
 
     }

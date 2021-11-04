@@ -1,0 +1,6 @@
+th, td {
+    overflow: hidden;
+    width: 20%;
+    text-overflow: Ellipsis;
+    white-space: nowrap;
+  }

@@ -18,17 +18,20 @@ export class UserService {
     return this.http.get<User[]>(this.uri).pipe();
   }
 
-  createUser(user: User)/*: Observable<User> */{
+  getById(userId : string): Observable<User> {
+    return this.http.get<User>(this.uri+'/'+userId).pipe();
+  }
+
+  createUser(user: User){
     return this.http.post<User>(this.uri, {
-      Name: user.Name,
-      LastName: user.LastName,
-      UserName: user.UserName,
-      Password: user.Password,
-      Email: user.Email,
-      Rol: user.Rol
+      Name: user.name,
+      LastName: user.lastName,
+      UserName: user.userName,
+      Password: user.password,
+      Email: user.email,
+      Rol: user.rol,
+      Price: user.price
     });
   }
   
 }
-
-

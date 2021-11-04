@@ -24,6 +24,7 @@ namespace Factory
             _serviceCollection.AddScoped<IProjectRepository, ProjectRepository>();
             _serviceCollection.AddScoped<IBugRepository, BugRepository>();
             _serviceCollection.AddScoped<IRepository<State, Guid>, Repository<State,Guid>>();
+            _serviceCollection.AddScoped<ITaskRepository, TaskRepository>();
 
             _serviceCollection.AddDbContext<DbContext, DataContext>();
         }

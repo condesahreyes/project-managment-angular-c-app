@@ -183,7 +183,7 @@ namespace WebApiTest
             bugLogic.Setup(m => m.Delete(bug.Id, user.UserId));
             BugController controller = new BugController(bugLogic.Object);
 
-            IActionResult result = controller.Delete(bug.Id, user);
+            IActionResult result = controller.Delete(bug.Id, user.UserId);
             var status = result as NoContentResult;
 
             bugLogic.VerifyAll();

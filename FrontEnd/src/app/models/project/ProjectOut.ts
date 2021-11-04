@@ -7,4 +7,6 @@ export interface ProjectOut {
   "bugs" : Bug[];
   "totalBugs" : number;
   "name" : string;
+  "price" : number;
+  "duration" : number;
 }

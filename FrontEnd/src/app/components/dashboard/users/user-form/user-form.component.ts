@@ -26,30 +26,32 @@ export class UserFormComponent implements OnInit {
       userName: ["", Validators.required],
       rol: ["", Validators.required],
       email: ["", Validators.required],
-      password: ["", Validators.required]
+      password: ["", Validators.required],
+      price: ["", Validators.required]
     })
   }
 
   user: User = {
-    Rol: "",
-    Name: "",
-    LastName: "",
-    UserName: "",
-    Password: "",
-    Email: "",
+    rol: "",
+    name: "",
+    lastName: "",
+    userName: "",
+    password: "",
+    email: "",
+    price: 0
   }
-
 
   ngOnInit(): void {
   }
 
   create() {
-    this.user.Name = this.form.value.name;
-    this.user.LastName = this.form.value.lastName;
-    this.user.UserName = this.form.value.userName;
-    this.user.Email = this.form.value.email;
-    this.user.Password = this.form.value.password;
-    this.user.Rol = this.form.value.rol;
+    this.user.name = this.form.value.name;
+    this.user.lastName = this.form.value.lastName;
+    this.user.userName = this.form.value.userName;
+    this.user.email = this.form.value.email;
+    this.user.password = this.form.value.password;
+    this.user.rol = this.form.value.rol;
+    this.user.price = this.form.value.price;
 
     return this.userService.createUser(this.user).subscribe();
   }

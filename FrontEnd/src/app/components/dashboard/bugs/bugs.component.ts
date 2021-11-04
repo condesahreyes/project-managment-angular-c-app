@@ -6,6 +6,8 @@ import { MatTableDataSource } from '@angular/material/table';
 import { Bug } from 'src/app/models/bug/Bug';
 import { BugService } from 'src/app/services/bug/bug.service';
 import { BugFormComponent } from './bug-form/bug-form.component';
+import { SessionService } from 'src/app/services/session/session.service';
+import { UserIdModel } from 'src/app/models/users/UserIdModel';
 
 @Component({
   selector: 'app-bugs',
@@ -15,15 +17,17 @@ import { BugFormComponent } from './bug-form/bug-form.component';
 export class BugsComponent implements OnInit {
 
   bugToDelete: any;
-  displayedColumns = ['name', 'domain', 'version', 'state', 'actions']; //'project', 'solved by',
+  displayedColumns = ['name', 'domain', 'version', 'state', 'duration', 'actions']; //'project', 'solved by',
   bugs: Bug[] = [];
   dataSource!: MatTableDataSource<Bug>;
+  user!: UserIdModel;
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
 
   constructor(
     private bugService: BugService,
+    private sessionService: SessionService,
     public dialog: MatDialog
   ) { }
 
@@ -34,7 +38,9 @@ export class BugsComponent implements OnInit {
 
   ngOnInit(): void {
     this.getBugsCreated();
-
+    this.sessionService.getUserIdLogged().subscribe(u => {
+      this.user = { userId:  u.userId}
+    });
   }
 
   getBugsCreated() {
@@ -42,7 +48,6 @@ export class BugsComponent implements OnInit {
       this.bugs = b
       this.dataSource = new MatTableDataSource(this.bugs);
       this.setPaginatorAndSort();
-
     });
   }
 
@@ -60,7 +65,8 @@ export class BugsComponent implements OnInit {
       width: '50%',
       data: ""
     });
-    dialogRef.afterClosed().subscribe(result => {
+    dialogRef.afterClosed().subscribe(() => {
+      this.getBugsCreated();
     });
   }
 
@@ -69,25 +75,14 @@ export class BugsComponent implements OnInit {
       width: '50%',
       data: bug
     });
-    dialogRef.afterClosed().subscribe(result => {
+    dialogRef.afterClosed().subscribe((result) => {
       this.getBugsCreated();
     });
   }
 
-  delete(idBug: any) {
-    this.bugService.getBug(idBug).subscribe(b => {
-      this.bugToDelete = b
-    });
-    console.log(this.bugToDelete)
-    
-
-    let user = this.bugToDelete.CreatedBy;
+  delete(idBug: number) {
     if (confirm("Are you sure to delete?")) {
-      this.bugService.deleteBug(idBug, user).subscribe(data => {
-      });
-      this.bugService.getBugs().subscribe((response) => {
-        this.bugs = response;
-      })
+      this.bugService.deleteBug(idBug, this.user).subscribe(() => this.getBugsCreated());
     }
   }
 

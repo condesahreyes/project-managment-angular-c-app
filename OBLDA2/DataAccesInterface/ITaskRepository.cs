@@ -4,10 +4,9 @@ using System;
 
 namespace DataAccessInterface
 {
-    public interface IProjectRepository : IRepository<Project, Guid>
+    public interface ITaskRepository : IRepository<Task, Guid>
     {
-        List<Project> GetAll();
-        Project GetById(Guid id);
-        Project Update(Guid id, Project projectUpdate);
+        List<Task> GetAll();
+        Task GetById(Guid id);
     }
 }

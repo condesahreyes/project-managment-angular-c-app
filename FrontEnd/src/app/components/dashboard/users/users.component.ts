@@ -16,7 +16,7 @@ import { UserFormComponent } from './user-form/user-form.component';
 export class UsersComponent implements OnInit {
 
 
-  displayedColumns = ['name', 'lastName', 'email', 'rol', 'actions'];
+  displayedColumns = ['name', 'lastName', 'email', 'rol','price', 'actions' ];
   users: User[] = [];
   dataSource!: MatTableDataSource<User>;
 
