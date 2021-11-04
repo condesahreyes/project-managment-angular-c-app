@@ -14,7 +14,6 @@ import { TaskFormComponent } from './task-form/task-form.component';
 })
 export class TasksComponent implements OnInit {
 
-  
   displayedColumns = ['name', 'duration', 'cost', 'actions' ];
   tasks: Task[] = [];
   dataSource!: MatTableDataSource<Task>;
@@ -34,7 +33,6 @@ export class TasksComponent implements OnInit {
 
   ngOnInit(): void {
     this.getTaskCreated();
-
   }
 
   getTaskCreated() {
@@ -42,7 +40,6 @@ export class TasksComponent implements OnInit {
       this.tasks = t
       this.dataSource = new MatTableDataSource(this.tasks);
       this.setPaginatorAndSort();
-
     });
   }
 
@@ -55,15 +52,13 @@ export class TasksComponent implements OnInit {
     }
   }
 
-
   openForm() {
     const dialogRef = this.dialog.open(TaskFormComponent, {
       width: '50%',
       data: ""
     });
     dialogRef.afterClosed().subscribe(result => {
+      this.getTaskCreated();
     });
   }
-
-
 }

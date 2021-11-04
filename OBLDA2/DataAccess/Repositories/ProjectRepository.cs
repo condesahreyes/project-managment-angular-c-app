@@ -23,10 +23,8 @@ namespace DataAccess.Repositories
 
         public List<Project> GetAll()
         {
-            return _DbSet.Include(u => u.Users)
-                .Include(b => b.Bugs).ThenInclude(b => b.State)
-                .Include(b => b.Bugs).ThenInclude(b=>b.SolvedBy)
-                .Include(t => t.Tasks).ToList();
+            return _DbSet.Include(u => u.Users).Include(t => t.Tasks)
+                .ToList();
         }
 
         public Project GetById(Guid id)

@@ -35,7 +35,7 @@ namespace WebApi.Controllers
         [AuthorizationFilter(Autorization.Administrator)]
         public IActionResult GetAllProjects()
         {
-            IEnumerable<Project> projects = this.projectLogic.GetAll();
+            List<Project> projects = this.projectLogic.GetAll();
 
             List<ProjectOutModel> projectsOut = new List<ProjectOutModel>();
 

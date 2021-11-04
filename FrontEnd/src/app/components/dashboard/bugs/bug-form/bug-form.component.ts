@@ -1,7 +1,6 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { Guid } from 'guid-typescript';
 import { Bug } from 'src/app/models/bug/Bug';
 import { BugUpdate } from 'src/app/models/bug/BugUpdate';
 import { ProjectOut } from 'src/app/models/project/ProjectOut';

@@ -34,6 +34,7 @@ namespace BusinessLogic
 
             return projectRepository.Create(projectToCreate);
         }
+
         public List<User> GetAllUsersInOneProject(Guid projectId)
         {
             Project project = new Project();
@@ -149,14 +150,18 @@ namespace BusinessLogic
         public List<Project> GetAll()
         {
             List<Project> projects = projectRepository.GetAll();
-
+            
             foreach (Project project in projects)
             {
+                List<Bug> bugsInProject = GetAllBugByProject(project);
+                if (bugsInProject != null && bugsInProject.Count != 1)
+                    project.Bugs.AddRange(bugsInProject);
+
                 project.TotalBugs = project.Bugs.Count;
                 project.Duration = CalculateTotalDuration(project);
                 project.Price = CalculateTotalPrice(project);
             }
-
+            
             return projectRepository.GetAll();
         }
 

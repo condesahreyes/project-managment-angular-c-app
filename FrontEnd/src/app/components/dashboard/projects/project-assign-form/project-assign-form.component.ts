@@ -47,7 +47,6 @@ export class ProjectAssignFormComponent implements OnInit {
 
   ngOnInit(): void {
     this.getUsersCreated();
-    this.usersInProject();
   }
 
   initialSelect(){
@@ -66,6 +65,7 @@ export class ProjectAssignFormComponent implements OnInit {
         this.users = t.concat(d);
         this.dataSource = new MatTableDataSource<User>(this.users);
         this.setPaginatorAndSort();
+        this.usersInProject();
       })
     });
   }
@@ -88,6 +88,8 @@ export class ProjectAssignFormComponent implements OnInit {
       this.deassignUser(user);
     else
       this.assignUser(user);
+
+    this.selection.toggle(user);
   }
 
   assignUser(user:any){

@@ -1,4 +1,4 @@
-<h1> Select one user </h1>
+<h1> Select users to project </h1>
 
 <mat-form-field appearance="standard">
     <mat-label>Filter</mat-label>
@@ -45,4 +45,8 @@
         <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr> 
     </table>
     <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]" aria-label="Select page of users"></mat-paginator>
+</div>
+<br>
+<div fxLayout="row" fxLayoutAlign="end center">
+    <button class="ancho button" mat-raised-button type="button" color="primary" (click)="close()">Cancel</button>
 </div>

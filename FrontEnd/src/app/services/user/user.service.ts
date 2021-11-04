@@ -18,6 +18,10 @@ export class UserService {
     return this.http.get<User[]>(this.uri).pipe();
   }
 
+  getById(userId : string): Observable<User> {
+    return this.http.get<User>(this.uri+'/'+userId).pipe();
+  }
+
   createUser(user: User){
     return this.http.post<User>(this.uri, {
       Name: user.name,
@@ -31,5 +35,3 @@ export class UserService {
   }
   
 }
-
-

@@ -82,7 +82,7 @@ export class BugsComponent implements OnInit {
 
   delete(idBug: number) {
     if (confirm("Are you sure to delete?")) {
-      this.bugService.deleteBug(idBug, this.user).subscribe();
+      this.bugService.deleteBug(idBug, this.user).subscribe(() => this.getBugsCreated());
     }
   }
 

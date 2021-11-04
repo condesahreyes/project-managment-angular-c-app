@@ -66,6 +66,7 @@ export class ProjectsComponent implements OnInit {
   delete(idProject: any) {
     if (confirm("Are you sure to delete?")) {
       this.projectService.deleteProject(idProject).subscribe(data => {
+        this.getProjectsCreated();
       });
       this.projectService.getProjects().subscribe((response) => {
         this.projects = response;
