@@ -19,7 +19,7 @@ export class BugFormComponent implements OnInit {
   form: FormGroup;
   projects: ProjectOut[] = [];
   userId: string = "";
-  
+
   constructor(
     private bugService: BugService,
     private projectService: ProjectService,
@@ -35,7 +35,7 @@ export class BugFormComponent implements OnInit {
       version: [this.data.version, Validators.required],
       id: [this.data.id, Validators.required],
       state: [this.data.state, Validators.required],
-      project: [this.data.project, Validators.required],
+      // project: [this.data.project, Validators.required],
       duration: [this.data.duration, Validators.required]
     })
   }
@@ -65,17 +65,17 @@ export class BugFormComponent implements OnInit {
     this.sessionService.getUserIdLogged().subscribe(u => {
       this.userId = u.userId + "";
     });
-    this.getProjectsCreated();
-    if(this.data !== ""){
+    // this.getProjectsCreated();
+    if (this.data.domain) {
       this.edit = true;
     }
   }
 
-    getProjectsCreated() {
-    this.projectService.getProjects().subscribe(p => {
-      this.projects = p
-    });
-  }
+  // getProjectsCreated() {
+  //   this.projectService.getProjects().subscribe(p => {
+  //     this.projects = p
+  //   });
+  // }
 
   create() {
     this.bug.Name = this.form.value.name;
@@ -84,17 +84,17 @@ export class BugFormComponent implements OnInit {
     this.bug.Domain = this.form.value.domain;
     this.bug.Version = this.form.value.version;
     this.bug.State = this.form.value.state;
-    this.bug.Project = this.form.value.project;
+    this.bug.Project = this.data;
     this.bug.CreatedBy = this.userId;
 
-    
+
     return this.bugService.createBug(this.bug).subscribe(() => {
       this.close();
     });
   }
 
-  update(){
-    this.bugUpdate.Project = this.form.value.project;
+  update() {
+    this.bugUpdate.Project = this.data.project;
     this.bugUpdate.Name = this.form.value.name;
     this.bugUpdate.Domain = this.form.value.domain;
     this.bugUpdate.Version = this.form.value.version;

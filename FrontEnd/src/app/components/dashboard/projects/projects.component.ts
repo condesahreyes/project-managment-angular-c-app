@@ -1,8 +1,10 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
+import { ControlContainer } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
+import { NavigationExtras, Router } from '@angular/router';
 import { ProjectOut } from 'src/app/models/project/ProjectOut';
 import { ProjectService } from 'src/app/services/project/project.service';
 import { ProjectAssignFormComponent } from './project-assign-form/project-assign-form.component';
@@ -24,7 +26,8 @@ export class ProjectsComponent implements OnInit {
 
   constructor(
     private projectService: ProjectService,
-    public dialog: MatDialog
+    public dialog: MatDialog,
+    private router: Router
   ) { }
 
   setPaginatorAndSort() {
@@ -83,6 +86,11 @@ export class ProjectsComponent implements OnInit {
     dialogRef.afterClosed().subscribe(result => {
       this.getProjectsCreated();
     });
+  }
+
+  seeProject(projectName: string) {
+    this.router.navigate(['dashboard/bugs'], {queryParams: {data: projectName}});
+
   }
 
   assignUser(project: any) {

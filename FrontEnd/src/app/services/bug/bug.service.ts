@@ -41,6 +41,12 @@ export class BugService {
     });
   }
 
+  getBugsByProject(projectName: string): Observable<Bug[]> {
+    return this.http.get<Bug[]>(this.uri + '/' + 'byProject' + '/' +  projectName, {
+
+    });
+  }
+
   deleteBug(idBug : number, user: UserIdModel){
     return this.http.delete<UserIdModel>(this.uri + '/' + idBug + '/byUser/' +user.userId
     );
