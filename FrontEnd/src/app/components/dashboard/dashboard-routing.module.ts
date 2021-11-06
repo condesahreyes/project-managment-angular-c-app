@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { AutorizationGuard } from 'src/app/guards/autorization.guard';
 import { BugsComponent } from './bugs/bugs.component';
 import { DashboardComponent } from './dashboard.component';
 import { ProjectsComponent } from './projects/projects.component';
@@ -11,10 +12,27 @@ const routes: Routes = [
   {
     path: '', component: DashboardComponent, children: [
       { path: '', component: StartComponent },
-      { path: 'users', component: UsersComponent },
-      { path: 'projects', component: ProjectsComponent },
-      { path: 'bugs', component: BugsComponent, data: {} },
-      { path: 'tasks', component: TasksComponent },
+      {
+        path: 'users',
+        canActivate: [AutorizationGuard],
+        component: UsersComponent
+      },
+      {
+        path: 'projects', component: ProjectsComponent,
+        
+      },
+      {
+        path: 'projects/:id', component: BugsComponent, data: {},
+        
+      },
+      {
+        path: 'bugs', component: BugsComponent, data: {}
+      },
+      {
+        path: 'tasks',
+        canActivate: [AutorizationGuard],
+        component: TasksComponent
+      },
     ]
   },
 ];

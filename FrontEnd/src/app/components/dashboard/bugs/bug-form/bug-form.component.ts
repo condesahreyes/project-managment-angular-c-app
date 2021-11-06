@@ -1,6 +1,7 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { Bug } from 'src/app/models/bug/Bug';
 import { BugUpdate } from 'src/app/models/bug/BugUpdate';
 import { ProjectOut } from 'src/app/models/project/ProjectOut';
@@ -19,11 +20,14 @@ export class BugFormComponent implements OnInit {
   form: FormGroup;
   projects: ProjectOut[] = [];
   userId: string = "";
+  errorMesage: string = "";
+
 
   constructor(
     private bugService: BugService,
     private projectService: ProjectService,
     private fb: FormBuilder,
+    private snackBar: MatSnackBar,
     private sessionService: SessionService,
     public dialogRef: MatDialogRef<BugFormComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any
@@ -71,12 +75,6 @@ export class BugFormComponent implements OnInit {
     }
   }
 
-  // getProjectsCreated() {
-  //   this.projectService.getProjects().subscribe(p => {
-  //     this.projects = p
-  //   });
-  // }
-
   create() {
     this.bug.Name = this.form.value.name;
     this.bug.Id = this.form.value.id;
@@ -90,6 +88,9 @@ export class BugFormComponent implements OnInit {
 
     return this.bugService.createBug(this.bug).subscribe(() => {
       this.close();
+    }, error => {
+      this.errorMesage = error.error;
+      this.error(this.errorMesage);
     });
   }
 
@@ -102,10 +103,23 @@ export class BugFormComponent implements OnInit {
     this.bugUpdate.UserId = this.userId;
     this.bugUpdate.Duration = this.form.value.duration;
 
-    return this.bugService.updateBug(this.data.id, this.bugUpdate).subscribe(() => this.close());
+    return this.bugService.updateBug(this.data.id, this.bugUpdate).subscribe(() => {
+      this.close();
+    }, error => {
+      this.errorMesage = error.error;
+      this.error(this.errorMesage);
+    });
   }
 
   close() {
     this.dialogRef.close(true)
+  }
+
+  error(message: string) {
+    this.snackBar.open(message, 'error', {
+      duration: 5000,
+      horizontalPosition: 'center',
+      verticalPosition: 'bottom'
+    });
   }
 }

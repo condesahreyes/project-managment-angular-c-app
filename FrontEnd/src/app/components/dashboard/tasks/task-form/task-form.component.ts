@@ -1,6 +1,7 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { ProjectOut } from 'src/app/models/project/ProjectOut';
 import { Task } from 'src/app/models/task/task';
 import { ProjectService } from 'src/app/services/project/project.service';
@@ -17,11 +18,14 @@ export class TaskFormComponent implements OnInit {
   form: FormGroup;
   projects: ProjectOut[] = [];
   userId: string = "";
+  errorMesage: string = "";
+
   
   constructor(
     private taskService: TaskService,
     private projectService: ProjectService,
     private fb: FormBuilder,
+    private snackBar: MatSnackBar,
     public dialogRef: MatDialogRef<TaskFormComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any
 
@@ -73,6 +77,9 @@ export class TaskFormComponent implements OnInit {
 
     return this.taskService.createTask(this.task).subscribe(() => {
       this.close();
+    }, error => {
+      this.errorMesage = error.error;
+      this.error(this.errorMesage);
     });
   }
 
@@ -90,5 +97,13 @@ export class TaskFormComponent implements OnInit {
 
   close() {
     this.dialogRef.close(true)
+  }
+
+  error(message: string) {
+    this.snackBar.open(message, 'error', {
+      duration: 5000,
+      horizontalPosition: 'center',
+      verticalPosition: 'bottom'
+    });
   }
 }

@@ -14,6 +14,7 @@ export class LoginComponent implements OnInit {
 
   form: FormGroup;
   loading = false;
+  errorMesage: string = "";
 
 
   constructor(
@@ -46,11 +47,12 @@ export class LoginComponent implements OnInit {
       this.sessionService.saveToken(data.token);
       this.loadUser();
     }, error => {
-      this.error();
+      this.errorMesage = error.error;
+      this.error(this.errorMesage);
       this.form.reset();
     });
   }
-  
+
   onLogout() {
     return this.sessionService.postLogout().subscribe(() => {
       this.router.navigateByUrl('login');
@@ -58,8 +60,8 @@ export class LoginComponent implements OnInit {
     });
   }
 
-  error() {
-    this.snackBar.open('Email or Password are invalid', '', {
+  error(message: string) {
+    this.snackBar.open(message, 'error', {
       duration: 5000,
       horizontalPosition: 'center',
       verticalPosition: 'bottom'

@@ -15,6 +15,7 @@ import {AuthInterceptor} from "./services/session/auth-interceptor";
 
 import { SessionService } from 'src/app/services/session/session.service';
 import { UserService } from 'src/app/services/user/user.service';
+import { AutorizationGuard } from './guards/autorization.guard';
 
 @NgModule({
   declarations: [
@@ -31,7 +32,7 @@ import { UserService } from 'src/app/services/user/user.service';
     HttpClientModule
 
   ],
-  providers: [SessionService, UserService,
+  providers: [AutorizationGuard, SessionService, UserService,
     {
       provide: HTTP_INTERCEPTORS,
       useClass: AuthInterceptor,

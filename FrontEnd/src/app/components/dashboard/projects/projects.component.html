@@ -38,7 +38,7 @@
             <ng-container matColumnDef="actions">
                 <th mat-header-cell *matHeaderCellDef></th>
                 <td mat-cell *matCellDef="let element" style="text-align: right;">
-                    <a class="pointer" style="color: #1878b0;" matTooltip="See Project" (click)="seeProject(element.name)">
+                    <a class="pointer" style="color: #1878b0;" matTooltip="See Project" (click)="seeProject(element.id)">
                         <mat-icon>visibility</mat-icon>
                     </a>
                     <a class="pointer" style="color: #1878b0;" matTooltip="Assign Users" (click)="assignUser(element)">

@@ -1,6 +1,7 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { User } from 'src/app/models/users/User';
 import { UserService } from 'src/app/services/user/user.service';
 
@@ -12,14 +13,17 @@ import { UserService } from 'src/app/services/user/user.service';
 export class UserFormComponent implements OnInit {
 
   form: FormGroup;
+  errorMesage: string = "";
+
 
   constructor(
     private userService: UserService,
     private fb: FormBuilder,
+    private snackBar: MatSnackBar,
     public dialogRef: MatDialogRef<UserFormComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any
 
-  ) { 
+  ) {
     this.form = this.fb.group({
       name: ["", Validators.required],
       lastName: ["", Validators.required],
@@ -53,10 +57,23 @@ export class UserFormComponent implements OnInit {
     this.user.rol = this.form.value.rol;
     this.user.price = this.form.value.price;
 
-    return this.userService.createUser(this.user).subscribe();
+    return this.userService.createUser(this.user).subscribe(() => {
+      this.close();
+    }, error => {
+      this.errorMesage = error.error;
+      this.error(this.errorMesage);
+    });
   }
 
-  close(){
-    this.dialogRef.close
+  close() {
+    this.dialogRef.close(true)
+  }
+
+  error(message: string) {
+    this.snackBar.open(message, 'error', {
+      duration: 5000,
+      horizontalPosition: 'center',
+      verticalPosition: 'bottom'
+    });
   }
 }

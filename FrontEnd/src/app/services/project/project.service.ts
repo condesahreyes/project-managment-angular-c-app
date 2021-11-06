@@ -5,6 +5,7 @@ import {Project} from "../../models/project/Project";
 import {Observable} from "rxjs";
 import {ProjectOut} from "../../models/project/ProjectOut";
 import { User } from "src/app/models/users/User";
+import { Bug } from "src/app/models/bug/Bug";
 
 @Injectable({
   providedIn: 'root'
@@ -34,6 +35,12 @@ export class ProjectService {
   deleteProject(idProject : string): Observable<ProjectOut> {
     return this.http.delete<ProjectOut>(this.uri + '/' + idProject, {
       
+    });
+  }
+
+  getBugsByProject(projecId: string): Observable<Bug[]> {
+    return this.http.get<Bug[]>(this.uri + '/' + projecId + '/bugs', {
+
     });
   }
 

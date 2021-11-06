@@ -9,6 +9,7 @@ import { BugFormComponent } from './bug-form/bug-form.component';
 import { SessionService } from 'src/app/services/session/session.service';
 import { UserIdModel } from 'src/app/models/users/UserIdModel';
 import { ActivatedRoute } from '@angular/router';
+import { ProjectService } from 'src/app/services/project/project.service';
 
 @Component({
   selector: 'app-bugs',
@@ -23,12 +24,14 @@ export class BugsComponent implements OnInit {
   dataSource!: MatTableDataSource<Bug>;
   user!: UserIdModel;
   project: any
+  projectId: any;
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
 
   constructor(
     private bugService: BugService,
+    private projectService: ProjectService,
     private sessionService: SessionService,
     public dialog: MatDialog,
     private router: ActivatedRoute
@@ -41,30 +44,22 @@ export class BugsComponent implements OnInit {
 
   ngOnInit(): void {
     this.getProject();
-    // this.getBugsCreated();
     this.getBugsBySelectedProject();
     this.sessionService.getUserIdLogged().subscribe(u => {
-      this.user = { userId:  u.userId}
+      this.user = { userId: u.userId }
     });
-  
+
   }
 
-  // getBugsCreated() {
-  //   this.bugService.getBugs().subscribe(b => {
-  //     this.bugs = b
-  //     this.dataSource = new MatTableDataSource(this.bugs);
-  //     this.setPaginatorAndSort();
-  //   });
-  // }
-
-  getProject(){
-    this.router.queryParams.subscribe((params: any) =>{
-      this.project = params.data
-    })
+  getProject() {
+    this.projectId = this.router.snapshot.paramMap.get('id');
+    this.projectService.getProject(this.projectId).subscribe( p => {
+      this.project = p.name;
+    });
   }
-  
-  getBugsBySelectedProject(){
-    this.bugService.getBugsByProject(this.project).subscribe(b => {
+
+  getBugsBySelectedProject() {
+    this.projectService.getBugsByProject(this.projectId).subscribe(b => {
       this.bugs = b
       this.dataSource = new MatTableDataSource(this.bugs);
       this.setPaginatorAndSort();
@@ -86,7 +81,6 @@ export class BugsComponent implements OnInit {
       data: this.project
     });
     dialogRef.afterClosed().subscribe(() => {
-      // this.getBugsCreated();
       this.getBugsBySelectedProject();
     });
   }
@@ -97,7 +91,6 @@ export class BugsComponent implements OnInit {
       data: bug
     });
     dialogRef.afterClosed().subscribe((result) => {
-      // this.getBugsCreated();
       this.getBugsBySelectedProject();
     });
   }
@@ -105,7 +98,7 @@ export class BugsComponent implements OnInit {
   delete(idBug: number) {
     if (confirm("Are you sure to delete?")) {
 
-      this.bugService.deleteBug(idBug, this.user).subscribe(() =>this.getBugsBySelectedProject()/*this.getBugsCreated()*/);
+      this.bugService.deleteBug(idBug, this.user).subscribe(() => this.getBugsBySelectedProject()/*this.getBugsCreated()*/);
     }
   }
 

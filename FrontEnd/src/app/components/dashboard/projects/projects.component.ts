@@ -88,8 +88,9 @@ export class ProjectsComponent implements OnInit {
     });
   }
 
-  seeProject(projectName: string) {
-    this.router.navigate(['dashboard/bugs'], {queryParams: {data: projectName}});
+  seeProject(projectId: string) {
+    // this.router.navigate(['dashboard/bugs'], {queryParams: {data: projectName}});
+    this.router.navigateByUrl('dashboard/projects' + '/' + projectId);
 
   }
 
