@@ -35,7 +35,7 @@ namespace WebApiTest
         {
             List<Bug> bugs = new List<Bug> { bug };
 
-            importBug.Setup(m => m.ImportBugs("")).Returns(bugs);
+            importBug.Setup(m => m.ImportBugs("", null)).Returns(bugs);
             IEnumerable<BugEntryOutModel> bugsModel = bugs.Select(b => new BugEntryOutModel(b));
 
             ImportsController controller = new ImportsController(importBug.Object);
@@ -55,7 +55,7 @@ namespace WebApiTest
         {
             List<Bug> bugs = new List<Bug> { bug };
 
-            importBug.Setup(m => m.ImportBugs("")).Returns(bugs);
+            importBug.Setup(m => m.ImportBugs("", "")).Returns(bugs);
             IEnumerable<BugEntryOutModel> bugsModel = bugs.Select(b => new BugEntryOutModel(b));
 
             ImportsController controller = new ImportsController(importBug.Object);

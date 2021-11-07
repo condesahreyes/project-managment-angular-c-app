@@ -22,7 +22,7 @@ namespace OBLDA2.Controllers
         [HttpPost("bugs")]
         public IActionResult ImportBugs(ImportBugModel importBug)
         {
-            List<Bug> bugs = this.import.ImportBugs(importBug.FileAddress);
+            List<Bug> bugs = this.import.ImportBugs(importBug.FileAddress, null);
             IEnumerable<BugEntryOutModel> bugsModel = bugs
                 .Select(b => new BugEntryOutModel(b));
 

@@ -1,0 +1,10 @@
+{
+  "version": 2,
+  "dgSpecHash": "tJFpf3/4aq/JZqa2eVLaT0DJ5iGisWdnE0v72UJWM0S7UszZFjLt3OA14oycv9AlDyAqHS8G70TLkAyyXfg7Vg==",
+  "success": true,
+  "projectFilePath": "C:\\Users\\hreye\\Desktop\\reflection\\OBL-Asadurian-Reyes\\JsonImport\\JsonImport\\JsonImport.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\hreye\\.nuget\\packages\\newtonsoft.json\\13.0.1\\newtonsoft.json.13.0.1.nupkg.sha512"
+  ],
+  "logs": []
+}

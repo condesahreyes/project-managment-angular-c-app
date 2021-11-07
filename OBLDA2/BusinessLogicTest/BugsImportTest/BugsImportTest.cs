@@ -1,7 +1,8 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+using Microsoft.Extensions.Configuration;
 using System.Collections.Generic;
 using BusinessLogicInterface;
-using BusinessLogic.Imports;
+using Imports;
 using Domain;
 using Moq;
 
@@ -13,7 +14,7 @@ namespace BusinessLogicTest.BugsImportTest
         private static State activeStatus = new State(State.active);
         private static State doneStatus = new State(State.done);
 
-        private static Project project = new Project("Proyecto en xml");
+        private static Project project = new Project("Proyecto en JSON");
 
         private List<Bug> bugs = new List<Bug>{
             new Bug(project, 1, "nombre1", "dominio1", "V 1.0", activeStatus, 0),
@@ -21,12 +22,14 @@ namespace BusinessLogicTest.BugsImportTest
         };
 
         private Mock<IBugLogic> bugLogic;
+        private Mock<IConfiguration> mockConfiguration;
         private BugsImport bugsImport;
 
         [TestInitialize]
         public void Setup()
         {
             bugLogic = new Mock<IBugLogic>(MockBehavior.Strict);
+            mockConfiguration = new Mock<IConfiguration>(MockBehavior.Strict);
             bugsImport = new BugsImport(bugLogic.Object);
         }
 
@@ -38,7 +41,9 @@ namespace BusinessLogicTest.BugsImportTest
 
             List<Bug> savedImportedBugs = bugsImport.CreateBugs(bugs);
 
+            bugLogic.VerifyAll();
             CollectionAssert.AreEqual(savedImportedBugs, bugs);
         }
+
     }
 }
