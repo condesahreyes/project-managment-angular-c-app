@@ -1,5 +1,4 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
-using Microsoft.Extensions.Configuration;
 using System.Collections.Generic;
 using BusinessLogicInterface;
 using Imports;
@@ -22,14 +21,12 @@ namespace BusinessLogicTest.BugsImportTest
         };
 
         private Mock<IBugLogic> bugLogic;
-        private Mock<IConfiguration> mockConfiguration;
         private BugsImport bugsImport;
 
         [TestInitialize]
         public void Setup()
         {
             bugLogic = new Mock<IBugLogic>(MockBehavior.Strict);
-            mockConfiguration = new Mock<IConfiguration>(MockBehavior.Strict);
             bugsImport = new BugsImport(bugLogic.Object);
         }
 

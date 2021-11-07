@@ -329,7 +329,6 @@ C:\Users\hreye\Desktop\reflection\OBL-Asadurian-Reyes\OBLDA2\WebApiTest\obj\Debu
 C:\Users\hreye\Desktop\reflection\OBL-Asadurian-Reyes\OBLDA2\WebApiTest\obj\Debug\net5.0\WebApiTest.dll
 C:\Users\hreye\Desktop\reflection\OBL-Asadurian-Reyes\OBLDA2\WebApiTest\obj\Debug\net5.0\ref\WebApiTest.dll
 C:\Users\hreye\Desktop\reflection\OBL-Asadurian-Reyes\OBLDA2\WebApiTest\obj\Debug\net5.0\WebApiTest.pdb
-C:\Users\hreye\Desktop\reflection\OBL-Asadurian-Reyes\OBLDA2\WebApiTest\bin\Debug\net5.0\ConfigurationDataBase.json
 C:\Users\hreye\Desktop\reflection\OBL-Asadurian-Reyes\OBLDA2\WebApiTest\bin\Debug\net5.0\testhost.exe
 C:\Users\hreye\Desktop\reflection\OBL-Asadurian-Reyes\OBLDA2\WebApiTest\bin\Debug\net5.0\testhost.dll
 C:\Users\hreye\Desktop\reflection\OBL-Asadurian-Reyes\OBLDA2\WebApiTest\bin\Debug\net5.0\Microsoft.VisualStudio.TestPlatform.MSTest.TestAdapter.dll
@@ -482,3 +481,4 @@ C:\Users\hreye\Desktop\reflection\OBL-Asadurian-Reyes\OBLDA2\WebApiTest\bin\Debu
 C:\Users\hreye\Desktop\reflection\OBL-Asadurian-Reyes\OBLDA2\WebApiTest\bin\Debug\net5.0\Imports.pdb
 C:\Users\hreye\Desktop\reflection\OBL-Asadurian-Reyes\OBLDA2\WebApiTest\obj\Debug\net5.0\WebApiTest.csproj.CopyComplete
 C:\Users\hreye\Desktop\reflection\OBL-Asadurian-Reyes\OBLDA2\WebApiTest\obj\Debug\net5.0\WebApiTest.genruntimeconfig.cache
+C:\Users\hreye\Desktop\reflection\OBL-Asadurian-Reyes\OBLDA2\WebApiTest\bin\Debug\net5.0\Configuration.json

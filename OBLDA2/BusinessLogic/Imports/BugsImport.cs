@@ -88,7 +88,7 @@ namespace Imports
 
             IConfiguration configuration = new ConfigurationBuilder()
             .SetBasePath(Directory.GetCurrentDirectory())
-            .AddJsonFile("ConfigurationDataBase.json", optional: false).Build();
+            .AddJsonFile("Configuration.json", optional: false).Build();
 
             string path = configuration["PathImporter"];
 
