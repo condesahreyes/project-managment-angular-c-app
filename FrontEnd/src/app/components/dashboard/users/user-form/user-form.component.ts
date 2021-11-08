@@ -15,15 +15,13 @@ export class UserFormComponent implements OnInit {
   form: FormGroup;
   errorMesage: string = "";
 
-
   constructor(
     private userService: UserService,
     private fb: FormBuilder,
     private snackBar: MatSnackBar,
     public dialogRef: MatDialogRef<UserFormComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: any
-
-  ) {
+    @Inject(MAT_DIALOG_DATA) public data: any) {
+      
     this.form = this.fb.group({
       name: ["", Validators.required],
       lastName: ["", Validators.required],
@@ -45,8 +43,7 @@ export class UserFormComponent implements OnInit {
     price: 0
   }
 
-  ngOnInit(): void {
-  }
+  ngOnInit(): void { }
 
   create() {
     this.user.name = this.form.value.name;

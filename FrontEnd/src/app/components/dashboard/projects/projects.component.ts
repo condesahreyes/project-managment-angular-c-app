@@ -1,17 +1,17 @@
+import { ProjectAssignFormComponent } from './project-assign-form/project-assign-form.component';
+import { ProjectFormComponent } from './project-form/project-form.component';
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { ControlContainer } from '@angular/forms';
+import { ProjectService } from 'src/app/services/project/project.service';
+import { SessionService } from 'src/app/services/session/session.service';
+import { TesterService } from 'src/app/services/tester/tester.service';
 import { MatDialog } from '@angular/material/dialog';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
-import { NavigationExtras, Router } from '@angular/router';
+import { Router } from '@angular/router';
 import { ProjectOut } from 'src/app/models/project/ProjectOut';
 import { UserIdModel } from 'src/app/models/users/UserIdModel';
-import { ProjectService } from 'src/app/services/project/project.service';
-import { SessionService } from 'src/app/services/session/session.service';
-import { TesterService } from 'src/app/services/tester/tester.service';
-import { ProjectAssignFormComponent } from './project-assign-form/project-assign-form.component';
-import { ProjectFormComponent } from './project-form/project-form.component';
+
 
 @Component({
   selector: 'app-projects',
@@ -26,8 +26,6 @@ export class ProjectsComponent implements OnInit {
   tokenUserLogged: string = "";
   user!: UserIdModel;
   rolUser: string = "";
-
-
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
@@ -122,9 +120,7 @@ export class ProjectsComponent implements OnInit {
   }
 
   seeProject(projectId: string) {
-    // this.router.navigate(['dashboard/bugs'], {queryParams: {data: projectName}});
     this.router.navigateByUrl('dashboard/projects' + '/' + projectId);
-
   }
 
   assignUser(project: any) {

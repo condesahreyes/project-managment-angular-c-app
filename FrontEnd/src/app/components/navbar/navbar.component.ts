@@ -1,7 +1,7 @@
-import { Component, OnInit } from '@angular/core';
 import { SessionService } from 'src/app/services/session/session.service';
-import { Router } from '@angular/router';
 import { UserService } from 'src/app/services/user/user.service';
+import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-navbar',
@@ -10,7 +10,8 @@ import { UserService } from 'src/app/services/user/user.service';
 })
 export class NavbarComponent implements OnInit {
 
-  constructor(private sessionService: SessionService, private userService: UserService, private router: Router) { }
+  constructor(private sessionService: SessionService, 
+    private userService: UserService, private router: Router) { }
 
   user: string = "";
 

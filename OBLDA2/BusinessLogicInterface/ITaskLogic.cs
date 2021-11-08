@@ -8,5 +8,6 @@ namespace BusinessLogicInterface
     {
         Task Create(Task task);
         List<Task> GetAll();
+        List<Task> GetAllByProject(Guid idProject);
     }
 }

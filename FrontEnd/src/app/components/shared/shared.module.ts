@@ -17,6 +17,7 @@ import {MatDialogModule} from '@angular/material/dialog';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import {MatSelectModule} from '@angular/material/select';
 import {MatCheckboxModule} from '@angular/material/checkbox';
+import {MatTabsModule} from '@angular/material/tabs';
 
 
 
@@ -42,7 +43,8 @@ import {MatCheckboxModule} from '@angular/material/checkbox';
     FlexLayoutModule,
     MatSelectModule,
     FormsModule,
-    MatCheckboxModule
+    MatCheckboxModule,
+    MatTabsModule
   ] ,
   exports: [
     CommonModule,
@@ -63,8 +65,8 @@ import {MatCheckboxModule} from '@angular/material/checkbox';
     FlexLayoutModule,
     MatSelectModule,
     FormsModule,
-    MatCheckboxModule
-
+    MatCheckboxModule,
+    MatTabsModule
   ],
 })
 export class SharedModule { }

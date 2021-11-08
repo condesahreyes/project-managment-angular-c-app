@@ -26,4 +26,8 @@ export class TaskService {
   getTasks(): Observable<Task[]> {
     return this.http.get<Task[]>(this.uri);
   }
+
+  getTasksByProject(idProject : string): Observable<Task[]> {
+    return this.http.get<Task[]>(this.uri+'/'+idProject);
+  }
 }

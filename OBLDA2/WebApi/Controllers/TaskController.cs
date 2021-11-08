@@ -34,5 +34,13 @@ namespace WebApi.Controllers
             List<Task> tasks = taskLogic.GetAll();
             return Ok(TaskEntryOutModel.ToListModel(tasks));
         }
+
+        [HttpGet("{idProject}")]
+        [AuthorizationFilter(Autorization.Administrator)]
+        public IActionResult GetAllTaskByProject(Guid idProject)
+        {
+            List<Task> tasks = taskLogic.GetAllByProject(idProject);
+            return Ok(TaskEntryOutModel.ToListModel(tasks));
+        }
     }
 }

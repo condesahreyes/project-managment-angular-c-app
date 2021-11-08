@@ -41,7 +41,7 @@
             
             <ng-container matColumnDef="state">
                 <th mat-header-cell *matHeaderCellDef mat-sort-header>State </th>
-                <td mat-cell *matCellDef="let element"> {{element.state}} </td>
+                <td mat-cell *matCellDef="let element"> {{element.state.name}} </td>
             </ng-container>
 
             <ng-container matColumnDef="duration">

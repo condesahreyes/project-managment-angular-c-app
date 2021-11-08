@@ -11,6 +11,7 @@ import { UserIdModel } from 'src/app/models/users/UserIdModel';
 import { ActivatedRoute } from '@angular/router';
 import { ProjectService } from 'src/app/services/project/project.service';
 import { TesterService } from 'src/app/services/tester/tester.service';
+import { ProjectOut } from 'src/app/models/project/ProjectOut';
 
 @Component({
   selector: 'app-bugs',
@@ -20,13 +21,11 @@ import { TesterService } from 'src/app/services/tester/tester.service';
 export class BugsComponent implements OnInit {
 
   bugToDelete: any;
-  displayedColumns = ['name', 'domain', 'version', 'state', 'duration', 'actions']; //'project', 'solved by',
+  displayedColumns = ['name', 'domain', 'version', 'state', 'duration', 'actions'];
   bugs: Bug[] = [];
   dataSource!: MatTableDataSource<Bug>;
   user!: UserIdModel;
-  project: any
-  projectId: any;
-  tokenUserLogged: string = "";
+  project!: ProjectOut;
   rol: string = "";
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
@@ -46,51 +45,6 @@ export class BugsComponent implements OnInit {
     this.dataSource.sort = this.sort;
   }
 
-  async ngOnInit(): Promise<void> {
-    this.sessionService.getUserIdLogged().subscribe(u => {
-      this.user = { userId: u.userId }
-    });
-    await this.getProject();
-    this.getTokenLogged();
-    if (this.rol === "Tester"/*this.tokenUserLogged.includes("Tester", 0)*/) {
-      this.getBugsTester();
-      // this.sessionService.getUserIdLogged().subscribe(u => {
-      //   this.user = { userId: u.userId }
-      //   this.getBugsTester();
-      // });
-    }else{
-      this.getBugsBySelectedProject();
-    }
-  }
-
-  getTokenLogged() {
-    this.tokenUserLogged = this.sessionService.getToken();
-    this.rol = this.tokenUserLogged.split("-")[0];
-  }
-
-  getBugsTester() {
-    this.testerService.getAllBugsByTesterInProject(this.user.userId, this.projectId).subscribe(b => {
-      this.bugs = b
-      this.dataSource = new MatTableDataSource(this.bugs);
-      this.setPaginatorAndSort();
-    });
-  }
-
-  getProject() {
-    this.projectId = this.router.snapshot.paramMap.get('id');
-    this.projectService.getProject(this.projectId).subscribe(p => {
-      this.project = p.name;
-    });
-  }
-
-  getBugsBySelectedProject() {
-    this.projectService.getBugsByProject(this.projectId).subscribe(b => {
-      this.bugs = b
-      this.dataSource = new MatTableDataSource(this.bugs);
-      this.setPaginatorAndSort();
-    });
-  }
-
   applyFilter(event: Event) {
     const filterValue = (event.target as HTMLInputElement).value;
     this.dataSource.filter = filterValue.trim().toLowerCase();
@@ -100,31 +54,89 @@ export class BugsComponent implements OnInit {
     }
   }
 
-  openForm() {
-    const dialogRef = this.dialog.open(BugFormComponent, {
-      width: '50%',
-      data: this.project
-    });
-    dialogRef.afterClosed().subscribe(() => {
-    this.rol != "Tester" ? this.getBugsBySelectedProject() : this.getBugsTester();
+  async ngOnInit(): Promise<void> {
+    this.getTokenLogged();
+    this.getProject();
+    this.getBugs();
+  }
+
+  getTokenLogged() {
+    let tokenUserLogged = this.sessionService.getToken();
+    this.rol = tokenUserLogged.split("-")[0];
+  }
+
+  getProject() {
+    let projectId = "" + this.router.snapshot.paramMap.get('id');
+    this.projectService.getProject(projectId).subscribe(p => {
+      this.project = p;
     });
   }
 
-  update(bug: any) {
+  getBugs() {
+    if(this.project == null){
+      this.getBugsByUser();
+    } else{
+      this.getBugsByProject();
+    }
+  }
+
+  getBugsByUser(){
+    if (this.rol === "Tester") 
+      this.getTester();
+    else
+      this.getAllBugs();
+  }
+
+  getBugsByProject(){
+    this.projectService.getBugsByProject(this.project.id).subscribe(b => {
+      this.bugs = b
+      this.dataSource = new MatTableDataSource(this.bugs);
+      this.setPaginatorAndSort();
+    });
+  }
+
+  getAllBugs(){
+    this.bugService.getBugs().subscribe(b => {
+      this.bugs = b
+      this.dataSource = new MatTableDataSource(this.bugs);
+      this.setPaginatorAndSort();
+    });
+  }
+
+  getTester() {
+    this.sessionService.getUserIdLogged().subscribe(u => {
+      this.user = { userId: u.userId }
+      this.getBugsTester(u.userId +"");
+    });
+  }
+
+  getBugsTester(testerId : string){
+    this.testerService.getAllBugsByTester(testerId).subscribe(b => {
+      this.bugs = b
+      this.dataSource = new MatTableDataSource(this.bugs);
+      this.setPaginatorAndSort();
+    });
+  }
+
+  openForm() {
     const dialogRef = this.dialog.open(BugFormComponent, {
       width: '50%',
-      data: bug
+      data: {project: this.project, bug: "", userRol: this.rol}
     });
-    dialogRef.afterClosed().subscribe((result) => {
-      this.rol != "Tester" ? this.getBugsBySelectedProject() : this.getBugsTester();
+    dialogRef.afterClosed().subscribe();
+  }
+
+  update(bugToUpdate: any) {
+    const dialogRef = this.dialog.open(BugFormComponent, {
+      width: '50%',
+      data: {bug: bugToUpdate}
     });
+    dialogRef.afterClosed().subscribe();
   }
 
   delete(idBug: number) {
     if (confirm("Are you sure to delete?")) {
-      this.bugService.deleteBug(idBug, this.user).subscribe(() => 
-      this.rol != "Tester" ? this.getBugsBySelectedProject() : this.getBugsTester()
-      );
+      this.bugService.deleteBug(idBug, this.user).subscribe();
     }
   }
 

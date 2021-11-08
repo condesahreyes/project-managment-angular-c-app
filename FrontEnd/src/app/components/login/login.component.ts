@@ -1,9 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { SessionService } from 'src/app/services/session/session.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { Router } from '@angular/router';
-import { SessionService } from 'src/app/services/session/session.service';
+import { Component, OnInit } from '@angular/core';
 import { Login } from '../../models/session/Login';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -16,7 +16,6 @@ export class LoginComponent implements OnInit {
   loading = false;
   errorMesage: string = "";
 
-
   constructor(
     private fb: FormBuilder,
     private snackBar: MatSnackBar,
@@ -27,7 +26,6 @@ export class LoginComponent implements OnInit {
       email: ["", Validators.required],
       password: ["", Validators.required]
     })
-
   }
 
   login: Login = {
@@ -35,9 +33,7 @@ export class LoginComponent implements OnInit {
     Password: ""
   }
 
-  ngOnInit(): void {
-
-  }
+  ngOnInit(): void { }
 
   onLogin() {
     this.login.Email = this.form.value.email;

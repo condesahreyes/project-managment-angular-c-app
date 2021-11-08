@@ -32,13 +32,13 @@ export class TesterService {
     return this.http.get<User[]>(this.uri).pipe();
   }
 
-  getAllBugsByTester(testerId: Guid): Observable<Bug[]>{
+  getAllBugsByTester(testerId: string): Observable<Bug[]>{
     return this.http.get<Bug[]>(this.uri + '/' + testerId + '/bugs');
   }
 
-  getAllBugsByTesterInProject(testerId: Guid, projectId: Guid): Observable<Bug[]>{
+ /* getAllBugsByTesterInProject(testerId: string, projectId: string): Observable<Bug[]>{
     return this.http.get<Bug[]>(this.uri + '/'+ projectId + '/' + testerId + '/bugs');
-  }
+  }*/
 
   getAllProjectsByTester(testerId: Guid): Observable<ProjectOut[]>{
     return this.http.get<ProjectOut[]>(this.uri + '/' + testerId + '/projects');
