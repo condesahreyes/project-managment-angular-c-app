@@ -19,6 +19,9 @@ const routes: Routes = [
         component: UsersComponent},
 
       { path: 'projects', component: ProjectsComponent },
+      
+
+      
 
       { path: 'projects/:id', component: ProjectViewComponent, data: {} },
 

@@ -41,8 +41,8 @@ export class BugService {
     });
   }
 
-  deleteBug(idBug : number, user: UserIdModel){
-    return this.http.delete<UserIdModel>(this.uri + '/' + idBug + '/byUser/' +user.userId
+  deleteBug(idBug : number, userId: string){
+    return this.http.delete<UserIdModel>(this.uri + '/' + idBug + '/byUser/' +userId
     );
   }
 

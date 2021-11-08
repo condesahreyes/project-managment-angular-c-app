@@ -20,7 +20,7 @@ import { AutorizationGuard } from './guards/autorization.guard';
 @NgModule({
   declarations: [
     AppComponent,
-    LoginComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,
@@ -30,7 +30,6 @@ import { AutorizationGuard } from './guards/autorization.guard';
     DashboardModule,
     FormsModule,
     HttpClientModule
-
   ],
   providers: [AutorizationGuard, SessionService, UserService,
     {

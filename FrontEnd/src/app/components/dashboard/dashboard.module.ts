@@ -16,6 +16,9 @@ import { UsersComponent } from './users/users.component';
 import { TasksComponent } from './tasks/tasks.component';
 import { SharedModule } from '../shared/shared.module';
 import { BugsComponent } from './bugs/bugs.component';
+import { TesterNavbarComponent } from '../navbar/tester-navbar/tester-navbar.component';
+import { AdminNavbarComponent } from '../navbar/admin-navbar/admin-navbar.component';
+import { DeveloperNavbarComponent } from '../navbar/developer-navbar/developer-navbar.component';
 
 @NgModule({
   declarations: [
@@ -31,7 +34,10 @@ import { BugsComponent } from './bugs/bugs.component';
     TasksComponent,
     TaskFormComponent,
     NavbarComponent,
-    ProjectViewComponent
+    ProjectViewComponent,
+    TesterNavbarComponent,
+    AdminNavbarComponent,
+    DeveloperNavbarComponent
   ],
   imports: [
     CommonModule,

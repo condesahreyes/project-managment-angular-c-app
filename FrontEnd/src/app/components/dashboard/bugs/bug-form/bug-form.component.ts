@@ -5,6 +5,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { Bug } from 'src/app/models/bug/Bug';
 import { BugUpdate } from 'src/app/models/bug/BugUpdate';
 import { ProjectOut } from 'src/app/models/project/ProjectOut';
+import { UserEntryModel } from 'src/app/models/users/UserEntryModel';
 import { BugService } from 'src/app/services/bug/bug.service';
 import { ProjectService } from 'src/app/services/project/project.service';
 import { SessionService } from 'src/app/services/session/session.service';
@@ -20,7 +21,7 @@ export class BugFormComponent implements OnInit {
   edit: boolean = false;
   form: FormGroup;
   projects: ProjectOut[] = [];
-  userId: string = "";
+  user!: UserEntryModel;
   errorMesage: string = "";
 
   constructor(
@@ -72,8 +73,8 @@ export class BugFormComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.sessionService.getUserIdLogged().subscribe(u => {
-      this.userId = u.userId + "";
+    this.sessionService.getUserLogged().subscribe(u => {
+      this.user = u;
     });
     this.getProjects();
     if (this.data.domain) {
@@ -89,8 +90,8 @@ export class BugFormComponent implements OnInit {
   }
 
   getTester() {
-    this.sessionService.getUserIdLogged().subscribe(u => {
-      this.getProjectTester(u.userId);
+    this.sessionService.getUserLogged().subscribe(u => {
+      this.getProjectTester(u.id);
     });
   }
 
@@ -115,7 +116,7 @@ export class BugFormComponent implements OnInit {
     this.bug.Version = this.form.value.version;
     this.bug.State = this.form.value.state;
     this.bug.Project = this.data;
-    this.bug.CreatedBy = this.userId;
+    this.bug.CreatedBy = this.user.id;
 
     return this.bugService.createBug(this.bug).subscribe(() => {
       this.close();
@@ -131,7 +132,7 @@ export class BugFormComponent implements OnInit {
     this.bugUpdate.Domain = this.form.value.domain;
     this.bugUpdate.Version = this.form.value.version;
     this.bugUpdate.State = this.form.value.state;
-    this.bugUpdate.UserId = this.userId;
+    this.bugUpdate.UserId = this.user.id;
     this.bugUpdate.Duration = this.form.value.duration;
 
     return this.bugService.updateBug(this.data.id, this.bugUpdate).subscribe(() => {

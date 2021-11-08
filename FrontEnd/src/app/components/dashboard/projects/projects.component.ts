@@ -11,6 +11,7 @@ import { MatTableDataSource } from '@angular/material/table';
 import { Router } from '@angular/router';
 import { ProjectOut } from 'src/app/models/project/ProjectOut';
 import { UserIdModel } from 'src/app/models/users/UserIdModel';
+import { UserEntryModel } from 'src/app/models/users/UserEntryModel';
 
 
 @Component({
@@ -24,7 +25,7 @@ export class ProjectsComponent implements OnInit {
   projects: ProjectOut[] = [];
   dataSource!: MatTableDataSource<ProjectOut>;
   tokenUserLogged: string = "";
-  user!: UserIdModel;
+  user!: UserEntryModel;
   rolUser: string = "";
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
@@ -46,8 +47,8 @@ export class ProjectsComponent implements OnInit {
   ngOnInit(): void {
     this.getTokenLogged();
     if (this.tokenUserLogged.includes("Tester", 0)) {
-      this.sessionService.getUserIdLogged().subscribe(u => {
-        this.user = { userId: u.userId }
+      this.sessionService.getUserLogged().subscribe(u => {
+        this.user = u
         this.getProjectTester();
       });
     }else{
@@ -61,7 +62,7 @@ export class ProjectsComponent implements OnInit {
   }
 
   getProjectTester() {
-    this.testerService.getAllProjectsByTester(this.user.userId).subscribe(p => {
+    this.testerService.getAllProjectsByTester(this.user.id).subscribe(p => {
       this.projects = p
       this.displayedColumns = ['name', 'actions'];
       this.dataSource = new MatTableDataSource(this.projects);

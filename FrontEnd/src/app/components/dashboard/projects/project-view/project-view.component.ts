@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { BugsComponent } from '../../bugs/bugs.component';
 
 @Component({
   selector: 'app-project-view',

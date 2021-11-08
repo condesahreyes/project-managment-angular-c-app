@@ -12,6 +12,8 @@ import { ActivatedRoute } from '@angular/router';
 import { ProjectService } from 'src/app/services/project/project.service';
 import { TesterService } from 'src/app/services/tester/tester.service';
 import { ProjectOut } from 'src/app/models/project/ProjectOut';
+import { User } from 'src/app/models/users/User';
+import { UserEntryModel } from 'src/app/models/users/UserEntryModel';
 
 @Component({
   selector: 'app-bugs',
@@ -24,7 +26,7 @@ export class BugsComponent implements OnInit {
   displayedColumns = ['name', 'domain', 'version', 'state', 'duration', 'actions'];
   bugs: Bug[] = [];
   dataSource!: MatTableDataSource<Bug>;
-  user!: UserIdModel;
+  user!: UserEntryModel;
   project!: ProjectOut;
   rol: string = "";
 
@@ -104,9 +106,9 @@ export class BugsComponent implements OnInit {
   }
 
   getTester() {
-    this.sessionService.getUserIdLogged().subscribe(u => {
-      this.user = { userId: u.userId }
-      this.getBugsTester(u.userId +"");
+    this.sessionService.getUserLogged().subscribe(u => {
+      this.user = u
+      this.getBugsTester(u.id +"");
     });
   }
 
@@ -136,7 +138,7 @@ export class BugsComponent implements OnInit {
 
   delete(idBug: number) {
     if (confirm("Are you sure to delete?")) {
-      this.bugService.deleteBug(idBug, this.user).subscribe();
+      this.bugService.deleteBug(idBug, this.user.id).subscribe();
     }
   }
 

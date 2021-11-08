@@ -40,7 +40,7 @@ export class TesterService {
     return this.http.get<Bug[]>(this.uri + '/'+ projectId + '/' + testerId + '/bugs');
   }*/
 
-  getAllProjectsByTester(testerId: Guid): Observable<ProjectOut[]>{
+  getAllProjectsByTester(testerId: string): Observable<ProjectOut[]>{
     return this.http.get<ProjectOut[]>(this.uri + '/' + testerId + '/projects');
   }
 }

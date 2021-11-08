@@ -2,6 +2,7 @@ import { SessionService } from 'src/app/services/session/session.service';
 import { UserService } from 'src/app/services/user/user.service';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { User } from 'src/app/models/users/User';
 
 @Component({
   selector: 'app-navbar',
@@ -13,13 +14,11 @@ export class NavbarComponent implements OnInit {
   constructor(private sessionService: SessionService, 
     private userService: UserService, private router: Router) { }
 
-  user: string = "";
+  user!: User;
 
   ngOnInit(): void {
-    this.sessionService.getUserIdLogged().subscribe(u => {
-      this.userService.getById(u.userId + "").subscribe(x =>
-        this.user = x.rol + " - " + x.userName
-      );
+    this.sessionService.getUserLogged().subscribe(u => {
+        this.user = u;
     });
   }
 
