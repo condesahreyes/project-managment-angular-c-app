@@ -10,6 +10,7 @@ import { SessionService } from 'src/app/services/session/session.service';
 import { UserIdModel } from 'src/app/models/users/UserIdModel';
 import { ActivatedRoute } from '@angular/router';
 import { ProjectService } from 'src/app/services/project/project.service';
+import { TesterService } from 'src/app/services/tester/tester.service';
 
 @Component({
   selector: 'app-bugs',
@@ -25,6 +26,8 @@ export class BugsComponent implements OnInit {
   user!: UserIdModel;
   project: any
   projectId: any;
+  tokenUserLogged: string = "";
+  rol: string = "";
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
@@ -34,6 +37,7 @@ export class BugsComponent implements OnInit {
     private projectService: ProjectService,
     private sessionService: SessionService,
     public dialog: MatDialog,
+    private testerService: TesterService,
     private router: ActivatedRoute
   ) { }
 
@@ -42,18 +46,39 @@ export class BugsComponent implements OnInit {
     this.dataSource.sort = this.sort;
   }
 
-  ngOnInit(): void {
-    this.getProject();
-    this.getBugsBySelectedProject();
+  async ngOnInit(): Promise<void> {
     this.sessionService.getUserIdLogged().subscribe(u => {
       this.user = { userId: u.userId }
     });
+    await this.getProject();
+    this.getTokenLogged();
+    if (this.rol === "Tester"/*this.tokenUserLogged.includes("Tester", 0)*/) {
+      this.getBugsTester();
+      // this.sessionService.getUserIdLogged().subscribe(u => {
+      //   this.user = { userId: u.userId }
+      //   this.getBugsTester();
+      // });
+    }else{
+      this.getBugsBySelectedProject();
+    }
+  }
 
+  getTokenLogged() {
+    this.tokenUserLogged = this.sessionService.getToken();
+    this.rol = this.tokenUserLogged.split("-")[0];
+  }
+
+  getBugsTester() {
+    this.testerService.getAllBugsByTesterInProject(this.user.userId, this.projectId).subscribe(b => {
+      this.bugs = b
+      this.dataSource = new MatTableDataSource(this.bugs);
+      this.setPaginatorAndSort();
+    });
   }
 
   getProject() {
     this.projectId = this.router.snapshot.paramMap.get('id');
-    this.projectService.getProject(this.projectId).subscribe( p => {
+    this.projectService.getProject(this.projectId).subscribe(p => {
       this.project = p.name;
     });
   }
@@ -81,7 +106,7 @@ export class BugsComponent implements OnInit {
       data: this.project
     });
     dialogRef.afterClosed().subscribe(() => {
-      this.getBugsBySelectedProject();
+    this.rol != "Tester" ? this.getBugsBySelectedProject() : this.getBugsTester();
     });
   }
 
@@ -91,14 +116,15 @@ export class BugsComponent implements OnInit {
       data: bug
     });
     dialogRef.afterClosed().subscribe((result) => {
-      this.getBugsBySelectedProject();
+      this.rol != "Tester" ? this.getBugsBySelectedProject() : this.getBugsTester();
     });
   }
 
   delete(idBug: number) {
     if (confirm("Are you sure to delete?")) {
-
-      this.bugService.deleteBug(idBug, this.user).subscribe(() => this.getBugsBySelectedProject()/*this.getBugsCreated()*/);
+      this.bugService.deleteBug(idBug, this.user).subscribe(() => 
+      this.rol != "Tester" ? this.getBugsBySelectedProject() : this.getBugsTester()
+      );
     }
   }
 

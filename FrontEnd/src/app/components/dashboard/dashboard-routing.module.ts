@@ -14,7 +14,7 @@ const routes: Routes = [
       { path: '', component: StartComponent },
       {
         path: 'users',
-        canActivate: [AutorizationGuard],
+       // canActivate: [AutorizationGuard],
         component: UsersComponent
       },
       {
@@ -30,7 +30,7 @@ const routes: Routes = [
       },
       {
         path: 'tasks',
-        canActivate: [AutorizationGuard],
+       // canActivate: [AutorizationGuard],
         component: TasksComponent
       },
     ]

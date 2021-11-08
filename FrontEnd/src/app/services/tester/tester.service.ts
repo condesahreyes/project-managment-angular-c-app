@@ -1,6 +1,9 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Guid } from 'guid-typescript';
 import { Observable } from 'rxjs';
+import { Bug } from 'src/app/models/bug/Bug';
+import { ProjectOut } from 'src/app/models/project/ProjectOut';
 import { User } from 'src/app/models/users/User';
 import { environment } from 'src/environments/environment';
 
@@ -27,5 +30,17 @@ export class TesterService {
 
   getAll(): Observable<User[]> {
     return this.http.get<User[]>(this.uri).pipe();
+  }
+
+  getAllBugsByTester(testerId: Guid): Observable<Bug[]>{
+    return this.http.get<Bug[]>(this.uri + '/' + testerId + '/bugs');
+  }
+
+  getAllBugsByTesterInProject(testerId: Guid, projectId: Guid): Observable<Bug[]>{
+    return this.http.get<Bug[]>(this.uri + '/'+ projectId + '/' + testerId + '/bugs');
+  }
+
+  getAllProjectsByTester(testerId: Guid): Observable<ProjectOut[]>{
+    return this.http.get<ProjectOut[]>(this.uri + '/' + testerId + '/projects');
   }
 }

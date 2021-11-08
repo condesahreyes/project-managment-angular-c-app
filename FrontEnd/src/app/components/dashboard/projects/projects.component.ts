@@ -6,7 +6,10 @@ import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { NavigationExtras, Router } from '@angular/router';
 import { ProjectOut } from 'src/app/models/project/ProjectOut';
+import { UserIdModel } from 'src/app/models/users/UserIdModel';
 import { ProjectService } from 'src/app/services/project/project.service';
+import { SessionService } from 'src/app/services/session/session.service';
+import { TesterService } from 'src/app/services/tester/tester.service';
 import { ProjectAssignFormComponent } from './project-assign-form/project-assign-form.component';
 import { ProjectFormComponent } from './project-form/project-form.component';
 
@@ -17,9 +20,14 @@ import { ProjectFormComponent } from './project-form/project-form.component';
 })
 export class ProjectsComponent implements OnInit {
 
-  displayedColumns = ['name', 'TotalBugs', 'duration', 'price', 'actions'];
+  displayedColumns: any = [];
   projects: ProjectOut[] = [];
   dataSource!: MatTableDataSource<ProjectOut>;
+  tokenUserLogged: string = "";
+  user!: UserIdModel;
+  rolUser: string = "";
+
+
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
@@ -27,7 +35,9 @@ export class ProjectsComponent implements OnInit {
   constructor(
     private projectService: ProjectService,
     public dialog: MatDialog,
-    private router: Router
+    private router: Router,
+    private testerService: TesterService,
+    private sessionService: SessionService,
   ) { }
 
   setPaginatorAndSort() {
@@ -36,12 +46,35 @@ export class ProjectsComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.getProjectsCreated();
+    this.getTokenLogged();
+    if (this.tokenUserLogged.includes("Tester", 0)) {
+      this.sessionService.getUserIdLogged().subscribe(u => {
+        this.user = { userId: u.userId }
+        this.getProjectTester();
+      });
+    }else{
+      this.getProjectsCreated();
+    }
+  }
+
+  getTokenLogged() {
+    this.tokenUserLogged = this.sessionService.getToken();
+    this.rolUser = this.tokenUserLogged.split("-")[0];
+  }
+
+  getProjectTester() {
+    this.testerService.getAllProjectsByTester(this.user.userId).subscribe(p => {
+      this.projects = p
+      this.displayedColumns = ['name', 'actions'];
+      this.dataSource = new MatTableDataSource(this.projects);
+      this.setPaginatorAndSort();
+    });
   }
 
   getProjectsCreated() {
     this.projectService.getProjects().subscribe(p => {
       this.projects = p
+      this.displayedColumns = ['name', 'TotalBugs', 'duration', 'price', 'actions'];
       this.dataSource = new MatTableDataSource(this.projects);
       this.setPaginatorAndSort();
     });
