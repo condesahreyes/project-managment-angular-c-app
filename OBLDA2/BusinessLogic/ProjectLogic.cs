@@ -47,9 +47,10 @@ namespace BusinessLogic
             return users;
         }
 
-        public List<Bug> GetAllBugByProject(Project project)
+        public List<Bug> GetAllBugByProject(Guid project)
         {
-            return Get(project.Id).Bugs;
+            Project proj = this.Get(project);
+            return proj.Bugs;
         }
 
         public Project Get(Guid id)
@@ -153,9 +154,8 @@ namespace BusinessLogic
             
             foreach (Project project in projects)
             {
-                List<Bug> bugsInProject = GetAllBugByProject(project);
-                if (bugsInProject != null && bugsInProject.Count != 1)
-                    project.Bugs.AddRange(bugsInProject);
+                List<Bug> bugsInProject = GetAllBugByProject(project.Id);
+
 
                 project.TotalBugs = project.Bugs.Count;
                 project.Duration = CalculateTotalDuration(project);

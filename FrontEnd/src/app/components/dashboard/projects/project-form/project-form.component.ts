@@ -1,6 +1,7 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { Project } from 'src/app/models/project/Project';
 import { ProjectService } from 'src/app/services/project/project.service';
 
@@ -13,10 +14,12 @@ export class ProjectFormComponent implements OnInit {
 
   edit: boolean = false;
   form: FormGroup;
+  errorMesage: string = "";
 
   constructor(
     private projectService: ProjectService,
     private fb: FormBuilder,
+    private snackBar: MatSnackBar,
     public dialogRef: MatDialogRef<ProjectFormComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any 
 
@@ -40,6 +43,9 @@ export class ProjectFormComponent implements OnInit {
     this.project.Name = this.form.value.name;
     return this.projectService.createProject(this.project).subscribe(() => {
       this.close();
+    }, error => {
+      this.errorMesage = error.error;
+      this.error(this.errorMesage);
     });
   }
 
@@ -51,6 +57,17 @@ export class ProjectFormComponent implements OnInit {
     this.project.Name = this.form.value.name;
     return this.projectService.updateProject(this.data.id, this.project).subscribe(() => {
       this.close();
+    }, error => {
+      this.errorMesage = error.error;
+      this.error(this.errorMesage);
+    });
+  }
+
+  error(message: string) {
+    this.snackBar.open(message, 'error', {
+      duration: 5000,
+      horizontalPosition: 'center',
+      verticalPosition: 'bottom'
     });
   }
 }

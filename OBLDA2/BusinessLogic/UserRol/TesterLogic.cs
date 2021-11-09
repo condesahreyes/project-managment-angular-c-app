@@ -69,6 +69,37 @@ namespace BusinessLogic.UserRol
             return bugs;
         }
 
+        public List<Bug> GetAllBugsByTesterInProject(Guid testerId, Guid project)
+        {
+            List<Bug> bugsByTester = this.GetAllBugs(testerId);
+            List<Bug> allBugsInProject = this.projcetLogic.GetAllBugByProject(project);
+            List<Bug> bugsInProjectWithTester = new List<Bug>();
+
+            foreach (var bugTester in bugsByTester){
+                foreach (var bugInProject in allBugsInProject){
+                    if (bugTester.Equals(bugInProject))
+                    {
+                        bugsInProjectWithTester.Add(bugTester);
+                    }
+                }
+            }
+               
+            return bugsInProjectWithTester;
+        }
+
+        public List<Project> GetAllProjects(Guid testerId)
+        {
+            User tester = Get(testerId);
+            List<Project> allProjects = projcetLogic.GetAll();
+            List<Project> projectToReturn = new List<Project>();
+
+            foreach (var project in allProjects)
+                if (project.Users.Find(u => u.Id == testerId) != null)
+                    projectToReturn.Add(project);
+
+            return projectToReturn;
+        }
+
         private void IsTester(User tester)
         {
             if (tester.Rol.Name.ToLower() != Rol.tester.ToLower())

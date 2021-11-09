@@ -36,8 +36,8 @@ namespace OBLDA2.Controllers
         [HttpGet("{userToken}")]
         public IActionResult GetUserLogged(string userToken)
         {
-            string userId = sessionsLogic.GetUserIdWithToekn(userToken);
-            return Ok(new UserIdModel(Guid.Parse(userId)));
+            User user = sessionsLogic.GetUserWithToekn(userToken);
+            return Ok(new UserOutModel(user));
         }
 
     }

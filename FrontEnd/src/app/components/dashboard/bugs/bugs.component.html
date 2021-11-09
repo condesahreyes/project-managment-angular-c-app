@@ -1,9 +1,9 @@
 <div class="container">
 
     <mat-toolbar>
-        <span>Bugs </span>
+        <span *ngIf="project===undefined">Bugs </span>
         <div class="example-spacer"></div>
-        <button mat-raised-button color="primary" (click)="openForm()">Create Bug</button>
+        <button *ngIf="accions.includes('create')" mat-raised-button color="primary" (click)="openForm()">Create Bug</button>
     </mat-toolbar>
 
     <mat-form-field appearance="standard">
@@ -41,7 +41,7 @@
             
             <ng-container matColumnDef="state">
                 <th mat-header-cell *matHeaderCellDef mat-sort-header>State </th>
-                <td mat-cell *matCellDef="let element"> {{element.state}} </td>
+                <td mat-cell *matCellDef="let element"> {{element.state.name}} </td>
             </ng-container>
 
             <ng-container matColumnDef="duration">
@@ -52,13 +52,10 @@
             <ng-container matColumnDef="actions">
                 <th mat-header-cell *matHeaderCellDef></th>
                 <td mat-cell *matCellDef="let element" style="text-align: right;">
-                    <a class="pointer" style="color: #1878b0;" matTooltip="Assign Users" > <!--(click)="assignUser(element)"-->
-                        <mat-icon>search</mat-icon>
-                    </a>
-                    <a class="pointer" style="color: #1878b0;" matTooltip="Edit Bug" (click)="update(element)"> 
+                    <a *ngIf="accions.includes('edit')" class="pointer" style="color: #1878b0;" matTooltip="Edit Bug" (click)="update(element)"> 
                         <mat-icon>edit</mat-icon>
                     </a>
-                    <a class="pointer" style="color: #e15639;" matTooltip="Delete Bug" (click)="delete(element.id)"> 
+                    <a *ngIf="accions.includes('delete')" class="pointer" style="color: #e15639;" matTooltip="Delete Bug" (click)="delete(element.id)"> 
                         <mat-icon>delete</mat-icon>
                     </a>
                 </td>

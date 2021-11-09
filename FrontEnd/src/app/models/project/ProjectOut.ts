@@ -2,7 +2,7 @@
 import { Bug } from '../bug/Bug';
 
 export interface ProjectOut {
-  "id": number;
+  "id": string;
   "users" : User[];
   "bugs" : Bug[];
   "totalBugs" : number;

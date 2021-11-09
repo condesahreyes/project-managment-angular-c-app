@@ -26,7 +26,7 @@
 
         <mat-form-field class="example-full-width" appearance="fill">
             <mat-label>Duration</mat-label>
-            <input type="text" matInput autocomplete="off" formControlName="duration" required>
+            <input type="number" matInput autocomplete="off" formControlName="duration" required>
         </mat-form-field>
 
         <mat-form-field class="example-full-width" appearance="fill">
@@ -34,14 +34,14 @@
             <input type="text" matInput autocomplete="off" formControlName="state" required>
         </mat-form-field>
 
-        <mat-form-field appearance="fill">
+         <mat-form-field *ngIf="data.project == null" appearance="fill">
             <mat-label>Project</mat-label>
             <mat-select name="project" formControlName="project" #project>
                 <mat-option *ngFor="let project of projects" [value]="project.name">
                     {{project.name}}
                 </mat-option>
             </mat-select>
-        </mat-form-field>
+        </mat-form-field> 
 
         <div fxLayout="row" fxLayoutAlign="space-between center" fxLayoutGap=10px>
 

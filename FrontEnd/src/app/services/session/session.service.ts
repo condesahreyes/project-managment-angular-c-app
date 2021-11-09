@@ -4,7 +4,7 @@ import { environment } from 'src/environments/environment';
 import { Login } from '../../models/session/Login';
 import { Token } from '../../models/session/Token';
 import { Observable } from 'rxjs';
-import { UserIdModel } from 'src/app/models/users/UserIdModel';
+import { UserEntryModel } from 'src/app/models/users/UserEntryModel';
 
 @Injectable({
   providedIn: 'root'
@@ -44,9 +44,9 @@ export class SessionService {
     return this.getToken() != null;
   }
 
-  getUserIdLogged(): Observable<UserIdModel> {
+  getUserLogged(): Observable<UserEntryModel> {
     const tokenUser = this.getToken();
-    return this.http.get<UserIdModel>(this.uri + '/' + tokenUser);
+    return this.http.get<UserEntryModel>(this.uri + '/' + tokenUser);
 
   }
 

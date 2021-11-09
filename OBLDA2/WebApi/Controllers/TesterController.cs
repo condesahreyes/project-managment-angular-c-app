@@ -31,6 +31,27 @@ namespace WebApi.Controllers
             return (StatusCode((int)HttpStatusCode.OK, bugsModel));
         }
 
+        [HttpGet("{projectId}/{idTester}/bugs")]
+        [AuthorizationFilter(Autorization.Tester)]
+        public IActionResult GetAllBugsByTesterInProject(Guid idTester, Guid projectId)
+        {
+            List<Bug> bugs = this.testerLogic.GetAllBugsByTesterInProject(idTester, projectId);
+
+            IEnumerable<BugEntryOutModel> bugsModel = BugEntryOutModel.ListBugs(bugs);
+
+            return (StatusCode((int)HttpStatusCode.OK, bugsModel));
+        }
+
+        [HttpGet("{idTester}/projects")]
+        [AuthorizationFilter(Autorization.Tester)]
+        public IActionResult GetAllProjectsTester(Guid idTester)
+        {
+            List<Project> projects = this.testerLogic.GetAllProjects(idTester);
+
+            return (StatusCode((int)HttpStatusCode.OK, projects));
+        }
+
+
         [HttpPost("{idTester}/project/{idProject}")]
         [AuthorizationFilter(Autorization.Administrator)]
         public IActionResult AssignTester(Guid idProject, Guid idTester)

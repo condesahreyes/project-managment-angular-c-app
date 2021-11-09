@@ -1,13 +1,15 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
-import { MatDialog } from '@angular/material/dialog';
-import { MatPaginator } from '@angular/material/paginator';
-import { MatSort } from '@angular/material/sort';
-import { MatTableDataSource } from '@angular/material/table';
-import { Bug } from 'src/app/models/bug/Bug';
-import { BugService } from 'src/app/services/bug/bug.service';
+import { UsersControllerService } from 'src/app/controllers/users-controller.service';
+import { ProjectService } from 'src/app/services/project/project.service';
 import { BugFormComponent } from './bug-form/bug-form.component';
-import { SessionService } from 'src/app/services/session/session.service';
-import { UserIdModel } from 'src/app/models/users/UserIdModel';
+import { ProjectOut } from 'src/app/models/project/ProjectOut';
+import { BugService } from 'src/app/services/bug/bug.service';
+import { MatTableDataSource } from '@angular/material/table';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { MatPaginator } from '@angular/material/paginator';
+import { MatDialog } from '@angular/material/dialog';
+import { MatSort } from '@angular/material/sort';
+import { ActivatedRoute } from '@angular/router';
+import { Bug } from 'src/app/models/bug/Bug';
 
 @Component({
   selector: 'app-bugs',
@@ -16,39 +18,28 @@ import { UserIdModel } from 'src/app/models/users/UserIdModel';
 })
 export class BugsComponent implements OnInit {
 
-  bugToDelete: any;
-  displayedColumns = ['name', 'domain', 'version', 'state', 'duration', 'actions']; //'project', 'solved by',
-  bugs: Bug[] = [];
   dataSource!: MatTableDataSource<Bug>;
-  user!: UserIdModel;
+  displayedColumns : any;
+  accions: string[] = [];
+
+  project!: ProjectOut;
+  bugToDelete: any;
+  bugs: Bug[] = [];
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
 
   constructor(
     private bugService: BugService,
-    private sessionService: SessionService,
-    public dialog: MatDialog
+    private projectService: ProjectService,
+    public dialog: MatDialog,
+    private router: ActivatedRoute,
+    private userController: UsersControllerService
   ) { }
 
   setPaginatorAndSort() {
     this.dataSource.paginator = this.paginator;
     this.dataSource.sort = this.sort;
-  }
-
-  ngOnInit(): void {
-    this.getBugsCreated();
-    this.sessionService.getUserIdLogged().subscribe(u => {
-      this.user = { userId:  u.userId}
-    });
-  }
-
-  getBugsCreated() {
-    this.bugService.getBugs().subscribe(b => {
-      this.bugs = b
-      this.dataSource = new MatTableDataSource(this.bugs);
-      this.setPaginatorAndSort();
-    });
   }
 
   applyFilter(event: Event) {
@@ -60,29 +51,75 @@ export class BugsComponent implements OnInit {
     }
   }
 
-  openForm() {
-    const dialogRef = this.dialog.open(BugFormComponent, {
-      width: '50%',
-      data: ""
-    });
-    dialogRef.afterClosed().subscribe(() => {
-      this.getBugsCreated();
+  ngOnInit() {
+    this.getColumns();
+    this.getAccions();
+    this.getBugs();
+  }
+
+  getColumns(){
+    this.displayedColumns = this.userController.getBugsColumns();
+  }
+
+  getAccions(){
+    this.accions = this.userController.getAccionsBugs();
+  }
+
+  getBugs() {
+    const projectId = this.router.snapshot.paramMap.get('id');
+
+    if (projectId !== null) {
+      this.projectService.getProject(projectId).subscribe(p => {
+        this.project = p;
+        this.getBugsByProject();
+      });
+    }else{
+      this.getBugsByUser();
+    }
+  }
+
+  getBugsByProject() {
+    this.projectService.getBugsByProject(this.project.id).subscribe(b => {
+      this.bugs = b
+      this.dataSource = new MatTableDataSource(this.bugs);
+      this.setPaginatorAndSort();
     });
   }
 
-  update(bug: any) {
+  getBugsByUser() {
+    this.userController.getBugs().subscribe(b => {
+      this.bugs = b
+      this.dataSource = new MatTableDataSource(this.bugs);
+      this.setPaginatorAndSort();
+    })
+  }
+
+  openForm() {
     const dialogRef = this.dialog.open(BugFormComponent, {
       width: '50%',
-      data: bug
+      data: { project: this.project, bug: "" }
     });
-    dialogRef.afterClosed().subscribe((result) => {
-      this.getBugsCreated();
+    dialogRef.afterClosed().subscribe(() => { 
+      this.getColumns();
+      this.getBugs();
     });
+  }
+
+  update(bugToUpdate: any) {
+    const dialogRef = this.dialog.open(BugFormComponent, {
+      width: '50%',
+      data: { bug: bugToUpdate }
+    });
+    dialogRef.afterClosed().subscribe();
   }
 
   delete(idBug: number) {
     if (confirm("Are you sure to delete?")) {
-      this.bugService.deleteBug(idBug, this.user).subscribe(() => this.getBugsCreated());
+      const userId = this.userController.getUserLogued().id; 
+      this.bugService.deleteBug(idBug, userId).subscribe(() => {
+        this.getColumns();
+        this.getBugs();
+      });
     }
   }
 

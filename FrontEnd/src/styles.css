@@ -34,3 +34,6 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
     font-size: 14px;
     width: 100%;
   }
+  .mat-icon{
+    padding-right: 10px;
+  }

@@ -73,5 +73,14 @@ namespace WebApi.Controllers
 
             return Ok(usersOut);
         }
+
+        [HttpGet("{idDeveloper}/projects")]
+        [AuthorizationFilter(Autorization.Developer)]
+        public IActionResult GetAllProjectsTester(Guid idDeveloper)
+        {
+            List<Project> projects = this.developerLogic.GetAllProjects(idDeveloper);
+
+            return (StatusCode((int)HttpStatusCode.OK, projects));
+        }
     }
 }
