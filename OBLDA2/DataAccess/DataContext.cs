@@ -34,7 +34,7 @@ namespace DataAccess
             {
                 IConfiguration configuration = new ConfigurationBuilder()
                     .SetBasePath(Directory.GetCurrentDirectory())
-                    .AddJsonFile("ConfigurationDataBase.json", optional: false).Build();
+                    .AddJsonFile("Configuration.json", optional: false).Build();
 
                 string connection = configuration["BD"];
                 optionsBuilder.UseSqlServer(connection);

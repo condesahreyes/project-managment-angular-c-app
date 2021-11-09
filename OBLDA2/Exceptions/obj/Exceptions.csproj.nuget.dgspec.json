@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\hreye\\Desktop\\OBL-Asadurian-Reyes\\OBLDA2\\Exceptions\\Exceptions.csproj": {}
+    "C:\\Users\\hreye\\Desktop\\reflection\\OBL-Asadurian-Reyes\\OBLDA2\\Exceptions\\Exceptions.csproj": {}
   },
   "projects": {
-    "C:\\Users\\hreye\\Desktop\\OBL-Asadurian-Reyes\\OBLDA2\\Exceptions\\Exceptions.csproj": {
+    "C:\\Users\\hreye\\Desktop\\reflection\\OBL-Asadurian-Reyes\\OBLDA2\\Exceptions\\Exceptions.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\hreye\\Desktop\\OBL-Asadurian-Reyes\\OBLDA2\\Exceptions\\Exceptions.csproj",
+        "projectUniqueName": "C:\\Users\\hreye\\Desktop\\reflection\\OBL-Asadurian-Reyes\\OBLDA2\\Exceptions\\Exceptions.csproj",
         "projectName": "Exceptions",
-        "projectPath": "C:\\Users\\hreye\\Desktop\\OBL-Asadurian-Reyes\\OBLDA2\\Exceptions\\Exceptions.csproj",
+        "projectPath": "C:\\Users\\hreye\\Desktop\\reflection\\OBL-Asadurian-Reyes\\OBLDA2\\Exceptions\\Exceptions.csproj",
         "packagesPath": "C:\\Users\\hreye\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\hreye\\Desktop\\OBL-Asadurian-Reyes\\OBLDA2\\Exceptions\\obj\\",
+        "outputPath": "C:\\Users\\hreye\\Desktop\\reflection\\OBL-Asadurian-Reyes\\OBLDA2\\Exceptions\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\hreye\\AppData\\Roaming\\NuGet\\NuGet.Config",

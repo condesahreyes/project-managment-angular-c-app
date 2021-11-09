@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\hreye\\Desktop\\OBL-Asadurian-Reyes\\OBLDA2\\Factory\\Factory.csproj": {}
+    "C:\\Users\\hreye\\Desktop\\reflection\\OBL-Asadurian-Reyes\\OBLDA2\\Factory\\Factory.csproj": {}
   },
   "projects": {
-    "C:\\Users\\hreye\\Desktop\\OBL-Asadurian-Reyes\\OBLDA2\\BusinessLogicInterface\\BusinessLogicInterface.csproj": {
+    "C:\\Users\\hreye\\Desktop\\reflection\\OBL-Asadurian-Reyes\\OBLDA2\\BusinessLogicInterface\\BusinessLogicInterface.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\hreye\\Desktop\\OBL-Asadurian-Reyes\\OBLDA2\\BusinessLogicInterface\\BusinessLogicInterface.csproj",
+        "projectUniqueName": "C:\\Users\\hreye\\Desktop\\reflection\\OBL-Asadurian-Reyes\\OBLDA2\\BusinessLogicInterface\\BusinessLogicInterface.csproj",
         "projectName": "BusinessLogicInterface",
-        "projectPath": "C:\\Users\\hreye\\Desktop\\OBL-Asadurian-Reyes\\OBLDA2\\BusinessLogicInterface\\BusinessLogicInterface.csproj",
+        "projectPath": "C:\\Users\\hreye\\Desktop\\reflection\\OBL-Asadurian-Reyes\\OBLDA2\\BusinessLogicInterface\\BusinessLogicInterface.csproj",
         "packagesPath": "C:\\Users\\hreye\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\hreye\\Desktop\\OBL-Asadurian-Reyes\\OBLDA2\\BusinessLogicInterface\\obj\\",
+        "outputPath": "C:\\Users\\hreye\\Desktop\\reflection\\OBL-Asadurian-Reyes\\OBLDA2\\BusinessLogicInterface\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\hreye\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -28,8 +28,8 @@
           "net5.0": {
             "targetAlias": "net5.0",
             "projectReferences": {
-              "C:\\Users\\hreye\\Desktop\\OBL-Asadurian-Reyes\\OBLDA2\\Domain\\Domain.csproj": {
-                "projectPath": "C:\\Users\\hreye\\Desktop\\OBL-Asadurian-Reyes\\OBLDA2\\Domain\\Domain.csproj"
+              "C:\\Users\\hreye\\Desktop\\reflection\\OBL-Asadurian-Reyes\\OBLDA2\\Domain\\Domain.csproj": {
+                "projectPath": "C:\\Users\\hreye\\Desktop\\reflection\\OBL-Asadurian-Reyes\\OBLDA2\\Domain\\Domain.csproj"
               }
             }
           }
@@ -62,14 +62,14 @@
         }
       }
     },
-    "C:\\Users\\hreye\\Desktop\\OBL-Asadurian-Reyes\\OBLDA2\\BusinessLogic\\BusinessLogic.csproj": {
+    "C:\\Users\\hreye\\Desktop\\reflection\\OBL-Asadurian-Reyes\\OBLDA2\\BusinessLogic\\BusinessLogic.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\hreye\\Desktop\\OBL-Asadurian-Reyes\\OBLDA2\\BusinessLogic\\BusinessLogic.csproj",
+        "projectUniqueName": "C:\\Users\\hreye\\Desktop\\reflection\\OBL-Asadurian-Reyes\\OBLDA2\\BusinessLogic\\BusinessLogic.csproj",
         "projectName": "BusinessLogic",
-        "projectPath": "C:\\Users\\hreye\\Desktop\\OBL-Asadurian-Reyes\\OBLDA2\\BusinessLogic\\BusinessLogic.csproj",
+        "projectPath": "C:\\Users\\hreye\\Desktop\\reflection\\OBL-Asadurian-Reyes\\OBLDA2\\BusinessLogic\\BusinessLogic.csproj",
         "packagesPath": "C:\\Users\\hreye\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\hreye\\Desktop\\OBL-Asadurian-Reyes\\OBLDA2\\BusinessLogic\\obj\\",
+        "outputPath": "C:\\Users\\hreye\\Desktop\\reflection\\OBL-Asadurian-Reyes\\OBLDA2\\BusinessLogic\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\hreye\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -86,14 +86,17 @@
           "net5.0": {
             "targetAlias": "net5.0",
             "projectReferences": {
-              "C:\\Users\\hreye\\Desktop\\OBL-Asadurian-Reyes\\OBLDA2\\BusinessLogicInterface\\BusinessLogicInterface.csproj": {
-                "projectPath": "C:\\Users\\hreye\\Desktop\\OBL-Asadurian-Reyes\\OBLDA2\\BusinessLogicInterface\\BusinessLogicInterface.csproj"
+              "C:\\Users\\hreye\\Desktop\\reflection\\OBL-Asadurian-Reyes\\OBLDA2\\BusinessLogicInterface\\BusinessLogicInterface.csproj": {
+                "projectPath": "C:\\Users\\hreye\\Desktop\\reflection\\OBL-Asadurian-Reyes\\OBLDA2\\BusinessLogicInterface\\BusinessLogicInterface.csproj"
               },
-              "C:\\Users\\hreye\\Desktop\\OBL-Asadurian-Reyes\\OBLDA2\\DataAccesInterface\\DataAccessInterface.csproj": {
-                "projectPath": "C:\\Users\\hreye\\Desktop\\OBL-Asadurian-Reyes\\OBLDA2\\DataAccesInterface\\DataAccessInterface.csproj"
+              "C:\\Users\\hreye\\Desktop\\reflection\\OBL-Asadurian-Reyes\\OBLDA2\\DataAccesInterface\\DataAccessInterface.csproj": {
+                "projectPath": "C:\\Users\\hreye\\Desktop\\reflection\\OBL-Asadurian-Reyes\\OBLDA2\\DataAccesInterface\\DataAccessInterface.csproj"
               },
-              "C:\\Users\\hreye\\Desktop\\OBL-Asadurian-Reyes\\OBLDA2\\Exceptions\\Exceptions.csproj": {
-                "projectPath": "C:\\Users\\hreye\\Desktop\\OBL-Asadurian-Reyes\\OBLDA2\\Exceptions\\Exceptions.csproj"
+              "C:\\Users\\hreye\\Desktop\\reflection\\OBL-Asadurian-Reyes\\OBLDA2\\Exceptions\\Exceptions.csproj": {
+                "projectPath": "C:\\Users\\hreye\\Desktop\\reflection\\OBL-Asadurian-Reyes\\OBLDA2\\Exceptions\\Exceptions.csproj"
+              },
+              "C:\\Users\\hreye\\Desktop\\reflection\\OBL-Asadurian-Reyes\\OBLDA2\\Imports\\Imports.csproj": {
+                "projectPath": "C:\\Users\\hreye\\Desktop\\reflection\\OBL-Asadurian-Reyes\\OBLDA2\\Imports\\Imports.csproj"
               }
             }
           }
@@ -107,6 +110,16 @@
       "frameworks": {
         "net5.0": {
           "targetAlias": "net5.0",
+          "dependencies": {
+            "Microsoft.Extensions.Configuration.Json": {
+              "target": "Package",
+              "version": "[5.0.0, )"
+            },
+            "Newtonsoft.Json": {
+              "target": "Package",
+              "version": "[13.0.1, )"
+            }
+          },
           "imports": [
             "net461",
             "net462",
@@ -126,14 +139,14 @@
         }
       }
     },
-    "C:\\Users\\hreye\\Desktop\\OBL-Asadurian-Reyes\\OBLDA2\\DataAccesInterface\\DataAccessInterface.csproj": {
+    "C:\\Users\\hreye\\Desktop\\reflection\\OBL-Asadurian-Reyes\\OBLDA2\\DataAccesInterface\\DataAccessInterface.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\hreye\\Desktop\\OBL-Asadurian-Reyes\\OBLDA2\\DataAccesInterface\\DataAccessInterface.csproj",
+        "projectUniqueName": "C:\\Users\\hreye\\Desktop\\reflection\\OBL-Asadurian-Reyes\\OBLDA2\\DataAccesInterface\\DataAccessInterface.csproj",
         "projectName": "DataAccessInterface",
-        "projectPath": "C:\\Users\\hreye\\Desktop\\OBL-Asadurian-Reyes\\OBLDA2\\DataAccesInterface\\DataAccessInterface.csproj",
+        "projectPath": "C:\\Users\\hreye\\Desktop\\reflection\\OBL-Asadurian-Reyes\\OBLDA2\\DataAccesInterface\\DataAccessInterface.csproj",
         "packagesPath": "C:\\Users\\hreye\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\hreye\\Desktop\\OBL-Asadurian-Reyes\\OBLDA2\\DataAccesInterface\\obj\\",
+        "outputPath": "C:\\Users\\hreye\\Desktop\\reflection\\OBL-Asadurian-Reyes\\OBLDA2\\DataAccesInterface\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\hreye\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -150,8 +163,8 @@
           "net5.0": {
             "targetAlias": "net5.0",
             "projectReferences": {
-              "C:\\Users\\hreye\\Desktop\\OBL-Asadurian-Reyes\\OBLDA2\\Domain\\Domain.csproj": {
-                "projectPath": "C:\\Users\\hreye\\Desktop\\OBL-Asadurian-Reyes\\OBLDA2\\Domain\\Domain.csproj"
+              "C:\\Users\\hreye\\Desktop\\reflection\\OBL-Asadurian-Reyes\\OBLDA2\\Domain\\Domain.csproj": {
+                "projectPath": "C:\\Users\\hreye\\Desktop\\reflection\\OBL-Asadurian-Reyes\\OBLDA2\\Domain\\Domain.csproj"
               }
             }
           }
@@ -184,14 +197,14 @@
         }
       }
     },
-    "C:\\Users\\hreye\\Desktop\\OBL-Asadurian-Reyes\\OBLDA2\\DataAccess\\DataAccess.csproj": {
+    "C:\\Users\\hreye\\Desktop\\reflection\\OBL-Asadurian-Reyes\\OBLDA2\\DataAccess\\DataAccess.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\hreye\\Desktop\\OBL-Asadurian-Reyes\\OBLDA2\\DataAccess\\DataAccess.csproj",
+        "projectUniqueName": "C:\\Users\\hreye\\Desktop\\reflection\\OBL-Asadurian-Reyes\\OBLDA2\\DataAccess\\DataAccess.csproj",
         "projectName": "DataAccess",
-        "projectPath": "C:\\Users\\hreye\\Desktop\\OBL-Asadurian-Reyes\\OBLDA2\\DataAccess\\DataAccess.csproj",
+        "projectPath": "C:\\Users\\hreye\\Desktop\\reflection\\OBL-Asadurian-Reyes\\OBLDA2\\DataAccess\\DataAccess.csproj",
         "packagesPath": "C:\\Users\\hreye\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\hreye\\Desktop\\OBL-Asadurian-Reyes\\OBLDA2\\DataAccess\\obj\\",
+        "outputPath": "C:\\Users\\hreye\\Desktop\\reflection\\OBL-Asadurian-Reyes\\OBLDA2\\DataAccess\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\hreye\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -208,11 +221,11 @@
           "net5.0": {
             "targetAlias": "net5.0",
             "projectReferences": {
-              "C:\\Users\\hreye\\Desktop\\OBL-Asadurian-Reyes\\OBLDA2\\DataAccesInterface\\DataAccessInterface.csproj": {
-                "projectPath": "C:\\Users\\hreye\\Desktop\\OBL-Asadurian-Reyes\\OBLDA2\\DataAccesInterface\\DataAccessInterface.csproj"
+              "C:\\Users\\hreye\\Desktop\\reflection\\OBL-Asadurian-Reyes\\OBLDA2\\DataAccesInterface\\DataAccessInterface.csproj": {
+                "projectPath": "C:\\Users\\hreye\\Desktop\\reflection\\OBL-Asadurian-Reyes\\OBLDA2\\DataAccesInterface\\DataAccessInterface.csproj"
               },
-              "C:\\Users\\hreye\\Desktop\\OBL-Asadurian-Reyes\\OBLDA2\\Domain\\Domain.csproj": {
-                "projectPath": "C:\\Users\\hreye\\Desktop\\OBL-Asadurian-Reyes\\OBLDA2\\Domain\\Domain.csproj"
+              "C:\\Users\\hreye\\Desktop\\reflection\\OBL-Asadurian-Reyes\\OBLDA2\\Domain\\Domain.csproj": {
+                "projectPath": "C:\\Users\\hreye\\Desktop\\reflection\\OBL-Asadurian-Reyes\\OBLDA2\\Domain\\Domain.csproj"
               }
             }
           }
@@ -285,14 +298,14 @@
         }
       }
     },
-    "C:\\Users\\hreye\\Desktop\\OBL-Asadurian-Reyes\\OBLDA2\\Domain\\Domain.csproj": {
+    "C:\\Users\\hreye\\Desktop\\reflection\\OBL-Asadurian-Reyes\\OBLDA2\\Domain\\Domain.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\hreye\\Desktop\\OBL-Asadurian-Reyes\\OBLDA2\\Domain\\Domain.csproj",
+        "projectUniqueName": "C:\\Users\\hreye\\Desktop\\reflection\\OBL-Asadurian-Reyes\\OBLDA2\\Domain\\Domain.csproj",
         "projectName": "Domain",
-        "projectPath": "C:\\Users\\hreye\\Desktop\\OBL-Asadurian-Reyes\\OBLDA2\\Domain\\Domain.csproj",
+        "projectPath": "C:\\Users\\hreye\\Desktop\\reflection\\OBL-Asadurian-Reyes\\OBLDA2\\Domain\\Domain.csproj",
         "packagesPath": "C:\\Users\\hreye\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\hreye\\Desktop\\OBL-Asadurian-Reyes\\OBLDA2\\Domain\\obj\\",
+        "outputPath": "C:\\Users\\hreye\\Desktop\\reflection\\OBL-Asadurian-Reyes\\OBLDA2\\Domain\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\hreye\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -309,8 +322,8 @@
           "net5.0": {
             "targetAlias": "net5.0",
             "projectReferences": {
-              "C:\\Users\\hreye\\Desktop\\OBL-Asadurian-Reyes\\OBLDA2\\Exceptions\\Exceptions.csproj": {
-                "projectPath": "C:\\Users\\hreye\\Desktop\\OBL-Asadurian-Reyes\\OBLDA2\\Exceptions\\Exceptions.csproj"
+              "C:\\Users\\hreye\\Desktop\\reflection\\OBL-Asadurian-Reyes\\OBLDA2\\Exceptions\\Exceptions.csproj": {
+                "projectPath": "C:\\Users\\hreye\\Desktop\\reflection\\OBL-Asadurian-Reyes\\OBLDA2\\Exceptions\\Exceptions.csproj"
               }
             }
           }
@@ -343,14 +356,14 @@
         }
       }
     },
-    "C:\\Users\\hreye\\Desktop\\OBL-Asadurian-Reyes\\OBLDA2\\Exceptions\\Exceptions.csproj": {
+    "C:\\Users\\hreye\\Desktop\\reflection\\OBL-Asadurian-Reyes\\OBLDA2\\Exceptions\\Exceptions.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\hreye\\Desktop\\OBL-Asadurian-Reyes\\OBLDA2\\Exceptions\\Exceptions.csproj",
+        "projectUniqueName": "C:\\Users\\hreye\\Desktop\\reflection\\OBL-Asadurian-Reyes\\OBLDA2\\Exceptions\\Exceptions.csproj",
         "projectName": "Exceptions",
-        "projectPath": "C:\\Users\\hreye\\Desktop\\OBL-Asadurian-Reyes\\OBLDA2\\Exceptions\\Exceptions.csproj",
+        "projectPath": "C:\\Users\\hreye\\Desktop\\reflection\\OBL-Asadurian-Reyes\\OBLDA2\\Exceptions\\Exceptions.csproj",
         "packagesPath": "C:\\Users\\hreye\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\hreye\\Desktop\\OBL-Asadurian-Reyes\\OBLDA2\\Exceptions\\obj\\",
+        "outputPath": "C:\\Users\\hreye\\Desktop\\reflection\\OBL-Asadurian-Reyes\\OBLDA2\\Exceptions\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\hreye\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -397,14 +410,14 @@
         }
       }
     },
-    "C:\\Users\\hreye\\Desktop\\OBL-Asadurian-Reyes\\OBLDA2\\Factory\\Factory.csproj": {
+    "C:\\Users\\hreye\\Desktop\\reflection\\OBL-Asadurian-Reyes\\OBLDA2\\Factory\\Factory.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\hreye\\Desktop\\OBL-Asadurian-Reyes\\OBLDA2\\Factory\\Factory.csproj",
+        "projectUniqueName": "C:\\Users\\hreye\\Desktop\\reflection\\OBL-Asadurian-Reyes\\OBLDA2\\Factory\\Factory.csproj",
         "projectName": "Factory",
-        "projectPath": "C:\\Users\\hreye\\Desktop\\OBL-Asadurian-Reyes\\OBLDA2\\Factory\\Factory.csproj",
+        "projectPath": "C:\\Users\\hreye\\Desktop\\reflection\\OBL-Asadurian-Reyes\\OBLDA2\\Factory\\Factory.csproj",
         "packagesPath": "C:\\Users\\hreye\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\hreye\\Desktop\\OBL-Asadurian-Reyes\\OBLDA2\\Factory\\obj\\",
+        "outputPath": "C:\\Users\\hreye\\Desktop\\reflection\\OBL-Asadurian-Reyes\\OBLDA2\\Factory\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\hreye\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -421,11 +434,11 @@
           "net5.0": {
             "targetAlias": "net5.0",
             "projectReferences": {
-              "C:\\Users\\hreye\\Desktop\\OBL-Asadurian-Reyes\\OBLDA2\\BusinessLogic\\BusinessLogic.csproj": {
-                "projectPath": "C:\\Users\\hreye\\Desktop\\OBL-Asadurian-Reyes\\OBLDA2\\BusinessLogic\\BusinessLogic.csproj"
+              "C:\\Users\\hreye\\Desktop\\reflection\\OBL-Asadurian-Reyes\\OBLDA2\\BusinessLogic\\BusinessLogic.csproj": {
+                "projectPath": "C:\\Users\\hreye\\Desktop\\reflection\\OBL-Asadurian-Reyes\\OBLDA2\\BusinessLogic\\BusinessLogic.csproj"
               },
-              "C:\\Users\\hreye\\Desktop\\OBL-Asadurian-Reyes\\OBLDA2\\DataAccess\\DataAccess.csproj": {
-                "projectPath": "C:\\Users\\hreye\\Desktop\\OBL-Asadurian-Reyes\\OBLDA2\\DataAccess\\DataAccess.csproj"
+              "C:\\Users\\hreye\\Desktop\\reflection\\OBL-Asadurian-Reyes\\OBLDA2\\DataAccess\\DataAccess.csproj": {
+                "projectPath": "C:\\Users\\hreye\\Desktop\\reflection\\OBL-Asadurian-Reyes\\OBLDA2\\DataAccess\\DataAccess.csproj"
               }
             }
           }
@@ -445,6 +458,64 @@
               "version": "[5.0.0, )"
             }
           },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.400\\RuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "C:\\Users\\hreye\\Desktop\\reflection\\OBL-Asadurian-Reyes\\OBLDA2\\Imports\\Imports.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\Users\\hreye\\Desktop\\reflection\\OBL-Asadurian-Reyes\\OBLDA2\\Imports\\Imports.csproj",
+        "projectName": "Imports",
+        "projectPath": "C:\\Users\\hreye\\Desktop\\reflection\\OBL-Asadurian-Reyes\\OBLDA2\\Imports\\Imports.csproj",
+        "packagesPath": "C:\\Users\\hreye\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\hreye\\Desktop\\reflection\\OBL-Asadurian-Reyes\\OBLDA2\\Imports\\obj\\",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "C:\\Users\\hreye\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "net5.0"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net5.0": {
+            "targetAlias": "net5.0",
+            "projectReferences": {
+              "C:\\Users\\hreye\\Desktop\\reflection\\OBL-Asadurian-Reyes\\OBLDA2\\Domain\\Domain.csproj": {
+                "projectPath": "C:\\Users\\hreye\\Desktop\\reflection\\OBL-Asadurian-Reyes\\OBLDA2\\Domain\\Domain.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net5.0": {
+          "targetAlias": "net5.0",
           "imports": [
             "net461",
             "net462",
