@@ -46,7 +46,7 @@ export class BugFormComponent implements OnInit {
 
     })
 
-    if(this.data.project == null){
+    if(this.data.project === null){
       this.form.addControl('project', new FormControl([this.data.project, Validators.required]))
     }
   }
@@ -115,7 +115,8 @@ export class BugFormComponent implements OnInit {
     this.bug.Domain = this.form.value.domain;
     this.bug.Version = this.form.value.version;
     this.bug.State = this.form.value.state;
-    this.bug.Project = this.data;
+    this.bug.Project = (this.data.project === undefined) ? this.form.value.project : this.data;
+    // this.bug.Project = this.data;
     this.bug.CreatedBy = this.user.id;
 
     return this.bugService.createBug(this.bug).subscribe(() => {

@@ -7,12 +7,10 @@ import { Bug } from 'src/app/models/bug/Bug';
 import { BugService } from 'src/app/services/bug/bug.service';
 import { BugFormComponent } from './bug-form/bug-form.component';
 import { SessionService } from 'src/app/services/session/session.service';
-import { UserIdModel } from 'src/app/models/users/UserIdModel';
 import { ActivatedRoute } from '@angular/router';
 import { ProjectService } from 'src/app/services/project/project.service';
 import { TesterService } from 'src/app/services/tester/tester.service';
 import { ProjectOut } from 'src/app/models/project/ProjectOut';
-import { User } from 'src/app/models/users/User';
 import { UserEntryModel } from 'src/app/models/users/UserEntryModel';
 
 @Component({
@@ -59,7 +57,6 @@ export class BugsComponent implements OnInit {
   ngOnInit() {
     this.getTokenLogged();
     this.getProject();
-    this.getBugs();
   }
 
   getTokenLogged() {
@@ -72,13 +69,16 @@ export class BugsComponent implements OnInit {
     if (projectId !== null) {
       this.projectService.getProject(projectId).subscribe(p => {
         this.project = p;
+        this.getBugs();
       });
+    }else{
+      this.getBugs();
     }
 
   }
 
   getBugs() {
-    if (this.project === null) {
+    if (this.project === undefined) {
       this.getBugsByUser();
     } else {
       this.getBugsByProject();
@@ -86,7 +86,7 @@ export class BugsComponent implements OnInit {
   }
 
   getBugsByUser() {
-    if (this.rol === "Tester")
+    if (this.rol === 'Tester')
       this.getTester();
     else
       this.getAllBugs();

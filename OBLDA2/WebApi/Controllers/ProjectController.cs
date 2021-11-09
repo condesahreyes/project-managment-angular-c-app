@@ -73,7 +73,7 @@ namespace WebApi.Controllers
         }
 
         [HttpGet("{projectId}/bugs")]
-        [AuthorizationFilter(Autorization.Administrator)]
+        [AuthorizationFilter(Autorization.AllAutorization)]
         public IActionResult GetAllBugsByProject(Guid projectId)
         {
             //Project project = new Project();
