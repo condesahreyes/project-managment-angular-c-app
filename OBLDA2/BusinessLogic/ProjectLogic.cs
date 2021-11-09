@@ -155,8 +155,7 @@ namespace BusinessLogic
             foreach (Project project in projects)
             {
                 List<Bug> bugsInProject = GetAllBugByProject(project.Id);
-                if (bugsInProject != null && bugsInProject.Count != 1)
-                    project.Bugs.AddRange(bugsInProject);
+
 
                 project.TotalBugs = project.Bugs.Count;
                 project.Duration = CalculateTotalDuration(project);

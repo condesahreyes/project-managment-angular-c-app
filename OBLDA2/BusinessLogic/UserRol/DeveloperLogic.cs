@@ -154,5 +154,17 @@ namespace BusinessLogic.UserRol
             bug.State = new State(State.done);
             bug.SolvedBy = userLogic.Get(resolvedById);
         }
+
+        public List<Project> GetAllProjects(Guid developerId)
+        {
+            List<Project> allProjects = projectLogic.GetAll();
+            List<Project> projectToReturn = new List<Project>();
+
+            foreach (var project in allProjects)
+                if (project.Users.Find(u => u.Id == developerId) != null)
+                    projectToReturn.Add(project);
+
+            return projectToReturn;
+        }
     }
 }

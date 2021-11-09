@@ -2,6 +2,7 @@ import { Component, Inject, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { UsersControllerService } from 'src/app/controllers/users-controller.service';
 import { ProjectOut } from 'src/app/models/project/ProjectOut';
 import { Task } from 'src/app/models/task/task';
 import { ProjectService } from 'src/app/services/project/project.service';
@@ -21,12 +22,11 @@ export class TaskFormComponent implements OnInit {
   
   constructor(
     private taskService: TaskService,
-    private projectService: ProjectService,
     private fb: FormBuilder,
     private snackBar: MatSnackBar,
     public dialogRef: MatDialogRef<TaskFormComponent>,
+    private userController: UsersControllerService,
     @Inject(MAT_DIALOG_DATA) public data: any
-
   ) {
     this.form = this.fb.group({
       name: ["", Validators.required],
@@ -49,9 +49,9 @@ export class TaskFormComponent implements OnInit {
   }
 
     getProjectsCreated() {
-    this.projectService.getProjects().subscribe(p => {
-      this.projects = p
-    });
+      this.userController.getProjects().subscribe(p => {
+        this.projects = p;
+      })
   }
 
   create() {

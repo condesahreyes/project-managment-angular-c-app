@@ -4,6 +4,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { Component, OnInit } from '@angular/core';
 import { Login } from '../../models/session/Login';
 import { Router } from '@angular/router';
+import { UsersControllerService } from 'src/app/controllers/users-controller.service';
 
 @Component({
   selector: 'app-login',
@@ -20,6 +21,7 @@ export class LoginComponent implements OnInit {
     private fb: FormBuilder,
     private snackBar: MatSnackBar,
     private sessionService: SessionService,
+    private userController: UsersControllerService,
     private router: Router) {
 
     this.form = this.fb.group({
@@ -65,6 +67,7 @@ export class LoginComponent implements OnInit {
   }
 
   loadUser() {
+    this.userController.saveUserLogued();
     this.loading = true;
     setTimeout(() => {
       this.router.navigateByUrl('dashboard');

@@ -64,7 +64,7 @@ namespace WebApi.Controllers
         }
 
         [HttpGet("{projectId}")]
-        [AuthorizationFilter(Autorization.AdministratorAndTester)]
+        [AuthorizationFilter(Autorization.AllAutorization)]
         public IActionResult GetById(Guid projectId)
         {
             Project projectToReturn = this.projectLogic.Get(projectId);

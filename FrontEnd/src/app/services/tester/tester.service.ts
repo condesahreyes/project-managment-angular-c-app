@@ -36,10 +36,6 @@ export class TesterService {
     return this.http.get<Bug[]>(this.uri + '/' + testerId + '/bugs');
   }
 
- /* getAllBugsByTesterInProject(testerId: string, projectId: string): Observable<Bug[]>{
-    return this.http.get<Bug[]>(this.uri + '/'+ projectId + '/' + testerId + '/bugs');
-  }*/
-
   getAllProjectsByTester(testerId: string): Observable<ProjectOut[]>{
     return this.http.get<ProjectOut[]>(this.uri + '/' + testerId + '/projects');
   }

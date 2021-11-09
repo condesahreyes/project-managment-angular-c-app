@@ -15,14 +15,11 @@ const routes: Routes = [
       { path: '', component: StartComponent },
 
       { path: 'users',
-       // canActivate: [AutorizationGuard],
+        canActivate: [AutorizationGuard],
         component: UsersComponent},
 
       { path: 'projects', component: ProjectsComponent },
       
-
-      
-
       { path: 'projects/:id', component: ProjectViewComponent, data: {} },
 
       { path: 'bugs', component: BugsComponent, data: {} },
@@ -31,6 +28,7 @@ const routes: Routes = [
        // canActivate: [AutorizationGuard],
         component: TasksComponent,
         data: {} },
+
     ]
   },
 ];

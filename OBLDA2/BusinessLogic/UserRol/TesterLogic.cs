@@ -68,9 +68,9 @@ namespace BusinessLogic.UserRol
 
             return bugs;
         }
+
         public List<Bug> GetAllBugsByTesterInProject(Guid testerId, Guid project)
         {
-
             List<Bug> bugsByTester = this.GetAllBugs(testerId);
             List<Bug> allBugsInProject = this.projcetLogic.GetAllBugByProject(project);
             List<Bug> bugsInProjectWithTester = new List<Bug>();
@@ -86,7 +86,6 @@ namespace BusinessLogic.UserRol
                
             return bugsInProjectWithTester;
         }
-
 
         public List<Project> GetAllProjects(Guid testerId)
         {

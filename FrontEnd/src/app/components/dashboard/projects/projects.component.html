@@ -3,7 +3,7 @@
     <mat-toolbar>
         <span>Projects </span>
         <div class="example-spacer"></div>
-        <button *ngIf="rolUser === 'Administrador'" mat-raised-button color="primary" (click)="openForm()">Create Project</button>
+        <button *ngIf="accions.includes('create')" mat-raised-button color="primary" (click)="openForm()">Create Project</button>
     </mat-toolbar>
 
     <mat-form-field appearance="standard">
@@ -41,13 +41,13 @@
                     <a class="pointer" style="color: #1878b0;" matTooltip="See Project" (click)="seeProject(element.id)">
                         <mat-icon>visibility</mat-icon>
                     </a>
-                    <a *ngIf="rolUser === 'Administrador'" class="pointer" style="color: #1878b0;" matTooltip="Assign Users" (click)="assignUser(element)">
+                    <a *ngIf="accions.includes('assign')" class="pointer" style="color: #1878b0;" matTooltip="Assign Users" (click)="assignUser(element)">
                         <mat-icon>person_add</mat-icon>
                     </a>
-                    <a *ngIf="rolUser === 'Administrador'"  class="pointer" style="color: #1878b0;" matTooltip="Edit Project" (click)="update(element)">
+                    <a *ngIf="accions.includes('edit')" class="pointer" style="color: #1878b0;" matTooltip="Edit Project" (click)="update(element)">
                         <mat-icon>edit</mat-icon>
                     </a>
-                    <a *ngIf="rolUser === 'Administrador'" class="pointer" style="color: #e15639;" matTooltip="Delete Project" (click)="delete(element.id)">
+                    <a *ngIf="accions.includes('delete')" class="pointer" style="color: #e15639;" matTooltip="Delete Project" (click)="delete(element.id)">
                         <mat-icon>delete</mat-icon>
                     </a>
                 </td>

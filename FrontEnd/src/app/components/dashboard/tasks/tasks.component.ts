@@ -4,6 +4,7 @@ import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { ActivatedRoute } from '@angular/router';
+import { UsersControllerService } from 'src/app/controllers/users-controller.service';
 import { Task } from 'src/app/models/task/task';
 import { ProjectService } from 'src/app/services/project/project.service';
 import { TaskService } from 'src/app/services/task/task.service';
@@ -27,7 +28,8 @@ export class TasksComponent implements OnInit {
     private taskService: TaskService,
     private projectService: ProjectService,
     public dialog: MatDialog,
-    private router: ActivatedRoute
+    private router: ActivatedRoute,
+    private userController: UsersControllerService
   ) { }
 
   project: string = "";
@@ -54,14 +56,14 @@ export class TasksComponent implements OnInit {
 
   getTaskCreated() {
     if (this.projectId == null)
-      this.taskService.getTasks().subscribe(t => {
-        this.tasks = t
+      this.userController.getTasks().subscribe(t => {
+        this.tasks = t;
         this.dataSource = new MatTableDataSource(this.tasks);
         this.setPaginatorAndSort();
       });
     else
       this.taskService.getTasksByProject(this.projectId).subscribe(t => {
-        this.tasks = t
+        this.tasks = t;
         this.dataSource = new MatTableDataSource(this.tasks);
         this.setPaginatorAndSort();
       });

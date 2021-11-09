@@ -2,14 +2,12 @@ import { Component, Inject, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { UsersControllerService } from 'src/app/controllers/users-controller.service';
 import { Bug } from 'src/app/models/bug/Bug';
 import { BugUpdate } from 'src/app/models/bug/BugUpdate';
 import { ProjectOut } from 'src/app/models/project/ProjectOut';
 import { UserEntryModel } from 'src/app/models/users/UserEntryModel';
 import { BugService } from 'src/app/services/bug/bug.service';
-import { ProjectService } from 'src/app/services/project/project.service';
-import { SessionService } from 'src/app/services/session/session.service';
-import { TesterService } from 'src/app/services/tester/tester.service';
 
 @Component({
   selector: 'app-bug-form',
@@ -26,12 +24,10 @@ export class BugFormComponent implements OnInit {
 
   constructor(
     private bugService: BugService,
-    private projectService: ProjectService,
     private fb: FormBuilder,
     private snackBar: MatSnackBar,
-    private sessionService: SessionService,
     public dialogRef: MatDialogRef<BugFormComponent>,
-    private testerService: TesterService,
+    private userController: UsersControllerService,
     @Inject(MAT_DIALOG_DATA) public data: any
 
   ) {
@@ -42,8 +38,7 @@ export class BugFormComponent implements OnInit {
       id: [this.data.bug.id, Validators.required],
       state: [this.data.bug.state, Validators.required],
       project: [this.data.project, Validators.required],
-      duration: [this.data.bug.duration, Validators.required],
-
+      duration: [this.data.bug.duration, Validators.required]
     })
 
     if(this.data.project === null){
@@ -73,39 +68,15 @@ export class BugFormComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.sessionService.getUserLogged().subscribe(u => {
-      this.user = u;
-    });
     this.getProjects();
+
     if (this.data.domain) {
       this.edit = true;
     }
   }
 
   getProjects(){
-    if(this.data.userRol === 'Tester')
-      this.getTester();
-    else 
-      this.getAllProjects();
-  }
-
-  getTester() {
-    this.sessionService.getUserLogged().subscribe(u => {
-      this.getProjectTester(u.id);
-    });
-  }
-
-  getProjectTester(userId : any) {
-    this.testerService.getAllProjectsByTester(userId).subscribe(p => {
-      this.projects = p;
-    });
-  }
-
-
-  getAllProjects() {
-    this.projectService.getProjects().subscribe(p => {
-      this.projects = p
-    });
+    this.userController.getProjects().subscribe(p => this.projects = p);
   }
 
   create() {
@@ -116,8 +87,7 @@ export class BugFormComponent implements OnInit {
     this.bug.Version = this.form.value.version;
     this.bug.State = this.form.value.state;
     this.bug.Project = (this.data.project === undefined) ? this.form.value.project : this.data;
-    // this.bug.Project = this.data;
-    this.bug.CreatedBy = this.user.id;
+    this.bug.CreatedBy = this.userController.getUserLogued().id;
 
     return this.bugService.createBug(this.bug).subscribe(() => {
       this.close();
