@@ -36,7 +36,7 @@ namespace WebApi.Controllers
         }
 
         [HttpGet("{idProject}")]
-        [AuthorizationFilter(Autorization.Administrator)]
+        [AuthorizationFilter(Autorization.AllAutorization)]
         public IActionResult GetAllTaskByProject(Guid idProject)
         {
             List<Task> tasks = taskLogic.GetAllByProject(idProject);

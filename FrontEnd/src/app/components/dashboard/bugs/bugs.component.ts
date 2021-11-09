@@ -56,7 +56,7 @@ export class BugsComponent implements OnInit {
     }
   }
 
-  async ngOnInit(): Promise<void> {
+  ngOnInit() {
     this.getTokenLogged();
     this.getProject();
     this.getBugs();
@@ -68,28 +68,31 @@ export class BugsComponent implements OnInit {
   }
 
   getProject() {
-    let projectId = "" + this.router.snapshot.paramMap.get('id');
-    this.projectService.getProject(projectId).subscribe(p => {
-      this.project = p;
-    });
+    const projectId = this.router.snapshot.paramMap.get('id');
+    if (projectId !== null) {
+      this.projectService.getProject(projectId).subscribe(p => {
+        this.project = p;
+      });
+    }
+
   }
 
   getBugs() {
-    if(this.project == null){
+    if (this.project === null) {
       this.getBugsByUser();
-    } else{
+    } else {
       this.getBugsByProject();
     }
   }
 
-  getBugsByUser(){
-    if (this.rol === "Tester") 
+  getBugsByUser() {
+    if (this.rol === "Tester")
       this.getTester();
     else
       this.getAllBugs();
   }
 
-  getBugsByProject(){
+  getBugsByProject() {
     this.projectService.getBugsByProject(this.project.id).subscribe(b => {
       this.bugs = b
       this.dataSource = new MatTableDataSource(this.bugs);
@@ -97,7 +100,7 @@ export class BugsComponent implements OnInit {
     });
   }
 
-  getAllBugs(){
+  getAllBugs() {
     this.bugService.getBugs().subscribe(b => {
       this.bugs = b
       this.dataSource = new MatTableDataSource(this.bugs);
@@ -108,11 +111,11 @@ export class BugsComponent implements OnInit {
   getTester() {
     this.sessionService.getUserLogged().subscribe(u => {
       this.user = u
-      this.getBugsTester(u.id +"");
+      this.getBugsTester(u.id + "");
     });
   }
 
-  getBugsTester(testerId : string){
+  getBugsTester(testerId: string) {
     this.testerService.getAllBugsByTester(testerId).subscribe(b => {
       this.bugs = b
       this.dataSource = new MatTableDataSource(this.bugs);
@@ -123,7 +126,7 @@ export class BugsComponent implements OnInit {
   openForm() {
     const dialogRef = this.dialog.open(BugFormComponent, {
       width: '50%',
-      data: {project: this.project, bug: "", userRol: this.rol}
+      data: { project: this.project, bug: "", userRol: this.rol }
     });
     dialogRef.afterClosed().subscribe();
   }
@@ -131,7 +134,7 @@ export class BugsComponent implements OnInit {
   update(bugToUpdate: any) {
     const dialogRef = this.dialog.open(BugFormComponent, {
       width: '50%',
-      data: {bug: bugToUpdate}
+      data: { bug: bugToUpdate }
     });
     dialogRef.afterClosed().subscribe();
   }

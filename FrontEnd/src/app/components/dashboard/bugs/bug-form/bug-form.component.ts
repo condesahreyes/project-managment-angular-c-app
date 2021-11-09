@@ -83,7 +83,7 @@ export class BugFormComponent implements OnInit {
   }
 
   getProjects(){
-    if(this.data.rol == "Tester")
+    if(this.data.userRol === 'Tester')
       this.getTester();
     else 
       this.getAllProjects();

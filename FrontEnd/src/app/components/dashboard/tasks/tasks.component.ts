@@ -16,7 +16,7 @@ import { TaskFormComponent } from './task-form/task-form.component';
 })
 export class TasksComponent implements OnInit {
 
-  displayedColumns = ['name', 'duration', 'cost', 'actions' ];
+  displayedColumns = ['name', 'duration', 'cost', 'actions'];
   tasks: Task[] = [];
   dataSource!: MatTableDataSource<Task>;
 
@@ -30,7 +30,7 @@ export class TasksComponent implements OnInit {
     private router: ActivatedRoute
   ) { }
 
-  project: string ="";
+  project: string = "";
   projectId: any;
 
   setPaginatorAndSort() {
@@ -45,24 +45,26 @@ export class TasksComponent implements OnInit {
 
   getProject() {
     this.projectId = this.router.snapshot.paramMap.get('id');
-    this.projectService.getProject(this.projectId).subscribe( p => {
-      this.project = p.name;
-    });
+    if (this.projectId !== null) {
+      this.projectService.getProject(this.projectId).subscribe(p => {
+        this.project = p.name;
+      });
+    }
   }
 
   getTaskCreated() {
-    if(this.projectId == null)
-    this.taskService.getTasks().subscribe(t => {
-      this.tasks = t
-      this.dataSource = new MatTableDataSource(this.tasks);
-      this.setPaginatorAndSort();
-    });
+    if (this.projectId == null)
+      this.taskService.getTasks().subscribe(t => {
+        this.tasks = t
+        this.dataSource = new MatTableDataSource(this.tasks);
+        this.setPaginatorAndSort();
+      });
     else
-    this.taskService.getTasksByProject(this.projectId).subscribe(t => {
-      this.tasks = t
-      this.dataSource = new MatTableDataSource(this.tasks);
-      this.setPaginatorAndSort();
-    });
+      this.taskService.getTasksByProject(this.projectId).subscribe(t => {
+        this.tasks = t
+        this.dataSource = new MatTableDataSource(this.tasks);
+        this.setPaginatorAndSort();
+      });
   }
 
   applyFilter(event: Event) {
