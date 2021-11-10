@@ -1,6 +1,8 @@
 import { Component, Inject, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { MatSnackBar } from '@angular/material/snack-bar';
+import { UsersControllerService } from 'src/app/controllers/users-controller.service';
 import { ProjectOut } from 'src/app/models/project/ProjectOut';
 import { Task } from 'src/app/models/task/task';
 import { ProjectService } from 'src/app/services/project/project.service';
@@ -13,37 +15,27 @@ import { TaskService } from 'src/app/services/task/task.service';
 })
 export class TaskFormComponent implements OnInit {
 
-  edit: boolean = false;
   form: FormGroup;
   projects: ProjectOut[] = [];
   userId: string = "";
+  errorMesage: string = "";
   
   constructor(
     private taskService: TaskService,
-    private projectService: ProjectService,
     private fb: FormBuilder,
+    private snackBar: MatSnackBar,
     public dialogRef: MatDialogRef<TaskFormComponent>,
+    private userController: UsersControllerService,
     @Inject(MAT_DIALOG_DATA) public data: any
-
   ) {
     this.form = this.fb.group({
-      name: [this.data.name, Validators.required],
-      duration: [this.data.duration, Validators.required],
-      cost: [this.data.cost, Validators.required],
-      project: [this.data.project, Validators.required],
-   
+      name: ["", Validators.required],
+      duration: ["", Validators.required],
+      cost: ["", Validators.required]
     })
+    if(this.data == "")
+    this.form.addControl('project', new FormControl([this.data.project, Validators.required]))
   }
-
-  // bugUpdate: BugUpdate = {
-  //   Project: "",
-  //   Name: "",
-  //   Domain: "",
-  //   Version: "",
-  //   State: "",
-  //   UserId: "",
-  //   Duration: 0
-  // }
 
   task: Task = {
     Name: "",
@@ -54,41 +46,38 @@ export class TaskFormComponent implements OnInit {
 
   ngOnInit(): void {
     this.getProjectsCreated();
-    if(this.data !== ""){
-      this.edit = true;
-    }
   }
 
     getProjectsCreated() {
-    this.projectService.getProjects().subscribe(p => {
-      this.projects = p
-    });
+      this.userController.getProjects().subscribe(p => {
+        this.projects = p;
+      })
   }
 
   create() {
     this.task.Name = this.form.value.name;
     this.task.Duration = this.form.value.duration;
     this.task.Cost = this.form.value.cost;
-    this.task.Project = this.form.value.project;
+
+    this.task.Project = (this.data == "") ? this.form.value.project : this.data;
 
     return this.taskService.createTask(this.task).subscribe(() => {
       this.close();
+    }, error => {
+      this.errorMesage = error.error;
+      this.error(this.errorMesage);
     });
-  }
-
-  update(){
-    // this.bugUpdate.Project = this.form.value.project;
-    // this.bugUpdate.Name = this.form.value.name;
-    // this.bugUpdate.Domain = this.form.value.domain;
-    // this.bugUpdate.Version = this.form.value.version;
-    // this.bugUpdate.State = this.form.value.state;
-    // this.bugUpdate.UserId = this.userId;
-    // this.bugUpdate.Duration = this.form.value.duration;
-
-    // return this.bugService.updateBug(this.data.id, this.bugUpdate).subscribe(() => this.close());
   }
 
   close() {
     this.dialogRef.close(true)
+  }
+
+  error(message: string) {
+    this.snackBar.open(message, 'error', {
+      duration: 5000,
+      horizontalPosition: 'center',
+      verticalPosition: 'bottom'
+    });
   }
 }

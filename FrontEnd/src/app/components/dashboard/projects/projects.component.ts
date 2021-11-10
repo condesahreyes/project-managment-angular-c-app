@@ -1,12 +1,14 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
-import { MatDialog } from '@angular/material/dialog';
-import { MatPaginator } from '@angular/material/paginator';
-import { MatSort } from '@angular/material/sort';
-import { MatTableDataSource } from '@angular/material/table';
-import { ProjectOut } from 'src/app/models/project/ProjectOut';
-import { ProjectService } from 'src/app/services/project/project.service';
 import { ProjectAssignFormComponent } from './project-assign-form/project-assign-form.component';
+import { UsersControllerService } from 'src/app/controllers/users-controller.service';
 import { ProjectFormComponent } from './project-form/project-form.component';
+import { ProjectService } from 'src/app/services/project/project.service';
+import { ProjectOut } from 'src/app/models/project/ProjectOut';
+import { MatTableDataSource } from '@angular/material/table';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { MatPaginator } from '@angular/material/paginator';
+import { MatDialog } from '@angular/material/dialog';
+import { MatSort } from '@angular/material/sort';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-projects',
@@ -15,7 +17,8 @@ import { ProjectFormComponent } from './project-form/project-form.component';
 })
 export class ProjectsComponent implements OnInit {
 
-  displayedColumns = ['name', 'TotalBugs', 'duration', 'price', 'actions'];
+  displayedColumns: any = [];
+  accions: string[] = [];
   projects: ProjectOut[] = [];
   dataSource!: MatTableDataSource<ProjectOut>;
 
@@ -24,7 +27,9 @@ export class ProjectsComponent implements OnInit {
 
   constructor(
     private projectService: ProjectService,
-    public dialog: MatDialog
+    public dialog: MatDialog,
+    private router: Router,
+    private userController: UsersControllerService
   ) { }
 
   setPaginatorAndSort() {
@@ -32,16 +37,22 @@ export class ProjectsComponent implements OnInit {
     this.dataSource.sort = this.sort;
   }
 
-  ngOnInit(): void {
-    this.getProjectsCreated();
+  ngOnInit(){
+    this.getProjects();
+    this.getAccions();
   }
 
-  getProjectsCreated() {
-    this.projectService.getProjects().subscribe(p => {
+  getProjects(){
+    this.userController.getProjects().subscribe(p => {
+      this.displayedColumns = this.userController.getProjectColumns();
+      this.dataSource = new MatTableDataSource(p);
       this.projects = p
-      this.dataSource = new MatTableDataSource(this.projects);
       this.setPaginatorAndSort();
     });
+  }
+
+  getAccions(){
+    this.accions = this.userController.getAccionsProject();
   }
 
   applyFilter(event: Event) {
@@ -59,19 +70,15 @@ export class ProjectsComponent implements OnInit {
       data: ""
     });
     dialogRef.afterClosed().subscribe(result => {
-      this.getProjectsCreated();
+      this.getProjects();
     });
   }
 
   delete(idProject: any) {
     if (confirm("Are you sure to delete?")) {
       this.projectService.deleteProject(idProject).subscribe(data => {
-        this.getProjectsCreated();
+        this.getProjects();
       });
-      this.projectService.getProjects().subscribe((response) => {
-        this.projects = response;
-        this.getProjectsCreated();
-      })
     }
   }
 
@@ -81,8 +88,12 @@ export class ProjectsComponent implements OnInit {
       data: project
     });
     dialogRef.afterClosed().subscribe(result => {
-      this.getProjectsCreated();
+      this.getProjects();
     });
+  }
+
+  seeProject(projectId: string) {
+    this.router.navigateByUrl('dashboard/projects' + '/' + projectId);
   }
 
   assignUser(project: any) {
@@ -90,7 +101,6 @@ export class ProjectsComponent implements OnInit {
       width: '50%',
       data: project
     });
-    dialogRef.afterClosed().subscribe(result => {
-    });
+    dialogRef.afterClosed().subscribe();
   }
 }

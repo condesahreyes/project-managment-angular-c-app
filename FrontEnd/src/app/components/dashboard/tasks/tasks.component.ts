@@ -3,7 +3,10 @@ import { MatDialog } from '@angular/material/dialog';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
+import { ActivatedRoute } from '@angular/router';
+import { UsersControllerService } from 'src/app/controllers/users-controller.service';
 import { Task } from 'src/app/models/task/task';
+import { ProjectService } from 'src/app/services/project/project.service';
 import { TaskService } from 'src/app/services/task/task.service';
 import { TaskFormComponent } from './task-form/task-form.component';
 
@@ -14,7 +17,7 @@ import { TaskFormComponent } from './task-form/task-form.component';
 })
 export class TasksComponent implements OnInit {
 
-  displayedColumns = ['name', 'duration', 'cost', 'actions' ];
+  displayedColumns = ['name', 'duration', 'cost', 'actions'];
   tasks: Task[] = [];
   dataSource!: MatTableDataSource<Task>;
 
@@ -23,8 +26,14 @@ export class TasksComponent implements OnInit {
 
   constructor(
     private taskService: TaskService,
-    public dialog: MatDialog
+    private projectService: ProjectService,
+    public dialog: MatDialog,
+    private router: ActivatedRoute,
+    private userController: UsersControllerService
   ) { }
+
+  project: string = "";
+  projectId: any;
 
   setPaginatorAndSort() {
     this.dataSource.paginator = this.paginator;
@@ -32,15 +41,32 @@ export class TasksComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.getProject();
     this.getTaskCreated();
   }
 
+  getProject() {
+    this.projectId = this.router.snapshot.paramMap.get('id');
+    if (this.projectId !== null) {
+      this.projectService.getProject(this.projectId).subscribe(p => {
+        this.project = p.name;
+      });
+    }
+  }
+
   getTaskCreated() {
-    this.taskService.getTasks().subscribe(t => {
-      this.tasks = t
-      this.dataSource = new MatTableDataSource(this.tasks);
-      this.setPaginatorAndSort();
-    });
+    if (this.projectId == null)
+      this.userController.getTasks().subscribe(t => {
+        this.tasks = t;
+        this.dataSource = new MatTableDataSource(this.tasks);
+        this.setPaginatorAndSort();
+      });
+    else
+      this.taskService.getTasksByProject(this.projectId).subscribe(t => {
+        this.tasks = t;
+        this.dataSource = new MatTableDataSource(this.tasks);
+        this.setPaginatorAndSort();
+      });
   }
 
   applyFilter(event: Event) {
@@ -55,7 +81,7 @@ export class TasksComponent implements OnInit {
   openForm() {
     const dialogRef = this.dialog.open(TaskFormComponent, {
       width: '50%',
-      data: ""
+      data: this.project
     });
     dialogRef.afterClosed().subscribe(result => {
       this.getTaskCreated();

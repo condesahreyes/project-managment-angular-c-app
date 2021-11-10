@@ -18,7 +18,7 @@ namespace BusinessLogicInterface
         Project ExistProjectWithName(Project project);
 
         List<Project> GetAll();
-        List<Bug> GetAllBugByProject(Project project);
+        List<Bug> GetAllBugByProject(Guid project);
         List<User> GetAllTesters(Project oneProject);
         List<User> GetAllDevelopers(Project oneProject);
         List<User> GetAllUsersInOneProject(Guid projectId);

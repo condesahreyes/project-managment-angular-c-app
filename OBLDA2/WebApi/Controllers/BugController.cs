@@ -63,7 +63,7 @@ namespace WebApi.Controllers
             return Ok(bugsOut);
         }
 
-        [HttpGet("byProject")]
+        [HttpGet("byProject/{project}")]
         [AuthorizationFilter(Autorization.AdministratorAndTester)]
         public IActionResult GetBugsByProject(string project)
         {

@@ -15,7 +15,6 @@ import { UserFormComponent } from './user-form/user-form.component';
 
 export class UsersComponent implements OnInit {
 
-
   displayedColumns = ['name', 'lastName', 'email', 'rol','price', 'actions' ];
   users: User[] = [];
   dataSource!: MatTableDataSource<User>;
@@ -35,7 +34,6 @@ export class UsersComponent implements OnInit {
 
   ngOnInit(): void {
     this.getUsersCreated();
-
   }
 
   getUsersCreated() {
@@ -55,7 +53,6 @@ export class UsersComponent implements OnInit {
       this.dataSource.paginator.firstPage();
     }
   }
-
 
   openForm() {
     const dialogRef = this.dialog.open(UserFormComponent, {

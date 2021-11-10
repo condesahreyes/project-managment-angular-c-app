@@ -1,7 +1,7 @@
-import { Component, OnInit } from '@angular/core';
 import { SessionService } from 'src/app/services/session/session.service';
+import { User } from 'src/app/models/users/User';
+import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { UserService } from 'src/app/services/user/user.service';
 
 @Component({
   selector: 'app-navbar',
@@ -10,17 +10,18 @@ import { UserService } from 'src/app/services/user/user.service';
 })
 export class NavbarComponent implements OnInit {
 
-  constructor(private sessionService: SessionService, private userService: UserService, private router: Router) { }
+  constructor(private sessionService: SessionService, 
+    private router: Router) { 
+      this.sessionService.getUserLogged().subscribe(u => {
+        this.userInfo = u.rol + ": " + u.userName;
+        this.user = u;
+      });
+    }
 
-  user: string = "";
+  user!: User;
+  userInfo: string = "";
 
-  ngOnInit(): void {
-    this.sessionService.getUserIdLogged().subscribe(u => {
-      this.userService.getById(u.userId + "").subscribe(x =>
-        this.user = x.rol + " - " + x.userName
-      );
-    });
-  }
+  ngOnInit(): void { }
 
   onLogout(){
     return this.sessionService.postLogout().subscribe(() => {
@@ -28,4 +29,5 @@ export class NavbarComponent implements OnInit {
     this.sessionService.removeToken();
     });
   }
+
 }

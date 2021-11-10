@@ -78,9 +78,9 @@ namespace BusinessLogic
             UpdateToken(userToLogOut.First(), null);
         }
 
-        public string GetUserIdWithToekn(string token)
+        public User GetUserWithToekn(string token)
         {
-            var userId = "";
+            User userToReturn = null;
             if (IsCorrectToken(token))
             {
                 List<User> users = userLogic.GetAll();
@@ -88,11 +88,11 @@ namespace BusinessLogic
                 {
                     if (user.Token != null && user.Token.Equals(token))
                     {
-                        userId = user.Id.ToString();
+                        userToReturn = user;
                     }
                 }
             }
-            return userId;
+            return userToReturn;
         }
     }
 }

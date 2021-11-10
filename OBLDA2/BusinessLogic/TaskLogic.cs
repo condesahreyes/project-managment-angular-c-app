@@ -1,6 +1,7 @@
 ﻿using BusinessLogicInterface;
 using DataAccessInterface;
 using Domain;
+using System;
 using System.Collections.Generic;
 
 namespace BusinessLogic
@@ -26,6 +27,12 @@ namespace BusinessLogic
         public List<Task> GetAll()
         {
             return taskRepository.GetAll();
+        }
+
+        public List<Task> GetAllByProject(Guid idProject)
+        {
+            Project project = projectLogic.Get(idProject);
+            return project.Tasks;
         }
 
         private void IsValidTask(ref Task task)

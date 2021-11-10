@@ -1,12 +1,13 @@
 import { Component, Inject, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { MatSnackBar } from '@angular/material/snack-bar';
+import { UsersControllerService } from 'src/app/controllers/users-controller.service';
 import { Bug } from 'src/app/models/bug/Bug';
 import { BugUpdate } from 'src/app/models/bug/BugUpdate';
 import { ProjectOut } from 'src/app/models/project/ProjectOut';
+import { UserEntryModel } from 'src/app/models/users/UserEntryModel';
 import { BugService } from 'src/app/services/bug/bug.service';
-import { ProjectService } from 'src/app/services/project/project.service';
-import { SessionService } from 'src/app/services/session/session.service';
 
 @Component({
   selector: 'app-bug-form',
@@ -18,26 +19,31 @@ export class BugFormComponent implements OnInit {
   edit: boolean = false;
   form: FormGroup;
   projects: ProjectOut[] = [];
-  userId: string = "";
-  
+  user!: UserEntryModel;
+  errorMesage: string = "";
+
   constructor(
     private bugService: BugService,
-    private projectService: ProjectService,
     private fb: FormBuilder,
-    private sessionService: SessionService,
+    private snackBar: MatSnackBar,
     public dialogRef: MatDialogRef<BugFormComponent>,
+    private userController: UsersControllerService,
     @Inject(MAT_DIALOG_DATA) public data: any
 
   ) {
     this.form = this.fb.group({
-      name: [this.data.name, Validators.required],
-      domain: [this.data.domain, Validators.required],
-      version: [this.data.version, Validators.required],
-      id: [this.data.id, Validators.required],
-      state: [this.data.state, Validators.required],
+      name: [this.data.bug.name, Validators.required],
+      domain: [this.data.bug.domain, Validators.required],
+      version: [this.data.bug.version, Validators.required],
+      id: [this.data.bug.id, Validators.required],
+      state: [this.data.bug.state, Validators.required],
       project: [this.data.project, Validators.required],
-      duration: [this.data.duration, Validators.required]
+      duration: [this.data.bug.duration, Validators.required]
     })
+
+    if(this.data.project === null){
+      this.form.addControl('project', new FormControl([this.data.project, Validators.required]))
+    }
   }
 
   bugUpdate: BugUpdate = {
@@ -62,19 +68,15 @@ export class BugFormComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.sessionService.getUserIdLogged().subscribe(u => {
-      this.userId = u.userId + "";
-    });
-    this.getProjectsCreated();
-    if(this.data !== ""){
+    this.getProjects();
+
+    if (this.data.domain) {
       this.edit = true;
     }
   }
 
-    getProjectsCreated() {
-    this.projectService.getProjects().subscribe(p => {
-      this.projects = p
-    });
+  getProjects(){
+    this.userController.getProjects().subscribe(p => this.projects = p);
   }
 
   create() {
@@ -84,28 +86,43 @@ export class BugFormComponent implements OnInit {
     this.bug.Domain = this.form.value.domain;
     this.bug.Version = this.form.value.version;
     this.bug.State = this.form.value.state;
-    this.bug.Project = this.form.value.project;
-    this.bug.CreatedBy = this.userId;
+    this.bug.Project = (this.data.project === undefined) ? this.form.value.project : this.data;
+    this.bug.CreatedBy = this.userController.getUserLogued().id;
 
-    
     return this.bugService.createBug(this.bug).subscribe(() => {
       this.close();
+    }, error => {
+      this.errorMesage = error.error;
+      this.error(this.errorMesage);
     });
   }
 
-  update(){
-    this.bugUpdate.Project = this.form.value.project;
+  update() {
+    this.bugUpdate.Project = this.data.project;
     this.bugUpdate.Name = this.form.value.name;
     this.bugUpdate.Domain = this.form.value.domain;
     this.bugUpdate.Version = this.form.value.version;
     this.bugUpdate.State = this.form.value.state;
-    this.bugUpdate.UserId = this.userId;
+    this.bugUpdate.UserId = this.user.id;
     this.bugUpdate.Duration = this.form.value.duration;
 
-    return this.bugService.updateBug(this.data.id, this.bugUpdate).subscribe(() => this.close());
+    return this.bugService.updateBug(this.data.id, this.bugUpdate).subscribe(() => {
+      this.close();
+    }, error => {
+      this.errorMesage = error.error;
+      this.error(this.errorMesage);
+    });
   }
 
   close() {
     this.dialogRef.close(true)
+  }
+
+  error(message: string) {
+    this.snackBar.open(message, 'error', {
+      duration: 5000,
+      horizontalPosition: 'center',
+      verticalPosition: 'bottom'
+    });
   }
 }

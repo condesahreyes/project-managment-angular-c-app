@@ -5,6 +5,7 @@ import {Project} from "../../models/project/Project";
 import {Observable} from "rxjs";
 import {ProjectOut} from "../../models/project/ProjectOut";
 import { User } from "src/app/models/users/User";
+import { Bug } from "src/app/models/bug/Bug";
 
 @Injectable({
   providedIn: 'root'
@@ -37,9 +38,15 @@ export class ProjectService {
     });
   }
 
+  getBugsByProject(projecId: string): Observable<Bug[]> {
+    return this.http.get<Bug[]>(this.uri + '/' + projecId + '/bugs', {
+
+    });
+  }
+
   updateProject(idProject: string, project: Project): Observable<Project> {
     console.log("el id es " + idProject)
-    return this.http.put<Project>( this.uri + "/" + idProject, {
+    return this.http.put<Project>( this.uri + '/' + idProject, {
       Name: project.Name
     });//.pipe(catchError(this.handlerError.handleError));
   }

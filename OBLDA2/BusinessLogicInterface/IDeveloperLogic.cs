@@ -12,5 +12,6 @@ namespace BusinessLogicInterface
         void DeleteDeveloperInProject(Guid projectId, Guid developerId);
         int CountBugDoneByDeveloper(Guid developer);
         Bug UpdateState(int id, string state, Guid userResolved);
+        List<Project> GetAllProjects(Guid developerId);
     }
 }
