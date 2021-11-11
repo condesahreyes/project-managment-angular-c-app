@@ -15,10 +15,10 @@ export class AutorizationGuard implements CanActivate {
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
    
-      const rol = localStorage.getItem("Token"); // VER ACA SI LO DEJAMOS EN LOCAL O VER DE PEGARLE AL SERVICIO Y OBTENER EL TOKEN.
+      const rol = localStorage.getItem('Token'); // VER ACA SI LO DEJAMOS EN LOCAL O VER DE PEGARLE AL SERVICIO Y OBTENER EL TOKEN.
     
-    if (rol?.includes("Tester",1)) {
-      this.router.navigateByUrl("not-found");
+    if (!rol?.includes('Administrador')) {
+      this.router.navigateByUrl("dashboard");
 
       //Crear un componente y dirigirlo para ahi que diga no tenes permisos. tirando un mensaje de error 
       return false;

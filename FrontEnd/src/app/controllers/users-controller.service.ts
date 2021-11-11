@@ -27,7 +27,6 @@ export class UsersControllerService {
     private projectService : ProjectService,
     private bugService : BugService,
     private taskService : TaskService) {
-      this.saveUserLogued();
     }
 
   saveUserLogued(){
@@ -68,9 +67,11 @@ export class UsersControllerService {
 
     if(userRol === this.rolDeveloper){
       return ['edit'];
+    }else if(userRol === this.rolDeveloper){
+      return ['create', 'edit', 'delete'];
     }
 
-    return ['create', 'edit', 'delete'];
+    return ['create', 'edit', 'delete', 'import'];
   }
 
   getProjects() : Observable<ProjectOut[]>{

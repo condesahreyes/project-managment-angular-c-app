@@ -53,11 +53,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\hreye\\Desktop\\reflection\\OBL-Asadurian-Reyes\\JsonImport\\JsonImport\\JsonImport.csproj",
+      "projectUniqueName": "C:\\Users\\hreye\\Desktop\\OBL-Asadurian-Reyes\\JsonImport\\JsonImport\\JsonImport.csproj",
       "projectName": "JsonImport",
-      "projectPath": "C:\\Users\\hreye\\Desktop\\reflection\\OBL-Asadurian-Reyes\\JsonImport\\JsonImport\\JsonImport.csproj",
+      "projectPath": "C:\\Users\\hreye\\Desktop\\OBL-Asadurian-Reyes\\JsonImport\\JsonImport\\JsonImport.csproj",
       "packagesPath": "C:\\Users\\hreye\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\hreye\\Desktop\\reflection\\OBL-Asadurian-Reyes\\JsonImport\\JsonImport\\obj\\",
+      "outputPath": "C:\\Users\\hreye\\Desktop\\OBL-Asadurian-Reyes\\JsonImport\\JsonImport\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\hreye\\AppData\\Roaming\\NuGet\\NuGet.Config",

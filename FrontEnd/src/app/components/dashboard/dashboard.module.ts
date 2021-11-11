@@ -16,6 +16,7 @@ import { UsersComponent } from './users/users.component';
 import { TasksComponent } from './tasks/tasks.component';
 import { SharedModule } from '../shared/shared.module';
 import { BugsComponent } from './bugs/bugs.component';
+import { BugImportFormComponent } from './bugs/bug-import-form/bug-import-form.component';
 
 @NgModule({
   declarations: [
@@ -31,7 +32,8 @@ import { BugsComponent } from './bugs/bugs.component';
     TasksComponent,
     TaskFormComponent,
     NavbarComponent,
-    ProjectViewComponent
+    ProjectViewComponent,
+    BugImportFormComponent
   ],
   imports: [
     CommonModule,

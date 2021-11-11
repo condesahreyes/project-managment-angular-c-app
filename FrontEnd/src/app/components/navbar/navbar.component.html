@@ -1,12 +1,12 @@
-<mat-toolbar color="primary">
+<mat-toolbar color="primary" class="toolbar">
     <span> {{userInfo}} </span>
 
-    <span class="example-spacer"></span>
-
-    <button mat-button routerLink="/dashboard/users">Users</button>
-    <button mat-button routerLink="/dashboard/projects">Projects</button>
-    <button mat-button routerLink="/dashboard/bugs">Bugs</button> 
-    <button mat-button routerLink="/dashboard/tasks">Tasks</button>
+    <div class="menu">
+        <button *ngIf="userRol=='Administrador'"  mat-button routerLink="/dashboard/users">Users</button>
+        <button mat-button routerLink="/dashboard/projects">Projects</button>
+        <button mat-button routerLink="/dashboard/bugs">Bugs</button> 
+        <button mat-button routerLink="/dashboard/tasks">Tasks</button>     
+    </div>
 
     <span class="example-spacer"></span>
 

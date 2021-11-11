@@ -18,5 +18,9 @@
     height: 50px;
 }
 .spinner{
-    margin: 0 auto;
+    position: fixed;
+    left : 50%;
+    bottom : 0;
+    right : 0;
+    top : 50%;
 }
