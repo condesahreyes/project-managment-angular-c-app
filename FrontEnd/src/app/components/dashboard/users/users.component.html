@@ -42,7 +42,7 @@
             <ng-container matColumnDef="actions">
                 <th mat-header-cell *matHeaderCellDef></th>
                 <td mat-cell *matCellDef="let element" style="text-align: right;">
-                    <a *ngIf="element.rol=='Desarrollador'" (click)="openBugsForm(element)" class="pointer" style="color: #1878b0;" matTooltip="Counts bugs resolved">
+                    <a *ngIf="element.rol === 'Desarrollador'" (click)="openBugsForm(element)" class="pointer" style="color: #1878b0;" matTooltip="Counts bugs resolved">
                         <mat-icon>info</mat-icon>
                     </a>
                 </td>

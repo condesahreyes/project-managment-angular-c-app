@@ -14,7 +14,7 @@ export class DeveloperControllerService {
 
   constructor(
     private developerService: DeveloperService
-    ) { }
+  ) { }
 
   getBugs(user: UserEntryModel): Observable<Bug[]> {
     return this.developerService.getAllBugsByDeveloper(user.id);
@@ -24,12 +24,11 @@ export class DeveloperControllerService {
     return this.developerService.getAllProjectsByDeveloper(user.id);
   }
 
-<<<<<<< HEAD
-  getTask(user: UserEntryModel) : Observable<Task[]>{
+  getTask(user: UserEntryModel): Observable<Task[]> {
     return this.developerService.getTasks(user.id);
-=======
+  }
+
   updateBug(developerId: string, bugToUpdate: BugState): Observable<any> {
     return this.developerService.updateStateBug(developerId, bugToUpdate);
->>>>>>> feature/ajustesRolDeveloper
   }
 }

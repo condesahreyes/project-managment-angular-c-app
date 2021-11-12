@@ -19,13 +19,13 @@ export class DeveloperService {
 
   private uri: string = `${environment.URI_BASE}/developers`;
 
-  assignDeveloperToProject(projectId: string, developerId: string){
-    return this.http.post((this.uri + '/' + developerId + '/' + 'project' + '/' +  projectId), {
+  assignDeveloperToProject(projectId: string, developerId: string) {
+    return this.http.post((this.uri + '/' + developerId + '/' + 'project' + '/' + projectId), {
     });
   }
 
-  deassignDeveloperToProject(projectId: string, developerId: string){
-    return this.http.delete((this.uri + '/' + developerId + '/' + 'project' + '/' +  projectId), {
+  deassignDeveloperToProject(projectId: string, developerId: string) {
+    return this.http.delete((this.uri + '/' + developerId + '/' + 'project' + '/' + projectId), {
     });
   }
 
@@ -33,27 +33,26 @@ export class DeveloperService {
     return this.http.get<User[]>(this.uri).pipe();
   }
 
-  getAllBugsByDeveloper(developerId: string): Observable<Bug[]>{
+  getAllBugsByDeveloper(developerId: string): Observable<Bug[]> {
     return this.http.get<Bug[]>(this.uri + '/' + developerId + '/bugs');
   }
 
-  getAllProjectsByDeveloper(developerId: string): Observable<ProjectOut[]>{
+  getAllProjectsByDeveloper(developerId: string): Observable<ProjectOut[]> {
     return this.http.get<ProjectOut[]>(this.uri + '/' + developerId + '/projects');
   }
 
-<<<<<<< HEAD
-  getTasks(idDeveloper : string): Observable<Task[]> {
-    return this.http.get<Task[]>(this.uri+'/'+ idDeveloper + '/tasks');
+  getTasks(idDeveloper: string): Observable<Task[]> {
+    return this.http.get<Task[]>(this.uri + '/' + idDeveloper + '/tasks');
   }
 
-  getCountBugsResolvedByDeveloper(idDeveloper : string): Observable<number> {
-    return this.http.get<number>(this.uri+'/'+ idDeveloper + '/countBugs');
-=======
-  updateStateBug(developerId: string, bugToUpdate: BugState): Observable<any>{
+  getCountBugsResolvedByDeveloper(idDeveloper: string): Observable<number> {
+    return this.http.get<number>(this.uri + '/' + idDeveloper + '/countBugs');
+  }
+
+  updateStateBug(developerId: string, bugToUpdate: BugState): Observable<any> {
     return this.http.put<BugUpdate>(this.uri + '/' + developerId + '/bugState', {
       State: bugToUpdate.State,
       BugId: bugToUpdate.Id
     });
->>>>>>> feature/ajustesRolDeveloper
   }
 }

@@ -10,14 +10,10 @@ import { Router } from '@angular/router';
 })
 export class NavbarComponent implements OnInit {
 
-  constructor(private sessionService: SessionService, 
-    private router: Router) { 
-      this.sessionService.getUserLogged().subscribe(u => {
-        this.userInfo = u.rol + " - " + u.userName;
-        this.user = u;
-        this.userRol= u.rol;
-      });
-    }
+  constructor(
+    private sessionService: SessionService, 
+    private router: Router
+    ) { }
 
   user!: User;
   userInfo: string = "";
@@ -29,8 +25,9 @@ export class NavbarComponent implements OnInit {
 
   getUserLogger() {
     this.sessionService.getUserLogged().subscribe(u => {
-      this.userInfo = u.rol + ": " + u.userName;
+      this.userInfo = u.rol + " - " + u.userName;
       this.user = u;
+      this.userRol= u.rol;
     });
   }
   onLogout() {

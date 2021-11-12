@@ -9,8 +9,8 @@ import { BugService } from '../services/bug/bug.service';
 import { Injectable } from '@angular/core';
 import { Bug } from '../models/bug/Bug';
 import { Observable } from 'rxjs';
-import { Task } from '../models/task/task';
 import { BugState } from '../models/bug/BugState';
+import { Task } from '../models/task/task';
 
 @Injectable({
   providedIn: 'root'
@@ -25,17 +25,10 @@ export class UsersControllerService {
   constructor(private testerController: TesterControllerService,
     private developerController: DeveloperControllerService,
     private sessionService: SessionService,
-<<<<<<< HEAD
-    private projectService : ProjectService,
-    private bugService : BugService,
-    private taskService : TaskService) {
-    }
-=======
     private projectService: ProjectService,
     private bugService: BugService,
-    private taskService: TaskService) {
-  }
->>>>>>> feature/ajustesRolDeveloper
+    private taskService: TaskService) {}
+  
 
   saveUserLogued() {
     this.sessionService.getUserLogged().subscribe(u => {
@@ -73,15 +66,11 @@ export class UsersControllerService {
   getActionsBugs(): string[] {
     const userRol = this.sessionService.getToken().split('-')[0];
 
-<<<<<<< HEAD
-    if(userRol === this.rolDeveloper){
-      return ['edit'];
-    }else if(userRol === this.rolTester){
+    if (userRol === this.rolTester) {
       return ['create', 'edit', 'delete'];
-=======
-    if (userRol === this.rolDeveloper) {
+    }
+    else if (userRol === this.rolDeveloper) {
       return ['editState'];
->>>>>>> feature/ajustesRolDeveloper
     }
 
     return ['create', 'edit', 'delete', 'import'];
@@ -120,7 +109,6 @@ export class UsersControllerService {
     return ['assign', 'edit', 'delete', 'visibility', 'create'];
   }
 
-<<<<<<< HEAD
   getTasks() : Observable<Task[]>{
     this.saveUserLogued();
     const userRol = this.sessionService.getToken().split('-')[0];
@@ -130,12 +118,9 @@ export class UsersControllerService {
     }else if(userRol === this.rolDeveloper){
       return this.developerController.getTask(this.user);
     }
-=======
-  getTasks(): Observable<Task[]> {
->>>>>>> feature/ajustesRolDeveloper
     return this.taskService.getTasks();
   }
-
+  
   updateBug(bugToUpdate: BugState): Observable<any> {
     this.saveUserLogued();
     return this.developerController.updateBug(this.user.id, bugToUpdate);
