@@ -27,7 +27,6 @@ export class UsersControllerService {
     private projectService : ProjectService,
     private bugService : BugService,
     private taskService : TaskService) {
-      this.saveUserLogued();
     }
 
   saveUserLogued(){
@@ -68,9 +67,11 @@ export class UsersControllerService {
 
     if(userRol === this.rolDeveloper){
       return ['edit'];
+    }else if(userRol === this.rolTester){
+      return ['create', 'edit', 'delete'];
     }
 
-    return ['create', 'edit', 'delete'];
+    return ['create', 'edit', 'delete', 'import'];
   }
 
   getProjects() : Observable<ProjectOut[]>{
@@ -107,6 +108,14 @@ export class UsersControllerService {
   }
 
   getTasks() : Observable<Task[]>{
+    this.saveUserLogued();
+    const userRol = this.sessionService.getToken().split('-')[0];
+
+    if(userRol === this.rolTester){
+      return this.testerController.getTask(this.user);
+    }else if(userRol === this.rolDeveloper){
+      return this.developerController.getTask(this.user);
+    }
     return this.taskService.getTasks();
   }
 }

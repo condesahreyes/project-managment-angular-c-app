@@ -1,10 +1,17 @@
 <div class="container">
 
-    <mat-toolbar>
-        <span *ngIf="project===undefined">Bugs </span>
+    <mat-toolbar *ngIf="projectId==='null'">
+        <span >Bugs </span>
         <div class="example-spacer"></div>
-        <button *ngIf="accions.includes('create')" mat-raised-button color="primary" (click)="openForm()">Create Bug</button>
+        <button id="create" *ngIf="accions.includes('import')" mat-raised-button color="primary" (click)="importForm()">Import Bug</button>
+        <button id="create" *ngIf="accions.includes('create')" mat-raised-button color="primary" (click)="openForm()">Create Bug</button>
     </mat-toolbar>
+
+    <div  *ngIf="projectId!=='null'">
+        <br>
+        <div class="example-spacer"></div>
+        <button style="float: right;" id="create" *ngIf="accions.includes('create')" mat-raised-button color="primary" (click)="openForm()">Create Bug</button>
+    </div>
 
     <mat-form-field appearance="standard">
         <mat-label>Filter</mat-label>

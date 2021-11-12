@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Bug } from 'src/app/models/bug/Bug';
 import { ProjectOut } from 'src/app/models/project/ProjectOut';
+import { Task } from 'src/app/models/task/task';
 import { UserEntryModel } from 'src/app/models/users/UserEntryModel';
 import { TesterService } from 'src/app/services/tester/tester.service';
 
@@ -18,6 +19,10 @@ export class TesterControllerService {
 
   getProjects(user: UserEntryModel) : Observable<ProjectOut[]>{
     return this.testerService.getAllProjectsByTester(user.id);
+  }
+
+  getTask(user: UserEntryModel) : Observable<Task[]>{
+    return this.testerService.getTasks(user.id);
   }
 
 }

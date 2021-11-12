@@ -6,6 +6,7 @@ import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatDialog } from '@angular/material/dialog';
 import { UserFormComponent } from './user-form/user-form.component';
+import { BugsResolvedFormComponent } from './bugs-resolved-form/bugs-resolved-form.component';
 
 @Component({
   selector: 'app-users',
@@ -57,6 +58,15 @@ export class UsersComponent implements OnInit {
   openForm() {
     const dialogRef = this.dialog.open(UserFormComponent, {
       width: '50%',
+    });
+    dialogRef.afterClosed().subscribe(result => {
+    });
+  }
+
+  openBugsForm(user: any) {
+    const dialogRef = this.dialog.open(BugsResolvedFormComponent, {
+      width: '25%',
+      data: user
     });
     dialogRef.afterClosed().subscribe(result => {
     });

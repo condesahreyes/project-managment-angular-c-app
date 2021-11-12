@@ -1,0 +1,16 @@
+<form [formGroup]="form">
+    <div fxLayout="column" fxLayoutAlign="space-around center">
+       
+        <h1>Import bug</h1>
+        
+            <mat-form-field class="example-full-width" appearance="fill">
+                <mat-label>Path</mat-label>
+                <input formControlName="pathValue" type="text" matInput autocomplete="off" required>
+            </mat-form-field>
+            <div fxLayout="row" fxLayoutAlign="space-between center" fxLayoutGap=10px>
+                <button [disabled]="form.invalid" class="ancho button" mat-raised-button color="primary" (click)="import()" >Import</button>
+                <button class="ancho button" mat-raised-button color="primary" (click)="close()">Cancel</button>
+            </div>
+
+    </div>
+</form>

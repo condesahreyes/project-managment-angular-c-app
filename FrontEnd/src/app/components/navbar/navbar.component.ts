@@ -13,13 +13,15 @@ export class NavbarComponent implements OnInit {
   constructor(private sessionService: SessionService, 
     private router: Router) { 
       this.sessionService.getUserLogged().subscribe(u => {
-        this.userInfo = u.rol + ": " + u.userName;
+        this.userInfo = u.rol + " - " + u.userName;
         this.user = u;
+        this.userRol= u.rol;
       });
     }
 
   user!: User;
   userInfo: string = "";
+  userRol: string = "";
 
   ngOnInit(): void { }
 

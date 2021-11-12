@@ -17,8 +17,7 @@ namespace BusinessLogic.UserRol
         private IProjectLogic projectLogic;
         private IBugLogic bugLogic;
 
-        public DeveloperLogic(IUserLogic userLogic, IProjectLogic projectLogic,
-            IRepository<Rol, Guid> rolRepository, IBugLogic bugLogic)
+        public DeveloperLogic(IUserLogic userLogic, IProjectLogic projectLogic, IBugLogic bugLogic)
         {
             this.userLogic = userLogic;
             this.projectLogic = projectLogic;
@@ -118,6 +117,31 @@ namespace BusinessLogic.UserRol
             return bug;
         }
 
+        public List<Project> GetAllProjects(Guid developerId)
+        {
+            List<Project> allProjects = projectLogic.GetAll();
+            List<Project> projectToReturn = new List<Project>();
+
+            foreach (var project in allProjects)
+                if (project.Users.Find(u => u.Id == developerId) != null)
+                    projectToReturn.Add(project);
+
+            return projectToReturn;
+        }
+
+        public List<Task> GetAllTask(Guid developerId)
+        {
+            GetDeveloper(developerId);
+            List<Project> projects = GetAllProjects(developerId);
+            List<Task> tasksToReturn = new List<Task>();
+
+            foreach (var project in projects)
+                if (project.Users.Find(u => u.Id == developerId) != null)
+                    tasksToReturn.AddRange(project.Tasks);
+
+            return tasksToReturn;
+        }
+
         private void ItsBugDeveloper(int id, Guid userResolved)
         {
             List<Bug> bugs = GetAllBugs(userResolved);
@@ -155,16 +179,5 @@ namespace BusinessLogic.UserRol
             bug.SolvedBy = userLogic.Get(resolvedById);
         }
 
-        public List<Project> GetAllProjects(Guid developerId)
-        {
-            List<Project> allProjects = projectLogic.GetAll();
-            List<Project> projectToReturn = new List<Project>();
-
-            foreach (var project in allProjects)
-                if (project.Users.Find(u => u.Id == developerId) != null)
-                    projectToReturn.Add(project);
-
-            return projectToReturn;
-        }
     }
 }

@@ -10,6 +10,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { MatSort } from '@angular/material/sort';
 import { ActivatedRoute } from '@angular/router';
 import { Bug } from 'src/app/models/bug/Bug';
+import { BugImportFormComponent } from './bug-import-form/bug-import-form.component';
 
 @Component({
   selector: 'app-bugs',
@@ -22,6 +23,7 @@ export class BugsComponent implements OnInit {
   displayedColumns : any;
   accions: string[] = [];
 
+  projectId : string ="";
   project!: ProjectOut;
   bugToDelete: any;
   bugs: Bug[] = [];
@@ -52,6 +54,7 @@ export class BugsComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.projectId = this.router.snapshot.paramMap.get('id') + "";
     this.getColumns();
     this.getAccions();
     this.getBugs();
@@ -66,10 +69,8 @@ export class BugsComponent implements OnInit {
   }
 
   getBugs() {
-    const projectId = this.router.snapshot.paramMap.get('id');
-
-    if (projectId !== null) {
-      this.projectService.getProject(projectId).subscribe(p => {
+    if (this.projectId !== "null") {
+      this.projectService.getProject(this.projectId).subscribe(p => {
         this.project = p;
         this.getBugsByProject();
       });
@@ -98,6 +99,16 @@ export class BugsComponent implements OnInit {
     const dialogRef = this.dialog.open(BugFormComponent, {
       width: '50%',
       data: { project: this.project, bug: "" }
+    });
+    dialogRef.afterClosed().subscribe(() => { 
+      this.getColumns();
+      this.getBugs();
+    });
+  }
+
+  importForm() {
+    const dialogRef = this.dialog.open(BugImportFormComponent, {
+      width: '50%'
     });
     dialogRef.afterClosed().subscribe(() => { 
       this.getColumns();

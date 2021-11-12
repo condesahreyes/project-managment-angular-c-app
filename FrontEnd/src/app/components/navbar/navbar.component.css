@@ -1,0 +1,13 @@
+.toolbar{
+position: relative;
+}
+
+.menuAdmin{
+    position: absolute;
+    margin-left: 37%;
+}
+
+.menu{
+    position: absolute;
+    margin-left: 40%;
+}

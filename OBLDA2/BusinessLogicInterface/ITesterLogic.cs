@@ -12,6 +12,6 @@ namespace BusinessLogicInterface
         void AssignTesterToProject(Guid projectId, Guid testerId);
         void DeleteTesterInProject(Guid projectId, Guid testerId);
         List<Project> GetAllProjects(Guid testerId);
-        List<Bug> GetAllBugsByTesterInProject(Guid testerId, Guid project);
+        List<Task> GetAllTask(Guid testerId);
     }
 }
