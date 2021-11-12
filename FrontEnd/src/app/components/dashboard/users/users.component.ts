@@ -16,7 +16,7 @@ import { BugsResolvedFormComponent } from './bugs-resolved-form/bugs-resolved-fo
 
 export class UsersComponent implements OnInit {
 
-  displayedColumns = ['name', 'lastName', 'email', 'rol','price', 'actions' ];
+  displayedColumns = ['name', 'lastName', 'email', 'rol','price'];
   users: User[] = [];
   dataSource!: MatTableDataSource<User>;
 

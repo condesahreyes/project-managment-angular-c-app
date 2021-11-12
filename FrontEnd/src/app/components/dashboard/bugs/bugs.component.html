@@ -3,8 +3,8 @@
     <mat-toolbar *ngIf="projectId==='null'">
         <span >Bugs </span>
         <div class="example-spacer"></div>
-        <button id="create" *ngIf="accions.includes('import')" mat-raised-button color="primary" (click)="importForm()">Import Bug</button>
-        <button id="create" *ngIf="accions.includes('create')" mat-raised-button color="primary" (click)="openForm()">Create Bug</button>
+        <button id="create" *ngIf="actions.includes('import')" mat-raised-button color="primary" (click)="importForm()">Import Bug</button>
+        <button *ngIf="actions.includes('create')" mat-raised-button color="primary" (click)="openForm()">Create Bug</button>
     </mat-toolbar>
 
     <div  *ngIf="projectId!=='null'">
@@ -59,10 +59,13 @@
             <ng-container matColumnDef="actions">
                 <th mat-header-cell *matHeaderCellDef></th>
                 <td mat-cell *matCellDef="let element" style="text-align: right;">
-                    <a *ngIf="accions.includes('edit')" class="pointer" style="color: #1878b0;" matTooltip="Edit Bug" (click)="update(element)"> 
+                    <a *ngIf="actions.includes('edit')" class="pointer" style="color: #1878b0;" matTooltip="Edit Bug" (click)="update(element)"> 
                         <mat-icon>edit</mat-icon>
                     </a>
-                    <a *ngIf="accions.includes('delete')" class="pointer" style="color: #e15639;" matTooltip="Delete Bug" (click)="delete(element.id)"> 
+                    <a *ngIf="actions.includes('editState')" class="pointer" style="color: #1878b0;" matTooltip="Edit Bug" (click)="updateState(element)"> 
+                        <mat-icon>edit</mat-icon>
+                    </a>
+                    <a *ngIf="actions.includes('delete')" class="pointer" style="color: #e15639;" matTooltip="Delete Bug" (click)="delete(element.id)"> 
                         <mat-icon>delete</mat-icon>
                     </a>
                 </td>

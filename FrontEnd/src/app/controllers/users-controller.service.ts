@@ -10,6 +10,7 @@ import { Injectable } from '@angular/core';
 import { Bug } from '../models/bug/Bug';
 import { Observable } from 'rxjs';
 import { Task } from '../models/task/task';
+import { BugState } from '../models/bug/BugState';
 
 @Injectable({
   providedIn: 'root'
@@ -21,92 +22,105 @@ export class UsersControllerService {
 
   user: any;
 
-  constructor(private testerController : TesterControllerService,
-    private developerController : DeveloperControllerService,
+  constructor(private testerController: TesterControllerService,
+    private developerController: DeveloperControllerService,
     private sessionService: SessionService,
+<<<<<<< HEAD
     private projectService : ProjectService,
     private bugService : BugService,
     private taskService : TaskService) {
     }
+=======
+    private projectService: ProjectService,
+    private bugService: BugService,
+    private taskService: TaskService) {
+  }
+>>>>>>> feature/ajustesRolDeveloper
 
-  saveUserLogued(){
+  saveUserLogued() {
     this.sessionService.getUserLogged().subscribe(u => {
       this.user = u
     });
   }
 
-  getUserLogued() : UserEntryModel{
+  getUserLogued(): UserEntryModel {
     return this.user;
   }
 
-  getBugs() : Observable<Bug[]>{
-     this.saveUserLogued();
+  getBugs(): Observable<Bug[]> {
+    this.saveUserLogued();
     const userRol = this.sessionService.getToken().split('-')[0];
 
-    if(userRol === this.rolTester){
+    if (userRol === this.rolTester) {
       return this.testerController.getBugs(this.user);
-    }else if(userRol === this.rolDeveloper){
+    } else if (userRol === this.rolDeveloper) {
       return this.developerController.getBugs(this.user);
     }
 
     return this.bugService.getBugs();
   }
 
-  getBugsColumns() : string[]{
+  getBugsColumns(): string[] {
     const userRol = this.sessionService.getToken().split('-')[0];
 
-    if(userRol === this.rolTester || userRol === this.rolDeveloper){
+    if (userRol === this.rolTester || userRol === this.rolDeveloper) {
       return ['name', 'domain', 'version', 'state', 'actions'];
     }
 
     return ['name', 'domain', 'version', 'state', 'duration', 'actions'];
   }
 
-  getAccionsBugs() : string[]{
+  getActionsBugs(): string[] {
     const userRol = this.sessionService.getToken().split('-')[0];
 
+<<<<<<< HEAD
     if(userRol === this.rolDeveloper){
       return ['edit'];
     }else if(userRol === this.rolTester){
       return ['create', 'edit', 'delete'];
+=======
+    if (userRol === this.rolDeveloper) {
+      return ['editState'];
+>>>>>>> feature/ajustesRolDeveloper
     }
 
     return ['create', 'edit', 'delete', 'import'];
   }
 
-  getProjects() : Observable<ProjectOut[]>{
-     this.saveUserLogued();
+  getProjects(): Observable<ProjectOut[]> {
+    this.saveUserLogued();
     const userRol = this.sessionService.getToken().split('-')[0];
 
-    if(userRol === this.rolTester){
+    if (userRol === this.rolTester) {
       return this.testerController.getProjects(this.user);
-    }else if(userRol === this.rolDeveloper){
+    } else if (userRol === this.rolDeveloper) {
       return this.developerController.getProjects(this.user);
     }
 
     return this.projectService.getProjects();
   }
 
-  getProjectColumns() : string[]{
+  getProjectColumns(): string[] {
     const userRol = this.sessionService.getToken().split('-')[0];
 
-    if(userRol === this.rolTester || userRol === this.rolDeveloper){
+    if (userRol === this.rolTester || userRol === this.rolDeveloper) {
       return ['name', 'actions'];
     }
 
     return ['name', 'TotalBugs', 'duration', 'price', 'actions'];
   }
 
-  getAccionsProject() : string[]{
+  getActionsProject(): string[] {
     const userRol = this.sessionService.getToken().split('-')[0];
 
-    if(userRol === this.rolTester || userRol === this.rolDeveloper){
+    if (userRol === this.rolTester || userRol === this.rolDeveloper) {
       return ['visibility'];
     }
 
     return ['assign', 'edit', 'delete', 'visibility', 'create'];
   }
 
+<<<<<<< HEAD
   getTasks() : Observable<Task[]>{
     this.saveUserLogued();
     const userRol = this.sessionService.getToken().split('-')[0];
@@ -116,6 +130,14 @@ export class UsersControllerService {
     }else if(userRol === this.rolDeveloper){
       return this.developerController.getTask(this.user);
     }
+=======
+  getTasks(): Observable<Task[]> {
+>>>>>>> feature/ajustesRolDeveloper
     return this.taskService.getTasks();
+  }
+
+  updateBug(bugToUpdate: BugState): Observable<any> {
+    this.saveUserLogued();
+    return this.developerController.updateBug(this.user.id, bugToUpdate);
   }
 }

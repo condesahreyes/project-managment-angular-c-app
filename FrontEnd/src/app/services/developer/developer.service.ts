@@ -2,6 +2,8 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Bug } from 'src/app/models/bug/Bug';
+import { BugState } from 'src/app/models/bug/BugState';
+import { BugUpdate } from 'src/app/models/bug/BugUpdate';
 import { ProjectOut } from 'src/app/models/project/ProjectOut';
 import { Task } from 'src/app/models/task/task';
 import { User } from 'src/app/models/users/User';
@@ -39,11 +41,19 @@ export class DeveloperService {
     return this.http.get<ProjectOut[]>(this.uri + '/' + developerId + '/projects');
   }
 
+<<<<<<< HEAD
   getTasks(idDeveloper : string): Observable<Task[]> {
     return this.http.get<Task[]>(this.uri+'/'+ idDeveloper + '/tasks');
   }
 
   getCountBugsResolvedByDeveloper(idDeveloper : string): Observable<number> {
     return this.http.get<number>(this.uri+'/'+ idDeveloper + '/countBugs');
+=======
+  updateStateBug(developerId: string, bugToUpdate: BugState): Observable<any>{
+    return this.http.put<BugUpdate>(this.uri + '/' + developerId + '/bugState', {
+      State: bugToUpdate.State,
+      BugId: bugToUpdate.Id
+    });
+>>>>>>> feature/ajustesRolDeveloper
   }
 }

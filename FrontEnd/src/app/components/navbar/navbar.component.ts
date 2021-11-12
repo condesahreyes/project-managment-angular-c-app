@@ -23,12 +23,20 @@ export class NavbarComponent implements OnInit {
   userInfo: string = "";
   userRol: string = "";
 
-  ngOnInit(): void { }
+  ngOnInit() {
+    this.getUserLogger();
+  }
 
-  onLogout(){
+  getUserLogger() {
+    this.sessionService.getUserLogged().subscribe(u => {
+      this.userInfo = u.rol + ": " + u.userName;
+      this.user = u;
+    });
+  }
+  onLogout() {
     return this.sessionService.postLogout().subscribe(() => {
-    this.router.navigateByUrl('login')
-    this.sessionService.removeToken();
+      this.router.navigateByUrl('login')
+      this.sessionService.removeToken();
     });
   }
 

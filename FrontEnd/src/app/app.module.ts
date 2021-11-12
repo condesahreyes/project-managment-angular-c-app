@@ -16,11 +16,13 @@ import {AuthInterceptor} from "./services/session/auth-interceptor";
 import { SessionService } from 'src/app/services/session/session.service';
 import { UserService } from 'src/app/services/user/user.service';
 import { AutorizationGuard } from './guards/autorization.guard';
+import { BugDesaFormComponent } from './components/dashboard/bugs/bug-desa-form/bug-desa-form.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    LoginComponent
+    LoginComponent,
+    BugDesaFormComponent
   ],
   imports: [
     BrowserModule,
