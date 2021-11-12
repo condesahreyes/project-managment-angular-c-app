@@ -22,12 +22,14 @@ export class LoginComponent implements OnInit {
     private snackBar: MatSnackBar,
     private sessionService: SessionService,
     private userController: UsersControllerService,
-    private router: Router) {
+    private router: Router
+  ) {
 
     this.form = this.fb.group({
       email: ["", Validators.required],
       password: ["", Validators.required]
     })
+
   }
 
   login: Login = {

@@ -22,13 +22,15 @@ export class UsersControllerService {
 
   user: any;
 
-  constructor(private testerController: TesterControllerService,
+  constructor(
+    private testerController: TesterControllerService,
     private developerController: DeveloperControllerService,
     private sessionService: SessionService,
     private projectService: ProjectService,
     private bugService: BugService,
-    private taskService: TaskService) {}
-  
+    private taskService: TaskService
+  ) { }
+
 
   saveUserLogued() {
     this.sessionService.getUserLogged().subscribe(u => {
@@ -54,12 +56,6 @@ export class UsersControllerService {
   }
 
   getBugsColumns(): string[] {
-    const userRol = this.sessionService.getToken().split('-')[0];
-
-    if (userRol === this.rolTester || userRol === this.rolDeveloper) {
-      return ['name', 'domain', 'version', 'state', 'actions'];
-    }
-
     return ['name', 'domain', 'version', 'state', 'duration', 'actions'];
   }
 
@@ -109,20 +105,21 @@ export class UsersControllerService {
     return ['assign', 'edit', 'delete', 'visibility', 'create'];
   }
 
-  getTasks() : Observable<Task[]>{
+  getTasks(): Observable<Task[]> {
     this.saveUserLogued();
     const userRol = this.sessionService.getToken().split('-')[0];
 
-    if(userRol === this.rolTester){
+    if (userRol === this.rolTester) {
       return this.testerController.getTask(this.user);
-    }else if(userRol === this.rolDeveloper){
+    } else if (userRol === this.rolDeveloper) {
       return this.developerController.getTask(this.user);
     }
     return this.taskService.getTasks();
   }
-  
+
   updateBug(bugToUpdate: BugState): Observable<any> {
     this.saveUserLogued();
     return this.developerController.updateBug(this.user.id, bugToUpdate);
   }
+
 }

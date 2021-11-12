@@ -30,6 +30,7 @@ export class NavbarComponent implements OnInit {
       this.userRol= u.rol;
     });
   }
+  
   onLogout() {
     return this.sessionService.postLogout().subscribe(() => {
       this.router.navigateByUrl('login')

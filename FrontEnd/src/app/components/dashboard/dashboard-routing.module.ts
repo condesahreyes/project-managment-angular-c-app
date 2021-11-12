@@ -12,22 +12,33 @@ import { AutorizationGuard } from 'src/app/guards/autorization.guard';
 const routes: Routes = [
   {
     path: '', component: DashboardComponent, children: [
-      { path: '', component: StartComponent },
+      {
+        path: '', component: StartComponent
+      },
 
-      { path: 'users',
+      {
+        path: 'users',
         canActivate: [AutorizationGuard],
-        component: UsersComponent},
+        component: UsersComponent
+      },
 
-      { path: 'projects', component: ProjectsComponent },
-      
-      { path: 'projects/:id', component: ProjectViewComponent, data: {} },
+      {
+        path: 'projects', component: ProjectsComponent
+      },
 
-      { path: 'bugs', component: BugsComponent, data: {} },
-      
-      { path: 'tasks',
-       // canActivate: [AutorizationGuard],
+      {
+        path: 'projects/:id', component: ProjectViewComponent, data: {}
+      },
+
+      {
+        path: 'bugs', component: BugsComponent, data: {}
+      },
+
+      {
+        path: 'tasks',
         component: TasksComponent,
-        data: {} },
+        data: {}
+      },
 
     ]
   },

@@ -10,12 +10,13 @@ import { environment } from 'src/environments/environment';
 export class ImportService {
 
   constructor(
-    private http: HttpClient) { }
+    private http: HttpClient
+  ) { }
 
   private uri: string = `${environment.URI_BASE}/import`;
 
-  import(path: string) : Observable<Bug[]>{
-    return this.http.post<Bug[]>(this.uri + '/bugs', {      
+  import(path: string): Observable<Bug[]> {
+    return this.http.post<Bug[]>(this.uri + '/bugs', {
       FileAddress: path
     });
   }

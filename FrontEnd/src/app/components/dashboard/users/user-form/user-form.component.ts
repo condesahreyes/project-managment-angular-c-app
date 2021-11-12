@@ -20,8 +20,9 @@ export class UserFormComponent implements OnInit {
     private fb: FormBuilder,
     private snackBar: MatSnackBar,
     public dialogRef: MatDialogRef<UserFormComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: any) {
-      
+    @Inject(MAT_DIALOG_DATA) public data: any
+  ) {
+
     this.form = this.fb.group({
       name: ["", Validators.required],
       lastName: ["", Validators.required],
@@ -30,6 +31,7 @@ export class UserFormComponent implements OnInit {
       email: ["", Validators.required],
       password: ["", Validators.required],
       price: ["", Validators.required]
+
     })
   }
 
