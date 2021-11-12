@@ -44,7 +44,7 @@ export class BugService {
     );
   }
 
-  updateBug(idBug : any, bug: BugUpdate) {
+  updateBug(idBug : any, bug: BugUpdate): Observable<any> {
     return this.http.put<BugUpdate>(this.uri + '/' + idBug, {
       Project: bug.Project,
       Name: bug.Name,

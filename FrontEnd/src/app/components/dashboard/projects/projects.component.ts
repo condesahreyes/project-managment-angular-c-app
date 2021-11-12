@@ -18,7 +18,7 @@ import { Router } from '@angular/router';
 export class ProjectsComponent implements OnInit {
 
   displayedColumns: any = [];
-  accions: string[] = [];
+  actions: string[] = [];
   projects: ProjectOut[] = [];
   dataSource!: MatTableDataSource<ProjectOut>;
 
@@ -39,7 +39,7 @@ export class ProjectsComponent implements OnInit {
 
   ngOnInit(){
     this.getProjects();
-    this.getAccions();
+    this.getActions();
   }
 
   getProjects(){
@@ -51,8 +51,8 @@ export class ProjectsComponent implements OnInit {
     });
   }
 
-  getAccions(){
-    this.accions = this.userController.getAccionsProject();
+  getActions(){
+    this.actions = this.userController.getActionsProject();
   }
 
   applyFilter(event: Event) {

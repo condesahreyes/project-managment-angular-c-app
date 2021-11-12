@@ -10,23 +10,30 @@ import { Router } from '@angular/router';
 })
 export class NavbarComponent implements OnInit {
 
-  constructor(private sessionService: SessionService, 
-    private router: Router) { 
-      this.sessionService.getUserLogged().subscribe(u => {
-        this.userInfo = u.rol + ": " + u.userName;
-        this.user = u;
-      });
-    }
+  constructor(
+    private sessionService: SessionService,
+    private router: Router
+  ) {
+
+  }
 
   user!: User;
   userInfo: string = "";
 
-  ngOnInit(): void { }
+  ngOnInit() {
+    this.getUserLogger();
+  }
 
-  onLogout(){
+  getUserLogger() {
+    this.sessionService.getUserLogged().subscribe(u => {
+      this.userInfo = u.rol + ": " + u.userName;
+      this.user = u;
+    });
+  }
+  onLogout() {
     return this.sessionService.postLogout().subscribe(() => {
-    this.router.navigateByUrl('login')
-    this.sessionService.removeToken();
+      this.router.navigateByUrl('login')
+      this.sessionService.removeToken();
     });
   }
 

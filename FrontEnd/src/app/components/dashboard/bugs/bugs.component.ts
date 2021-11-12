@@ -10,6 +10,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { MatSort } from '@angular/material/sort';
 import { ActivatedRoute } from '@angular/router';
 import { Bug } from 'src/app/models/bug/Bug';
+import { BugDesaFormComponent } from './bug-desa-form/bug-desa-form.component';
 
 @Component({
   selector: 'app-bugs',
@@ -20,7 +21,7 @@ export class BugsComponent implements OnInit {
 
   dataSource!: MatTableDataSource<Bug>;
   displayedColumns : any;
-  accions: string[] = [];
+  actions: string[] = [];
 
   project!: ProjectOut;
   bugToDelete: any;
@@ -53,7 +54,7 @@ export class BugsComponent implements OnInit {
 
   ngOnInit() {
     this.getColumns();
-    this.getAccions();
+    this.getActions();
     this.getBugs();
   }
 
@@ -61,8 +62,8 @@ export class BugsComponent implements OnInit {
     this.displayedColumns = this.userController.getBugsColumns();
   }
 
-  getAccions(){
-    this.accions = this.userController.getAccionsBugs();
+  getActions(){
+    this.actions = this.userController.getActionsBugs();
   }
 
   getBugs() {
@@ -111,6 +112,17 @@ export class BugsComponent implements OnInit {
       data: { bug: bugToUpdate }
     });
     dialogRef.afterClosed().subscribe();
+  }
+
+  updateState(bugToUpdate: any) {
+    const dialogRef = this.dialog.open(BugDesaFormComponent, {
+      width: '50%',
+      data: { bug: bugToUpdate }
+    });
+    dialogRef.afterClosed().subscribe(() => { 
+      this.getColumns();
+      this.getBugs();
+    });
   }
 
   delete(idBug: number) {
