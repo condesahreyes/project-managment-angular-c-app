@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { User } from '../../models/users/User';
 import { environment } from 'src/environments/environment';
+import { UserEntryModel } from 'src/app/models/users/UserEntryModel';
 
 @Injectable({
   providedIn: 'root'
@@ -14,8 +15,8 @@ export class UserService {
 
   private uri: string = `${environment.URI_BASE}/users`;
 
-  getUsers(): Observable<User[]> {
-    return this.http.get<User[]>(this.uri).pipe();
+  getUsers(): Observable<UserEntryModel[]> {
+    return this.http.get<UserEntryModel[]>(this.uri).pipe();
   }
 
   getById(userId : string): Observable<User> {

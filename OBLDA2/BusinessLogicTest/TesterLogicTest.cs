@@ -35,8 +35,7 @@ namespace BusinessLogicTest
             tester = new User("Diego", "Asadurian", "diegoAsa", "admin1234",
                 "diegoasadurian@gmail.com", roles[0], 0);
 
-            testerLogic = new TesterLogic(userLogic.Object, mockProject.Object,
-                mockRol.Object);
+            testerLogic = new TesterLogic(userLogic.Object, mockProject.Object);
         }
 
         private void CofnigurationMockRol()

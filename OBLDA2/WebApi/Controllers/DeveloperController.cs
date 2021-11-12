@@ -82,5 +82,13 @@ namespace WebApi.Controllers
 
             return (StatusCode((int)HttpStatusCode.OK, projects));
         }
+
+        [HttpGet("{idDeveloper}/tasks")]
+        [AuthorizationFilter(Autorization.Developer)]
+        public IActionResult GetAllTask(Guid idDeveloper)
+        {
+            List<Task> tasks = developerLogic.GetAllTask(idDeveloper);
+            return Ok(TaskEntryOutModel.ToListModel(tasks));
+        }
     }
 }

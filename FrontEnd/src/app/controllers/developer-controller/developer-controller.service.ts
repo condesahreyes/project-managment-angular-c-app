@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Bug } from 'src/app/models/bug/Bug';
 import { ProjectOut } from 'src/app/models/project/ProjectOut';
+import { Task } from 'src/app/models/task/task';
 import { UserEntryModel } from 'src/app/models/users/UserEntryModel';
 import { DeveloperService } from 'src/app/services/developer/developer.service';
 
@@ -18,5 +19,9 @@ export class DeveloperControllerService {
 
   getProjects(user: UserEntryModel) : Observable<ProjectOut[]>{
     return this.developerService.getAllProjectsByDeveloper(user.id);
+  }
+
+  getTask(user: UserEntryModel) : Observable<Task[]>{
+    return this.developerService.getTasks(user.id);
   }
 }

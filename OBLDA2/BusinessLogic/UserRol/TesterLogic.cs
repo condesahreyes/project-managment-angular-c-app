@@ -15,10 +15,11 @@ namespace BusinessLogic.UserRol
         private IProjectLogic projcetLogic;
 
         public TesterLogic(IUserLogic userLogic, 
-            IProjectLogic projcetLogic, IRepository<Rol, Guid> rolRepository)
+            IProjectLogic projcetLogic)
         {
             this.userLogic = userLogic;
             this.projcetLogic = projcetLogic;
+
         }
 
         public User Get(Guid id)
@@ -69,24 +70,6 @@ namespace BusinessLogic.UserRol
             return bugs;
         }
 
-        public List<Bug> GetAllBugsByTesterInProject(Guid testerId, Guid project)
-        {
-            List<Bug> bugsByTester = this.GetAllBugs(testerId);
-            List<Bug> allBugsInProject = this.projcetLogic.GetAllBugByProject(project);
-            List<Bug> bugsInProjectWithTester = new List<Bug>();
-
-            foreach (var bugTester in bugsByTester){
-                foreach (var bugInProject in allBugsInProject){
-                    if (bugTester.Equals(bugInProject))
-                    {
-                        bugsInProjectWithTester.Add(bugTester);
-                    }
-                }
-            }
-               
-            return bugsInProjectWithTester;
-        }
-
         public List<Project> GetAllProjects(Guid testerId)
         {
             User tester = Get(testerId);
@@ -98,6 +81,19 @@ namespace BusinessLogic.UserRol
                     projectToReturn.Add(project);
 
             return projectToReturn;
+        }
+
+        public List<Task> GetAllTask(Guid testerId)
+        {
+            Get(testerId);
+            List<Project> projects = GetAllProjects(testerId);
+            List<Task> tasksToReturn = new List<Task>();
+
+            foreach (var project in projects)
+                if (project.Users.Find(u => u.Id == testerId) != null)
+                    tasksToReturn.AddRange(project.Tasks);
+
+            return tasksToReturn;
         }
 
         private void IsTester(User tester)

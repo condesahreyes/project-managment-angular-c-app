@@ -4,6 +4,7 @@ import { Guid } from 'guid-typescript';
 import { Observable } from 'rxjs';
 import { Bug } from 'src/app/models/bug/Bug';
 import { ProjectOut } from 'src/app/models/project/ProjectOut';
+import { Task } from 'src/app/models/task/task';
 import { User } from 'src/app/models/users/User';
 import { environment } from 'src/environments/environment';
 
@@ -38,5 +39,9 @@ export class TesterService {
 
   getAllProjectsByTester(testerId: string): Observable<ProjectOut[]>{
     return this.http.get<ProjectOut[]>(this.uri + '/' + testerId + '/projects');
+  }
+
+  getTasks(idTester : string): Observable<Task[]> {
+    return this.http.get<Task[]>(this.uri+'/'+idTester + '/tasks');
   }
 }

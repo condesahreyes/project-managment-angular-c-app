@@ -70,7 +70,7 @@ namespace BusinessLogicTest
 
             mockProject.Setup(r => r.GetAll()).Returns(projects);
             mockUser.Setup(u => u.Get(It.IsAny<Guid>())).Returns(developer);
-            var bugLogic = new DeveloperLogic(mockUser.Object, mockProject.Object, mockRol.Object, mockBug.Object);
+            var bugLogic = new DeveloperLogic(mockUser.Object, mockProject.Object, mockBug.Object);
 
             List<Bug> bugsSaved = bugLogic.GetAllBugs(developer.Id);
 
