@@ -1,9 +1,10 @@
 {
   "version": 2,
-  "dgSpecHash": "VR8MGu+Z55Ecp6cH0STIUi5sRwzsZcTzldZVhjDt0cFPx37FMRqWp4S55FbP7w/I0IdVbNBgKbKOJEAgLD0XRQ==",
+  "dgSpecHash": "9RBxIeWcpGQjrFE/6QexbeyoKi5uAi8sDGJ0BlZ7KguoX6vvmX9MPr6OPnE6QVSUiqIS+KRaLblkOb0/KShR8A==",
   "success": true,
   "projectFilePath": "C:\\Users\\hreye\\Desktop\\OBL-Asadurian-Reyes\\OBLDA2\\BusinessLogic\\BusinessLogic.csproj",
   "expectedPackageFiles": [
+    "C:\\Users\\hreye\\.nuget\\packages\\coverlet.msbuild\\3.1.0\\coverlet.msbuild.3.1.0.nupkg.sha512",
     "C:\\Users\\hreye\\.nuget\\packages\\microsoft.extensions.configuration\\5.0.0\\microsoft.extensions.configuration.5.0.0.nupkg.sha512",
     "C:\\Users\\hreye\\.nuget\\packages\\microsoft.extensions.configuration.abstractions\\5.0.0\\microsoft.extensions.configuration.abstractions.5.0.0.nupkg.sha512",
     "C:\\Users\\hreye\\.nuget\\packages\\microsoft.extensions.configuration.fileextensions\\5.0.0\\microsoft.extensions.configuration.fileextensions.5.0.0.nupkg.sha512",

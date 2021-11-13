@@ -1,11 +1,12 @@
 {
   "version": 2,
-  "dgSpecHash": "4DZgohymyB8nTSLpusuDm9BMi4koGxDE/zdraHa6luSOZjPmxFrPGkL9MMIRu7lVZPRMAoeSZPnsKYidWpvteA==",
+  "dgSpecHash": "QgOI0TYYYvMEmqHPpxaGND32OrNs1XaxHYRlxYVW0o5mphoZJEG5G4KI0k9vSTYjF+54Z+39P6LSE995eJ7/Ng==",
   "success": true,
   "projectFilePath": "C:\\Users\\hreye\\Desktop\\OBL-Asadurian-Reyes\\OBLDA2\\WebApiTest\\WebApiTest.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\hreye\\.nuget\\packages\\castle.core\\4.4.0\\castle.core.4.4.0.nupkg.sha512",
     "C:\\Users\\hreye\\.nuget\\packages\\coverlet.collector\\3.0.2\\coverlet.collector.3.0.2.nupkg.sha512",
+    "C:\\Users\\hreye\\.nuget\\packages\\coverlet.msbuild\\3.1.0\\coverlet.msbuild.3.1.0.nupkg.sha512",
     "C:\\Users\\hreye\\.nuget\\packages\\entityframeworkcore.mappingextension\\2.0.0\\entityframeworkcore.mappingextension.2.0.0.nupkg.sha512",
     "C:\\Users\\hreye\\.nuget\\packages\\microsoft.aspnetcore.jsonpatch\\5.0.10\\microsoft.aspnetcore.jsonpatch.5.0.10.nupkg.sha512",
     "C:\\Users\\hreye\\.nuget\\packages\\microsoft.aspnetcore.mvc.newtonsoftjson\\5.0.10\\microsoft.aspnetcore.mvc.newtonsoftjson.5.0.10.nupkg.sha512",

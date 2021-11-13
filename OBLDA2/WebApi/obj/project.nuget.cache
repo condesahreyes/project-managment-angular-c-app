@@ -1,9 +1,10 @@
 {
   "version": 2,
-  "dgSpecHash": "Xb9G0yuFRchXSi/BkNTVGRsC3WjX8Qafg2fNKDOHauKkjS0GSvTajagf1NtzjsaGhFvsVu7/EXOap30Gl/OBiA==",
+  "dgSpecHash": "uDHa0PEjds06v7iUnRdOcgdS8aaq8vIP0u9gGna18uYc5opOjDWNYhU1Jn3NLhaUpuIeObIjs0EvQsUd73M7XQ==",
   "success": true,
   "projectFilePath": "C:\\Users\\hreye\\Desktop\\OBL-Asadurian-Reyes\\OBLDA2\\WebApi\\WebApi.csproj",
   "expectedPackageFiles": [
+    "C:\\Users\\hreye\\.nuget\\packages\\coverlet.msbuild\\3.1.0\\coverlet.msbuild.3.1.0.nupkg.sha512",
     "C:\\Users\\hreye\\.nuget\\packages\\entityframeworkcore.mappingextension\\2.0.0\\entityframeworkcore.mappingextension.2.0.0.nupkg.sha512",
     "C:\\Users\\hreye\\.nuget\\packages\\humanizer.core\\2.8.26\\humanizer.core.2.8.26.nupkg.sha512",
     "C:\\Users\\hreye\\.nuget\\packages\\microsoft.aspnetcore.jsonpatch\\5.0.10\\microsoft.aspnetcore.jsonpatch.5.0.10.nupkg.sha512",

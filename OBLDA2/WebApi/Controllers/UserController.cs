@@ -26,7 +26,6 @@ namespace OBLDA2.Controllers
             User user = this.userLogic.Create(userDTO.ToEntity());
 
             return (StatusCode((int)HttpStatusCode.Created, new UserOutModel(user)));
-
         }
 
         [HttpGet]

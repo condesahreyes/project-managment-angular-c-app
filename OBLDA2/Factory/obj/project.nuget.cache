@@ -1,9 +1,10 @@
 {
   "version": 2,
-  "dgSpecHash": "TNhEpBfpQG4mDhhbUtU9v52eZ+C+Be772mAsOuLyWUJG7o2i67As6xJQErW3nvdeFaPIVmGoW+hia+sx100GHA==",
+  "dgSpecHash": "6ooLpK4s0Ej2cixkFWo+mnSLrz1n7r5SnGNSzUY19mVFKN3L/tegc3XQxJG8VvcUbDa8IlrCupxvqNaPGIdqUQ==",
   "success": true,
   "projectFilePath": "C:\\Users\\hreye\\Desktop\\OBL-Asadurian-Reyes\\OBLDA2\\Factory\\Factory.csproj",
   "expectedPackageFiles": [
+    "C:\\Users\\hreye\\.nuget\\packages\\coverlet.msbuild\\3.1.0\\coverlet.msbuild.3.1.0.nupkg.sha512",
     "C:\\Users\\hreye\\.nuget\\packages\\entityframeworkcore.mappingextension\\2.0.0\\entityframeworkcore.mappingextension.2.0.0.nupkg.sha512",
     "C:\\Users\\hreye\\.nuget\\packages\\microsoft.csharp\\4.5.0\\microsoft.csharp.4.5.0.nupkg.sha512",
     "C:\\Users\\hreye\\.nuget\\packages\\microsoft.data.sqlclient\\2.0.1\\microsoft.data.sqlclient.2.0.1.nupkg.sha512",

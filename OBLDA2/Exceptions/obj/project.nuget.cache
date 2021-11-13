@@ -1,8 +1,10 @@
 {
   "version": 2,
-  "dgSpecHash": "xN6T2FW4aeedxWFf/FX5+HVPapikQKgJ5fUJ/JKmsZSBKXi3g8I0x002GclRTcesS/ZCH9Gud8LCFJ1mVAsrgQ==",
+  "dgSpecHash": "K82p2u4WIVJhrraPepYpNoNuY86OCS7WDwIgrEqRVf0PUIU9emJC2w43VB+WVBF5QH1wUO5WLECyRv445u9DfQ==",
   "success": true,
   "projectFilePath": "C:\\Users\\hreye\\Desktop\\OBL-Asadurian-Reyes\\OBLDA2\\Exceptions\\Exceptions.csproj",
-  "expectedPackageFiles": [],
+  "expectedPackageFiles": [
+    "C:\\Users\\hreye\\.nuget\\packages\\coverlet.msbuild\\3.1.0\\coverlet.msbuild.3.1.0.nupkg.sha512"
+  ],
   "logs": []
 }
