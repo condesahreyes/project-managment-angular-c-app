@@ -9,9 +9,7 @@ namespace WebApi.Filters
     {
         private const string errorGeneric = "An unexpected error occurred";
 
-        public ExceptionFilter() { 
-        
-        }
+        public ExceptionFilter() { }
 
         public void OnException(ExceptionContext context)
         {

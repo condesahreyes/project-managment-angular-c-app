@@ -6,8 +6,8 @@ using WebApi.Controllers;
 using OBLDA2.Models;
 using System.Linq;
 using Domain;
-using Moq;
 using System;
+using Moq;
 
 namespace WebApiTest
 {
@@ -35,6 +35,7 @@ namespace WebApiTest
         public void AddBugTest()
         {
             BugEntryOutModel bugModelEntry = new BugEntryOutModel(bug);
+            bugModelEntry.CreatedBy = Guid.NewGuid().ToString();
             bugLogic.Setup(m => m.CreateByUser(bug, It.IsAny<Guid>())).Returns(bug);
             var controller = new BugController(bugLogic.Object);
 
@@ -164,6 +165,7 @@ namespace WebApiTest
             Bug updatedBug = new Bug(project, 1, "Error cierre de sesion", "Intento", 
                 "3.5", activeState, 0);
             BugUpdateModel bugUpdateDTO = new BugUpdateModel(updatedBug);
+            bugUpdateDTO.UserId = Guid.NewGuid().ToString();
 
             bugLogic.Setup(m => m.Update(bug.Id, updatedBug, It.IsAny<Guid>())).Returns(updatedBug);
             var controller = new BugController(bugLogic.Object);

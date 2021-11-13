@@ -24,9 +24,8 @@ namespace OBLDA2.Controllers
         public IActionResult AddUser([FromBody] UserEntryModel userDTO)
         {
             User user = this.userLogic.Create(userDTO.ToEntity());
-            UserOutModel userAdded = new UserOutModel(user);
 
-            return (StatusCode((int)HttpStatusCode.Created, userAdded));
+            return (StatusCode((int)HttpStatusCode.Created, new UserOutModel(user)));
 
         }
 
@@ -34,15 +33,15 @@ namespace OBLDA2.Controllers
         public IActionResult GetAllUser()
         {
             List<User> users = this.userLogic.GetAll();
-            IEnumerable<UserOutModel> usersOut = UserOutModel.ListUser(users);
 
-            return Ok(usersOut);
+            return Ok(UserOutModel.ListUser(users));
         }
 
         [HttpGet("{userID}")]
         public IActionResult GetById(Guid userID)
         {
             User userToReturn = this.userLogic.Get(userID);
+
             return Ok(new UserOutModel(userToReturn));
         }
 

@@ -1,6 +1,5 @@
 ﻿using System.Collections.Generic;
 using BusinessLogicInterface;
-using DataAccessInterface;
 using Exceptions;
 using Domain;
 using System;
@@ -11,15 +10,13 @@ namespace BusinessLogic.UserRol
     {
         private const string notUserTester = "This user rol is not Tester";
 
-        private IUserLogic userLogic;
         private IProjectLogic projcetLogic;
+        private IUserLogic userLogic;
 
-        public TesterLogic(IUserLogic userLogic, 
-            IProjectLogic projcetLogic)
+        public TesterLogic(IUserLogic userLogic, IProjectLogic projcetLogic)
         {
             this.userLogic = userLogic;
             this.projcetLogic = projcetLogic;
-
         }
 
         public User Get(Guid id)
@@ -31,7 +28,6 @@ namespace BusinessLogic.UserRol
         {
             User tester = userLogic.Get(testerId);
             IsTester(tester);
-            Project project = projcetLogic.Get(projectId);
             projcetLogic.AssignUser(projectId, ref tester);
         }
 
@@ -43,7 +39,9 @@ namespace BusinessLogic.UserRol
             foreach (User user in users)
             {
                 if (user.Rol.Name == Rol.tester)
+                {
                     testers.Add(user);
+                }
             }
 
             return testers;
@@ -53,7 +51,6 @@ namespace BusinessLogic.UserRol
         {
             User tester = userLogic.Get(testerId);
             IsTester(tester);
-            Project project = projcetLogic.Get(projectId);
             projcetLogic.DeleteUser(projectId, ref tester);
         }
 
@@ -103,5 +100,6 @@ namespace BusinessLogic.UserRol
                 throw new InvalidDataObjException(notUserTester);
             }
         }
+
     }
 }

@@ -14,9 +14,9 @@ namespace BusinessLogic
 
         private IUserLogic userLogic;
 
-        public SessionLogic(IUserLogic _userLogic)
+        public SessionLogic(IUserLogic userLogic)
         {
-            userLogic = _userLogic;
+            userLogic = userLogic;
         }
 
         public List<string> GetAllTokens()
@@ -73,14 +73,19 @@ namespace BusinessLogic
         public void Logout(string token)
         {
             var userToLogOut = userLogic.GetAll().Where(u => u.Token == token);
+
             if (userToLogOut.Count() == 0)
+            {
                 throw new InvalidDataObjException(invalidTokenMessage);
+            }
+
             UpdateToken(userToLogOut.First(), null);
         }
 
         public User GetUserWithToekn(string token)
         {
             User userToReturn = null;
+
             if (IsCorrectToken(token))
             {
                 List<User> users = userLogic.GetAll();
@@ -92,6 +97,7 @@ namespace BusinessLogic
                     }
                 }
             }
+
             return userToReturn;
         }
     }

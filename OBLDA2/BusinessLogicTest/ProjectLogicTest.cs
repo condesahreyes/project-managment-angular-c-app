@@ -17,8 +17,6 @@ namespace BusinessLogicTest
 
         private Mock<IProjectRepository> mockProjectRepository;
         private Mock<IUserLogic> userMock;
-        private Mock<IProjectLogic> projectMock;
-        private Mock<IBugLogic> bugMock;
 
         private ProjectLogic projectLogic;
         private Project project;
@@ -33,9 +31,7 @@ namespace BusinessLogicTest
         public void Setup()
         {
             mockProjectRepository = new Mock<IProjectRepository>(MockBehavior.Strict);
-            projectMock = new Mock<IProjectLogic>(MockBehavior.Strict);
             userMock = new Mock<IUserLogic>(MockBehavior.Strict);
-            bugMock = new Mock<IBugLogic>(MockBehavior.Strict);
 
             this.projectLogic = new ProjectLogic(mockProjectRepository.Object, userMock.Object);
 
@@ -68,6 +64,7 @@ namespace BusinessLogicTest
             List<Project> list = new List<Project>();
             list.Add(project);
             mockProjectRepository.Setup(x => x.GetAll()).Returns(list);
+            mockProjectRepository.Setup(x => x.GetById(It.IsAny<Guid>())).Returns(project);
             List<Project> ret = projectLogic.GetAll();
 
             mockProjectRepository.VerifyAll();

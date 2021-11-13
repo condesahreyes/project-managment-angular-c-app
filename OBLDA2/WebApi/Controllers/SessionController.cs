@@ -2,8 +2,6 @@ using Microsoft.AspNetCore.Mvc;
 using BusinessLogicInterface;
 using OBLDA2.Models;
 using Domain;
-using System.Collections.Generic;
-using System;
 
 namespace OBLDA2.Controllers
 {
@@ -11,12 +9,10 @@ namespace OBLDA2.Controllers
     public class SessionController : ApiBaseController
     {
         private ISessionLogic sessionsLogic;
-        private IUserLogic userLogic;
 
-        public SessionController(ISessionLogic sessions, IUserLogic usuLogic) : base()
+        public SessionController(ISessionLogic sessions) : base()
         {
             sessionsLogic = sessions;
-            userLogic = usuLogic;
         }
 
         [HttpPost("login")]

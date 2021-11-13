@@ -76,10 +76,7 @@ namespace WebApi.Controllers
         [AuthorizationFilter(Autorization.AllAutorization)]
         public IActionResult GetAllBugsByProject(Guid projectId)
         {
-            //Project project = new Project();
-            //project.Id = projectId;
-
-            IEnumerable<Bug> bugs = this.projectLogic.GetAllBugByProject(projectId);
+            List<Bug> bugs = this.projectLogic.GetAllBugByProject(projectId);
             return Ok(bugs);
         }
 

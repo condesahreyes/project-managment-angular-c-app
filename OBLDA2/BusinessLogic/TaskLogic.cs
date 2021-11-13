@@ -1,8 +1,8 @@
-﻿using BusinessLogicInterface;
+﻿using System.Collections.Generic;
+using BusinessLogicInterface;
 using DataAccessInterface;
 using Domain;
 using System;
-using System.Collections.Generic;
 
 namespace BusinessLogic
 {

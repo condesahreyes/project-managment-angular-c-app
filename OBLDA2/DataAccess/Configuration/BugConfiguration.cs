@@ -1,7 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using Microsoft.EntityFrameworkCore;
 using Domain;
-using System.ComponentModel.DataAnnotations.Schema;
 
 namespace DataAccess.Configuration
 {
