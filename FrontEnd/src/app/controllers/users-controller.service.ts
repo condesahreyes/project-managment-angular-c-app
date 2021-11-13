@@ -5,6 +5,7 @@ import { SessionService } from '../services/session/session.service';
 import { UserEntryModel } from '../models/users/UserEntryModel';
 import { TaskService } from '../services/task/task.service';
 import { ProjectOut } from '../models/project/ProjectOut';
+import { constants } from '../components/shared/constans';
 import { BugService } from '../services/bug/bug.service';
 import { Injectable } from '@angular/core';
 import { Bug } from '../models/bug/Bug';
@@ -12,10 +13,11 @@ import { Observable } from 'rxjs';
 import { BugState } from '../models/bug/BugState';
 import { Task } from '../models/task/task';
 
+
 @Injectable({
   providedIn: 'root'
 })
-export class UsersControllerService {
+export class UsersControllerService{
 
   rolDeveloper = 'Desarrollador';
   rolTester = 'Tester';
@@ -56,20 +58,20 @@ export class UsersControllerService {
   }
 
   getBugsColumns(): string[] {
-    return ['name', 'domain', 'version', 'state', 'duration', 'actions'];
+    return constants.bugColumns;
   }
 
   getActionsBugs(): string[] {
     const userRol = this.sessionService.getToken().split('-')[0];
 
     if (userRol === this.rolTester) {
-      return ['create', 'edit', 'delete'];
+      return constants.bugActionsTester;
     }
     else if (userRol === this.rolDeveloper) {
-      return ['editState'];
+      return constants.bugActionsDeveloper;
     }
 
-    return ['create', 'edit', 'delete', 'import'];
+    return constants.bugActions;
   }
 
   getProjects(): Observable<ProjectOut[]> {
@@ -89,20 +91,20 @@ export class UsersControllerService {
     const userRol = this.sessionService.getToken().split('-')[0];
 
     if (userRol === this.rolTester || userRol === this.rolDeveloper) {
-      return ['name', 'actions'];
+      return constants.projectColumnsDeveloperTester;
     }
 
-    return ['name', 'TotalBugs', 'duration', 'price', 'actions'];
+    return constants.projectColumns;
   }
 
   getActionsProject(): string[] {
     const userRol = this.sessionService.getToken().split('-')[0];
 
     if (userRol === this.rolTester || userRol === this.rolDeveloper) {
-      return ['visibility'];
+      return constants.projectActionsDeveloperTester;
     }
 
-    return ['assign', 'edit', 'delete', 'visibility', 'create'];
+    return constants.projectActions;
   }
 
   getTasks(): Observable<Task[]> {

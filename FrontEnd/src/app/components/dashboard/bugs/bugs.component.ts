@@ -12,6 +12,7 @@ import { ActivatedRoute } from '@angular/router';
 import { Bug } from 'src/app/models/bug/Bug';
 import { BugImportFormComponent } from './bug-import-form/bug-import-form.component';
 import { BugDesaFormComponent } from './bug-desa-form/bug-desa-form.component';
+import { constants } from '../../../components/shared/constans';
 
 @Component({
   selector: 'app-bugs',
