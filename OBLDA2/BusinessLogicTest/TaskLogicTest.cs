@@ -5,10 +5,12 @@ using BusinessLogic;
 using Exceptions;
 using Domain;
 using Moq;
+using System.Diagnostics.CodeAnalysis;
 
 namespace BusinessLogicTest
 {
     [TestClass]
+    [ExcludeFromCodeCoverage]
     public class TaskLogicTest
     {
         private ITaskLogic taskLogic;

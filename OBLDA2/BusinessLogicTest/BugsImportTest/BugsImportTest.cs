@@ -4,10 +4,12 @@ using BusinessLogicInterface;
 using Imports;
 using Domain;
 using Moq;
+using System.Diagnostics.CodeAnalysis;
 
 namespace BusinessLogicTest.BugsImportTest
 {
     [TestClass]
+    [ExcludeFromCodeCoverage]
     public class BugsImportTest
     {
         private static State activeStatus = new State(State.active);

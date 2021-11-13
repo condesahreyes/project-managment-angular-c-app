@@ -1,7 +1,9 @@
+using System.Diagnostics.CodeAnalysis;
 using Domain;
 
 namespace WebApi.Filters
 {
+    [ExcludeFromCodeCoverage]
     public static class Autorization
     {
         public const string AllAutorization = 

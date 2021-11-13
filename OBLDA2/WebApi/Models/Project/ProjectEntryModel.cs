@@ -1,8 +1,10 @@
 using System;
+using System.Diagnostics.CodeAnalysis;
 using Domain;
 
 namespace OBLDA2.Models
 {
+    [ExcludeFromCodeCoverage]
     public class ProjectEntryModel
     {
         public string Name { get; set; }

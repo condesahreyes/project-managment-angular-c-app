@@ -1,9 +1,11 @@
 using System.Collections.Generic;
 using System;
 using Domain;
+using System.Diagnostics.CodeAnalysis;
 
 namespace OBLDA2.Models
 {
+    [ExcludeFromCodeCoverage]
     public class ProjectOutModel
     {
         public Guid Id { get; set; }

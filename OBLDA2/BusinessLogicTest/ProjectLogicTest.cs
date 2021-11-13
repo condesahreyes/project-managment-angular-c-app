@@ -8,10 +8,12 @@ using Exceptions;
 using System;
 using Domain;
 using Moq;
+using System.Diagnostics.CodeAnalysis;
 
 namespace BusinessLogicTest
 {
     [TestClass]
+    [ExcludeFromCodeCoverage]
     public class ProjectLogicTest
     {
 

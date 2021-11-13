@@ -16,13 +16,15 @@
           "Microsoft.Data.Sqlite.Core": "5.0.10",
           "Microsoft.EntityFrameworkCore.Sqlite": "5.0.10",
           "Microsoft.NET.Test.Sdk": "16.9.4",
-          "coverlet.collector": "3.0.2"
+          "coverlet.collector": "3.0.2",
+          "coverlet.msbuild": "3.1.0"
         },
         "runtime": {
           "DataAccessTest.dll": {}
         }
       },
       "coverlet.collector/3.0.2": {},
+      "coverlet.msbuild/3.1.0": {},
       "EntityFrameworkCore.MappingExtension/2.0.0": {
         "dependencies": {
           "Microsoft.EntityFrameworkCore": "5.0.10",
@@ -1968,6 +1970,13 @@
       "sha512": "sha512-iBvPAIDaI7j/iMx/DzCGCJ3rdiOmel9VINEfaTiBv/NKIGHOP4X3hqc6Q1wgMtArEshlhXexQknP17SK4vXb1w==",
       "path": "coverlet.collector/3.0.2",
       "hashPath": "coverlet.collector.3.0.2.nupkg.sha512"
+    },
+    "coverlet.msbuild/3.1.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-xOv5HZagq0I6uF4vt8NVVpwcA2W/uGmNcbLStao2eMk98RQH5NFPQuouh2nWWPSZrNIhGG/iYbBn2pO4s5i+ig==",
+      "path": "coverlet.msbuild/3.1.0",
+      "hashPath": "coverlet.msbuild.3.1.0.nupkg.sha512"
     },
     "EntityFrameworkCore.MappingExtension/2.0.0": {
       "type": "package",

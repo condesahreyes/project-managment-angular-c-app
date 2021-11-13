@@ -1,8 +1,10 @@
 using Domain;
 using System;
+using System.Diagnostics.CodeAnalysis;
 
 namespace OBLDA2.Models
 {
+    [ExcludeFromCodeCoverage]
     public class BugUpdateModel
     {
         public string Project { get; set; }

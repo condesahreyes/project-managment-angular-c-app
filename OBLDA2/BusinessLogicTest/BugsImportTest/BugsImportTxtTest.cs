@@ -2,10 +2,12 @@
 using System.Collections.Generic;
 using BusinessLogic.Imports;
 using Domain;
+using System.Diagnostics.CodeAnalysis;
 
 namespace BusinessLogicTest.BugsImportTest
 {
     [TestClass]
+    [ExcludeFromCodeCoverage]
     public class BugsImportTxtTest
     {
         private readonly string fileAddress = @"..\..\..\FileImport\archivoTxtBugs.txt";
