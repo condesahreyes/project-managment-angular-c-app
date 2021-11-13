@@ -8,6 +8,10 @@ export abstract class constants {
    static readonly columnActions = 'actions';
    static readonly columnTotalBugs = 'TotalBugs';
    static readonly columnPrice = 'price';
+   static readonly columnId = 'id';
+   static readonly columnProject = 'project';
+
+
 
    static readonly actionCreate = 'create';
    static readonly actionEdit = 'edit';
@@ -22,7 +26,7 @@ export abstract class constants {
    static readonly rolAdmin = 'Administrador';
 
 
-   static readonly bugColumns = [constants.columnName, constants.columnDomain, 
+   static readonly bugColumns = [constants.columnName, constants.columnId, constants.columnProject, constants.columnDomain, 
       constants.columnVersion, constants.columnState, constants.columnDuration, constants.columnActions]; 
 
    static readonly projectColumns =  [constants.columnName, constants.columnTotalBugs, 

@@ -63,16 +63,6 @@ namespace WebApi.Controllers
             return Ok(bugsOut);
         }
 
-        [HttpGet("byProject/{project}")]
-        [AuthorizationFilter(Autorization.AdministratorAndTester)]
-        public IActionResult GetBugsByProject(string project)
-        {
-            List<Bug> bugs = this.bugLogic.GetBugsByProject(project);
-            List<BugEntryOutModel> bugsOut = BugEntryOutModel.ListBugs(bugs);
-
-            return Ok(bugsOut);
-        }
-
         [HttpGet("{bugId}")]
         [AuthorizationFilter(Autorization.AdministratorAndTester)]
         public IActionResult GetById(int bugId, UserIdModel user)

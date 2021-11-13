@@ -12,7 +12,6 @@ import { ActivatedRoute } from '@angular/router';
 import { Bug } from 'src/app/models/bug/Bug';
 import { BugImportFormComponent } from './bug-import-form/bug-import-form.component';
 import { BugDesaFormComponent } from './bug-desa-form/bug-desa-form.component';
-import { constants } from '../../../components/shared/constans';
 
 @Component({
   selector: 'app-bugs',
@@ -121,9 +120,12 @@ export class BugsComponent implements OnInit {
   update(bugToUpdate: any) {
     const dialogRef = this.dialog.open(BugFormComponent, {
       width: '50%',
-      data: { bug: bugToUpdate }
+      data: { project: this.project, bug: bugToUpdate }
     });
-    dialogRef.afterClosed().subscribe();
+    dialogRef.afterClosed().subscribe(() => { 
+      this.getColumns();
+      this.getBugs();
+    });
   }
 
   updateState(bugToUpdate: any) {
