@@ -35,13 +35,10 @@ export class BugFormComponent implements OnInit {
       version: [this.data.bug.version, Validators.required],
       id: [this.data.bug.id, Validators.required],
       state: [this.data.bug.state, Validators.required],
-      project: [this.data.bug.project, Validators.required],
+      project: [this.data.bug.project, this.data.project === undefined ? Validators.required : false ],
       duration: [this.data.bug.duration, Validators.required]
     })
 
-    if(this.data.project === undefined){
-      this.form.addControl('project', new FormControl([this.data.bug.project, Validators.required]))
-    }
   }
 
   bugUpdate: BugUpdate = {
