@@ -76,11 +76,12 @@ namespace WebApi.Controllers
 
         [HttpGet("{idDeveloper}/projects")]
         [AuthorizationFilter(Autorization.Developer)]
-        public IActionResult GetAllProjectsTester(Guid idDeveloper)
+        public IActionResult GetAllProjectsDeveloper(Guid idDeveloper)
         {
             List<Project> projects = this.developerLogic.GetAllProjects(idDeveloper);
 
-            return (StatusCode((int)HttpStatusCode.OK, projects));
+            return (StatusCode((int)HttpStatusCode.OK, ProjectOutModel.ToListModel(projects)));
+
         }
 
         [HttpGet("{idDeveloper}/tasks")]

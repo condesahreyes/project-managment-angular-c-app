@@ -1,24 +1,23 @@
-﻿using BusinessLogic.Imports;
-using BusinessLogicInterface;
+﻿using Microsoft.Extensions.Configuration;
 using BusinessLogicInterface.Imports;
-using Domain;
-using Exceptions;
-using OBLDA2.Models;
-using System;
 using System.Collections.Generic;
-using System.IO;
-using System.Linq;
+using BusinessLogicInterface;
+using BusinessLogic.Imports;
 using System.Reflection;
-using Microsoft.Extensions.Configuration;
-using Newtonsoft.Json;
+using OBLDA2.Models;
+using System.Linq;
+using Exceptions;
+using System.IO;
+using Domain;
+using System;
 
 namespace Imports
 {
     public class BugsImport : IBugsImport
     {
+        private const string invalidFormat = "Error, it´s not a valid format";
         private const string txtExtension = ".txt";
         private const string xmlExtension = ".xml";
-        private const string invalidFormat = "Error, it´s not a valid format";
 
         private IBugLogic bugLogic;
 
@@ -26,8 +25,6 @@ namespace Imports
         {
             this.bugLogic = bugLogic;
         }
-
-        public BugsImport() { }
 
         public List<Bug> CreateBugs(List<Bug> bugs)
         {
@@ -68,9 +65,11 @@ namespace Imports
         {
             try{
                 Assembly myAssembly = GetAssembly(extension);
-                List<Type> implementations = GetImplementationsInAssembly<IBugsImportGeneric>(myAssembly);
+                List<Type> implementations = 
+                    GetImplementationsInAssembly<IBugsImportGeneric>(myAssembly);
 
-                IBugsImportGeneric bugImportGeneric = (IBugsImportGeneric)Activator.CreateInstance(implementations.First());
+                IBugsImportGeneric bugImportGeneric = 
+                    (IBugsImportGeneric)Activator.CreateInstance(implementations.First());
 
                 List<BugImportModel> bugsModel = bugImportGeneric.ImportBugs(fileAddress);
 

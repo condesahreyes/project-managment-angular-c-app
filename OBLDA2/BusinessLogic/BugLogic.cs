@@ -56,27 +56,6 @@ namespace BusinessLogic
             return bug;
         }
 
-        public List<Bug> GetBugsByName(string name)
-        {
-            List<Bug> bugs = GetAll();
-
-            return bugs.Where(x => x.Name.ToLower() == name.ToLower()).ToList();
-        }
-
-        public List<Bug> GetBugsByState(string state)
-        {
-            List<Bug> bugs = GetAll();
-
-            return bugs.Where(x => x.State.Name.ToLower() == state.ToLower()).ToList();
-        }
-
-        public List<Bug> GetBugsByProject(string project)
-        {
-            List<Bug> bugs = GetAll();
-
-            return bugs.Where(x => x.Project.Name.ToLower() == project.ToLower()).ToList();
-        }
-
         public void Delete(int id, Guid userId)
         {
             Get(id, userId);

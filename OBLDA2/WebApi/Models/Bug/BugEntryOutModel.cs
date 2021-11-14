@@ -1,9 +1,11 @@
 using System;
 using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 using Domain;
 
 namespace OBLDA2.Models
 {
+    [ExcludeFromCodeCoverage]
     public class BugEntryOutModel
     {
         public int Id { get; set; }

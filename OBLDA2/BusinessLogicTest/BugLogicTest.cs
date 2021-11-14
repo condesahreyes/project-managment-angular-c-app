@@ -8,10 +8,12 @@ using Exceptions;
 using Domain;
 using System;
 using Moq;
+using System.Diagnostics.CodeAnalysis;
 
 namespace BusinessLogicTest
 {
     [TestClass]
+    [ExcludeFromCodeCoverage]
     public class BugLogicTest
     {
         private Mock<IBugRepository> mock;
@@ -93,6 +95,25 @@ namespace BusinessLogicTest
             BugLogic bugLogic = new BugLogic(mock.Object, stateMock.Object, projectMock.Object);
 
             Bug bugSaved = bugLogic.Create(bug);
+
+            mock.VerifyAll();
+
+            Assert.AreEqual(bug, bugSaved);
+        }
+
+        [TestMethod]
+        public void CreateBugByUser()
+        {
+            Bug bugNull = null;
+
+            mock.Setup(x => x.Create(bug)).Returns(bug);
+            mock.Setup(x => x.GetById(bug.Id)).Returns(bugNull);
+            projectMock.Setup(x => x.ExistProjectWithName(It.IsAny<Project>())).Returns(project);
+            projectMock.Setup(x => x.IsUserAssignInProject(project.Name, It.IsAny<Guid>()));
+
+            BugLogic bugLogic = new BugLogic(mock.Object, stateMock.Object, projectMock.Object);
+
+            Bug bugSaved = bugLogic.CreateByUser(bug, Guid.NewGuid());
 
             mock.VerifyAll();
 
@@ -325,47 +346,5 @@ namespace BusinessLogicTest
             Assert.AreEqual(bugGet, bug);
         }
 
-        [TestMethod]
-        public void GetBugsByName()
-        {
-            bug.Name = otherBug.Name;
-            List<Bug> bugs = new List<Bug> { bug, otherBug };
-
-            mock.Setup(r => r.GetAll()).Returns(bugs);
-            BugLogic bugLogic = new BugLogic(mock.Object, stateMock.Object, projectMock.Object);
-
-            List<Bug> bugsSaved = bugLogic.GetBugsByName(bug.Name);
-
-            mock.VerifyAll();
-            Assert.IsTrue(bugsSaved.SequenceEqual(bugs));
-        }
-
-        [TestMethod]
-        public void GetBugsByState()
-        {
-            List<Bug> bugs = new List<Bug> { bug, otherBug };
-
-            mock.Setup(r => r.GetAll()).Returns(bugs);
-            BugLogic bugLogic = new BugLogic(mock.Object, stateMock.Object, projectMock.Object);
-
-            List<Bug> bugsSaved = bugLogic.GetBugsByState(bug.State.Name);
-
-            mock.VerifyAll();
-            Assert.IsTrue(bugsSaved.SequenceEqual(bugs));
-        }
-
-        [TestMethod]
-        public void GetBugsByProject()
-        {
-            List<Bug> bugs = new List<Bug> { bug, otherBug };
-
-            mock.Setup(r => r.GetAll()).Returns(bugs);
-            BugLogic bugLogic = new BugLogic(mock.Object, stateMock.Object, projectMock.Object);
-
-            List<Bug> bugsSaved = bugLogic.GetBugsByProject(bug.Project.Name);
-
-            mock.VerifyAll();
-            Assert.IsTrue(bugsSaved.SequenceEqual(bugs));
-        }
     }
 }

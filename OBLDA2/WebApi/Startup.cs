@@ -6,9 +6,11 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.OpenApi.Models;
 using WebApi.Filters;
 using Factory;
+using System.Diagnostics.CodeAnalysis;
 
 namespace OBLDA2
 {
+    [ExcludeFromCodeCoverage]
     public class Startup
     {
         public Startup(IConfiguration configuration)
@@ -58,7 +60,6 @@ namespace OBLDA2
             {
                 app.UseDeveloperExceptionPage();
             }
-
 
             app.UseSwagger();
             app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "OBLDA2 v1"));

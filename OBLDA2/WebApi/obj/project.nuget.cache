@@ -1,9 +1,10 @@
 {
   "version": 2,
-  "dgSpecHash": "L09RVSpxhlIj8oKWPptpnQ2yRnOrHnIn76m2HDRZhehIMo9kTap6ipCcIsCT432tABi4o1nLETGP61LKIjfChQ==",
+  "dgSpecHash": "Forn9SU52vadbxikpLTWKKsg0pMZqMFUEZ6WhjYgtXfw4U+IFykViUKCVvqp7GcL82BOlG0KgKldXAkKpf0fBA==",
   "success": true,
   "projectFilePath": "C:\\Users\\Diego\\Desktop\\OBL-Asadurian-Reyes\\OBLDA2\\WebApi\\WebApi.csproj",
   "expectedPackageFiles": [
+    "C:\\Users\\Diego\\.nuget\\packages\\coverlet.msbuild\\3.1.0\\coverlet.msbuild.3.1.0.nupkg.sha512",
     "C:\\Users\\Diego\\.nuget\\packages\\entityframeworkcore.mappingextension\\2.0.0\\entityframeworkcore.mappingextension.2.0.0.nupkg.sha512",
     "C:\\Users\\Diego\\.nuget\\packages\\humanizer.core\\2.8.26\\humanizer.core.2.8.26.nupkg.sha512",
     "C:\\Users\\Diego\\.nuget\\packages\\microsoft.aspnetcore.jsonpatch\\5.0.10\\microsoft.aspnetcore.jsonpatch.5.0.10.nupkg.sha512",

@@ -2,16 +2,16 @@
 using Microsoft.AspNetCore.Mvc;
 using Exceptions;
 using System;
+using System.Diagnostics.CodeAnalysis;
 
 namespace WebApi.Filters
 {
+    [ExcludeFromCodeCoverage]
     public class ExceptionFilter : Attribute, IExceptionFilter
     {
         private const string errorGeneric = "An unexpected error occurred";
 
-        public ExceptionFilter() { 
-        
-        }
+        public ExceptionFilter() { }
 
         public void OnException(ExceptionContext context)
         {

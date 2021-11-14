@@ -8,17 +8,17 @@ using Exceptions;
 using System;
 using Domain;
 using Moq;
+using System.Diagnostics.CodeAnalysis;
 
 namespace BusinessLogicTest
 {
     [TestClass]
+    [ExcludeFromCodeCoverage]
     public class ProjectLogicTest
     {
 
         private Mock<IProjectRepository> mockProjectRepository;
         private Mock<IUserLogic> userMock;
-        private Mock<IProjectLogic> projectMock;
-        private Mock<IBugLogic> bugMock;
 
         private ProjectLogic projectLogic;
         private Project project;
@@ -33,9 +33,7 @@ namespace BusinessLogicTest
         public void Setup()
         {
             mockProjectRepository = new Mock<IProjectRepository>(MockBehavior.Strict);
-            projectMock = new Mock<IProjectLogic>(MockBehavior.Strict);
             userMock = new Mock<IUserLogic>(MockBehavior.Strict);
-            bugMock = new Mock<IBugLogic>(MockBehavior.Strict);
 
             this.projectLogic = new ProjectLogic(mockProjectRepository.Object, userMock.Object);
 
@@ -68,6 +66,7 @@ namespace BusinessLogicTest
             List<Project> list = new List<Project>();
             list.Add(project);
             mockProjectRepository.Setup(x => x.GetAll()).Returns(list);
+            mockProjectRepository.Setup(x => x.GetById(It.IsAny<Guid>())).Returns(project);
             List<Project> ret = projectLogic.GetAll();
 
             mockProjectRepository.VerifyAll();
@@ -84,6 +83,73 @@ namespace BusinessLogicTest
             mockProjectRepository.VerifyAll();
 
             Assert.IsTrue(ret.Equals(project));
+        }
+
+        [TestMethod]
+        public void ExistProject()
+        {
+            List<Project> list = new List<Project>();
+            list.Add(project);
+
+            mockProjectRepository.Setup(x => x.GetAll()).Returns(list);
+            mockProjectRepository.Setup(x => x.GetById(It.IsAny<Guid>())).Returns(project);
+            projectLogic.ExistProject(project.Id);
+
+            mockProjectRepository.VerifyAll();
+
+            Assert.IsTrue(true);
+        }
+
+        [TestMethod]
+        public void ExistProjectWithName()
+        {
+            List<Project> list = new List<Project>();
+            list.Add(project);
+            mockProjectRepository.Setup(x => x.GetAll()).Returns(list);
+
+            Project oneProject = projectLogic.ExistProjectWithName(project);
+
+            mockProjectRepository.VerifyAll();
+
+            Assert.IsTrue(oneProject.Id == project.Id);
+        }
+
+        [TestMethod]
+        [ExpectedException(typeof(InvalidDataObjException))]
+        public void ExistProjectWithNameFail()
+        {
+            List<Project> list = new List<Project>();
+            mockProjectRepository.Setup(x => x.GetAll()).Returns(list);
+
+            Project oneProject = projectLogic.ExistProjectWithName(project);
+        }
+
+        [TestMethod]
+        public void NotExistProjectWithName()
+        {
+            List<Project> list = new List<Project>();
+            mockProjectRepository.Setup(x => x.GetAll()).Returns(list);
+
+            projectLogic.NotExistProjectWithName(project);
+
+            mockProjectRepository.VerifyAll();
+
+            Assert.IsTrue(true);
+        }
+
+        [TestMethod]
+        [ExpectedException(typeof(InvalidDataObjException))]
+        public void NotExistProjectWithNameFail()
+        {
+            List<Project> list = new List<Project>();
+            list.Add(project);
+
+            mockProjectRepository.Setup(x => x.GetAll()).Returns(list);
+
+            Project otherProject = new Project();
+            otherProject.Name = project.Name;
+
+            projectLogic.NotExistProjectWithName(otherProject);
         }
 
         [ExpectedException(typeof(NoObjectException))]
@@ -169,6 +235,23 @@ namespace BusinessLogicTest
             mockProjectRepository.VerifyAll();
 
             Assert.IsTrue(returnedUsers.SequenceEqual(users));
+        }
+
+        [TestMethod]
+        public void GetAllUsersInProject()
+        {
+            project.Users.Add(tester);
+
+            List<User> users = new List<User>();
+            users.Add(tester);
+
+            mockProjectRepository.Setup(x => x.GetById(project.Id)).Returns(project);
+
+            List<User> allUsers = projectLogic.GetAllUsersInOneProject(project.Id);
+
+            mockProjectRepository.VerifyAll();
+
+            Assert.IsTrue(allUsers.SequenceEqual(users));
         }
 
         [TestMethod]

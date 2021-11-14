@@ -1,10 +1,14 @@
-using Microsoft.VisualStudio.TestTools.UnitTesting;
-using Microsoft.AspNetCore.Mvc;
+using System.Collections.Generic;
+using System.Linq;
 using BusinessLogicInterface;
-using WebApi.Controllers;
-using OBLDA2.Models;
 using Domain;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
+using OBLDA2.Models;
+using WebApi.Controllers;
+
+
 
 namespace WebApiTest
 {
@@ -61,5 +65,54 @@ namespace WebApiTest
             Assert.AreEqual(taskResult.ToEntity(), task);
         }
 
+        [TestMethod]
+        public void GetAllTasks() { 
+
+            List<Task> tasks = new List<Task>();
+            tasks.Add(task);
+
+            taskLogicMock.Setup(m => m.GetAll()).Returns(tasks);
+            var controller = new TaskController(taskLogicMock.Object);
+
+            var result = controller.GetAllTask();
+
+            List<TaskEntryOutModel> tasksOut = new List<TaskEntryOutModel>();
+
+            foreach (Task task in tasks)
+            {
+                tasksOut.Add(new  TaskEntryOutModel(task));
+            }
+
+            var okResult = result as OkObjectResult;
+            var taskResult = okResult.Value as IEnumerable<TaskEntryOutModel>;
+
+            taskLogicMock.VerifyAll();
+
+            Assert.IsTrue(tasksOut.First().Name == taskResult.First().Name);
+        }
+
+        [TestMethod]
+        public void GetAllTasksByProject()
+        {
+            List<Task> tasks = new List<Task>();
+            tasks.Add(task);
+            List<TaskEntryOutModel> taskOut = new List<TaskEntryOutModel>();
+
+            foreach (var task in tasks)
+            {
+                taskOut.Add(new TaskEntryOutModel(task));
+            }
+
+            taskLogicMock.Setup(m => m.GetAllByProject(task.Id)).Returns(tasks);
+            var controller = new TaskController(taskLogicMock.Object);
+
+            var result = controller.GetAllTaskByProject(task.Id);
+            var okResult = result as OkObjectResult;
+            var taskResult = okResult.Value as List<TaskEntryOutModel>;
+
+            taskLogicMock.VerifyAll();
+
+            Assert.IsTrue(taskOut.First().Name == taskResult.First().Name);
+        }
     }
 }

@@ -1,9 +1,11 @@
 ﻿using Domain;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 
 namespace OBLDA2.Models
 {
+    [ExcludeFromCodeCoverage]
     public class TaskEntryOutModel
     {
         public string Name { get; set; }
@@ -12,6 +14,14 @@ namespace OBLDA2.Models
         public string Project { get; set; }
 
         public TaskEntryOutModel() { }
+
+        public TaskEntryOutModel(Task task) {
+            this.Name = task.Name;
+            this.Cost = task.Price;
+            this.Duration = task.Duration;
+            this.Project = task.Project.Id.ToString();
+        }
+
 
         public Task ToEntity() => new Task
         {

@@ -5,19 +5,19 @@ namespace Domain
 {
     public class Bug
     {
-        private const string invalidId = "You must entry a valid id";
-        private const string invalidName = "You must entry a valid name";
-        private const string invalidDomain = "You must entry a valid domain";
-        private const string invalidVersion = "You must entry a valid version";
         private const string invalidDuration = "You must entry a valid duration. Beetween 0 and 100";
+        private const string invalidVersion = "You must entry a valid version";
+        private const string invalidDomain = "You must entry a valid domain";
+        private const string invalidName = "You must entry a valid name";
+        private const string invalidId = "You must entry a valid id";
 
         public int Id { get; set; }
+        public int Duration { get; set; }
 
         public string Name { get; set; }
         public string Domain { get; set; }
         public string Version { get; set; }
-
-        public int Duration { get; set; }
+        
         public Project Project { get; set; }
         public User SolvedBy { get; set; }
         public State State { get; set; }

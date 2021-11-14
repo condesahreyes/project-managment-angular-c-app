@@ -1,9 +1,10 @@
 {
   "version": 2,
-  "dgSpecHash": "qjNAV553fyggvuZ8iA+YpVcos8ZLqtOvbKr7/OR0t/3cjtM2UkfLxButAFVapUogJ+xroEuDpN9+3lZwUmQjEQ==",
+  "dgSpecHash": "6J23+cW2mpvcs5IWOnQDEMMSvzCkw923lcyzq8FOEyaSbzbESSlkmMK5Vngda6M6WDOZWOkut1AlHuVW9MzOOQ==",
   "success": true,
   "projectFilePath": "C:\\Users\\Diego\\Desktop\\OBL-Asadurian-Reyes\\OBLDA2\\Factory\\Factory.csproj",
   "expectedPackageFiles": [
+    "C:\\Users\\Diego\\.nuget\\packages\\coverlet.msbuild\\3.1.0\\coverlet.msbuild.3.1.0.nupkg.sha512",
     "C:\\Users\\Diego\\.nuget\\packages\\entityframeworkcore.mappingextension\\2.0.0\\entityframeworkcore.mappingextension.2.0.0.nupkg.sha512",
     "C:\\Users\\Diego\\.nuget\\packages\\microsoft.csharp\\4.5.0\\microsoft.csharp.4.5.0.nupkg.sha512",
     "C:\\Users\\Diego\\.nuget\\packages\\microsoft.data.sqlclient\\2.0.1\\microsoft.data.sqlclient.2.0.1.nupkg.sha512",

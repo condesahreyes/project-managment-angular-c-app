@@ -6,8 +6,8 @@ using WebApi.Controllers;
 using OBLDA2.Models;
 using System.Linq;
 using Domain;
-using Moq;
 using System;
+using Moq;
 
 namespace WebApiTest
 {
@@ -35,6 +35,7 @@ namespace WebApiTest
         public void AddBugTest()
         {
             BugEntryOutModel bugModelEntry = new BugEntryOutModel(bug);
+            bugModelEntry.CreatedBy = Guid.NewGuid().ToString();
             bugLogic.Setup(m => m.CreateByUser(bug, It.IsAny<Guid>())).Returns(bug);
             var controller = new BugController(bugLogic.Object);
 
@@ -71,78 +72,6 @@ namespace WebApiTest
         }
 
         [TestMethod]
-        public void GetAllBugsByName()
-        {
-            List<Bug> bugs = new List<Bug>();
-            bugs.Add(bug);
-            List<BugEntryOutModel> bugsOut = new List<BugEntryOutModel>();
-
-            foreach (var bug in bugs)
-            {
-                bugsOut.Add(new BugEntryOutModel(bug));
-            }
-
-            bugLogic.Setup(m => m.GetBugsByName(bug.Name)).Returns(bugs);
-            var controller = new BugController(bugLogic.Object);
-
-            var result = controller.GetBugsByName(bug.Name);
-            var okResult = result as OkObjectResult;
-            var bugsResult = okResult.Value as List<BugEntryOutModel>;
-
-            bugLogic.VerifyAll();
-
-            Assert.IsTrue(bugsOut.First().Id == bugsResult.First().Id);
-        }
-
-        [TestMethod]
-        public void GetAllBugsByProject()
-        {
-            List<Bug> bugs = new List<Bug>();
-            bugs.Add(bug);
-            List<BugEntryOutModel> bugsOut = new List<BugEntryOutModel>();
-
-            foreach (var bug in bugs)
-            {
-                bugsOut.Add(new BugEntryOutModel(bug));
-            }
-
-            bugLogic.Setup(m => m.GetBugsByProject(bug.Project.Name)).Returns(bugs);
-            var controller = new BugController(bugLogic.Object);
-
-            var result = controller.GetBugsByProject(bug.Project.Name);
-            var okResult = result as OkObjectResult;
-            var bugsResult = okResult.Value as List<BugEntryOutModel>;
-
-            bugLogic.VerifyAll();
-
-            Assert.IsTrue(bugsOut.First().Id == bugsResult.First().Id);
-        }
-
-        [TestMethod]
-        public void GetAllBugsByState()
-        {
-            List<Bug> bugs = new List<Bug>();
-            bugs.Add(bug);
-            List<BugEntryOutModel> bugsOut = new List<BugEntryOutModel>();
-
-            foreach (var bug in bugs)
-            {
-                bugsOut.Add(new BugEntryOutModel(bug));
-            }
-
-            bugLogic.Setup(m => m.GetBugsByProject(bug.State.Name)).Returns(bugs);
-            var controller = new BugController(bugLogic.Object);
-
-            var result = controller.GetBugsByProject(bug.State.Name);
-            var okResult = result as OkObjectResult;
-            var bugsResult = okResult.Value as List<BugEntryOutModel>;
-
-            bugLogic.VerifyAll();
-
-            Assert.IsTrue(bugsOut.First().Id == bugsResult.First().Id);
-        }
-
-        [TestMethod]
         public void GetBugIdTest()
         {
             UserIdModel user = new UserIdModel(Guid.NewGuid());
@@ -164,6 +93,7 @@ namespace WebApiTest
             Bug updatedBug = new Bug(project, 1, "Error cierre de sesion", "Intento", 
                 "3.5", activeState, 0);
             BugUpdateModel bugUpdateDTO = new BugUpdateModel(updatedBug);
+            bugUpdateDTO.UserId = Guid.NewGuid().ToString();
 
             bugLogic.Setup(m => m.Update(bug.Id, updatedBug, It.IsAny<Guid>())).Returns(updatedBug);
             var controller = new BugController(bugLogic.Object);

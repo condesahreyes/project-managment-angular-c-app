@@ -1,9 +1,11 @@
 ﻿using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using Microsoft.EntityFrameworkCore;
 using Domain;
+using System.Diagnostics.CodeAnalysis;
 
 namespace DataAccess.Configuration
 {
+    [ExcludeFromCodeCoverage]
     class ProjectConfiguration : IEntityTypeConfiguration<Project>
     {
         public void Configure(EntityTypeBuilder<Project> builder)

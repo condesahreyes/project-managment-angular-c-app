@@ -1,10 +1,11 @@
 {
   "version": 2,
-  "dgSpecHash": "RVniH1inEWm3ugYPH+dJQgODxZxK5oDjjwAyGBwVDYi/B7g51M6j01BRMaOaI8/M6fC/KpQbJnioXnvPEXivjA==",
+  "dgSpecHash": "QLMGPtJB9duO4jQVxzFmf2bMHGK0qNoJAO5qD7DBdhqx/tWHdHr8IwrWYDtp9E/xxkq1xMuAvP/W2u1iUL/Vlg==",
   "success": true,
   "projectFilePath": "C:\\Users\\Diego\\Desktop\\OBL-Asadurian-Reyes\\OBLDA2\\DataAccess\\DataAccess.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Diego\\.nuget\\packages\\coverlet.collector\\3.1.0\\coverlet.collector.3.1.0.nupkg.sha512",
+    "C:\\Users\\Diego\\.nuget\\packages\\coverlet.msbuild\\3.1.0\\coverlet.msbuild.3.1.0.nupkg.sha512",
     "C:\\Users\\Diego\\.nuget\\packages\\entityframeworkcore.mappingextension\\2.0.0\\entityframeworkcore.mappingextension.2.0.0.nupkg.sha512",
     "C:\\Users\\Diego\\.nuget\\packages\\humanizer.core\\2.8.26\\humanizer.core.2.8.26.nupkg.sha512",
     "C:\\Users\\Diego\\.nuget\\packages\\microsoft.csharp\\4.7.0\\microsoft.csharp.4.7.0.nupkg.sha512",

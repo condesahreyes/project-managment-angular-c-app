@@ -23,7 +23,6 @@ namespace DataAccess.Repositories
         public List<User> GetAll()
         {
             return _DbSet.Include(r => r.Rol).ToList();
-            //.Include(p => p.Projects) Ver estooooooooooooooooooooooooooooooo
         }
 
         public User GetById(Guid id)
@@ -31,7 +30,6 @@ namespace DataAccess.Repositories
             try {
                 return _DbSet.Include(r => r.Rol)
                     .First(p => p.Id == id);
-                //.Include(p => p.Projects) Ver estoooooooooooooooooooooooooooooooo
             }
             catch (Exception)
             {

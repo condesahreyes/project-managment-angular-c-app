@@ -10,7 +10,6 @@ namespace DataAccess.Repositories
 {
     public class BugRepository : Repository<Bug, int>, IBugRepository
     {
-        private const string noExistBug = "No exist bug with id ";
         private readonly DbSet<Bug> _DbSet;
         private readonly DbSet<State> _DbSetState;
         private readonly DbSet<User> _DbSetUser;

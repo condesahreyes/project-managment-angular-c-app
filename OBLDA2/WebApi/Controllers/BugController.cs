@@ -26,10 +26,8 @@ namespace WebApi.Controllers
         public IActionResult AddBug(BugEntryOutModel bugDTO)
         {
             Bug bug = this.bugLogic.CreateByUser(bugDTO.ToEntity(), Guid.Parse(bugDTO.CreatedBy));
-            BugEntryOutModel bugAdded = new BugEntryOutModel(bug);
-            bugAdded.CreatedBy = bugDTO.CreatedBy;
 
-            return (StatusCode((int)HttpStatusCode.Created, bugAdded));
+            return (StatusCode((int)HttpStatusCode.Created, new BugEntryOutModel(bug)));
         }
 
         [HttpGet]
@@ -37,40 +35,8 @@ namespace WebApi.Controllers
         public IActionResult GetAllBugs()
         {
             List<Bug> bugs = this.bugLogic.GetAll();
-            List<BugEntryOutModel> bugsOut = BugEntryOutModel.ListBugs(bugs);
 
-            return Ok(bugsOut);
-        }
-
-
-        [HttpGet("byName")]
-        [AuthorizationFilter(Autorization.AdministratorAndTester)]
-        public IActionResult GetBugsByName(string name)
-        {
-            List<Bug> bugs = this.bugLogic.GetBugsByName(name);
-            List<BugEntryOutModel> bugsOut = BugEntryOutModel.ListBugs(bugs);
-
-            return Ok(bugsOut);
-        }
-
-        [HttpGet("byState")]
-        [AuthorizationFilter(Autorization.AdministratorAndTester)]
-        public IActionResult GetBugsByState(string state)
-        {
-            List<Bug> bugs = this.bugLogic.GetBugsByState(state);
-            List<BugEntryOutModel> bugsOut = BugEntryOutModel.ListBugs(bugs);
-
-            return Ok(bugsOut);
-        }
-
-        [HttpGet("byProject/{project}")]
-        [AuthorizationFilter(Autorization.AdministratorAndTester)]
-        public IActionResult GetBugsByProject(string project)
-        {
-            List<Bug> bugs = this.bugLogic.GetBugsByProject(project);
-            List<BugEntryOutModel> bugsOut = BugEntryOutModel.ListBugs(bugs);
-
-            return Ok(bugsOut);
+            return Ok(BugEntryOutModel.ListBugs(bugs));
         }
 
         [HttpGet("{bugId}")]
@@ -78,6 +44,7 @@ namespace WebApi.Controllers
         public IActionResult GetById(int bugId, UserIdModel user)
         {
             Bug bugToReturn = this.bugLogic.Get(bugId, user.UserId);
+
             return Ok(new BugEntryOutModel(bugToReturn));
         }
 
@@ -86,6 +53,7 @@ namespace WebApi.Controllers
         public IActionResult Delete(int bugId, Guid userId)
         {
             bugLogic.Delete(bugId, userId);
+
             return NoContent();
         }
 
@@ -94,6 +62,7 @@ namespace WebApi.Controllers
         public IActionResult UpdateABug(int bugId, BugUpdateModel bugDTO)
         {
             this.bugLogic.Update(bugId, bugDTO.ToEntity(bugId), Guid.Parse(bugDTO.UserId));
+
             return NoContent();
         }
 

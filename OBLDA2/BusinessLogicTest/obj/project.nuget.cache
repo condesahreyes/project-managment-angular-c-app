@@ -1,11 +1,12 @@
 {
   "version": 2,
-  "dgSpecHash": "AqCUS/D5i1THbQN/gzx/pHIsWvb2EHSYZyttaqadtsRw8FR5oKzjQHxOrROwhfg+XdKRndm1JneN1TkEY5PeWw==",
+  "dgSpecHash": "D2Tu9o7fUzgSHkxtgO0JbiYA8X8v/X3W5XRmNRClZWiMJUeZO1JVPU+owylo54xWbU1Y9IeRG/JZ2BFTgINzKw==",
   "success": true,
   "projectFilePath": "C:\\Users\\Diego\\Desktop\\OBL-Asadurian-Reyes\\OBLDA2\\BusinessLogicTest\\BusinessLogicTest.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Diego\\.nuget\\packages\\castle.core\\4.4.0\\castle.core.4.4.0.nupkg.sha512",
     "C:\\Users\\Diego\\.nuget\\packages\\coverlet.collector\\3.0.2\\coverlet.collector.3.0.2.nupkg.sha512",
+    "C:\\Users\\Diego\\.nuget\\packages\\coverlet.msbuild\\3.1.0\\coverlet.msbuild.3.1.0.nupkg.sha512",
     "C:\\Users\\Diego\\.nuget\\packages\\microsoft.codecoverage\\16.9.4\\microsoft.codecoverage.16.9.4.nupkg.sha512",
     "C:\\Users\\Diego\\.nuget\\packages\\microsoft.extensions.configuration\\5.0.0\\microsoft.extensions.configuration.5.0.0.nupkg.sha512",
     "C:\\Users\\Diego\\.nuget\\packages\\microsoft.extensions.configuration.abstractions\\5.0.0\\microsoft.extensions.configuration.abstractions.5.0.0.nupkg.sha512",

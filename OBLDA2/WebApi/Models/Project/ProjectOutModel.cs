@@ -1,9 +1,11 @@
 using System.Collections.Generic;
 using System;
 using Domain;
+using System.Diagnostics.CodeAnalysis;
 
 namespace OBLDA2.Models
 {
+    [ExcludeFromCodeCoverage]
     public class ProjectOutModel
     {
         public Guid Id { get; set; }
@@ -49,6 +51,18 @@ namespace OBLDA2.Models
                 {
                     this.Task.Add(TaskEntryOutModel.ToModel(task));
                 }
+        }
+
+        public static List<ProjectOutModel> ToListModel(List<Project> projects)
+        {
+            List<ProjectOutModel> projectModel = new List<ProjectOutModel>();
+
+            foreach (Project project in projects)
+            {
+                projectModel.Add(new ProjectOutModel(project));
+            }
+
+            return projectModel;
         }
 
     }

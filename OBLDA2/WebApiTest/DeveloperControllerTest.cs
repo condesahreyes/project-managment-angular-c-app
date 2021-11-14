@@ -20,12 +20,29 @@ namespace WebApiTest
         private Rol rolDeveloper;
         private Project project;
         private Bug bug;
+        private Task task;
+        private string taskName;
+        private int taskCost;
+
+        private int taskDuration;
 
         private Mock<IDeveloperLogic> developerLogic;
 
         [TestInitialize]
         public void Setup()
         {
+            this.taskName = "One Task";
+            this.taskCost = 2000;
+            this.taskDuration = 1;
+
+            task = new Task()
+            {
+                Name = taskName,
+                Price = taskCost,
+                Duration = taskDuration,
+                Project = new Project("project")
+            };
+
             developerLogic = new Mock<IDeveloperLogic>(MockBehavior.Strict);
 
             rolDeveloper = new Rol(Rol.developer);
@@ -124,6 +141,76 @@ namespace WebApiTest
             developerLogic.VerifyAll();
 
             Assert.AreEqual(204, status.StatusCode);
+        }
+
+        [TestMethod]
+        public void GetAllTaskByDeveloper()
+        {
+            List<Task> tasks = new List<Task>();
+            tasks.Add(task);
+
+            List<TaskEntryOutModel> taskOut = new List<TaskEntryOutModel>();
+
+            foreach (var task in tasks)
+            {
+                taskOut.Add(new TaskEntryOutModel(task));
+            }
+
+            developerLogic.Setup(m => m.GetAllTask(developer.Id)).Returns(tasks);
+            var controller = new DeveloperController(developerLogic.Object);
+
+            var result = controller.GetAllTask(developer.Id);
+            var okResult = result as ObjectResult;
+            var taskResult = okResult.Value as List<TaskEntryOutModel>;
+
+            developerLogic.VerifyAll();
+
+            Assert.IsTrue(taskOut.First().Name == taskResult.First().Name);
+        }
+
+
+        [TestMethod]
+        public void GetAll()
+        {
+            List<User> developers = new List<User>();
+            developers.Add(developer);
+
+            var userLogic = new Mock<IUserLogic>(MockBehavior.Strict);
+
+            developerLogic.Setup(m => m.GetAll()).Returns(developers);
+            var controller = new DeveloperController(developerLogic.Object);
+
+            IActionResult result = controller.GetAll();
+            var status = result as ObjectResult;
+            var content = status.Value as List<UserOutModel>;
+
+            userLogic.VerifyAll();
+
+            Assert.IsTrue(content.Count == developers.Count);
+        }
+
+        [TestMethod]
+        public void GetAllProjectsByDeveloper()
+        {
+            List<Project> projects = new List<Project>();
+            projects.Add(project);
+            List<ProjectOutModel> projectOut = new List<ProjectOutModel>();
+
+            foreach (var project in projects)
+            {
+                projectOut.Add(new ProjectOutModel(project));
+            }
+
+            developerLogic.Setup(m => m.GetAllProjects(developer.Id)).Returns(projects);
+            var controller = new DeveloperController(developerLogic.Object);
+
+            var result = controller.GetAllProjectsDeveloper(developer.Id);
+            var okResult = result as ObjectResult;
+            var projectResult = okResult.Value as List<ProjectOutModel>;
+
+            developerLogic.VerifyAll();
+
+            Assert.IsTrue(projectOut.First().Id == projectResult.First().Id);
         }
 
     }

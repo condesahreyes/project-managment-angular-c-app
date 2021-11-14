@@ -5,9 +5,11 @@ using DataAccessInterface;
 using DataAccess;
 using Domain;
 using System;
+using System.Diagnostics.CodeAnalysis;
 
 namespace Factory
 {
+    [ExcludeFromCodeCoverage]
     public class RepositoryFactory
     {
         private readonly IServiceCollection _serviceCollection;

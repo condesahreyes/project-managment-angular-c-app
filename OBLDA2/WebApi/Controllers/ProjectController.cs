@@ -47,22 +47,6 @@ namespace WebApi.Controllers
             return Ok(projectsOut);
         }
 
-        [HttpGet("bugs")]
-        [AuthorizationFilter(Autorization.Administrator)]
-        public IActionResult GetTotalBugsByProjects()
-        {
-            IEnumerable<Project> projects = this.projectLogic.GetAll();
-
-            List<ProjectReportModel> projectsOut = new List<ProjectReportModel>();
-
-            foreach (Project project in projects)
-            {
-                projectsOut.Add(new ProjectReportModel(project));
-            }
-
-            return Ok(projectsOut);
-        }
-
         [HttpGet("{projectId}")]
         [AuthorizationFilter(Autorization.AllAutorization)]
         public IActionResult GetById(Guid projectId)
@@ -76,11 +60,8 @@ namespace WebApi.Controllers
         [AuthorizationFilter(Autorization.AllAutorization)]
         public IActionResult GetAllBugsByProject(Guid projectId)
         {
-            //Project project = new Project();
-            //project.Id = projectId;
-
-            IEnumerable<Bug> bugs = this.projectLogic.GetAllBugByProject(projectId);
-            return Ok(bugs);
+            List<Bug> bugs = this.projectLogic.GetAllBugByProject(projectId);
+            return Ok(BugEntryOutModel.ListBugs(bugs));
         }
 
         [HttpDelete("{id}")]

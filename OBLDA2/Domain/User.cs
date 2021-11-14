@@ -90,7 +90,7 @@ namespace Domain
         private static void ValidatePrice(int price)
         {
             if (price < 0 || price > 9999)
-                throw new InvalidDataObjException(invalidPassword);
+                throw new InvalidDataObjException(invalidPrice);
         }
 
         public override bool Equals(Object obj)

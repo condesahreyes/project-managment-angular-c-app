@@ -8,11 +8,14 @@ namespace BusinessLogicInterface
     {
         List<User> GetAll();
         List<Bug> GetAllBugs(Guid developer);
+        List<Project> GetAllProjects(Guid developerId);
+        List<Task> GetAllTask(Guid developerId);
+
+        Bug UpdateState(int id, string state, Guid userResolved);
+
         void AssignDeveloperToProject(Guid projectId, Guid developerId);
         void DeleteDeveloperInProject(Guid projectId, Guid developerId);
         int CountBugDoneByDeveloper(Guid developer);
-        Bug UpdateState(int id, string state, Guid userResolved);
-        List<Project> GetAllProjects(Guid developerId);
-        List<Task> GetAllTask(Guid developerId);
+        
     }
 }

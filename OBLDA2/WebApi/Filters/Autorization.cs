@@ -1,20 +1,19 @@
+using System.Diagnostics.CodeAnalysis;
 using Domain;
 
 namespace WebApi.Filters
 {
+    [ExcludeFromCodeCoverage]
     public static class Autorization
     {
         public const string AllAutorization = 
             Rol.administrator + "," + Rol.developer + "," + Rol.tester;
 
-        public const string Administrator =
-            Rol.administrator;
+        public const string Administrator = Rol.administrator;
 
-        public const string Developer =
-            Rol.developer;
+        public const string Developer = Rol.developer;
 
-        public const string Tester =
-            Rol.tester;
+        public const string Tester = Rol.tester;
 
         public const string DeveloperAndTester = Developer + ","+ Tester;
 
