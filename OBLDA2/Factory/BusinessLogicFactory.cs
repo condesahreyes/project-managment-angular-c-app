@@ -5,9 +5,11 @@ using BusinessLogic.Imports;
 using BusinessLogic.UserRol;
 using BusinessLogic;
 using Imports;
+using System.Diagnostics.CodeAnalysis;
 
 namespace Factory
 {
+    [ExcludeFromCodeCoverage]
     public class BusinessLogicFactory
     {
         private readonly IServiceCollection _serviceCollection;

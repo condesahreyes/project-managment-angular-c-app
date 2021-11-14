@@ -1,5 +1,8 @@
+using System.Diagnostics.CodeAnalysis;
+
 namespace OBLDA2.Models
 {
+    [ExcludeFromCodeCoverage]
     public class BugUpdateStateModel
     {
         public string State { get; set; }

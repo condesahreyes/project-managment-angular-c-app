@@ -1,7 +1,9 @@
+using System.Diagnostics.CodeAnalysis;
 using Domain;
 
 namespace OBLDA2.Models
 {
+    [ExcludeFromCodeCoverage]
     public class UserEntryModel
     {
         public string Rol { get; set; }

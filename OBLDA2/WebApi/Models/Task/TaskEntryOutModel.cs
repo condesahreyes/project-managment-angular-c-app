@@ -1,9 +1,11 @@
 ﻿using Domain;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 
 namespace OBLDA2.Models
 {
+    [ExcludeFromCodeCoverage]
     public class TaskEntryOutModel
     {
         public string Name { get; set; }

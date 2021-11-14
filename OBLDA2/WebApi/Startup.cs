@@ -6,9 +6,11 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.OpenApi.Models;
 using WebApi.Filters;
 using Factory;
+using System.Diagnostics.CodeAnalysis;
 
 namespace OBLDA2
 {
+    [ExcludeFromCodeCoverage]
     public class Startup
     {
         public Startup(IConfiguration configuration)
