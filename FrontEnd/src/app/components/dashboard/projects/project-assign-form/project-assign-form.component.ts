@@ -17,7 +17,7 @@ import { TesterService } from 'src/app/services/tester/tester.service';
 })
 export class ProjectAssignFormComponent implements OnInit {
 
-  displayedColumns = ['select', 'name', 'lastName', 'email', 'rol'];
+  displayedColumns = ['select', 'userName', 'name', 'lastName', 'email', 'rol'];
   users: User[] = [];
   usersProject: User[] = [];
   dataSource!: MatTableDataSource<User>;

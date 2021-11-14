@@ -17,7 +17,7 @@ import { TaskFormComponent } from './task-form/task-form.component';
 })
 export class TasksComponent implements OnInit {
 
-  displayedColumns = ['name', 'duration', 'cost'];
+  displayedColumns = ['name', 'project', 'duration', 'cost'];
   tasks: Task[] = [];
   dataSource!: MatTableDataSource<Task>;
 

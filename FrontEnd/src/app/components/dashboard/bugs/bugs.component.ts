@@ -99,6 +99,7 @@ export class BugsComponent implements OnInit {
   openForm() {
     const dialogRef = this.dialog.open(BugFormComponent, {
       width: '50%',
+      height: '95%',
       data: { project: this.project, bug: "" }
     });
     dialogRef.afterClosed().subscribe(() => { 
@@ -120,6 +121,7 @@ export class BugsComponent implements OnInit {
   update(bugToUpdate: any) {
     const dialogRef = this.dialog.open(BugFormComponent, {
       width: '50%',
+      height: '95%',
       data: { project: this.project, bug: bugToUpdate }
     });
     dialogRef.afterClosed().subscribe(() => { 
@@ -131,6 +133,7 @@ export class BugsComponent implements OnInit {
   updateState(bugToUpdate: any) {
     const dialogRef = this.dialog.open(BugDesaFormComponent, {
       width: '50%',
+      height: '95%',
       data: { bug: bugToUpdate }
     });
     dialogRef.afterClosed().subscribe(() => { 

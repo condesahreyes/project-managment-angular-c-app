@@ -16,7 +16,7 @@ import { BugsResolvedFormComponent } from './bugs-resolved-form/bugs-resolved-fo
 
 export class UsersComponent implements OnInit {
 
-  displayedColumns = ['name', 'lastName', 'email', 'rol','price', 'actions'];
+  displayedColumns = ['userName', 'name', 'lastName', 'email', 'rol','price', 'actions'];
   users: User[] = [];
   dataSource!: MatTableDataSource<User>;
 
@@ -61,6 +61,7 @@ export class UsersComponent implements OnInit {
       height: '100%'
     });
     dialogRef.afterClosed().subscribe(result => {
+      this.getUsersCreated();
     });
   }
 
