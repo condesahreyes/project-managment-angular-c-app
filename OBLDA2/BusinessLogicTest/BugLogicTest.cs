@@ -100,6 +100,25 @@ namespace BusinessLogicTest
         }
 
         [TestMethod]
+        public void CreateBugByUser()
+        {
+            Bug bugNull = null;
+
+            mock.Setup(x => x.Create(bug)).Returns(bug);
+            mock.Setup(x => x.GetById(bug.Id)).Returns(bugNull);
+            projectMock.Setup(x => x.ExistProjectWithName(It.IsAny<Project>())).Returns(project);
+            projectMock.Setup(x => x.IsUserAssignInProject(project.Name, It.IsAny<Guid>()));
+
+            BugLogic bugLogic = new BugLogic(mock.Object, stateMock.Object, projectMock.Object);
+
+            Bug bugSaved = bugLogic.CreateByUser(bug, Guid.NewGuid());
+
+            mock.VerifyAll();
+
+            Assert.AreEqual(bug, bugSaved);
+        }
+
+        [TestMethod]
         [ExpectedException(typeof(InvalidDataObjException))]
         public void CreateBugInvalidId()
         {

@@ -32,3 +32,4 @@ C:\Users\hreye\Desktop\OBL-Asadurian-Reyes\OBLDA2\BusinessLogicInterface\obj\Deb
 C:\Users\hreye\Desktop\OBL-Asadurian-Reyes\OBLDA2\BusinessLogicInterface\obj\Debug\net5.0\BusinessLogicInterface.dll
 C:\Users\hreye\Desktop\OBL-Asadurian-Reyes\OBLDA2\BusinessLogicInterface\obj\Debug\net5.0\ref\BusinessLogicInterface.dll
 C:\Users\hreye\Desktop\OBL-Asadurian-Reyes\OBLDA2\BusinessLogicInterface\obj\Debug\net5.0\BusinessLogicInterface.pdb
+C:\Users\hreye\Desktop\OBL-Asadurian-Reyes\OBLDA2\BusinessLogicInterface\bin\Debug\net5.0\CoverletSourceRootsMapping

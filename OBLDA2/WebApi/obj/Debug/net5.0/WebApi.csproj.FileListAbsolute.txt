@@ -158,3 +158,4 @@ C:\Users\hreye\Desktop\OBL-Asadurian-Reyes\OBLDA2\WebApi\obj\Debug\net5.0\WebApi
 C:\Users\hreye\Desktop\OBL-Asadurian-Reyes\OBLDA2\WebApi\obj\Debug\net5.0\ref\WebApi.dll
 C:\Users\hreye\Desktop\OBL-Asadurian-Reyes\OBLDA2\WebApi\obj\Debug\net5.0\WebApi.pdb
 C:\Users\hreye\Desktop\OBL-Asadurian-Reyes\OBLDA2\WebApi\obj\Debug\net5.0\WebApi.genruntimeconfig.cache
+C:\Users\hreye\Desktop\OBL-Asadurian-Reyes\OBLDA2\WebApi\bin\Debug\net5.0\CoverletSourceRootsMapping

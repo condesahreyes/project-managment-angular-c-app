@@ -32,3 +32,4 @@ C:\Users\hreye\Desktop\OBL-Asadurian-Reyes\OBLDA2\DataAccesInterface\obj\Debug\n
 C:\Users\hreye\Desktop\OBL-Asadurian-Reyes\OBLDA2\DataAccesInterface\obj\Debug\net5.0\DataAccessInterface.dll
 C:\Users\hreye\Desktop\OBL-Asadurian-Reyes\OBLDA2\DataAccesInterface\obj\Debug\net5.0\ref\DataAccessInterface.dll
 C:\Users\hreye\Desktop\OBL-Asadurian-Reyes\OBLDA2\DataAccesInterface\obj\Debug\net5.0\DataAccessInterface.pdb
+C:\Users\hreye\Desktop\OBL-Asadurian-Reyes\OBLDA2\DataAccesInterface\bin\Debug\net5.0\CoverletSourceRootsMapping

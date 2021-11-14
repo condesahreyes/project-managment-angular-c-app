@@ -52,3 +52,4 @@ C:\Users\hreye\Desktop\OBL-Asadurian-Reyes\OBLDA2\Factory\obj\Debug\net5.0\Facto
 C:\Users\hreye\Desktop\OBL-Asadurian-Reyes\OBLDA2\Factory\obj\Debug\net5.0\Factory.dll
 C:\Users\hreye\Desktop\OBL-Asadurian-Reyes\OBLDA2\Factory\obj\Debug\net5.0\ref\Factory.dll
 C:\Users\hreye\Desktop\OBL-Asadurian-Reyes\OBLDA2\Factory\obj\Debug\net5.0\Factory.pdb
+C:\Users\hreye\Desktop\OBL-Asadurian-Reyes\OBLDA2\Factory\bin\Debug\net5.0\CoverletSourceRootsMapping

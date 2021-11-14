@@ -44,3 +44,4 @@ C:\Users\hreye\Desktop\OBL-Asadurian-Reyes\OBLDA2\BusinessLogic\obj\Debug\net5.0
 C:\Users\hreye\Desktop\OBL-Asadurian-Reyes\OBLDA2\BusinessLogic\obj\Debug\net5.0\BusinessLogic.dll
 C:\Users\hreye\Desktop\OBL-Asadurian-Reyes\OBLDA2\BusinessLogic\obj\Debug\net5.0\ref\BusinessLogic.dll
 C:\Users\hreye\Desktop\OBL-Asadurian-Reyes\OBLDA2\BusinessLogic\obj\Debug\net5.0\BusinessLogic.pdb
+C:\Users\hreye\Desktop\OBL-Asadurian-Reyes\OBLDA2\BusinessLogic\bin\Debug\net5.0\CoverletSourceRootsMapping

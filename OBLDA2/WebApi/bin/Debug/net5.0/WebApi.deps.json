@@ -38,6 +38,7 @@
           "Microsoft.AspNetCore.Mvc.NewtonsoftJson": "5.0.10",
           "Microsoft.EntityFrameworkCore.Design": "5.0.10",
           "Swashbuckle.AspNetCore": "5.6.3",
+          "coverlet.msbuild": "3.1.0",
           "Microsoft.AspNetCore.Antiforgery": "5.0.0.0",
           "Microsoft.AspNetCore.Authentication.Abstractions": "5.0.0.0",
           "Microsoft.AspNetCore.Authentication.Cookies": "5.0.0.0",
@@ -327,6 +328,7 @@
           "WebApi.dll": {}
         }
       },
+      "coverlet.msbuild/3.1.0": {},
       "EntityFrameworkCore.MappingExtension/2.0.0": {
         "dependencies": {
           "Microsoft.EntityFrameworkCore": "5.0.10",
@@ -3180,6 +3182,13 @@
       "type": "project",
       "serviceable": false,
       "sha512": ""
+    },
+    "coverlet.msbuild/3.1.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-xOv5HZagq0I6uF4vt8NVVpwcA2W/uGmNcbLStao2eMk98RQH5NFPQuouh2nWWPSZrNIhGG/iYbBn2pO4s5i+ig==",
+      "path": "coverlet.msbuild/3.1.0",
+      "hashPath": "coverlet.msbuild.3.1.0.nupkg.sha512"
     },
     "EntityFrameworkCore.MappingExtension/2.0.0": {
       "type": "package",

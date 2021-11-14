@@ -32,3 +32,4 @@ C:\Users\hreye\Desktop\OBL-Asadurian-Reyes\OBLDA2\Imports\obj\Debug\net5.0\Impor
 C:\Users\hreye\Desktop\OBL-Asadurian-Reyes\OBLDA2\Imports\obj\Debug\net5.0\Imports.dll
 C:\Users\hreye\Desktop\OBL-Asadurian-Reyes\OBLDA2\Imports\obj\Debug\net5.0\ref\Imports.dll
 C:\Users\hreye\Desktop\OBL-Asadurian-Reyes\OBLDA2\Imports\obj\Debug\net5.0\Imports.pdb
+C:\Users\hreye\Desktop\OBL-Asadurian-Reyes\OBLDA2\Imports\bin\Debug\net5.0\CoverletSourceRootsMapping

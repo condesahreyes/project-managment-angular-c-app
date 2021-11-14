@@ -5,6 +5,9 @@ using BusinessLogic;
 using Exceptions;
 using Domain;
 using Moq;
+using System.Collections.Generic;
+using System.Linq;
+using System;
 
 namespace BusinessLogicTest
 {
@@ -86,6 +89,38 @@ namespace BusinessLogicTest
             task.Duration = invalidTaskDuration;
 
             Task taskCreated = taskLogic.Create(task);
+        }
+
+        [TestMethod]
+        public void GetAll()
+        {
+            List<Task> tasks = new List<Task>();
+            tasks.Add(task);
+
+            taskRepositoryMock.Setup(x => x.GetAll()).Returns(tasks);
+
+            List<Task> tasksDb = taskLogic.GetAll();
+
+            taskRepositoryMock.VerifyAll();
+
+            Assert.IsTrue(tasks.SequenceEqual(tasksDb));
+        }
+
+        [TestMethod]
+        public void GetAllByProject()
+        {
+            Project project = new Project();
+            project.Tasks = new List<Task>();
+            project.Tasks.Add(task);
+
+            projectLogicMock.Setup(x => x.Get(It.IsAny<Guid>()))
+                .Returns(project);
+
+            List<Task> tasksDb = taskLogic.GetAllByProject(project.Id);
+
+            taskRepositoryMock.VerifyAll();
+
+            Assert.IsTrue(tasksDb.SequenceEqual(project.Tasks));
         }
     }
 }
