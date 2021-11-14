@@ -30,7 +30,7 @@ export class BugImportFormComponent implements OnInit {
 
   import() {
     const myPath = this.form.value.pathValue;
-    console.log(myPath + " esoo");
+    
     this.importService.import(myPath).subscribe(() => {
       this.close();
     }, error => {

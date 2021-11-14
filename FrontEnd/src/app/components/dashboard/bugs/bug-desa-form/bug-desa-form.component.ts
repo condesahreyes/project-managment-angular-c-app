@@ -23,7 +23,6 @@ export class BugDesaFormComponent implements OnInit {
     private userController: UsersControllerService,
     public dialogRef: MatDialogRef<BugDesaFormComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any
-
   ) { }
  
   bugUpdate: BugUpdate = {
@@ -41,9 +40,7 @@ export class BugDesaFormComponent implements OnInit {
     Id: 0
   }
 
-  ngOnInit(): void {
-
-   }
+  ngOnInit(): void { }
 
   update() {
     this.bugState.State = this.newState;
