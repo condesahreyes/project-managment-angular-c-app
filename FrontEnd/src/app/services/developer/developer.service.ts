@@ -15,7 +15,8 @@ import { environment } from 'src/environments/environment';
 export class DeveloperService {
 
   constructor(
-    private http: HttpClient) { }
+    private http: HttpClient
+  ) { }
 
   private uri: string = `${environment.URI_BASE}/developers`;
 
@@ -25,8 +26,7 @@ export class DeveloperService {
   }
 
   deassignDeveloperToProject(projectId: string, developerId: string) {
-    return this.http.delete((this.uri + '/' + developerId + '/' + 'project' + '/' + projectId), {
-    });
+    return this.http.delete(this.uri + '/' + developerId + '/' + 'project' + '/' + projectId);
   }
 
   getAll(): Observable<User[]> {
@@ -55,4 +55,5 @@ export class DeveloperService {
       BugId: bugToUpdate.Id
     });
   }
+
 }

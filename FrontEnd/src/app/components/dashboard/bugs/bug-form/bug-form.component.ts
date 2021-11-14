@@ -6,7 +6,6 @@ import { UsersControllerService } from 'src/app/controllers/users-controller.ser
 import { Bug } from 'src/app/models/bug/Bug';
 import { BugUpdate } from 'src/app/models/bug/BugUpdate';
 import { ProjectOut } from 'src/app/models/project/ProjectOut';
-import { UserEntryModel } from 'src/app/models/users/UserEntryModel';
 import { BugService } from 'src/app/services/bug/bug.service';
 
 @Component({
@@ -19,7 +18,6 @@ export class BugFormComponent implements OnInit {
   edit: boolean = false;
   form: FormGroup;
   projects: ProjectOut[] = [];
-  user!: UserEntryModel;
   errorMesage: string = "";
 
   constructor(
@@ -37,13 +35,10 @@ export class BugFormComponent implements OnInit {
       version: [this.data.bug.version, Validators.required],
       id: [this.data.bug.id, Validators.required],
       state: [this.data.bug.state, Validators.required],
-      project: [this.data.project, Validators.required],
+      project: [this.data.bug.project, this.data.project === undefined ? Validators.required : false ],
       duration: [this.data.bug.duration, Validators.required]
     })
 
-    if(this.data.project === null){
-      this.form.addControl('project', new FormControl([this.data.project, Validators.required]))
-    }
   }
 
   bugUpdate: BugUpdate = {
@@ -70,7 +65,7 @@ export class BugFormComponent implements OnInit {
   ngOnInit(): void {
     this.getProjects();
 
-    if (this.data.domain) {
+    if (this.data.bug !== "") {
       this.edit = true;
     }
   }
@@ -86,7 +81,7 @@ export class BugFormComponent implements OnInit {
     this.bug.Domain = this.form.value.domain;
     this.bug.Version = this.form.value.version;
     this.bug.State = this.form.value.state;
-    this.bug.Project = (this.data.project === undefined) ? this.form.value.project : this.data;
+    this.bug.Project = (this.data.project === undefined) ? this.form.value.project : this.data.project.name;
     this.bug.CreatedBy = this.userController.getUserLogued().id;
 
     return this.bugService.createBug(this.bug).subscribe(() => {
@@ -98,15 +93,15 @@ export class BugFormComponent implements OnInit {
   }
 
   update() {
-    this.bugUpdate.Project = this.data.project;
+    this.bugUpdate.Project =  this.form.value.project;
     this.bugUpdate.Name = this.form.value.name;
     this.bugUpdate.Domain = this.form.value.domain;
     this.bugUpdate.Version = this.form.value.version;
     this.bugUpdate.State = this.form.value.state;
-    this.bugUpdate.UserId = this.user.id;
+    this.bugUpdate.UserId = this.userController.getUserLogued().id;
     this.bugUpdate.Duration = this.form.value.duration;
 
-    return this.bugService.updateBug(this.data.id, this.bugUpdate).subscribe(() => {
+    return this.bugService.updateBug(this.data.bug.id, this.bugUpdate).subscribe(() => {
       this.close();
     }, error => {
       this.errorMesage = error.error;

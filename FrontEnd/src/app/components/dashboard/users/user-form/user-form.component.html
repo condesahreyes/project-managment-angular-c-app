@@ -34,14 +34,14 @@
 
         <mat-form-field class="example-full-width" appearance="fill">
             <mat-label>Price</mat-label>
-            <input type="text" matInput autocomplete="off" formControlName="price" required >
+            <input type="number" matInput autocomplete="off" formControlName="price" min="0" max="9999" maxlength="4" required>
         </mat-form-field>
 
         <div fxLayout="row" fxLayoutAlign="space-between center" fxLayoutGap=10px>
 
             <button type="submit" [disabled]="form.invalid" class="ancho button" mat-raised-button color="primary" >Create</button>
 
-            <button class="ancho button" mat-raised-button color="primary" (click)="close()">Cancel</button>
+            <button class="ancho button" mat-raised-button color="primary" type="button" (click)="close()">Cancel</button>
         </div>
     </div>
 </form>

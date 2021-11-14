@@ -120,9 +120,12 @@ export class BugsComponent implements OnInit {
   update(bugToUpdate: any) {
     const dialogRef = this.dialog.open(BugFormComponent, {
       width: '50%',
-      data: { bug: bugToUpdate }
+      data: { project: this.project, bug: bugToUpdate }
     });
-    dialogRef.afterClosed().subscribe();
+    dialogRef.afterClosed().subscribe(() => { 
+      this.getColumns();
+      this.getBugs();
+    });
   }
 
   updateState(bugToUpdate: any) {

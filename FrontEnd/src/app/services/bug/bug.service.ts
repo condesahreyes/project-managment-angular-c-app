@@ -1,9 +1,8 @@
 import { HttpClient } from '@angular/common/http';
-import { Injectable, Input } from '@angular/core';
+import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Bug } from 'src/app/models/bug/Bug';
 import { BugUpdate } from 'src/app/models/bug/BugUpdate';
-import { UserIdModel } from 'src/app/models/users/UserIdModel';
 import { environment } from 'src/environments/environment';
 
 @Injectable({
@@ -11,7 +10,9 @@ import { environment } from 'src/environments/environment';
 })
 export class BugService {
 
-  constructor(private http: HttpClient) { }
+  constructor(
+    private http: HttpClient
+  ) { }
 
   private uri: string = `${environment.URI_BASE}/bugs`;
 
@@ -28,23 +29,19 @@ export class BugService {
     });
   }
 
-  getBug(idBug : string): Observable<Bug> {
-    return this.http.get<Bug>(this.uri + '/' + idBug, {
-    });
+  getBug(idBug: string): Observable<Bug> {
+    return this.http.get<Bug>(this.uri + '/' + idBug);
   }
 
   getBugs(): Observable<Bug[]> {
-    return this.http.get<Bug[]>(this.uri, {
-
-    });
+    return this.http.get<Bug[]>(this.uri);
   }
 
-  deleteBug(idBug : number, userId: string){
-    return this.http.delete<UserIdModel>(this.uri + '/' + idBug + '/byUser/' +userId
-    );
+  deleteBug(idBug: number, userId: string) {
+    return this.http.delete<string>(this.uri + '/' + idBug + '/byUser/' + userId);
   }
 
-  updateBug(idBug : any, bug: BugUpdate): Observable<any> {
+  updateBug(idBug: any, bug: BugUpdate): Observable<any> {
     return this.http.put<BugUpdate>(this.uri + '/' + idBug, {
       Project: bug.Project,
       Name: bug.Name,
@@ -55,4 +52,5 @@ export class BugService {
       Duration: bug.Duration
     });
   }
+
 }

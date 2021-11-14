@@ -11,7 +11,9 @@ import { UserEntryModel } from 'src/app/models/users/UserEntryModel';
 })
 export class SessionService {
 
-  constructor(private http: HttpClient) { }
+  constructor(
+    private http: HttpClient
+  ) { }
 
   private uri: string = `${environment.URI_BASE}/sessions`;
 
@@ -47,7 +49,6 @@ export class SessionService {
   getUserLogged(): Observable<UserEntryModel> {
     const tokenUser = this.getToken();
     return this.http.get<UserEntryModel>(this.uri + '/' + tokenUser);
-
   }
 
 }

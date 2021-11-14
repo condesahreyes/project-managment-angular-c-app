@@ -1,6 +1,7 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatDialogRef } from '@angular/material/dialog';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { ImportService } from 'src/app/services/import/import.service';
 
 @Component({
@@ -10,14 +11,14 @@ import { ImportService } from 'src/app/services/import/import.service';
 })
 export class BugImportFormComponent implements OnInit {
 
-  //path : string ="";
-
+  errorMesage: string = "";
 
   constructor(
     private importService: ImportService,
-    public dialogRef: MatDialogRef<BugImportFormComponent>
-    ) { }
-    
+    public dialogRef: MatDialogRef<BugImportFormComponent>,
+    private snackBar: MatSnackBar,
+  ) { }
+
   path = new FormControl('', Validators.required);
 
   public form = new FormGroup({
@@ -27,10 +28,23 @@ export class BugImportFormComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  import(){
-    const myPath = this.form.value.pathValue;  
+  import() {
+    const myPath = this.form.value.pathValue;
     console.log(myPath + " esoo");
-    this.importService.import(myPath).subscribe(() => this.close());
+    this.importService.import(myPath).subscribe(() => {
+      this.close();
+    }, error => {
+      this.errorMesage = error.error;
+      this.error(this.errorMesage);
+    });
+  }
+
+  error(message: string) {
+    this.snackBar.open(message, 'error', {
+      duration: 5000,
+      horizontalPosition: 'center',
+      verticalPosition: 'bottom'
+    });
   }
 
   close() {

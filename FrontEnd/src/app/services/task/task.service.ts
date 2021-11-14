@@ -10,7 +10,8 @@ import { environment } from 'src/environments/environment';
 export class TaskService {
 
   constructor(
-    private http: HttpClient) { }
+    private http: HttpClient
+  ) { }
 
   private uri: string = `${environment.URI_BASE}/tasks`;
 
@@ -27,7 +28,8 @@ export class TaskService {
     return this.http.get<Task[]>(this.uri);
   }
 
-  getTasksByProject(idProject : string): Observable<Task[]> {
-    return this.http.get<Task[]>(this.uri+'/'+idProject);
+  getTasksByProject(idProject: string): Observable<Task[]> {
+    return this.http.get<Task[]>(this.uri + '/' + idProject);
   }
+  
 }
