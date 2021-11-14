@@ -12,9 +12,6 @@ namespace BusinessLogicInterface
         Bug Update(int id, Bug bugUpdate, Guid userId);
 
         List<Bug> GetAll();
-        List<Bug> GetBugsByName(string name);
-        List<Bug> GetBugsByState(string state);
-        List<Bug> GetBugsByProject(string project);
 
         void Delete(int id, Guid userId);
     }

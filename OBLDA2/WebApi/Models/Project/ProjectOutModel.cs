@@ -53,5 +53,17 @@ namespace OBLDA2.Models
                 }
         }
 
+        public static List<ProjectOutModel> ToListModel(List<Project> projects)
+        {
+            List<ProjectOutModel> projectModel = new List<ProjectOutModel>();
+
+            foreach (Project project in projects)
+            {
+                projectModel.Add(new ProjectOutModel(project));
+            }
+
+            return projectModel;
+        }
+
     }
 }

@@ -80,7 +80,8 @@ namespace WebApi.Controllers
         {
             List<Project> projects = this.developerLogic.GetAllProjects(idDeveloper);
 
-            return (StatusCode((int)HttpStatusCode.OK, projects));
+            return (StatusCode((int)HttpStatusCode.OK, ProjectOutModel.ToListModel(projects)));
+
         }
 
         [HttpGet("{idDeveloper}/tasks")]

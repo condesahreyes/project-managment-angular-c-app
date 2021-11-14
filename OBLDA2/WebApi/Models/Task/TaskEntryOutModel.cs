@@ -15,6 +15,14 @@ namespace OBLDA2.Models
 
         public TaskEntryOutModel() { }
 
+        public TaskEntryOutModel(Task task) {
+            this.Name = task.Name;
+            this.Cost = task.Price;
+            this.Duration = task.Duration;
+            this.Project = task.Project.Id.ToString();
+        }
+
+
         public Task ToEntity() => new Task
         {
             Id = Guid.NewGuid(),

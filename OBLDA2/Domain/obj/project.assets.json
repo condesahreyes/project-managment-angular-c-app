@@ -94,19 +94,19 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\hreye\\.nuget\\packages\\": {}
+    "C:\\Users\\Diego\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\hreye\\Desktop\\OBL-Asadurian-Reyes\\OBLDA2\\Domain\\Domain.csproj",
+      "projectUniqueName": "C:\\Users\\Diego\\Desktop\\OBL-Asadurian-Reyes\\OBLDA2\\Domain\\Domain.csproj",
       "projectName": "Domain",
-      "projectPath": "C:\\Users\\hreye\\Desktop\\OBL-Asadurian-Reyes\\OBLDA2\\Domain\\Domain.csproj",
-      "packagesPath": "C:\\Users\\hreye\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\hreye\\Desktop\\OBL-Asadurian-Reyes\\OBLDA2\\Domain\\obj\\",
+      "projectPath": "C:\\Users\\Diego\\Desktop\\OBL-Asadurian-Reyes\\OBLDA2\\Domain\\Domain.csproj",
+      "packagesPath": "C:\\Users\\Diego\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\Diego\\Desktop\\OBL-Asadurian-Reyes\\OBLDA2\\Domain\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\hreye\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\Diego\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -120,8 +120,8 @@
         "net5.0": {
           "targetAlias": "net5.0",
           "projectReferences": {
-            "C:\\Users\\hreye\\Desktop\\OBL-Asadurian-Reyes\\OBLDA2\\Exceptions\\Exceptions.csproj": {
-              "projectPath": "C:\\Users\\hreye\\Desktop\\OBL-Asadurian-Reyes\\OBLDA2\\Exceptions\\Exceptions.csproj"
+            "C:\\Users\\Diego\\Desktop\\OBL-Asadurian-Reyes\\OBLDA2\\Exceptions\\Exceptions.csproj": {
+              "projectPath": "C:\\Users\\Diego\\Desktop\\OBL-Asadurian-Reyes\\OBLDA2\\Exceptions\\Exceptions.csproj"
             }
           }
         }
@@ -158,7 +158,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.403\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.400\\RuntimeIdentifierGraph.json"
       }
     }
   }

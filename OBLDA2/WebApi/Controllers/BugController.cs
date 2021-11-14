@@ -39,33 +39,6 @@ namespace WebApi.Controllers
             return Ok(BugEntryOutModel.ListBugs(bugs));
         }
 
-        [HttpGet("byName")]
-        [AuthorizationFilter(Autorization.AdministratorAndTester)]
-        public IActionResult GetBugsByName(string name)
-        {
-            List<Bug> bugs = this.bugLogic.GetBugsByName(name);
-
-            return Ok(BugEntryOutModel.ListBugs(bugs));
-        }
-
-        [HttpGet("byState")]
-        [AuthorizationFilter(Autorization.AdministratorAndTester)]
-        public IActionResult GetBugsByState(string state)
-        {
-            List<Bug> bugs = this.bugLogic.GetBugsByState(state);
-
-            return Ok(BugEntryOutModel.ListBugs(bugs));
-        }
-
-        [HttpGet("byProject/{project}")]
-        [AuthorizationFilter(Autorization.AdministratorAndTester)]
-        public IActionResult GetBugsByProject(string project)
-        {
-            List<Bug> bugs = this.bugLogic.GetBugsByProject(project);
-
-            return Ok(BugEntryOutModel.ListBugs(bugs));
-        }
-
         [HttpGet("{bugId}")]
         [AuthorizationFilter(Autorization.AdministratorAndTester)]
         public IActionResult GetById(int bugId, UserIdModel user)

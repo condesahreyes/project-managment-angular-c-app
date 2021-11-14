@@ -17,11 +17,28 @@ namespace WebApiTest
         private ProjectEntryModel projectEntryModel;
         private Mock<IProjectLogic> projectLogic;
         private Project project;
+        private Bug bug;
+        private User user;
+        private static State activeState = new State(State.active);
+        private List<Rol> roles;
+
+
 
         [TestInitialize]
         public void Setup()
         {
+            roles = new List<Rol>
+            {
+                new Rol(Rol.tester),
+                new Rol(Rol.administrator),
+                new Rol(Rol.developer),
+            };
+
+            user = new User("Hernán", "Reyes", "hreyes", "contraseña",
+               "hreyes.condesa@gmail.com", roles[0], 0);
             project = new Project("Project - GXC");
+            bug = new Bug(project, 1, "Error de login",
+              "Intento de sesión", "3.0", activeState, 0);
 
             projectEntryModel = new ProjectEntryModel(project);
             projectLogic = new Mock<IProjectLogic>(MockBehavior.Strict);
@@ -113,6 +130,49 @@ namespace WebApiTest
 
             projectLogic.VerifyAll();
             Assert.AreEqual(204, status.StatusCode);
+        }
+
+        [TestMethod]
+        public void GetAllBugsByProject()
+        {
+            List<Bug> bugs = new List<Bug>();
+            bugs.Add(bug);
+            List<BugEntryOutModel> bugsOut = new List<BugEntryOutModel>();
+
+            foreach (var bug in bugs)
+            {
+                bugsOut.Add(new BugEntryOutModel(bug));
+            }
+
+            projectLogic.Setup(m => m.GetAllBugByProject(project.Id)).Returns(bugs);
+            var controller = new ProjectController(projectLogic.Object);
+
+            var result = controller.GetAllBugsByProject(project.Id);
+            var okResult = result as OkObjectResult;
+            var bugsResult = okResult.Value as List<BugEntryOutModel>;
+
+            projectLogic.VerifyAll();
+
+            Assert.IsTrue(bugsOut.First().Id == bugsResult.First().Id);
+        }
+
+        [TestMethod]
+        public void GetAllUsersByProject()
+        {
+            List<User> users = new List<User>();
+            users.Add(user);
+            List<UserOutModel> usersOut = UserOutModel.ListUser(users);
+
+            projectLogic.Setup(m => m.GetAllUsersInOneProject(project.Id)).Returns(users);
+            var controller = new ProjectController(projectLogic.Object);
+
+            var result = controller.GetAllUsersByProject(project.Id);
+            var okResult = result as ObjectResult;
+            var usersResult = okResult.Value as IEnumerable<UserOutModel>;
+
+            projectLogic.VerifyAll();
+
+            Assert.IsTrue(usersOut.First().Id == usersResult.First().Id);
         }
     }
 }
