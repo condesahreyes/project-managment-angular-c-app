@@ -1,0 +1,10 @@
+{
+  "version": 2,
+  "dgSpecHash": "mFFvth6qMgLPK6oZ3bOmERyQe4z4lQgc29gWNnr6mmY9xkUpsPJbEcV79nlsVjlEGsg0tq+tzjChyVpQEYfO4g==",
+  "success": true,
+  "projectFilePath": "C:\\Users\\Diego\\Desktop\\OBL-Asadurian-Reyes\\OBLDA2\\Imports\\Imports.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\Diego\\.nuget\\packages\\coverlet.msbuild\\3.1.0\\coverlet.msbuild.3.1.0.nupkg.sha512"
+  ],
+  "logs": []
+}

@@ -25,7 +25,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Factory", "Factory\Factory.
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Exceptions", "Exceptions\Exceptions.csproj", "{33E80496-060C-4212-8FB8-B16AAB73BC47}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Imports", "Imports\Imports.csproj", "{036AE9D5-692F-4E8F-B665-910047B63211}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Imports", "Imports\Imports.csproj", "{036AE9D5-692F-4E8F-B665-910047B63211}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

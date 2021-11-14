@@ -16,7 +16,7 @@ namespace BusinessLogic
 
         public SessionLogic(IUserLogic userLogic)
         {
-            userLogic = userLogic;
+           this.userLogic = userLogic;
         }
 
         public List<string> GetAllTokens()
@@ -84,8 +84,6 @@ namespace BusinessLogic
 
         public User GetUserWithToekn(string token)
         {
-            User userToReturn = null;
-
             if (IsCorrectToken(token))
             {
                 List<User> users = userLogic.GetAll();
@@ -93,12 +91,12 @@ namespace BusinessLogic
                 {
                     if (user.Token != null && user.Token.Equals(token))
                     {
-                        userToReturn = user;
+                        return user;
                     }
                 }
             }
 
-            return userToReturn;
+            return null;
         }
     }
 }

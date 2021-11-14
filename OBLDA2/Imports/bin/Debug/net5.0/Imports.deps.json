@@ -1,0 +1,58 @@
+{
+  "runtimeTarget": {
+    "name": ".NETCoreApp,Version=v5.0",
+    "signature": ""
+  },
+  "compilationOptions": {},
+  "targets": {
+    ".NETCoreApp,Version=v5.0": {
+      "Imports/1.0.0": {
+        "dependencies": {
+          "Domain": "1.0.0",
+          "coverlet.msbuild": "3.1.0"
+        },
+        "runtime": {
+          "Imports.dll": {}
+        }
+      },
+      "coverlet.msbuild/3.1.0": {},
+      "Domain/1.0.0": {
+        "dependencies": {
+          "Exceptions": "1.0.0"
+        },
+        "runtime": {
+          "Domain.dll": {}
+        }
+      },
+      "Exceptions/1.0.0": {
+        "runtime": {
+          "Exceptions.dll": {}
+        }
+      }
+    }
+  },
+  "libraries": {
+    "Imports/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "coverlet.msbuild/3.1.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-xOv5HZagq0I6uF4vt8NVVpwcA2W/uGmNcbLStao2eMk98RQH5NFPQuouh2nWWPSZrNIhGG/iYbBn2pO4s5i+ig==",
+      "path": "coverlet.msbuild/3.1.0",
+      "hashPath": "coverlet.msbuild.3.1.0.nupkg.sha512"
+    },
+    "Domain/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "Exceptions/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    }
+  }
+}

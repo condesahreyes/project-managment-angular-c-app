@@ -1,0 +1,10 @@
+{
+  "version": 2,
+  "dgSpecHash": "nX7X+i4tc80opfSK2r221BWu19/RI2fCSyEK0CwxObp26/7WcQ8rLbAxzLwZY4KTd0IUB4nld36R6FIquwoOHw==",
+  "success": true,
+  "projectFilePath": "C:\\Users\\Diego\\Desktop\\OBL-Asadurian-Reyes\\OBLDA2\\DataAccesInterface\\DataAccessInterface.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\Diego\\.nuget\\packages\\coverlet.msbuild\\3.1.0\\coverlet.msbuild.3.1.0.nupkg.sha512"
+  ],
+  "logs": []
+}
