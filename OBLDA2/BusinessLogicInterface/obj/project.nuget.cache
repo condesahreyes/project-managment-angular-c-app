@@ -1,10 +1,10 @@
 {
   "version": 2,
-  "dgSpecHash": "wINgCg7Irwqr2RISOWulMzizivG8lpUzaLPuPGen5YoCYgsJbzNNovFbsl6yigCm5QHlEuFSfuHymb146+x4Bw==",
+  "dgSpecHash": "joflD5YjuFVwJpQNE8D54fF9x+J/fP1WINSFiQ3idhfrRh7wwCwy3lcVTYiRFokiOzim+QcPPuphi+GtCnvPPg==",
   "success": true,
-  "projectFilePath": "C:\\Users\\Diego\\Desktop\\OBL-Asadurian-Reyes\\OBLDA2\\BusinessLogicInterface\\BusinessLogicInterface.csproj",
+  "projectFilePath": "C:\\Users\\hreye\\Desktop\\OBL-Asadurian-Reyes\\OBLDA2\\BusinessLogicInterface\\BusinessLogicInterface.csproj",
   "expectedPackageFiles": [
-    "C:\\Users\\Diego\\.nuget\\packages\\coverlet.msbuild\\3.1.0\\coverlet.msbuild.3.1.0.nupkg.sha512"
+    "C:\\Users\\hreye\\.nuget\\packages\\coverlet.msbuild\\3.1.0\\coverlet.msbuild.3.1.0.nupkg.sha512"
   ],
   "logs": []
 }
