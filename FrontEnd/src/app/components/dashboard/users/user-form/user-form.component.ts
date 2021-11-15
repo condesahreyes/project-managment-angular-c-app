@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { User } from 'src/app/models/users/User';
+import { SessionService } from 'src/app/services/session/session.service';
 import { UserService } from 'src/app/services/user/user.service';
 
 @Component({
@@ -14,15 +15,16 @@ export class UserFormComponent implements OnInit {
 
   form: FormGroup;
   errorMesage: string = "";
+  usersRolPrice = ["desarrollador", "tester"];
 
   constructor(
     private userService: UserService,
     private fb: FormBuilder,
     private snackBar: MatSnackBar,
     public dialogRef: MatDialogRef<UserFormComponent>,
+    public sessionService : SessionService,
     @Inject(MAT_DIALOG_DATA) public data: any
   ) {
-
     this.form = this.fb.group({
       name: ["", Validators.required],
       lastName: ["", Validators.required],
@@ -30,8 +32,7 @@ export class UserFormComponent implements OnInit {
       rol: ["", Validators.required],
       email: ["", Validators.required],
       password: ["", Validators.required],
-      price: ["", Validators.required]
-
+      price: [""]
     })
   }
 
@@ -54,7 +55,7 @@ export class UserFormComponent implements OnInit {
     this.user.email = this.form.value.email;
     this.user.password = this.form.value.password;
     this.user.rol = this.form.value.rol;
-    this.user.price = this.form.value.price;
+    this.user.price = (this.usersRolPrice.includes(this.form.value.rol.toLowerCase())) ? this.form.value.price : 0;
 
     return this.userService.createUser(this.user).subscribe(() => {
       this.close();

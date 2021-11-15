@@ -16,6 +16,7 @@ export class LoginComponent implements OnInit {
   form: FormGroup;
   loading = false;
   errorMesage: string = "";
+  buttonDisabled!: boolean;
 
   constructor(
     private fb: FormBuilder,
@@ -37,9 +38,12 @@ export class LoginComponent implements OnInit {
     Password: ""
   }
 
-  ngOnInit(): void { }
+  ngOnInit(): void { 
+    this.buttonDisabled = false;
+  }
 
   onLogin() {
+    this.buttonDisabled=true;
     this.login.Email = this.form.value.email;
     this.login.Password = this.form.value.password;
 
@@ -47,6 +51,7 @@ export class LoginComponent implements OnInit {
       this.sessionService.saveToken(data.token);
       this.loadUser();
     }, error => {
+      this.buttonDisabled=false;
       this.errorMesage = error.error;
       this.error(this.errorMesage);
       this.form.reset();

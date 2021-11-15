@@ -98,7 +98,7 @@ export class ProjectsComponent implements OnInit {
 
   assignUser(project: any) {
     const dialogRef = this.dialog.open(ProjectAssignFormComponent, {
-      width: '50%',
+      width: '80%',
       data: project
     });
     dialogRef.afterClosed().subscribe();

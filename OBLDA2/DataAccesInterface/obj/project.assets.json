@@ -112,19 +112,19 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\Diego\\.nuget\\packages\\": {}
+    "C:\\Users\\hreye\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Diego\\Desktop\\OBL-Asadurian-Reyes\\OBLDA2\\DataAccesInterface\\DataAccessInterface.csproj",
+      "projectUniqueName": "C:\\Users\\hreye\\Desktop\\OBL-Asadurian-Reyes\\OBLDA2\\DataAccesInterface\\DataAccessInterface.csproj",
       "projectName": "DataAccessInterface",
-      "projectPath": "C:\\Users\\Diego\\Desktop\\OBL-Asadurian-Reyes\\OBLDA2\\DataAccesInterface\\DataAccessInterface.csproj",
-      "packagesPath": "C:\\Users\\Diego\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Diego\\Desktop\\OBL-Asadurian-Reyes\\OBLDA2\\DataAccesInterface\\obj\\",
+      "projectPath": "C:\\Users\\hreye\\Desktop\\OBL-Asadurian-Reyes\\OBLDA2\\DataAccesInterface\\DataAccessInterface.csproj",
+      "packagesPath": "C:\\Users\\hreye\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\hreye\\Desktop\\OBL-Asadurian-Reyes\\OBLDA2\\DataAccesInterface\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\Diego\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\hreye\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -138,8 +138,8 @@
         "net5.0": {
           "targetAlias": "net5.0",
           "projectReferences": {
-            "C:\\Users\\Diego\\Desktop\\OBL-Asadurian-Reyes\\OBLDA2\\Domain\\Domain.csproj": {
-              "projectPath": "C:\\Users\\Diego\\Desktop\\OBL-Asadurian-Reyes\\OBLDA2\\Domain\\Domain.csproj"
+            "C:\\Users\\hreye\\Desktop\\OBL-Asadurian-Reyes\\OBLDA2\\Domain\\Domain.csproj": {
+              "projectPath": "C:\\Users\\hreye\\Desktop\\OBL-Asadurian-Reyes\\OBLDA2\\Domain\\Domain.csproj"
             }
           }
         }
@@ -176,7 +176,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.400\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.403\\RuntimeIdentifierGraph.json"
       }
     }
   }
