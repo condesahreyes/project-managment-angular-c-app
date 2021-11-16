@@ -1,10 +1,10 @@
 {
   "version": 2,
-  "dgSpecHash": "/fgp14FLx8Q3pG8TwBIs7+ytWCl2Bmtc7Twl01ODdXjDszRkk0h/wIF/9JwIyfvNhiPMgSfJoQ96J/nilD4FBQ==",
+  "dgSpecHash": "pY+hmgMeATd2nJ3eCsBodTfhBmGf4vDEX5KNDOe7XrI8MpXEAUEiBe6Yd7iZXoWWp4CVQV5iXydI5BCUxoLvnw==",
   "success": true,
-  "projectFilePath": "C:\\Users\\hreye\\Desktop\\OBL-Asadurian-Reyes\\JsonImport\\JsonImport\\JsonImport.csproj",
+  "projectFilePath": "C:\\Users\\Diego\\Desktop\\OBL-Asadurian-Reyes\\JsonImport\\JsonImport\\JsonImport.csproj",
   "expectedPackageFiles": [
-    "C:\\Users\\hreye\\.nuget\\packages\\newtonsoft.json\\13.0.1\\newtonsoft.json.13.0.1.nupkg.sha512"
+    "C:\\Users\\Diego\\.nuget\\packages\\newtonsoft.json\\13.0.1\\newtonsoft.json.13.0.1.nupkg.sha512"
   ],
   "logs": []
 }

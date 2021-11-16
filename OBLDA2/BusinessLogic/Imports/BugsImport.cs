@@ -73,13 +73,15 @@ namespace Imports
 
                 List<BugImportModel> bugsModel = bugImportGeneric.ImportBugs(fileAddress);
 
-                return BugImportModel.ListBugs(bugsModel);
+                return ListBugs(bugsModel);
 
             }catch
             {
                 throw new InvalidDataObjException(invalidFormat);
             }
         }
+
+
 
         private Assembly GetAssembly(string extension)
         {
@@ -118,6 +120,31 @@ namespace Imports
 
             return types;
         }
+        private Bug ModelToEntity(BugImportModel bugModel)
+        {
+            return new Bug() 
+            {
+                Project = new Project(bugModel.Project),
+                Id = bugModel.Id,
+                Name = bugModel.Name,
+                Domain = bugModel.Domain,
+                Version = bugModel.Version,
+                State = new State(bugModel.State),
+                Duration = bugModel.Duration
+            };
+            
+        }
 
+        private List<Bug> ListBugs(List<BugImportModel> bugsModel)
+        {
+            List<Bug> bugs = new List<Bug>();
+
+            foreach (BugImportModel bug in bugsModel)
+            {
+                bugs.Add(ModelToEntity(bug));
+            }
+
+            return bugs;
+        }
     }
 }

@@ -8,29 +8,6 @@
           "build/coverlet.msbuild.props": {},
           "build/coverlet.msbuild.targets": {}
         }
-      },
-      "Domain/1.0.0": {
-        "type": "project",
-        "framework": ".NETCoreApp,Version=v5.0",
-        "dependencies": {
-          "Exceptions": "1.0.0"
-        },
-        "compile": {
-          "bin/placeholder/Domain.dll": {}
-        },
-        "runtime": {
-          "bin/placeholder/Domain.dll": {}
-        }
-      },
-      "Exceptions/1.0.0": {
-        "type": "project",
-        "framework": ".NETCoreApp,Version=v5.0",
-        "compile": {
-          "bin/placeholder/Exceptions.dll": {}
-        },
-        "runtime": {
-          "bin/placeholder/Exceptions.dll": {}
-        }
       }
     }
   },
@@ -93,38 +70,27 @@
         "coverlet.msbuild.3.1.0.nupkg.sha512",
         "coverlet.msbuild.nuspec"
       ]
-    },
-    "Domain/1.0.0": {
-      "type": "project",
-      "path": "../Domain/Domain.csproj",
-      "msbuildProject": "../Domain/Domain.csproj"
-    },
-    "Exceptions/1.0.0": {
-      "type": "project",
-      "path": "../Exceptions/Exceptions.csproj",
-      "msbuildProject": "../Exceptions/Exceptions.csproj"
     }
   },
   "projectFileDependencyGroups": {
     "net5.0": [
-      "Domain >= 1.0.0",
       "coverlet.msbuild >= 3.1.0"
     ]
   },
   "packageFolders": {
-    "C:\\Users\\hreye\\.nuget\\packages\\": {}
+    "C:\\Users\\Diego\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\hreye\\Desktop\\OBL-Asadurian-Reyes\\OBLDA2\\Imports\\Imports.csproj",
+      "projectUniqueName": "C:\\Users\\Diego\\Desktop\\OBL-Asadurian-Reyes\\OBLDA2\\Imports\\Imports.csproj",
       "projectName": "Imports",
-      "projectPath": "C:\\Users\\hreye\\Desktop\\OBL-Asadurian-Reyes\\OBLDA2\\Imports\\Imports.csproj",
-      "packagesPath": "C:\\Users\\hreye\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\hreye\\Desktop\\OBL-Asadurian-Reyes\\OBLDA2\\Imports\\obj\\",
+      "projectPath": "C:\\Users\\Diego\\Desktop\\OBL-Asadurian-Reyes\\OBLDA2\\Imports\\Imports.csproj",
+      "packagesPath": "C:\\Users\\Diego\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\Diego\\Desktop\\OBL-Asadurian-Reyes\\OBLDA2\\Imports\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\hreye\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\Diego\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -137,11 +103,7 @@
       "frameworks": {
         "net5.0": {
           "targetAlias": "net5.0",
-          "projectReferences": {
-            "C:\\Users\\hreye\\Desktop\\OBL-Asadurian-Reyes\\OBLDA2\\Domain\\Domain.csproj": {
-              "projectPath": "C:\\Users\\hreye\\Desktop\\OBL-Asadurian-Reyes\\OBLDA2\\Domain\\Domain.csproj"
-            }
-          }
+          "projectReferences": {}
         }
       },
       "warningProperties": {
@@ -176,7 +138,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.403\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.400\\RuntimeIdentifierGraph.json"
       }
     }
   }
