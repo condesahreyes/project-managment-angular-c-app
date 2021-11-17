@@ -58,7 +58,7 @@ export class UsersComponent implements OnInit {
   openForm() {
     const dialogRef = this.dialog.open(UserFormComponent, {
       width: '50%',
-      height: '100%'
+      height: '80%'
     });
     dialogRef.afterClosed().subscribe(result => {
       this.getUsersCreated();

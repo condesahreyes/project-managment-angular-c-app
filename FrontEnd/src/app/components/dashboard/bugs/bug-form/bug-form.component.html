@@ -11,7 +11,8 @@
 
         <mat-form-field class="example-full-width" appearance="fill">
             <mat-label>Id</mat-label>
-            <input type="number" matInput autocomplete="off" width="auto" formControlName="id" required>
+            <input *ngIf="edit" type="number" matInput autocomplete="off" width="auto" formControlName="id" readonly>
+            <input *ngIf="!edit" type="number" matInput autocomplete="off" width="auto" formControlName="id" required>
         </mat-form-field>
 
         <mat-form-field class="example-full-width" appearance="fill">

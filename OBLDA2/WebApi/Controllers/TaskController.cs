@@ -20,7 +20,7 @@ namespace WebApi.Controllers
         }
 
         [HttpPost]
-        [AuthorizationFilter(Autorization.Administrator)]
+        [AuthorizationFilter(Autorization.AllAutorization)]
         public IActionResult CreateTask(TaskEntryOutModel taskModel)
         {
             Task task = taskLogic.Create(taskModel.ToEntity());

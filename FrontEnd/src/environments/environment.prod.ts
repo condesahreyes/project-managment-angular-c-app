@@ -1,3 +1,5 @@
 export const environment = {
-  production: true
+  production: true,
+  URI_BASE: "https://localhost:5001/penguin"
+
 };
