@@ -1,0 +1,3 @@
+C:\Users\Diego\Desktop\OBL-Asadurian-Reyes\OBLDA2\Imports\bin\Release\net5.0\publish\Imports.dll
+C:\Users\Diego\Desktop\OBL-Asadurian-Reyes\OBLDA2\Imports\bin\Release\net5.0\publish\Imports.pdb
+C:\Users\Diego\Desktop\OBL-Asadurian-Reyes\OBLDA2\Imports\bin\Release\net5.0\publish\Imports.deps.json

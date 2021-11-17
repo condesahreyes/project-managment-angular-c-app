@@ -1,0 +1,4 @@
+{
+    "BD": "Server=localhost\\SQLEXPRESS;Database=OBL2;Trusted_Connection=True;MultipleActiveResultSets=True;",
+    "PathImporter": "C:\\Users\\Diego\\Desktop\\OBL-Asadurian-Reyes\\OBLDA2\\Imports\\DLLs"
+}

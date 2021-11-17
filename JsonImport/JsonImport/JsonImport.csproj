@@ -1,0 +1,17 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net5.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Reference Include="Imports">
+      <HintPath>..\..\OBLDA2\Imports\bin\Debug\net5.0\Imports.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+
+</Project>

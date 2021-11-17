@@ -1,6 +1,7 @@
 using Microsoft.AspNetCore.Mvc;
 using BusinessLogicInterface;
 using OBLDA2.Models;
+using Domain;
 
 namespace OBLDA2.Controllers
 {
@@ -26,6 +27,13 @@ namespace OBLDA2.Controllers
         {
             sessionsLogic.Logout(model.Token);
             return Ok(new LogoutOutModel());
+        }
+
+        [HttpGet("{userToken}")]
+        public IActionResult GetUserLogged(string userToken)
+        {
+            User user = sessionsLogic.GetUserWithToekn(userToken);
+            return Ok(new UserOutModel(user));
         }
 
     }

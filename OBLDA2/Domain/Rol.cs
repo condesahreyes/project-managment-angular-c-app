@@ -17,6 +17,5 @@ namespace Domain
             this.Name = name;
         }
 
-        public Rol() { }
     }
 }

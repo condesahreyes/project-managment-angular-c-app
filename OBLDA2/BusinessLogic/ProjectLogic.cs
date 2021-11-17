@@ -35,23 +35,38 @@ namespace BusinessLogic
             return projectRepository.Create(projectToCreate);
         }
 
-        public List<Bug> GetAllBugByProject(Project project)
+        public List<User> GetAllUsersInOneProject(Guid projectId)
         {
-            return Get(project.Id).Bugs;
+            Project project = new Project();
+            project.Id = projectId;
+
+            List<User> users = new List<User>();
+            users.AddRange(GetAllTesters(project));
+            users.AddRange(GetAllDevelopers(project));
+
+            return users;
+        }
+
+        public List<Bug> GetAllBugByProject(Guid project)
+        {
+            Project proj = this.Get(project);
+            return proj.Bugs;
         }
 
         public Project Get(Guid id)
         {
-            Project projcet = projectRepository.GetById(id);
+            Project project = projectRepository.GetById(id);
 
-            if (projcet == null)
+            if (project == null)
             {
                 throw new NoObjectException(notExistProject);
             }
 
-            projcet.TotalBugs = projcet.Bugs.Count;
+            project.Duration = CalculateTotalDuration(project);
+            project.Price = CalculateTotalPrice(project);
+            project.TotalBugs = project.Bugs.Count;
 
-            return projcet;
+            return project;
         }
 
         public List<User> GetAllTesters(Project oneProject)
@@ -111,7 +126,11 @@ namespace BusinessLogic
             Project.ValidateName(updatedProject.Name);
 
             Project updateProject = projectRepository.Update(id, updatedProject);
-            updatedProject.TotalBugs = updatedProject.Bugs.Count;
+
+            if (updatedProject.Bugs == null)
+                updatedProject.TotalBugs = 0;
+            else
+                updatedProject.TotalBugs = updatedProject.Bugs.Count;
 
             return updateProject;
         }
@@ -132,12 +151,17 @@ namespace BusinessLogic
         public List<Project> GetAll()
         {
             List<Project> projects = projectRepository.GetAll();
-
+            
             foreach (Project project in projects)
             {
-                project.TotalBugs = project.Bugs.Count;
-            }
+                List<Bug> bugsInProject = GetAllBugByProject(project.Id);
 
+
+                project.TotalBugs = project.Bugs.Count;
+                project.Duration = CalculateTotalDuration(project);
+                project.Price = CalculateTotalPrice(project);
+            }
+            
             return projectRepository.GetAll();
         }
 
@@ -151,6 +175,65 @@ namespace BusinessLogic
             {
                 throw new ExistingObjectException(notUserInProject);
             }
+        }
+
+        private int CalculateTotalPrice(Project project)
+        {
+            return CalculateTasksPrice(project.Tasks) + CalculateBugsPrice(project.Bugs);
+        }
+
+        private int CalculateTasksPrice(List<Task> tasks)
+        {
+            int tasksPrice = 0;
+
+            foreach (Task task in tasks)
+            {
+                tasksPrice += (task.Price * task.Duration);
+            }
+
+            return tasksPrice;
+        }
+
+        private int CalculateBugsPrice(List<Bug> bugs)
+        {
+            int bugsPrice = 0;
+
+            foreach (Bug bug in bugs)
+            {
+                if (bug.SolvedBy != null && bug.SolvedBy.Rol.Name.ToLower() != Rol.administrator.ToLower()  
+                    && bug.State.Name.ToLower() == State.done.ToLower()) {
+                    bugsPrice += bug.Duration * bug.SolvedBy.Price;
+                }
+            }
+
+            return bugsPrice;
+        }
+
+        private int CalculateTotalDuration(Project project)
+        {
+            return CalculateTasksDuration(project.Tasks) + CalculateBugsDuration(project.Bugs);
+        }
+
+        private int CalculateTasksDuration(List<Task> tasks)
+        {
+            int tasksDuration = 0;
+            foreach (Task task in tasks)
+            {
+                tasksDuration += task.Duration;
+            }
+
+            return tasksDuration;
+        }
+
+        private int CalculateBugsDuration(List<Bug> bugs)
+        {
+            int bugsDuration = 0;
+            foreach (Bug bug in bugs)
+            {
+                bugsDuration += bug.Duration;
+            }
+
+            return bugsDuration;
         }
 
         private void DeleteUserToProject(ref User user, Guid oneProjectId)

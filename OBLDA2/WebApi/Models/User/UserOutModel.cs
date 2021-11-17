@@ -1,12 +1,15 @@
-using System;
 using System.Collections.Generic;
+using System;
 using Domain;
+using System.Diagnostics.CodeAnalysis;
 
 namespace OBLDA2.Models
 {
+    [ExcludeFromCodeCoverage]
     public class UserOutModel
     {
         public Guid Id { get; set; }
+        public int Price { get; set; }
         public string Rol { get; set; }
         public string Name { get; set; }
         public string LastName { get; set; }
@@ -26,7 +29,7 @@ namespace OBLDA2.Models
             this.Password = user.Password;
             this.Email = user.Email;
             this.Id = user.Id;
-
+            this.Price = user.Price;
             this.Projects = new List<string>();
 
             if (user.Projects != null)
@@ -47,6 +50,6 @@ namespace OBLDA2.Models
 
             return outModel;
         }
-
+        
     }
 }

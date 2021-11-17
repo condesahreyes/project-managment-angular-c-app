@@ -64,5 +64,32 @@ namespace WebApi.Controllers
             return NoContent();
         }
 
+        [HttpGet]
+        [AuthorizationFilter(Autorization.Administrator)]
+        public IActionResult GetAll()
+        {
+            List<User> users = this.developerLogic.GetAll();
+            IEnumerable<UserOutModel> usersOut = UserOutModel.ListUser(users);
+
+            return Ok(usersOut);
+        }
+
+        [HttpGet("{idDeveloper}/projects")]
+        [AuthorizationFilter(Autorization.Developer)]
+        public IActionResult GetAllProjectsDeveloper(Guid idDeveloper)
+        {
+            List<Project> projects = this.developerLogic.GetAllProjects(idDeveloper);
+
+            return (StatusCode((int)HttpStatusCode.OK, ProjectOutModel.ToListModel(projects)));
+
+        }
+
+        [HttpGet("{idDeveloper}/tasks")]
+        [AuthorizationFilter(Autorization.Developer)]
+        public IActionResult GetAllTask(Guid idDeveloper)
+        {
+            List<Task> tasks = developerLogic.GetAllTask(idDeveloper);
+            return Ok(TaskEntryOutModel.ToListModel(tasks));
+        }
     }
 }

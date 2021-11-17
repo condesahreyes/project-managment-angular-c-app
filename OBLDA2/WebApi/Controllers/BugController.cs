@@ -6,6 +6,7 @@ using WebApi.Filters;
 using OBLDA2.Models;
 using System.Net;
 using Domain;
+using System;
 
 namespace WebApi.Controllers
 {
@@ -24,11 +25,9 @@ namespace WebApi.Controllers
         [AuthorizationFilter(Autorization.AdministratorAndTester)]
         public IActionResult AddBug(BugEntryOutModel bugDTO)
         {
-            Bug bug = this.bugLogic.CreateByUser(bugDTO.ToEntity(), bugDTO.CreatedBy);
-            BugEntryOutModel bugAdded = new BugEntryOutModel(bug);
-            bugAdded.CreatedBy = bugDTO.CreatedBy;
+            Bug bug = this.bugLogic.CreateByUser(bugDTO.ToEntity(), Guid.Parse(bugDTO.CreatedBy));
 
-            return (StatusCode((int)HttpStatusCode.Created, bugAdded));
+            return (StatusCode((int)HttpStatusCode.Created, new BugEntryOutModel(bug)));
         }
 
         [HttpGet]
@@ -36,24 +35,26 @@ namespace WebApi.Controllers
         public IActionResult GetAllBugs()
         {
             List<Bug> bugs = this.bugLogic.GetAll();
-            List<BugEntryOutModel> bugsOut = BugEntryOutModel.ListBugs(bugs);
 
-            return Ok(bugsOut);
+            return Ok(BugEntryOutModel.ListBugs(bugs));
         }
+       
 
         [HttpGet("{bugId}")]
         [AuthorizationFilter(Autorization.AdministratorAndTester)]
         public IActionResult GetById(int bugId, UserIdModel user)
         {
             Bug bugToReturn = this.bugLogic.Get(bugId, user.UserId);
+
             return Ok(new BugEntryOutModel(bugToReturn));
         }
 
-        [HttpDelete("{bugId}")]
+        [HttpDelete("{bugId}/byUser/{userId}")]
         [AuthorizationFilter(Autorization.AdministratorAndTester)]
-        public IActionResult Delete(int bugId, UserIdModel user)
+        public IActionResult Delete(int bugId, Guid userId)
         {
-            bugLogic.Delete(bugId, user.UserId);
+            bugLogic.Delete(bugId, userId);
+
             return NoContent();
         }
 
@@ -61,7 +62,8 @@ namespace WebApi.Controllers
         [AuthorizationFilter(Autorization.AdministratorAndTester)]
         public IActionResult UpdateABug(int bugId, BugUpdateModel bugDTO)
         {
-            this.bugLogic.Update(bugId, bugDTO.ToEntity(bugId), bugDTO.UserId);
+            this.bugLogic.Update(bugId, bugDTO.ToEntity(bugId), Guid.Parse(bugDTO.UserId));
+
             return NoContent();
         }
 

@@ -7,10 +7,12 @@ using System.Linq;
 using Domain;
 using System;
 using Moq;
+using System.Diagnostics.CodeAnalysis;
 
 namespace BusinessLogicTest
 {
     [TestClass]
+    [ExcludeFromCodeCoverage]
     public class TesterLogicTest
     {
 
@@ -33,10 +35,9 @@ namespace BusinessLogicTest
             CofnigurationMockRol();
 
             tester = new User("Diego", "Asadurian", "diegoAsa", "admin1234",
-                "diegoasadurian@gmail.com", roles[0]);
+                "diegoasadurian@gmail.com", roles[0], 0);
 
-            testerLogic = new TesterLogic(userLogic.Object, mockProject.Object,
-                mockRol.Object);
+            testerLogic = new TesterLogic(userLogic.Object, mockProject.Object);
         }
 
         private void CofnigurationMockRol()
@@ -64,9 +65,9 @@ namespace BusinessLogicTest
             List<Bug> bugs = new List<Bug>
             {
                 new Bug(project, 1234, "Error de login", 
-                "Intento inicio de sesion", "2.0", stateActive),
+                "Intento inicio de sesion", "2.0", stateActive, 0),
                 new Bug(project, 4321, "Error de UI", 
-                "Intento inicio de sesion", "2.1", stateActive),
+                "Intento inicio de sesion", "2.1", stateActive, 0),
             };
 
             List<Project> projects = new List<Project>();
@@ -80,7 +81,26 @@ namespace BusinessLogicTest
             List<Bug> bugsSaved = testerLogic.GetAllBugs(tester.Id);
 
             userLogic.VerifyAll();
+            mockProject.VerifyAll();
             Assert.IsTrue(bugsSaved.SequenceEqual(bugs));
+        }
+
+        [TestMethod]
+        public void GetAllProject()
+        {
+            List<Project> projects = new List<Project>();
+            Project project = new Project(Rol.tester);
+            projects.Add(project);
+            project.Users.Add(tester);
+
+            mockProject.Setup(x => x.GetAll()).Returns(projects);
+            userLogic.Setup(r => r.Get(tester.Id)).Returns(tester);
+
+            List<Project> projectsByTester = testerLogic.GetAllProjects(tester.Id);
+
+            mockProject.VerifyAll();
+            userLogic.VerifyAll();
+            Assert.IsTrue(projectsByTester.SequenceEqual(projects));
         }
 
         [TestMethod]
@@ -104,6 +124,30 @@ namespace BusinessLogicTest
             var ret = testerLogic.Get(id);
             userLogic.VerifyAll();
             Assert.IsTrue(ret.Equals(tester));
+        }
+
+        [TestMethod]
+        public void AssignUserToProject()
+        {
+            mockProject.Setup(x => x.AssignUser(It.IsAny<Guid>(), ref tester));
+            userLogic.Setup(x => x.Get(It.IsAny<Guid>())).Returns(tester);
+
+            testerLogic.AssignTesterToProject(It.IsAny<Guid>(), tester.Id);
+            mockProject.VerifyAll();
+
+            Assert.IsTrue(true);
+        }
+
+        [TestMethod]
+        public void DeleteUserToProject()
+        {
+            mockProject.Setup(x => x.DeleteUser(It.IsAny<Guid>(), ref tester));
+            userLogic.Setup(x => x.Get(It.IsAny<Guid>())).Returns(tester);
+
+            testerLogic.DeleteTesterInProject(It.IsAny<Guid>(), tester.Id);
+            mockProject.VerifyAll();
+
+            Assert.IsTrue(true);
         }
     }
 }

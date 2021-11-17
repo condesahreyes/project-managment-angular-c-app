@@ -15,6 +15,7 @@ namespace DataAccess
         public DbSet<Project> Projects { get; set; }
         public DbSet<Bug> Bugs { get; set; }
         public DbSet<User> Users { get; set; }
+        public DbSet<Task> Tasks { get; set; }
 
         public DataContext() { }
 
@@ -33,7 +34,7 @@ namespace DataAccess
             {
                 IConfiguration configuration = new ConfigurationBuilder()
                     .SetBasePath(Directory.GetCurrentDirectory())
-                    .AddJsonFile("ConfigurationDataBase.json", optional: false).Build();
+                    .AddJsonFile("Configuration.json", optional: false).Build();
 
                 string connection = configuration["BD"];
                 optionsBuilder.UseSqlServer(connection);

@@ -6,9 +6,11 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.OpenApi.Models;
 using WebApi.Filters;
 using Factory;
+using System.Diagnostics.CodeAnalysis;
 
 namespace OBLDA2
 {
+    [ExcludeFromCodeCoverage]
     public class Startup
     {
         public Startup(IConfiguration configuration)
@@ -21,6 +23,17 @@ namespace OBLDA2
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllers();
+
+            services.AddCors(options =>
+            {
+                options.AddPolicy("AllowAllHeaders",
+                      builder =>
+                      {
+                          builder.AllowAnyOrigin()
+                                 .AllowAnyHeader()
+                                 .AllowAnyMethod();
+                      });
+            });
 
             services.AddSwaggerGen(c =>
             {
@@ -54,7 +67,7 @@ namespace OBLDA2
             app.UseHttpsRedirection();
 
             app.UseRouting();
-
+            app.UseCors("AllowAllHeaders");
             app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>

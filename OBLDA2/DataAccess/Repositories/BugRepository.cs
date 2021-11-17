@@ -10,7 +10,6 @@ namespace DataAccess.Repositories
 {
     public class BugRepository : Repository<Bug, int>, IBugRepository
     {
-        private const string noExistBug = "No exist bug with id ";
         private readonly DbSet<Bug> _DbSet;
         private readonly DbSet<State> _DbSetState;
         private readonly DbSet<User> _DbSetUser;
@@ -55,6 +54,10 @@ namespace DataAccess.Repositories
                 bugSaved.State = _DbSetState.Find(bugUpdate.State.Name);
             if (bugUpdate.Version != null)
                 bugSaved.Version = bugUpdate.Version;
+            if (bugUpdate.Duration != null)
+                bugSaved.Duration = bugUpdate.Duration;
+            if (bugUpdate.Domain != null)
+                bugSaved.Domain = bugUpdate.Domain;
             if (bugUpdate.SolvedBy != null)
                 bugSaved.SolvedBy = _DbSetUser.Find(bugUpdate.SolvedBy.Id);
             else

@@ -1,0 +1,7 @@
+C:\Users\hreye\Desktop\OBL-Asadurian-Reyes\OBLDA2\Imports\bin\Release\net5.0\publish\Imports.dll
+C:\Users\hreye\Desktop\OBL-Asadurian-Reyes\OBLDA2\Imports\bin\Release\net5.0\publish\Imports.pdb
+C:\Users\hreye\Desktop\OBL-Asadurian-Reyes\OBLDA2\Imports\bin\Release\net5.0\publish\Domain.dll
+C:\Users\hreye\Desktop\OBL-Asadurian-Reyes\OBLDA2\Imports\bin\Release\net5.0\publish\Exceptions.dll
+C:\Users\hreye\Desktop\OBL-Asadurian-Reyes\OBLDA2\Imports\bin\Release\net5.0\publish\Domain.pdb
+C:\Users\hreye\Desktop\OBL-Asadurian-Reyes\OBLDA2\Imports\bin\Release\net5.0\publish\Exceptions.pdb
+C:\Users\hreye\Desktop\OBL-Asadurian-Reyes\OBLDA2\Imports\bin\Release\net5.0\publish\Imports.deps.json

@@ -1,0 +1,48 @@
+<div class="container">
+
+    <mat-toolbar *ngIf="project===''">
+        <span >Tasks </span>
+        <div class="example-spacer"></div>
+        <button  mat-raised-button color="primary" (click)="openForm()">Create Task</button>
+    </mat-toolbar>
+
+    <div  *ngIf="project!==''">
+        <br>
+        <button style="float: right;" mat-raised-button color="primary" (click)="openForm()">Create Task</button>
+    </div>
+
+    <mat-form-field appearance="standard">
+        <mat-label>Filter</mat-label>
+        <input matInput (keyup)="applyFilter($event)" placeholder="Ex: diego" #input autocomplete="off">
+    </mat-form-field>
+
+    <div class="mat-elevation-z8">
+        <table mat-table [dataSource]="dataSource" matSort>
+
+            <ng-container matColumnDef="name">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header> Name </th>
+                <td mat-cell *matCellDef="let element"> {{element.name}} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="project">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header> Project </th>
+                <td mat-cell *matCellDef="let element"> {{element.project}} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="duration">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header> Duration </th>
+                <td mat-cell *matCellDef="let element"> {{element.duration}} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="cost">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header> Cost </th>
+                <td mat-cell *matCellDef="let element"> {{element.cost}} </td>
+            </ng-container>
+
+            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+        </table>
+        <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]" aria-label="Select page of tasks"></mat-paginator>
+    </div>
+
+</div>

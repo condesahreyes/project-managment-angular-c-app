@@ -6,8 +6,8 @@ using WebApi.Controllers;
 using OBLDA2.Models;
 using System.Linq;
 using Domain;
-using Moq;
 using System;
+using Moq;
 
 namespace WebApiTest
 {
@@ -28,13 +28,14 @@ namespace WebApiTest
 
             project = new Project("Project - GXC ");
             bug = new Bug(project, 1, "Error de login", 
-                "Intento de sesión", "3.0", activeState);
+                "Intento de sesión", "3.0", activeState, 0);
         }
 
         [TestMethod]
         public void AddBugTest()
         {
             BugEntryOutModel bugModelEntry = new BugEntryOutModel(bug);
+            bugModelEntry.CreatedBy = Guid.NewGuid().ToString();
             bugLogic.Setup(m => m.CreateByUser(bug, It.IsAny<Guid>())).Returns(bug);
             var controller = new BugController(bugLogic.Object);
 
@@ -90,8 +91,9 @@ namespace WebApiTest
         public void UpdateBugTest()
         {
             Bug updatedBug = new Bug(project, 1, "Error cierre de sesion", "Intento", 
-                "3.5", activeState);
+                "3.5", activeState, 0);
             BugUpdateModel bugUpdateDTO = new BugUpdateModel(updatedBug);
+            bugUpdateDTO.UserId = Guid.NewGuid().ToString();
 
             bugLogic.Setup(m => m.Update(bug.Id, updatedBug, It.IsAny<Guid>())).Returns(updatedBug);
             var controller = new BugController(bugLogic.Object);
@@ -111,7 +113,7 @@ namespace WebApiTest
             bugLogic.Setup(m => m.Delete(bug.Id, user.UserId));
             BugController controller = new BugController(bugLogic.Object);
 
-            IActionResult result = controller.Delete(bug.Id, user);
+            IActionResult result = controller.Delete(bug.Id, user.UserId);
             var status = result as NoContentResult;
 
             bugLogic.VerifyAll();

@@ -26,9 +26,16 @@ namespace WebApi.Controllers
         {
             List<Bug> bugs = this.testerLogic.GetAllBugs(idTester);
 
-            IEnumerable<BugEntryOutModel> bugsModel = BugEntryOutModel.ListBugs(bugs);
+            return (StatusCode((int)HttpStatusCode.OK, BugEntryOutModel.ListBugs(bugs)));
+        }
 
-            return (StatusCode((int)HttpStatusCode.OK, bugsModel));
+        [HttpGet("{idTester}/projects")]
+        [AuthorizationFilter(Autorization.Tester)]
+        public IActionResult GetAllProjectsTester(Guid idTester)
+        {
+            List<Project> projects = this.testerLogic.GetAllProjects(idTester);
+
+            return (StatusCode((int)HttpStatusCode.OK, ProjectOutModel.ToListModel(projects)));
         }
 
         [HttpPost("{idTester}/project/{idProject}")]
@@ -36,6 +43,7 @@ namespace WebApi.Controllers
         public IActionResult AssignTester(Guid idProject, Guid idTester)
         {
             testerLogic.AssignTesterToProject(idProject, idTester);
+
             return NoContent();
         }
 
@@ -44,7 +52,26 @@ namespace WebApi.Controllers
         public IActionResult DeleteTester(Guid idTester, Guid idProject)
         {
             testerLogic.DeleteTesterInProject(idProject, idTester);
+
             return NoContent();
+        }
+
+        [HttpGet]
+        [AuthorizationFilter(Autorization.Administrator)]
+        public IActionResult GetAll()
+        {
+            List<User> users = this.testerLogic.GetAll();
+
+            return Ok(UserOutModel.ListUser(users));
+        }
+
+        [HttpGet("{idTester}/tasks")]
+        [AuthorizationFilter(Autorization.Tester)]
+        public IActionResult GetAllTask(Guid idTester)
+        {
+            List<Task> tasks = testerLogic.GetAllTask(idTester);
+
+            return Ok(TaskEntryOutModel.ToListModel(tasks));
         }
 
     }

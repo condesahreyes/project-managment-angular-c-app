@@ -2,10 +2,12 @@
 using System.Collections.Generic;
 using BusinessLogic.Imports;
 using Domain;
+using System.Diagnostics.CodeAnalysis;
 
 namespace BusinessLogicTest.BugsImportTest
 {
     [TestClass]
+    [ExcludeFromCodeCoverage]
     public class BugsImportXmlTest
     {
         private readonly string fileAddress = @"..\..\..\FileImport\archivoXmlBugs.xml";
@@ -15,9 +17,9 @@ namespace BusinessLogicTest.BugsImportTest
 
         private List<Bug> bugsInXml = new List<Bug>{
             new Bug(project, 4561, "Error en el envío de correo", "El error se " +
-                "produce cuando el usuario no tiene un correo asignado", "1.0", activeState),
+                "produce cuando el usuario no tiene un correo asignado", "1.0", activeState, 55),
             new Bug(project, 9999, "Error en el envío de correo 2", "El error se produce cuando el" +
-                " usuario no tiene un correo asignado 2", "1.0", activeState)
+                " usuario no tiene un correo asignado 2", "1.0", activeState, 90)
         };
 
         private BugsImportXml bugsImport;

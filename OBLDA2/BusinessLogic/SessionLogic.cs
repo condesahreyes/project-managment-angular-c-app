@@ -14,9 +14,9 @@ namespace BusinessLogic
 
         private IUserLogic userLogic;
 
-        public SessionLogic(IUserLogic _userLogic)
+        public SessionLogic(IUserLogic userLogic)
         {
-            userLogic = _userLogic;
+           this.userLogic = userLogic;
         }
 
         public List<string> GetAllTokens()
@@ -49,12 +49,12 @@ namespace BusinessLogic
 
         public string GenerateAndInsertToken(User user)
         {
-            User userDataAcces = userLogic.Get(user.Id); 
+            User userDataAcces = userLogic.Get(user.Id);
 
             string token = GenerateToken(userDataAcces);
 
             UpdateToken(user, token);
-           
+
             return token;
         }
 
@@ -73,10 +73,31 @@ namespace BusinessLogic
         public void Logout(string token)
         {
             var userToLogOut = userLogic.GetAll().Where(u => u.Token == token);
+
             if (userToLogOut.Count() == 0)
+            {
                 throw new InvalidDataObjException(invalidTokenMessage);
+            }
+
             UpdateToken(userToLogOut.First(), null);
         }
 
+        public User GetUserWithToekn(string token)
+        {
+            if (IsCorrectToken(token))
+            {
+                List<User> users = userLogic.GetAll();
+                foreach (var user in users)
+                {
+                    if (user.Token != null && user.Token.Equals(token))
+                    {
+                        return user;
+                    }
+                }
+            }
+
+            return null;
+        }
     }
 }
+

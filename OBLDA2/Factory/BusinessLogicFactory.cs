@@ -4,9 +4,12 @@ using BusinessLogicInterface;
 using BusinessLogic.Imports;
 using BusinessLogic.UserRol;
 using BusinessLogic;
+using Imports;
+using System.Diagnostics.CodeAnalysis;
 
 namespace Factory
 {
+    [ExcludeFromCodeCoverage]
     public class BusinessLogicFactory
     {
         private readonly IServiceCollection _serviceCollection;
@@ -25,6 +28,7 @@ namespace Factory
             this._serviceCollection.AddScoped<IBugLogic, BugLogic>();
             this._serviceCollection.AddScoped<IBugsImport, BugsImport>();
             this._serviceCollection.AddScoped<ITesterLogic, TesterLogic>();
+            this._serviceCollection.AddScoped<ITaskLogic, TaskLogic>();
         }
 
     }

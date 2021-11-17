@@ -1,0 +1,3 @@
+C:\Users\Diego\Desktop\OBL-Asadurian-Reyes\OBLDA2\Exceptions\bin\Release\net5.0\publish\Exceptions.dll
+C:\Users\Diego\Desktop\OBL-Asadurian-Reyes\OBLDA2\Exceptions\bin\Release\net5.0\publish\Exceptions.pdb
+C:\Users\Diego\Desktop\OBL-Asadurian-Reyes\OBLDA2\Exceptions\bin\Release\net5.0\publish\Exceptions.deps.json

@@ -8,17 +8,17 @@ using Exceptions;
 using System;
 using Domain;
 using Moq;
+using System.Diagnostics.CodeAnalysis;
 
 namespace BusinessLogicTest
 {
     [TestClass]
+    [ExcludeFromCodeCoverage]
     public class ProjectLogicTest
     {
 
         private Mock<IProjectRepository> mockProjectRepository;
         private Mock<IUserLogic> userMock;
-        private Mock<IProjectLogic> projectMock;
-        private Mock<IBugLogic> bugMock;
 
         private ProjectLogic projectLogic;
         private Project project;
@@ -33,9 +33,7 @@ namespace BusinessLogicTest
         public void Setup()
         {
             mockProjectRepository = new Mock<IProjectRepository>(MockBehavior.Strict);
-            projectMock = new Mock<IProjectLogic>(MockBehavior.Strict);
             userMock = new Mock<IUserLogic>(MockBehavior.Strict);
-            bugMock = new Mock<IBugLogic>(MockBehavior.Strict);
 
             this.projectLogic = new ProjectLogic(mockProjectRepository.Object, userMock.Object);
 
@@ -45,9 +43,9 @@ namespace BusinessLogicTest
             rolDeveloper = new Rol(Rol.developer);
 
             tester = new User("Fiorella", "Petrone", "fioPetro", "fio1245",
-                "fiore@gmail.com", rolTester);
-            developer = new User("Juan", "Gomez", "juanG", "juann245", 
-                "juan@gmail.com", rolDeveloper);
+                "fiore@gmail.com", rolTester, 0);
+            developer = new User("Juan", "Gomez", "juanG", "juann245",
+                "juan@gmail.com", rolDeveloper, 10);
         }
 
         [TestMethod]
@@ -61,13 +59,14 @@ namespace BusinessLogicTest
             mockProjectRepository.VerifyAll();
             Assert.AreEqual(project, projectCreated);
         }
-        
+
         [TestMethod]
         public void GetAllProjects()
         {
             List<Project> list = new List<Project>();
             list.Add(project);
             mockProjectRepository.Setup(x => x.GetAll()).Returns(list);
+            mockProjectRepository.Setup(x => x.GetById(It.IsAny<Guid>())).Returns(project);
             List<Project> ret = projectLogic.GetAll();
 
             mockProjectRepository.VerifyAll();
@@ -84,6 +83,73 @@ namespace BusinessLogicTest
             mockProjectRepository.VerifyAll();
 
             Assert.IsTrue(ret.Equals(project));
+        }
+
+        [TestMethod]
+        public void ExistProject()
+        {
+            List<Project> list = new List<Project>();
+            list.Add(project);
+
+            mockProjectRepository.Setup(x => x.GetAll()).Returns(list);
+            mockProjectRepository.Setup(x => x.GetById(It.IsAny<Guid>())).Returns(project);
+            projectLogic.ExistProject(project.Id);
+
+            mockProjectRepository.VerifyAll();
+
+            Assert.IsTrue(true);
+        }
+
+        [TestMethod]
+        public void ExistProjectWithName()
+        {
+            List<Project> list = new List<Project>();
+            list.Add(project);
+            mockProjectRepository.Setup(x => x.GetAll()).Returns(list);
+
+            Project oneProject = projectLogic.ExistProjectWithName(project);
+
+            mockProjectRepository.VerifyAll();
+
+            Assert.IsTrue(oneProject.Id == project.Id);
+        }
+
+        [TestMethod]
+        [ExpectedException(typeof(InvalidDataObjException))]
+        public void ExistProjectWithNameFail()
+        {
+            List<Project> list = new List<Project>();
+            mockProjectRepository.Setup(x => x.GetAll()).Returns(list);
+
+            Project oneProject = projectLogic.ExistProjectWithName(project);
+        }
+
+        [TestMethod]
+        public void NotExistProjectWithName()
+        {
+            List<Project> list = new List<Project>();
+            mockProjectRepository.Setup(x => x.GetAll()).Returns(list);
+
+            projectLogic.NotExistProjectWithName(project);
+
+            mockProjectRepository.VerifyAll();
+
+            Assert.IsTrue(true);
+        }
+
+        [TestMethod]
+        [ExpectedException(typeof(InvalidDataObjException))]
+        public void NotExistProjectWithNameFail()
+        {
+            List<Project> list = new List<Project>();
+            list.Add(project);
+
+            mockProjectRepository.Setup(x => x.GetAll()).Returns(list);
+
+            Project otherProject = new Project();
+            otherProject.Name = project.Name;
+
+            projectLogic.NotExistProjectWithName(otherProject);
         }
 
         [ExpectedException(typeof(NoObjectException))]
@@ -139,11 +205,11 @@ namespace BusinessLogicTest
         {
             project.Users.Add(tester);
             Project projectNoTesters = new Project("Proyecto sin usuarios");
-            
+
             userMock.Setup(m => m.Get(tester.Id)).Returns(tester);
             mockProjectRepository.Setup(x => x.GetById(project.Id)).Returns(project);
             mockProjectRepository.Setup(x => x.Update(It.IsAny<Guid>(), project)).Returns(projectNoTesters);
-            mockProjectRepository.Setup(x => x.GetAll()).Returns(new List<Project> { project});
+            mockProjectRepository.Setup(x => x.GetAll()).Returns(new List<Project> { project });
             projectLogic.DeleteUser(project.Id, ref tester);
 
             List<User> list = new List<User>();
@@ -169,6 +235,23 @@ namespace BusinessLogicTest
             mockProjectRepository.VerifyAll();
 
             Assert.IsTrue(returnedUsers.SequenceEqual(users));
+        }
+
+        [TestMethod]
+        public void GetAllUsersInProject()
+        {
+            project.Users.Add(tester);
+
+            List<User> users = new List<User>();
+            users.Add(tester);
+
+            mockProjectRepository.Setup(x => x.GetById(project.Id)).Returns(project);
+
+            List<User> allUsers = projectLogic.GetAllUsersInOneProject(project.Id);
+
+            mockProjectRepository.VerifyAll();
+
+            Assert.IsTrue(allUsers.SequenceEqual(users));
         }
 
         [TestMethod]
@@ -203,5 +286,45 @@ namespace BusinessLogicTest
             Assert.IsTrue(usersGeted.SequenceEqual(users));
         }
 
+        [TestMethod]
+        public void CalculateTotalDuration()
+        {
+            Bug oneBug = new Bug(project, 1234, "Error de login",
+                "Intento inicio de sesion", "2.0", new State(State.active), 10);
+            Task oneTask = new Task(project, "One Task", 2000, 15);
+
+            project.Bugs.Add(oneBug);
+            project.Tasks.Add(oneTask);
+
+            mockProjectRepository.Setup(x => x.GetById(project.Id)).Returns(project);
+
+            project = projectLogic.Get(project.Id);
+
+            int projectDuration = oneBug.Duration + oneTask.Duration;
+
+            mockProjectRepository.VerifyAll();
+            Assert.IsTrue(projectDuration == project.Duration);
+        }
+
+        [TestMethod]
+        public void CalculateTotalPrice()
+        {
+            Bug oneBug = new Bug(project, 1234, "Error de login",
+                "Intento inicio de sesion", "2.0", new State(State.done), 10);
+            Task oneTask = new Task(project, "One Task", 2000, 15);
+
+            oneBug.SolvedBy = developer;
+            project.Bugs.Add(oneBug);
+            project.Tasks.Add(oneTask);
+
+            mockProjectRepository.Setup(x => x.GetById(project.Id)).Returns(project);
+
+            project = projectLogic.Get(project.Id);
+
+            int projectPrice = (oneBug.Duration * oneBug.SolvedBy.Price) + (oneTask.Price * oneTask.Duration);
+
+            mockProjectRepository.VerifyAll();
+            Assert.IsTrue(projectPrice == project.Price);
+        }
     }
 }

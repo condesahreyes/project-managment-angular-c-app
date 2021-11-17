@@ -17,7 +17,5 @@ namespace Domain
             this.Name = name;
             this.Id = Guid.NewGuid();
         }
-
-        public State() { }
     }
 }

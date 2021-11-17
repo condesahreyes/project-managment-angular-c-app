@@ -27,7 +27,7 @@ namespace WebApiTest
 
             project = new Project("Project - GXC ");
             bug = new Bug(project, 1, "Error de login", 
-                "Intento de sesión", "3.0", activeState);
+                "Intento de sesión", "3.0", activeState, 0);
         }
 
         [TestMethod]

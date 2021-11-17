@@ -1,17 +1,23 @@
-﻿using BusinessLogicInterface.Imports;
+﻿using Microsoft.Extensions.Configuration;
+using BusinessLogicInterface.Imports;
 using System.Collections.Generic;
 using BusinessLogicInterface;
-using System.IO;
+using BusinessLogic.Imports;
+using System.Reflection;
+using OBLDA2.Models;
+using System.Linq;
 using Exceptions;
+using System.IO;
 using Domain;
+using System;
 
-namespace BusinessLogic.Imports
+namespace Imports
 {
     public class BugsImport : IBugsImport
     {
+        private const string invalidFormat = "Error, it´s not a valid format";
         private const string txtExtension = ".txt";
         private const string xmlExtension = ".xml";
-        private const string invalidFormat = "Error, it´s not a valid format";
 
         private IBugLogic bugLogic;
 
@@ -19,8 +25,6 @@ namespace BusinessLogic.Imports
         {
             this.bugLogic = bugLogic;
         }
-
-        public BugsImport() { }
 
         public List<Bug> CreateBugs(List<Bug> bugs)
         {
@@ -37,24 +41,110 @@ namespace BusinessLogic.Imports
         public List<Bug> ImportBugs(string fileAddress)
         {
             List<Bug> bugsToSaved = new List<Bug>();
+            string extension = Path.GetExtension(fileAddress).ToLower();
 
-            if (Path.GetExtension(fileAddress).ToLower() == txtExtension)
+            if (extension == txtExtension)
             {
                 BugsImportTxt txt = new BugsImportTxt();
                 bugsToSaved = txt.ImportBugsTxt(fileAddress);
             }
-            else if (Path.GetExtension(fileAddress).ToLower() == xmlExtension)
+            else if (extension == xmlExtension)
             {
                 BugsImportXml xml = new BugsImportXml();
                 bugsToSaved = xml.ImportBugsXml(fileAddress);
             }
             else
             {
-                throw new InvalidDataObjException(invalidFormat);
+                bugsToSaved = ImportBugAssembly(fileAddress, extension);
             }
 
             return CreateBugs(bugsToSaved);
         }
-    }
 
+        public List<Bug> ImportBugAssembly(string fileAddress, string extension)
+        {
+            try{
+                Assembly myAssembly = GetAssembly(extension);
+                List<Type> implementations = 
+                    GetImplementationsInAssembly<IBugsImportGeneric>(myAssembly);
+
+                IBugsImportGeneric bugImportGeneric = 
+                    (IBugsImportGeneric)Activator.CreateInstance(implementations.First());
+
+                List<BugImportModel> bugsModel = bugImportGeneric.ImportBugs(fileAddress);
+
+                return ListBugs(bugsModel);
+
+            }catch
+            {
+                throw new InvalidDataObjException(invalidFormat);
+            }
+        }
+
+
+
+        private Assembly GetAssembly(string extension)
+        {
+            Assembly myAssembly = null;
+
+            IConfiguration configuration = new ConfigurationBuilder()
+            .SetBasePath(Directory.GetCurrentDirectory())
+            .AddJsonFile("Configuration.json", optional: false).Build();
+
+            string path = configuration["PathImporter"];
+
+            DirectoryInfo directory = new DirectoryInfo(path);
+
+            FileInfo[] files = directory.GetFiles("*.dll");
+
+            foreach (var file in files)
+            {
+                if (file.Name.ToLower().Contains(extension.Remove(0)))
+                {
+                    myAssembly = Assembly.LoadFile(file.FullName);
+                }
+            }
+
+            return myAssembly;
+        }
+
+        private List<Type> GetImplementationsInAssembly<Interface>(Assembly myAssembly)
+        {
+            List<Type> types = new List<Type>();
+
+            foreach (var type in myAssembly.GetTypes())
+            {
+                if (typeof(Interface).IsAssignableFrom(type))
+                    types.Add(type);
+            }
+
+            return types;
+        }
+        private Bug ModelToEntity(BugImportModel bugModel)
+        {
+            return new Bug() 
+            {
+                Project = new Project(bugModel.Project),
+                Id = bugModel.Id,
+                Name = bugModel.Name,
+                Domain = bugModel.Domain,
+                Version = bugModel.Version,
+                State = new State(bugModel.State),
+                Duration = bugModel.Duration
+            };
+            
+        }
+
+        private List<Bug> ListBugs(List<BugImportModel> bugsModel)
+        {
+            List<Bug> bugs = new List<Bug>();
+
+            foreach (BugImportModel bug in bugsModel)
+            {
+                bugs.Add(ModelToEntity(bug));
+            }
+
+            return bugs;
+        }
+    }
 }

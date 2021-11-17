@@ -11,6 +11,7 @@ namespace Domain
         private const string invalidLastName = "You must entry a valid last name";
         private const string invalidUserName = "You must entry a valid username";
         private const string invalidPassword = "You must entry a valid password";
+        private const string invalidPrice = "You must entry a valid price";
         private const string invalidEmail = "You must entry a valid email";
 
         public Guid Id { get; set; }
@@ -21,12 +22,13 @@ namespace Domain
         public string Password { get; set; }
         public string Email { get; set; }
         public string Token { get; set; }
+        public int Price { get; set; }
 
         public Rol Rol { get; set; }
         public List<Project> Projects { get; set; }
 
         public User(string name, string lastName, string userName, string password, 
-            string email, Rol rol)
+            string email, Rol rol, int price)
         {
             this.Id = Guid.NewGuid();
             this.Name = name;
@@ -36,7 +38,9 @@ namespace Domain
             this.Email = email;
             this.Rol = rol;
             this.Token = "";
+            this.Price = price;
         }
+
         public User(){}
 
         public static void IsValidUser(User user)
@@ -46,6 +50,7 @@ namespace Domain
             ValidateUserName(user.UserName);
             ValidatePassword(user.Password);
             ValidateEmail(user.Email);
+            ValidatePrice(user.Price);
         }
 
         private static void ValidateName(string name)
@@ -80,6 +85,12 @@ namespace Domain
             {
                 throw new InvalidDataObjException(invalidEmail);
             }
+        }
+
+        private static void ValidatePrice(int price)
+        {
+            if (price < 0 || price > 9999)
+                throw new InvalidDataObjException(invalidPrice);
         }
 
         public override bool Equals(Object obj)

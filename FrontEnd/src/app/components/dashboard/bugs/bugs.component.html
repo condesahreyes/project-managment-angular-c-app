@@ -1,0 +1,81 @@
+<div class="container">
+
+    <mat-toolbar *ngIf="projectId==='null'">
+        <span >Bugs </span>
+        <div class="example-spacer"></div>
+        <button id="create" *ngIf="actions.includes('import')" mat-raised-button color="primary" (click)="importForm()">Import Bug</button>
+        <button *ngIf="actions.includes('create')" mat-raised-button color="primary" (click)="openForm()">Create Bug</button>
+    </mat-toolbar>
+
+    <div  *ngIf="projectId!=='null'">
+        <br>
+        <div class="example-spacer"></div>
+        <button style="float: right;" id="create" *ngIf="actions.includes('create')" mat-raised-button color="primary" (click)="openForm()">Create Bug</button>
+    </div>
+
+    <mat-form-field appearance="standard">
+        <mat-label>Filter</mat-label>
+        <input matInput (keyup)="applyFilter($event)" placeholder="Ex: diego" #input autocomplete="off">
+    </mat-form-field>
+
+    <div class="mat-elevation-z8">
+
+        <table mat-table [dataSource]="dataSource" matSort>
+
+            <ng-container matColumnDef="name">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header> Name </th>
+                <td mat-cell *matCellDef="let element"> {{element.name}} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="id">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header> Id </th>
+                <td mat-cell *matCellDef="let element"> {{element.id}} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="project">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header> Project </th>
+                <td mat-cell *matCellDef="let element"> {{element.project}} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="domain">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header>Domain </th>
+                <td mat-cell *matCellDef="let element"> {{element.domain}} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="version">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header>Version </th>
+                <td mat-cell *matCellDef="let element"> {{element.version}} </td>
+            </ng-container>
+            
+            <ng-container matColumnDef="state">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header>State </th>
+                <td mat-cell *matCellDef="let element"> {{element.state}} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="duration">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header>Duration </th>
+                <td mat-cell *matCellDef="let element"> {{element.duration}} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="actions">
+                <th mat-header-cell *matHeaderCellDef></th>
+                <td mat-cell *matCellDef="let element" style="text-align: right;">
+                    <a *ngIf="actions.includes('edit')" class="pointer" style="color: #1878b0;" matTooltip="Edit Bug" (click)="update(element)"> 
+                        <mat-icon>edit</mat-icon>
+                    </a>
+                    <a *ngIf="actions.includes('editState')" class="pointer" style="color: #1878b0;" matTooltip="Edit Bug" (click)="updateState(element)"> 
+                        <mat-icon>edit</mat-icon>
+                    </a>
+                    <a *ngIf="actions.includes('delete')" class="pointer" style="color: #e15639;" matTooltip="Delete Bug" (click)="delete(element.id)"> 
+                        <mat-icon>delete</mat-icon>
+                    </a>
+                </td>
+            </ng-container>
+
+            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+        </table>
+        <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]" aria-label="Select page of bugs"></mat-paginator>
+    </div>
+
+</div>

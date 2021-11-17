@@ -1,0 +1,36 @@
+<form [formGroup]="form">
+    <div fxLayout="column" fxLayoutAlign="space-around center">
+       
+        <h1>New Task</h1>
+
+        <mat-form-field class="example-full-width" appearance="fill">
+            <mat-label>Name</mat-label>
+            <input type="text" matInput autocomplete="off" width="auto" formControlName="name" required>
+        </mat-form-field>
+
+        <mat-form-field class="example-full-width" appearance="fill">
+            <mat-label>Duration</mat-label>
+            <input type="number" matInput autocomplete="off" width="auto" formControlName="duration" min="1" max="9999" maxlength="4" required>
+        </mat-form-field>
+
+        <mat-form-field class="example-full-width" appearance="fill">
+            <mat-label>Cost</mat-label>
+            <input type="number" matInput autocomplete="off" formControlName="cost" required >
+            <span matPrefix>U$S&nbsp;</span>
+        </mat-form-field>
+
+        <mat-form-field *ngIf="data == ''" appearance="fill">
+            <mat-label>Project</mat-label>
+            <mat-select name="project" formControlName="project" #project>
+                <mat-option *ngFor="let project of projects" [value]="project.name">
+                    {{project.name}}
+                </mat-option>
+            </mat-select>
+        </mat-form-field>
+
+        <div fxLayout="row" fxLayoutAlign="space-between center" fxLayoutGap=10px>
+            <button [disabled]="form.invalid" class="ancho button" mat-raised-button color="primary" (click)="create()">Create</button>
+            <button class="ancho button" mat-raised-button color="primary" (click)="close()">Cancel</button>
+        </div>
+    </div>
+</form>

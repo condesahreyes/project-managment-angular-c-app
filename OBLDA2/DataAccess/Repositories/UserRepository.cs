@@ -22,13 +22,13 @@ namespace DataAccess.Repositories
 
         public List<User> GetAll()
         {
-            return _DbSet.Include(r => r.Rol).Include(p => p.Projects).ToList();
+            return _DbSet.Include(r => r.Rol).ToList();
         }
 
         public User GetById(Guid id)
         {
             try {
-                return _DbSet.Include(r => r.Rol).Include(p => p.Projects)
+                return _DbSet.Include(r => r.Rol)
                     .First(p => p.Id == id);
             }
             catch (Exception)

@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using BusinessLogicInterface;
 using DataAccessInterface;
+using System.Linq;
 using Exceptions;
 using Domain;
 using System;
@@ -97,15 +98,14 @@ namespace BusinessLogic
         {
             List<State> states = stateRepository.GetAllGeneric();
 
-            foreach (State oneState in states)
+            try
             {
-                if (oneState.Name.ToLower() == state.Name.ToLower())
-                {
-                    return oneState;
-                }
+                return states.Where(s => s.Name.ToLower() == state.Name.ToLower()).First();
             }
-
-            throw new InvalidDataObjException(invalidState);
+            catch (InvalidOperationException)
+            {
+                throw new InvalidDataObjException(invalidState);
+            }
         }
 
     }

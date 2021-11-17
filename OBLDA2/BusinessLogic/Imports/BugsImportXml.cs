@@ -33,6 +33,7 @@ namespace BusinessLogic.Imports
             string domain="";
             string version="";
             string stateString="";
+            int duration=0;
 
             XmlReader reader = XmlReader.Create(fileAddress);
 
@@ -59,8 +60,11 @@ namespace BusinessLogic.Imports
                             break;
                         case "Estado":
                             stateString = reader.ReadString();
+                            break;
+                        case "Horas":
+                            duration = Convert.ToInt32(reader.ReadString());
                             State state = new State(stateString);
-                            bugs.Add(new Bug(project, id, name, domain, version, state));
+                            bugs.Add(new Bug(project, id, name, domain, version, state, duration));
                             break;
                     }
                 }

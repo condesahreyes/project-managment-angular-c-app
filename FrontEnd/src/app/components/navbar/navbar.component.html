@@ -1,0 +1,23 @@
+<mat-toolbar color="primary" class="toolbar">
+    <span> {{userInfo}} </span>
+
+    <div *ngIf="userRol=='Administrador'" class="menuAdmin">
+        <button mat-button routerLink="/dashboard/users">Users</button>
+        <button mat-button routerLink="/dashboard/projects">Projects</button>
+        <button mat-button routerLink="/dashboard/bugs">Bugs</button> 
+        <button mat-button routerLink="/dashboard/tasks">Tasks</button>     
+    </div>
+
+    <div *ngIf="userRol!='Administrador'" class="menu">
+        <button mat-button routerLink="/dashboard/projects">Projects</button>
+        <button mat-button routerLink="/dashboard/bugs">Bugs</button> 
+        <button mat-button routerLink="/dashboard/tasks">Tasks</button>     
+    </div>
+
+    <span class="example-spacer"></span>
+
+    <button (click)="onLogout()" mat-icon-button class="example-icon favorite-icon" aria-label="Example icon-button with heart icon">
+        <mat-icon>logout</mat-icon>
+    </button>
+
+</mat-toolbar>

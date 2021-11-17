@@ -23,9 +23,7 @@ namespace DataAccess.Repositories
 
         public List<Project> GetAll()
         {
-            return _DbSet.Include(u => u.Users)
-                .Include(b => b.Bugs).ThenInclude(b => b.State)
-                .Include(b => b.Bugs).ThenInclude(b=>b.SolvedBy)
+            return _DbSet.Include(u => u.Users).Include(t => t.Tasks)
                 .ToList();
         }
 
@@ -35,7 +33,7 @@ namespace DataAccess.Repositories
                 return _DbSet.Include(u => u.Users)
                     .Include(b => b.Bugs).ThenInclude(b => b.State)
                     .Include(b => b.Bugs).ThenInclude(b => b.SolvedBy)
-                    .First(b => b.Id == id);
+                    .Include(t => t.Tasks).First(b => b.Id == id);
             }
             catch
             {
@@ -55,6 +53,8 @@ namespace DataAccess.Repositories
                 projectSaved.Bugs = projectUpdate.Bugs;
             if (projectUpdate.Users != null)
                 projectSaved.Users = projectUpdate.Users;
+            if (projectUpdate.Tasks != null)
+                projectSaved.Bugs = projectUpdate.Bugs;
 
             Project projectToReturn = _DbSet.Update(projectSaved).Entity;
             Save();

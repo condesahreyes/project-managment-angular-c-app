@@ -5,11 +5,11 @@ using DataAccess.Repositories;
 using Microsoft.Data.Sqlite;
 using DataAccessInterface;
 using System.Data.Common;
-using DataAccess;
 using System.Linq;
+using Exceptions;
+using DataAccess;
 using Domain;
 using System;
-using Exceptions;
 
 namespace DataAccessTest
 {

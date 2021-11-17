@@ -1,0 +1,42 @@
+<div fxLayout="column" fxLayoutAlign="space-around center">
+
+    <mat-form-field class="example-full-width" appearance="fill">
+        <mat-label>Name</mat-label>
+        <input type="text" matInput autocomplete="off" width="auto" [(ngModel)]="bug.name" readonly>
+    </mat-form-field>
+
+    <mat-form-field class="example-full-width" appearance="fill">
+        <mat-label>Id</mat-label>
+        <input type="number" matInput autocomplete="off" width="auto" [(ngModel)]="bug.id" readonly>
+    </mat-form-field>
+
+    <mat-form-field class="example-full-width" appearance="fill">
+        <mat-label>Domain</mat-label>
+        <input type="text" matInput autocomplete="off"  [(ngModel)]="bug.domain" readonly>
+    </mat-form-field>
+
+    <mat-form-field class="example-full-width" appearance="fill">
+        <mat-label>Version</mat-label>
+        <input type="text" matInput autocomplete="off"  [(ngModel)]="bug.version" readonly>
+    </mat-form-field>
+
+    <mat-form-field class="example-full-width" appearance="fill">
+        <mat-label>Duration</mat-label>
+        <input type="number" matInput autocomplete="off"  [(ngModel)]="bug.duration" readonly>
+    </mat-form-field>
+
+    <mat-form-field class="example-full-width" appearance="fill">
+        <mat-label>State</mat-label>
+        <input type="text" matInput autocomplete="off"  [(ngModel)]="bug.state" readonly>
+    </mat-form-field>
+
+    <mat-form-field class="example-full-width" appearance="fill">
+        <mat-label> New state</mat-label>
+        <input type="text" matInput autocomplete="off" [(ngModel)]="newState" required>
+    </mat-form-field>
+
+    <div fxLayout="row" fxLayoutAlign="space-between center" fxLayoutGap=10px>
+        <button class="ancho button" mat-raised-button color="primary" (click)="update()">Save</button>
+        <button class="ancho button" mat-raised-button color="primary" (click)="close()">Cancel</button>
+    </div>
+</div>

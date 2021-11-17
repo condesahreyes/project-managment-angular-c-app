@@ -1,0 +1,10 @@
+th, td {
+    overflow: hidden;
+    width: 15%;
+    text-overflow: Ellipsis;
+    white-space: nowrap;
+  }
+
+#create{
+  margin:10px;
+}

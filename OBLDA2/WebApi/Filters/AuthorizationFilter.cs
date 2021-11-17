@@ -5,9 +5,11 @@ using Microsoft.AspNetCore.Mvc;
 using BusinessLogicInterface;
 using System.Net;
 using System;
+using System.Diagnostics.CodeAnalysis;
 
 namespace WebApi.Filters
 {
+    [ExcludeFromCodeCoverage]
     public class AuthorizationFilter : Attribute, IAuthorizationFilter
     {
         private ISessionLogic sessionLogic;

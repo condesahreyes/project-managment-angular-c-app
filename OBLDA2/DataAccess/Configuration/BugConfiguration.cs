@@ -1,10 +1,11 @@
 ﻿using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using Microsoft.EntityFrameworkCore;
 using Domain;
-using System.ComponentModel.DataAnnotations.Schema;
+using System.Diagnostics.CodeAnalysis;
 
 namespace DataAccess.Configuration
 {
+    [ExcludeFromCodeCoverage]
     class BugConfiguration : IEntityTypeConfiguration<Bug>
     {
         public void Configure(EntityTypeBuilder<Bug> builder)

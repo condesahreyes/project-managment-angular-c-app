@@ -35,7 +35,7 @@ namespace WebApi.Controllers
         [AuthorizationFilter(Autorization.Administrator)]
         public IActionResult GetAllProjects()
         {
-            IEnumerable<Project> projects = this.projectLogic.GetAll();
+            List<Project> projects = this.projectLogic.GetAll();
 
             List<ProjectOutModel> projectsOut = new List<ProjectOutModel>();
 
@@ -47,24 +47,8 @@ namespace WebApi.Controllers
             return Ok(projectsOut);
         }
 
-        [HttpGet("bugs")]
-        [AuthorizationFilter(Autorization.Administrator)]
-        public IActionResult GetTotalBugsByProjects()
-        {
-            IEnumerable<Project> projects = this.projectLogic.GetAll();
-
-            List<ProjectReportModel> projectsOut = new List<ProjectReportModel>();
-
-            foreach (Project project in projects)
-            {
-                projectsOut.Add(new ProjectReportModel(project));
-            }
-
-            return Ok(projectsOut);
-        }
-
         [HttpGet("{projectId}")]
-        [AuthorizationFilter(Autorization.Administrator)]
+        [AuthorizationFilter(Autorization.AllAutorization)]
         public IActionResult GetById(Guid projectId)
         {
             Project projectToReturn = this.projectLogic.Get(projectId);
@@ -73,14 +57,11 @@ namespace WebApi.Controllers
         }
 
         [HttpGet("{projectId}/bugs")]
-        [AuthorizationFilter(Autorization.Administrator)]
+        [AuthorizationFilter(Autorization.AllAutorization)]
         public IActionResult GetAllBugsByProject(Guid projectId)
         {
-            Project project = new Project();
-            project.Id = projectId;
-
-            IEnumerable<Bug> bugs = this.projectLogic.GetAllBugByProject(project);
-            return Ok(bugs);
+            List<Bug> bugs = this.projectLogic.GetAllBugByProject(projectId);
+            return Ok(BugEntryOutModel.ListBugs(bugs));
         }
 
         [HttpDelete("{id}")]
@@ -97,6 +78,14 @@ namespace WebApi.Controllers
         {
             this.projectLogic.Update(id, projectDTO.ToEntity());
             return NoContent();
+        }
+
+        [HttpGet("{projectId}/users")]
+        [AuthorizationFilter(Autorization.Administrator)]
+        public IActionResult GetAllUsersByProject(Guid projectId)
+        {
+            List<User> users = this.projectLogic.GetAllUsersInOneProject(projectId);
+            return Ok(UserOutModel.ListUser(users));
         }
 
     }
