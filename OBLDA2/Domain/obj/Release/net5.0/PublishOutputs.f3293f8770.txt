@@ -1,5 +1,0 @@
-C:\Users\hreye\Desktop\OBL-Asadurian-Reyes\OBLDA2\Domain\bin\Release\net5.0\publish\Domain.dll
-C:\Users\hreye\Desktop\OBL-Asadurian-Reyes\OBLDA2\Domain\bin\Release\net5.0\publish\Domain.pdb
-C:\Users\hreye\Desktop\OBL-Asadurian-Reyes\OBLDA2\Domain\bin\Release\net5.0\publish\Exceptions.dll
-C:\Users\hreye\Desktop\OBL-Asadurian-Reyes\OBLDA2\Domain\bin\Release\net5.0\publish\Exceptions.pdb
-C:\Users\hreye\Desktop\OBL-Asadurian-Reyes\OBLDA2\Domain\bin\Release\net5.0\publish\Domain.deps.json

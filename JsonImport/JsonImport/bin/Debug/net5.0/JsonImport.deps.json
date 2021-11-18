@@ -8,8 +8,8 @@
     ".NETCoreApp,Version=v5.0": {
       "JsonImport/1.0.0": {
         "dependencies": {
-          "Newtonsoft.Json": "13.0.1",
-          "Imports": "1.0.0.0"
+          "Imports": "1.0.0",
+          "Newtonsoft.Json": "13.0.1"
         },
         "runtime": {
           "JsonImport.dll": {}
@@ -23,12 +23,9 @@
           }
         }
       },
-      "Imports/1.0.0.0": {
+      "Imports/1.0.0": {
         "runtime": {
-          "Imports.dll": {
-            "assemblyVersion": "1.0.0.0",
-            "fileVersion": "1.0.0.0"
-          }
+          "Imports.dll": {}
         }
       }
     }
@@ -46,8 +43,8 @@
       "path": "newtonsoft.json/13.0.1",
       "hashPath": "newtonsoft.json.13.0.1.nupkg.sha512"
     },
-    "Imports/1.0.0.0": {
-      "type": "reference",
+    "Imports/1.0.0": {
+      "type": "project",
       "serviceable": false,
       "sha512": ""
     }

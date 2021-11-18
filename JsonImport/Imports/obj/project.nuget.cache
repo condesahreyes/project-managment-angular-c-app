@@ -1,0 +1,10 @@
+{
+  "version": 2,
+  "dgSpecHash": "RaicjSvQbzZ8fgkrdHR7Fur6mwgK4crw/4PfLAMWGKbA9N6lfbwYNuQC0WG7aOmdNY4HwC9+Rj8voQ46i5GBrQ==",
+  "success": true,
+  "projectFilePath": "C:\\Users\\hreye\\Desktop\\clonn\\OBL-Asadurian-Reyes\\JsonImport\\Imports\\Imports.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\hreye\\.nuget\\packages\\coverlet.msbuild\\3.1.0\\coverlet.msbuild.3.1.0.nupkg.sha512"
+  ],
+  "logs": []
+}

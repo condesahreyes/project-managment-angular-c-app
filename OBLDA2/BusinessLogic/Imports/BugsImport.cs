@@ -77,7 +77,7 @@ namespace Imports
 
             }catch
             {
-                throw new InvalidDataObjException(invalidFormat);
+                throw new InvalidDataObjException(invalidFormat + " " + fileAddress);
             }
         }
 

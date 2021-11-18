@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Diego\\Desktop\\OBL-Asadurian-Reyes\\JsonImport\\JsonImport\\JsonImport.csproj": {}
+    "C:\\Users\\hreye\\Desktop\\clonn\\OBL-Asadurian-Reyes\\JsonImport\\JsonImport\\JsonImport.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Diego\\Desktop\\OBL-Asadurian-Reyes\\JsonImport\\JsonImport\\JsonImport.csproj": {
+    "C:\\Users\\hreye\\Desktop\\clonn\\OBL-Asadurian-Reyes\\JsonImport\\Imports\\Imports.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Diego\\Desktop\\OBL-Asadurian-Reyes\\JsonImport\\JsonImport\\JsonImport.csproj",
-        "projectName": "JsonImport",
-        "projectPath": "C:\\Users\\Diego\\Desktop\\OBL-Asadurian-Reyes\\JsonImport\\JsonImport\\JsonImport.csproj",
-        "packagesPath": "C:\\Users\\Diego\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Diego\\Desktop\\OBL-Asadurian-Reyes\\JsonImport\\JsonImport\\obj\\",
+        "projectUniqueName": "C:\\Users\\hreye\\Desktop\\clonn\\OBL-Asadurian-Reyes\\JsonImport\\Imports\\Imports.csproj",
+        "projectName": "Imports",
+        "projectPath": "C:\\Users\\hreye\\Desktop\\clonn\\OBL-Asadurian-Reyes\\JsonImport\\Imports\\Imports.csproj",
+        "packagesPath": "C:\\Users\\hreye\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\hreye\\Desktop\\clonn\\OBL-Asadurian-Reyes\\JsonImport\\Imports\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\Diego\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\hreye\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -28,6 +28,72 @@
           "net5.0": {
             "targetAlias": "net5.0",
             "projectReferences": {}
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net5.0": {
+          "targetAlias": "net5.0",
+          "dependencies": {
+            "coverlet.msbuild": {
+              "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[3.1.0, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.403\\RuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "C:\\Users\\hreye\\Desktop\\clonn\\OBL-Asadurian-Reyes\\JsonImport\\JsonImport\\JsonImport.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\Users\\hreye\\Desktop\\clonn\\OBL-Asadurian-Reyes\\JsonImport\\JsonImport\\JsonImport.csproj",
+        "projectName": "JsonImport",
+        "projectPath": "C:\\Users\\hreye\\Desktop\\clonn\\OBL-Asadurian-Reyes\\JsonImport\\JsonImport\\JsonImport.csproj",
+        "packagesPath": "C:\\Users\\hreye\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\hreye\\Desktop\\clonn\\OBL-Asadurian-Reyes\\JsonImport\\JsonImport\\obj\\",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "C:\\Users\\hreye\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "net5.0"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net5.0": {
+            "targetAlias": "net5.0",
+            "projectReferences": {
+              "C:\\Users\\hreye\\Desktop\\clonn\\OBL-Asadurian-Reyes\\JsonImport\\Imports\\Imports.csproj": {
+                "projectPath": "C:\\Users\\hreye\\Desktop\\clonn\\OBL-Asadurian-Reyes\\JsonImport\\Imports\\Imports.csproj"
+              }
+            }
           }
         },
         "warningProperties": {
@@ -60,7 +126,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.400\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.403\\RuntimeIdentifierGraph.json"
         }
       }
     }
